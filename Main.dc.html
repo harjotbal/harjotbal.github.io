@@ -118,7 +118,7 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 .cakecv{position:absolute;inset:0;width:100%;height:100%;display:block}
 .lava .cblob{animation-play-state:paused}
 .still .cblob{animation:none!important}
-.cake main{background-color:#EEFBFC!important}
+.cake .gatebg{background-color:#EEFBFC!important}
 .cake .blob{opacity:0!important}
 .tagline,.gatemsg,.backface span,.backface svg,.key,.motionbtn,.modetog{transition:color .6s ease,stroke .6s ease,background .6s ease,border-color .6s ease,box-shadow .6s ease}
 .cake .tagline{color:#55301C!important;opacity:.85}.glass::before,.glass::after,.key.sel::before,.key.sel::after{display:none!important;animation:none!important}.tagline{font-size:calc(16px * var(--tls, 1))!important;padding:0 16px}
@@ -165,8 +165,8 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 </style>
 </helmet>
 <div class="{{rootCls}}" style="{{rootStyle}}; padding: 0; {{frameStyle}}; overflow: hidden; font-family: 'Proxima Nova', Figtree, system-ui, sans-serif; color: #FBE9DC; position: relative">
-<main class="tx-intro" style="position: fixed; left: 0; right: 0; top: 0; height: 100lvh; min-height: 100%; border-radius: 0; overflow: hidden; background-color: {{p.base}}; transition: background-color 1.6s cubic-bezier(.22,1,.36,1); display: flex; align-items: center; justify-content: center">
-<div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 0; overflow: hidden; isolation: isolate; transform: translateZ(0)">
+<main class="tx-intro" style="position: fixed; left: 0; right: 0; top: 0; height: 100lvh; min-height: 100%; border-radius: 0; overflow: hidden; visibility: hidden; pointer-events: none; display: flex; align-items: center; justify-content: center">
+<div aria-hidden="true" class="pagebg gatebg" style="position: absolute; inset: 0; border-radius: 0; overflow: hidden; isolation: isolate; transform: translateZ(0); visibility: visible; background-color: {{p.base}}; transition: background-color 1.6s cubic-bezier(.22,1,.36,1)">
 <div class="blob" style="left: -18%; top: 30%; width: 70%; aspect-ratio: 1; background-color: {{p.hi}}; animation: driftA 10s ease-in-out infinite alternate"></div>
 <div class="blob" style="left: 52%; top: 18%; width: 62%; aspect-ratio: 1; background-color: {{p.deep}}; animation: driftB 12s ease-in-out infinite alternate"></div>
 <div class="blob" style="right: -22%; top: -40%; width: 52%; aspect-ratio: 1; background-color: {{p.mid}}; animation: driftC 8s ease-in-out infinite alternate"></div>
@@ -180,7 +180,7 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 <canvas ref="{{cakeRef}}" class="cakecv"></canvas>
 </div>
 </div>
-<h1 class="sr">Harjot.</h1>
+<h1 class="sr" style="visibility: visible">Harjot.</h1>
 </main>
 <div class="tx-fade" style="{{gateStyle}}; position: absolute; left: 0; right: 0; top: calc(var(--gy, 50vh) - 112px * var(--gf, 1)); z-index: 3; pointer-events: none"><p style="margin: 0; text-align: center; font-family: Josefin Sans, Futura, sans-serif; font-weight: 500; font-size: 16px; letter-spacing: .3em; text-transform: uppercase; color: #EADBC0; animation-delay: .12s" class="tagline">The experience matters.</p></div>
 
