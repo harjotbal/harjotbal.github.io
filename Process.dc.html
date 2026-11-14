@@ -35,7 +35,7 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 .glass-dark{background:rgba(24,9,5,.40);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border:1px solid rgba(255,238,226,.18)}
 .emboss{background:linear-gradient(180deg,rgba(255,232,214,.92),rgba(236,196,170,.70));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 0 rgba(255,255,255,.22)) drop-shadow(0 3px 4px rgba(20,6,2,.45))}
 .rise{animation:rise .9s cubic-bezier(.22,1,.36,1) both}
-@supports (animation-timeline: view()){.reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 85%}}
+.hj-rv .reveal{transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}.hj-rv .reveal:not(.revealed){opacity:0;transform:translateY(28px)}.hj-rv .still .reveal:not(.revealed){opacity:1;transform:none}.still .reveal{transition:none!important}
 .navlink{color:#FBE9DC;text-decoration:none;font:600 14px/1 Josefin Sans,Futura,sans-serif;letter-spacing:.28em;text-transform:uppercase;padding:15px 0;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .5s cubic-bezier(.22,1,.36,1)}
 .navlink:hover,.navlink[aria-current="page"]{background-size:100% 1px;color:#FFFFFF}
 .row{transition:transform .5s cubic-bezier(.22,1,.36,1),background-color .5s}
@@ -590,6 +590,18 @@ class Component extends DCLogic {
   }
   componentDidUpdate() { this.syncChrome(); }
   componentDidMount() {
+    try {
+      const rv = () => {
+        const els = [...document.querySelectorAll('.reveal:not(.revealed)')];
+        if (!els.length) return;
+        const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!window.IntersectionObserver || reduce) { els.forEach((e) => e.classList.add('revealed')); return; }
+        if (!window.__hjIO) window.__hjIO = new IntersectionObserver((ents) => { ents.forEach((en) => { if (en.isIntersecting || en.boundingClientRect.top < 0) { en.target.classList.add('revealed'); window.__hjIO.unobserve(en.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+        document.documentElement.classList.add('hj-rv');
+        els.forEach((e) => window.__hjIO.observe(e));
+      };
+      rv(); setTimeout(rv, 600);
+    } catch (e) {}
     if (!window.__hjSP && window.matchMedia && matchMedia('(hover: none) and (pointer: coarse)').matches) { window.__hjSP = 1; let t; window.addEventListener('scroll', () => { const r = document.documentElement; if (!r.classList.contains('hj-scrolling')) r.classList.add('hj-scrolling'); clearTimeout(t); t = setTimeout(() => r.classList.remove('hj-scrolling'), 200); }, { passive: true }); }
     this.syncChrome(); this.themeListen(); }
   hdrInit() {
