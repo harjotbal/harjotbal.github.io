@@ -12,7 +12,7 @@
 <helmet>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Figtree:wght@300;400;500;600&amp;display=swap">
 <style>
-body{margin:0;background:#6E2C1A}.bg-still .blob,.bg-still .cblob{animation-play-state:paused!important}.hj-scrolling .blob,.hj-scrolling .cblob{animation-play-state:paused!important}
+body{margin:0;background:#6E2C1A}.grainbg{position:absolute;inset:0;opacity:.13;mix-blend-mode:overlay;pointer-events:none;background:url(img/286a77ab77c7.webp) 0 0/160px 160px repeat}.lump-off .gb,.hj-scrolling .gb{animation-play-state:paused!important}.bg-still .blob,.bg-still .cblob{animation-play-state:paused!important}.bg-still .blob,.bg-still .cblob{visibility:hidden!important}.blobcv{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}.hj-scrolling .blob,.hj-scrolling .cblob{animation-play-state:paused!important}
 *{box-sizing:border-box}
 a{color:#FBE9DC}a:hover{color:#FFFFFF}
 @keyframes driftA{0%{transform:translate(-18%,-12%) scale(.9)}25%{transform:translate(28%,2%) scale(1.3)}50%{transform:translate(14%,30%) scale(1.05)}75%{transform:translate(-14%,22%) scale(1.25)}100%{transform:translate(-6%,-4%) scale(.85)}}
@@ -179,7 +179,7 @@ html{scroll-behavior:smooth}
 <div class="blob" style="left: 50%; top: 18%; width: 60%; aspect-ratio: 1; background-color: {{p.deep}}; animation: driftB 12s ease-in-out infinite alternate"></div>
 <div class="blob" style="right: -22%; top: 40%; width: 50%; aspect-ratio: 1; background-color: {{p.mid}}; animation: driftC 8s ease-in-out infinite alternate"></div>
 <div class="blob" style="left: 6%; top: 66%; width: 40%; aspect-ratio: 1; background-color: {{p.glow}}; opacity: .7; animation: driftC 11s ease-in-out infinite alternate-reverse"></div>
-<svg width="100%" height="100%" style="position: absolute; inset: 0; opacity: .13; mix-blend-mode: overlay"><filter id="{{grainId}}"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#{{grainId}})"></rect></svg>
+<div class="grainbg" aria-hidden="true"></div>
 <div class="cakebg">
 <div class="cblob" style="left: -12%; top: -6%; width: 62%; aspect-ratio: 1; background: #CFF3FF; animation: driftA 26s ease-in-out infinite alternate"></div>
 <div class="cblob" style="right: -16%; top: 30%; width: 56%; aspect-ratio: 1; background: #FFE6F3; animation: driftB 30s ease-in-out infinite alternate"></div>
@@ -286,6 +286,55 @@ html{scroll-behavior:smooth}
 // false = lava blobs and cake splotches hold still (better performance on phones).
 // Set to true to bring the drifting/wobbling backgrounds back exactly as before.
 const BG_MOTION = false;
+// Still-background painter: when BG_MOTION is false, the blurred colour blobs are
+// painted once into a small canvas (cheap to scroll) instead of live CSS blur layers.
+const bgPaint = (root) => {
+  if (BG_MOTION || !root) return;
+  const layers = new Set();
+  root.querySelectorAll('.blob, .cblob').forEach((b) => b.parentElement && layers.add(b.parentElement));
+  const K = 0.125;
+  layers.forEach((layer) => {
+    const W = layer.clientWidth, H = layer.clientHeight;
+    if (!W || !H) return;
+    let cv = layer.querySelector(':scope > canvas.blobcv');
+    if (!cv) { cv = document.createElement('canvas'); cv.className = 'blobcv'; cv.setAttribute('aria-hidden', 'true'); layer.insertBefore(cv, layer.firstChild); }
+    const cw = Math.max(8, Math.ceil(W * K)), ch = Math.max(8, Math.ceil(H * K));
+    if (cv.width !== cw) cv.width = cw;
+    if (cv.height !== ch) cv.height = ch;
+    const ctx = cv.getContext('2d'); if (!ctx) return;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cw, ch);
+    const lr = layer.getBoundingClientRect();
+    const hasFilter = typeof ctx.filter === 'string';
+    layer.querySelectorAll(':scope > .blob, :scope > .cblob').forEach((b) => {
+      const cs = getComputedStyle(b);
+      const col = cs.backgroundColor; if (!col || col === 'transparent') return;
+      const r = b.getBoundingClientRect();
+      const cx = (r.left + r.width / 2 - lr.left) * K, cy = (r.top + r.height / 2 - lr.top) * K, R = (r.width / 2) * K;
+      const m = /blur\(([\d.]+)px\)/.exec(b.dataset.blur || cs.filter); const s = (m ? parseFloat(m[1]) : 80) * K;
+      if (m) b.dataset.blur = m[0];
+      const op = parseFloat(cs.opacity); if (!(op > 0.004)) return; ctx.globalAlpha = op;
+      if (hasFilter) {
+        ctx.filter = 'blur(' + s.toFixed(2) + 'px)';
+        ctx.fillStyle = col; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+        ctx.filter = 'none';
+      } else {
+        const peak = 1 - Math.exp(-(R * R) / (2 * s * s)), out = R + 3 * s;
+        const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, out);
+        const erfc = (x) => { const t = 1 / (1 + 0.3275911 * Math.abs(x)); const y = t * (0.254829592 + t * (-0.284496736 + t * (1.421413741 + t * (-1.453152027 + t * 1.061405429)))) * Math.exp(-x * x); return x >= 0 ? y : 2 - y; };
+        for (let i = 0; i <= 12; i++) { const rr = (i / 12) * out; const v = Math.min(peak, 0.5 * erfc((rr - R) / (s * Math.SQRT2))); g.addColorStop(i / 12, col.replace(/rgba?\(([^,]+),([^,]+),([^,)]+)(?:,[^)]*)?\)/, 'rgba($1,$2,$3,' + v.toFixed(3) + ')')); }
+        ctx.fillStyle = g; ctx.fillRect(0, 0, cw, ch);
+      }
+    });
+    ctx.globalAlpha = 1;
+  });
+};
+const bgPaintSoon = (host, root) => {
+  if (BG_MOTION) return;
+  clearTimeout(host._bgT1); clearTimeout(host._bgT2); cancelAnimationFrame(host._bgR);
+  host._bgR = requestAnimationFrame(() => bgPaint(root));
+  host._bgT1 = setTimeout(() => bgPaint(root), 450);
+  host._bgT2 = setTimeout(() => bgPaint(root), 1750);
+};
 
 function cakeEngine(host, cv) {
     if (host.cakeOn) return;
@@ -592,8 +641,9 @@ class Component extends DCLogic {
     };
     this._scR = requestAnimationFrame(run); this._scT = setTimeout(run, 1800);
   }
-  componentDidUpdate() { this.syncChrome(); }
+  componentDidUpdate() { this.syncChrome(); bgPaintSoon(this, document.body); }
   componentDidMount() {
+    if (!BG_MOTION) { bgPaintSoon(this, document.body); this._bgRs = () => bgPaintSoon(this, document.body); window.addEventListener('resize', this._bgRs); if (window.ResizeObserver) { this._bgRO = new ResizeObserver(this._bgRs); this._bgRO.observe(document.body); } if (document.fonts && document.fonts.ready) document.fonts.ready.then(this._bgRs); }
     try { document.documentElement.classList.toggle('bg-still', !BG_MOTION); } catch (e) {}
     try {
       const rv = () => {
