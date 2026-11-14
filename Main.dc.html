@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Harjot — Enter</title>
 <script src="./support.js"></script>
 </head>
@@ -11,7 +11,7 @@
 <helmet>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Figtree:wght@300;400;500;600&amp;display=swap">
 <style>
-body{margin:0;background:#17100D}
+body{margin:0;background:#17100D}html,body{overscroll-behavior:none}
 *{box-sizing:border-box}
 a{color:#FBE9DC}a:hover{color:#FFFFFF}
 @keyframes driftA{0%{transform:translate(-18%,-12%) scale(.9)}25%{transform:translate(28%,2%) scale(1.3)}50%{transform:translate(14%,30%) scale(1.05)}75%{transform:translate(-14%,22%) scale(1.25)}100%{transform:translate(-6%,-4%) scale(.85)}}
@@ -91,7 +91,7 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 @keyframes flipPanel{0%{transform:perspective(1600px) rotateY(0deg);animation-timing-function:cubic-bezier(.55,0,.85,.45)}45%{transform:perspective(1600px) rotateY(90deg)}45.01%{transform:perspective(1600px) rotateY(-90deg);animation-timing-function:cubic-bezier(.15,.55,.3,1)}100%{transform:perspective(1600px) rotateY(0deg)}}
 .flip{animation:flipPanel 1.1s both}
 .logohit{background:none;border:0;padding:0;margin:0;cursor:pointer;opacity:1!important;filter:none!important;border-radius:12px}
-.gatefoot{position:absolute;left:0;right:0;top:calc(var(--gy, 50vh) + 300px);height:30px;z-index:4;display:flex;align-items:center;justify-content:center;gap:24px}
+.gatefoot{position:absolute;left:0;right:0;top:calc(var(--gy, 50vh) + 300px * var(--gf, 1));height:30px;z-index:4;scale:var(--gf, 1);transform-origin:50% 0;display:flex;align-items:center;justify-content:center;gap:24px}
 .motionbtn{display:flex;align-items:center;gap:8px;height:30px;padding:0 13px 0 11px;border:1px solid rgba(255,238,226,.42);border-radius:999px;background:linear-gradient(135deg,rgba(255,236,224,.16),rgba(255,236,224,.04));backdrop-filter:blur(10px) saturate(140%);-webkit-backdrop-filter:blur(10px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28);color:#FBE9DC;cursor:pointer;font:600 10px/1 Josefin Sans,Futura,sans-serif;letter-spacing:.22em;text-transform:uppercase;transition:background-color .3s,transform .3s cubic-bezier(.22,1,.36,1)}
 .motionbtn span{display:block;text-box:trim-both cap alphabetic;line-height:1}
 .motionbtn svg{display:block;flex:none}
@@ -164,8 +164,8 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 @media (prefers-reduced-motion:reduce){.sugar{animation:none!important;opacity:0}}
 </style>
 </helmet>
-<div class="{{rootCls}}" style="{{rootStyle}}; min-height: max(100vh, {{rootMinH}}px); padding: 0; {{frameStyle}}; overflow: hidden; font-family: 'Proxima Nova', Figtree, system-ui, sans-serif; color: #FBE9DC; position: relative">
-<main class="tx-intro" style="position: relative; min-height: 100vh; border-radius: 0; overflow: hidden; background-color: {{p.base}}; transition: background-color 1.6s cubic-bezier(.22,1,.36,1); display: flex; align-items: center; justify-content: center; height: 724px">
+<div class="{{rootCls}}" style="{{rootStyle}}; padding: 0; {{frameStyle}}; overflow: hidden; font-family: 'Proxima Nova', Figtree, system-ui, sans-serif; color: #FBE9DC; position: relative">
+<main class="tx-intro" style="position: fixed; left: 0; right: 0; top: 0; height: 100lvh; min-height: 100%; border-radius: 0; overflow: hidden; background-color: {{p.base}}; transition: background-color 1.6s cubic-bezier(.22,1,.36,1); display: flex; align-items: center; justify-content: center">
 <div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 0; overflow: hidden; isolation: isolate; transform: translateZ(0)">
 <div class="blob" style="left: -18%; top: 30%; width: 70%; aspect-ratio: 1; background-color: {{p.hi}}; animation: driftA 10s ease-in-out infinite alternate"></div>
 <div class="blob" style="left: 52%; top: 18%; width: 62%; aspect-ratio: 1; background-color: {{p.deep}}; animation: driftB 12s ease-in-out infinite alternate"></div>
@@ -182,9 +182,9 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 </div>
 <h1 class="sr">Harjot.</h1>
 </main>
-<div class="tx-fade" style="{{gateStyle}}; position: absolute; left: 0; right: 0; top: calc(var(--gy, 50vh) - 112px); z-index: 3; pointer-events: none"><p style="margin: 0; text-align: center; font-family: Josefin Sans, Futura, sans-serif; font-weight: 500; font-size: 16px; letter-spacing: .3em; text-transform: uppercase; color: #EADBC0; animation-delay: .12s" class="tagline">The experience matters.</p></div>
+<div class="tx-fade" style="{{gateStyle}}; position: absolute; left: 0; right: 0; top: calc(var(--gy, 50vh) - 112px * var(--gf, 1)); z-index: 3; pointer-events: none"><p style="margin: 0; text-align: center; font-family: Josefin Sans, Futura, sans-serif; font-weight: 500; font-size: 16px; letter-spacing: .3em; text-transform: uppercase; color: #EADBC0; animation-delay: .12s" class="tagline">The experience matters.</p></div>
 
-<div class="tx-fade" style="{{gateStyle}}; position: absolute; left: 0; right: 0; top: calc(var(--gy, 50vh) - 22px); z-index: 4; display: flex; justify-content: center">
+<div class="tx-fade" style="{{gateStyle}}; position: absolute; left: 0; right: 0; top: calc(var(--gy, 50vh) - 22px * var(--gf, 1)); z-index: 4; display: flex; justify-content: center; scale: var(--gf, 1); transform-origin: 50% 0">
 <div class="modetog" role="group" aria-label="Theme">
 <span class="modethumb" aria-hidden="true"></span>
 <button type="button" aria-pressed="{{lavaPressed}}" onClick="{{onLava}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5c.9 3.6 5.6 5.9 5.6 11a5.6 5.6 0 0 1-11.2 0c0-2.5 1.3-4.1 2.7-5.2.2 1.8 1 2.9 2.3 3.5-.6-3.4-.2-6.6.6-9.3z"></path></svg><span>Lava</span></button>
@@ -362,7 +362,7 @@ class Component extends DCLogic {
     this.mI = setInterval(measure, 1200);
     this.onPageShow = (e) => { measure(); if (e && e.persisted) this.reset(); };
     window.addEventListener('pageshow', this.onPageShow);
-    this.onRsz = () => { cancelAnimationFrame(this.rszRaf); this.rszRaf = requestAnimationFrame(() => { const v = window.innerWidth; if (v !== (this.state && this.state.vw)) this.setState({ vw: v }); }); };
+    this.onRsz = () => { cancelAnimationFrame(this.rszRaf); this.rszRaf = requestAnimationFrame(() => { const v = window.innerWidth; let h = window.innerHeight, si = 0, sb = 0; try { if (!this.vprobe) { const d = document.createElement('div'); d.setAttribute('aria-hidden', 'true'); d.style.cssText = 'position:fixed;left:0;top:0;width:0;visibility:hidden;pointer-events:none;height:100vh;height:100svh;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);box-sizing:content-box'; document.body.appendChild(d); this.vprobe = d; } const cs = getComputedStyle(this.vprobe); const sv = parseFloat(cs.height); if (sv > 100) h = Math.min(h, sv); if (window.visualViewport && window.visualViewport.height > 100) h = Math.min(h, window.visualViewport.height); si = parseFloat(cs.paddingTop) || 0; sb = parseFloat(cs.paddingBottom) || 0; } catch (e) {} const st = this.state || {}; if (v !== st.vw || h !== st.vh || si !== st.si || sb !== st.sb) this.setState({ vw: v, vh: h, si: si, sb: sb }); }); };
     window.addEventListener('resize', this.onRsz); this.onRsz();
   }
 
@@ -670,10 +670,16 @@ class Component extends DCLogic {
     const tilt = this.props.panelTilt ?? 18;
     const tw = s.tw || 392;
     const vwNow = s.vw || (typeof window !== 'undefined' ? window.innerWidth : 1440);
-    const pwPx = Math.round(Math.min(484, vwNow - 2 * Math.max(32, Math.min(48, 0.12 * vwNow))));
-    const PW = pwPx + 'px';
-    const pH = Math.round(Math.max(190, Math.min(232, 0.72 * pwPx)));
     const ls = Math.max(0.5, Math.min(1, (vwNow - Math.max(48, Math.min(120, vwNow * 0.27))) / (tw + 8)));
+    const vhNow = s.vh || (typeof window !== 'undefined' ? window.innerHeight : 900);
+    const lo0 = 182 + 118 * ls;
+    const si = s.si || 0, sb = s.sb || 0;
+    const gf = Math.max(0.5, Math.min(1, (vhNow - 32 - si - sb) / (lo0 + 330)));
+    const gyPx = Math.max(16 + si + lo0 * gf, Math.min(Math.max(vhNow / 2, 322), vhNow - 16 - sb - 330 * gf));
+    const gls = ls * gf;
+    const pwPx = Math.round(Math.min(484, vwNow - 2 * Math.max(32, Math.min(48, 0.12 * vwNow))) * gf);
+    const PW = pwPx + 'px';
+    const pH = Math.round(Math.max(190, Math.min(232, 0.72 * pwPx / gf)) * gf);
     const open = !!s.phase;
     const mode = this.props.entry === 'text' ? 'text' : 'keys';
     const code = this.cleanCode();
@@ -724,12 +730,12 @@ class Component extends DCLogic {
       motionLabel: s.paused ? 'Start motion' : 'Stop motion',
       motionPressed: s.paused ? 'true' : 'false',
       onToggleMotion: () => this.setState({ paused: !(this.state && this.state.paused) }),
-      rootStyle: '--blur: ' + blur + 'px; --gy: max(50vh, 322px); --tls: ' + ls.toFixed(4),
+      rootStyle: '--blur: ' + blur + 'px; --gy: ' + gyPx.toFixed(1) + 'px; --gf: ' + gf.toFixed(4) + '; --tls: ' + gls.toFixed(4) + '; height: ' + Math.round(vhNow) + 'px',
       logoW: Math.ceil(tw + 8),
       logoRef: (el) => { this.logoText = el; },
       logoStyle: open
         ? 'left: ' + L + '; top: ' + T + '; transform: scale(.5714)'
-        : 'left: calc(50% - ' + ((tw / 2 + 2) * ls).toFixed(2) + 'px); top: calc(var(--gy, 50vh) - ' + (182 + 118 * ls).toFixed(1) + 'px); ' + (intro >= 2 ? 'transform: scale(' + ls.toFixed(4) + '); opacity: 1; filter: blur(0px)' : 'transform: translateY(18px) scale(' + (0.97 * ls).toFixed(4) + '); opacity: 0; filter: blur(10px)'),
+        : 'left: calc(50% - ' + ((tw / 2 + 2) * gls).toFixed(2) + 'px); top: calc(var(--gy, 50vh) - ' + (lo0 * gf).toFixed(1) + 'px); ' + (intro >= 2 ? 'transform: scale(' + gls.toFixed(4) + '); opacity: 1; filter: blur(0px)' : 'transform: translateY(18px) scale(' + (0.97 * gls).toFixed(4) + '); opacity: 0; filter: blur(10px)'),
       gateStyle: open ? 'opacity: 0; transform: translateY(-14px); pointer-events: none' : (intro >= 3 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: translateY(12px)'),
       mainIntro: intro >= 1 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: scale(.985)',
       wobClass: '',
@@ -744,7 +750,7 @@ class Component extends DCLogic {
       navStyle: open ? 'opacity: 1; transform: none' : 'opacity: 0; transform: translateY(10px); pointer-events: none',
       panelPos: open
         ? 'left: ' + L + '; top: calc(clamp(40px, 6vw, 88px) + 170px); width: min(860px, calc(100% - 2 * clamp(24px, 9vw, 140px))); height: clamp(360px, 50vh, 460px)'
-        : 'left: calc(50% - ' + PW + ' / 2); top: calc(var(--gy, 50vh) + 22px); width: ' + PW + '; height: ' + pH + 'px; ' + (intro >= 4 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: translateY(80px)'),
+        : 'left: calc(50% - ' + PW + ' / 2); top: calc(var(--gy, 50vh) + ' + (22 * gf).toFixed(1) + 'px); width: ' + PW + '; height: ' + pH + 'px; ' + (intro >= 4 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: translateY(80px)'),
       panelTilt: 'transform: none; --tilt: ' + (open ? 0 : tilt) + 'deg',
       bobClass: open ? '' : 'bob',
       cardInner: 'opacity: 0; pointer-events: none',
