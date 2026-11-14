@@ -12,7 +12,7 @@
 <helmet>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Figtree:wght@300;400;500;600&amp;display=swap">
 <style>
-body{margin:0;background:#6E2C1A}.hj-scrolling .blob,.hj-scrolling .cblob{animation-play-state:paused!important}html,body{overscroll-behavior:none}.edgesamp{position:fixed;left:0;right:0;height:12px;background:var(--edgec,#17100D);z-index:30;transition:background-color 1.6s cubic-bezier(.22,1,.36,1)}.inflow{height:auto!important;overflow:clip!important}.inflow>main,.inflow>.edgesamp,.inflow>.edgefade{display:none!important}.ovflow{position:relative!important;inset:auto!important;overflow:visible!important;scroll-behavior:auto!important}.edgefade{position:fixed;left:0;right:0;height:56px;pointer-events:none;z-index:1}.edgesamp,.edgefade{display:none}@media (hover:none) and (pointer:coarse){.edgesamp,.edgefade{display:block}}
+body{margin:0;background:#6E2C1A}.bg-still .blob,.bg-still .cblob{animation-play-state:paused!important}.hj-scrolling .blob,.hj-scrolling .cblob{animation-play-state:paused!important}html,body{overscroll-behavior:none}.edgesamp{position:fixed;left:0;right:0;height:12px;background:var(--edgec,#17100D);z-index:30;transition:background-color 1.6s cubic-bezier(.22,1,.36,1)}.inflow{height:auto!important;overflow:clip!important}.inflow>main,.inflow>.edgesamp,.inflow>.edgefade{display:none!important}.ovflow{position:relative!important;inset:auto!important;overflow:visible!important;scroll-behavior:auto!important}.edgefade{position:fixed;left:0;right:0;height:56px;pointer-events:none;z-index:1}.edgesamp,.edgefade{display:none}@media (hover:none) and (pointer:coarse){.edgesamp,.edgefade{display:block}}
 *{box-sizing:border-box}
 a{color:#FBE9DC}a:hover{color:#FFFFFF}
 @keyframes driftA{0%{transform:translate(-18%,-12%) scale(.9)}25%{transform:translate(28%,2%) scale(1.3)}50%{transform:translate(14%,30%) scale(1.05)}75%{transform:translate(-14%,22%) scale(1.25)}100%{transform:translate(-6%,-4%) scale(.85)}}
@@ -295,6 +295,10 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;lava&quot;,&quot;cake&quot;],&quot;default&quot;:&quot;lava&quot;,&quot;section&quot;:&quot;Look&quot;},&quot;intro&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;},&quot;entry&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;keys&quot;,&quot;text&quot;],&quot;default&quot;:&quot;keys&quot;,&quot;section&quot;:&quot;Gate&quot;},&quot;passcode&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;3026&quot;,&quot;section&quot;:&quot;Gate&quot;},&quot;codeLength&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:3,&quot;max&quot;:10,&quot;step&quot;:1,&quot;default&quot;:4,&quot;section&quot;:&quot;Gate&quot;},&quot;password&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;section&quot;:&quot;Gate&quot;},&quot;panelTilt&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:75,&quot;step&quot;:1,&quot;unit&quot;:&quot;°&quot;,&quot;default&quot;:18,&quot;section&quot;:&quot;Gate&quot;},&quot;mood&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;clay&quot;,&quot;plum&quot;,&quot;teal&quot;,&quot;ochre&quot;,&quot;cycle&quot;],&quot;default&quot;:&quot;clay&quot;,&quot;section&quot;:&quot;Look&quot;},&quot;blur&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:8,&quot;max&quot;:48,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;default&quot;:26,&quot;section&quot;:&quot;Look&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Motion&quot;},&quot;frame&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ink-grid&quot;,&quot;ink-dots&quot;,&quot;pinstripe&quot;,&quot;checker&quot;,&quot;graphite-grid&quot;,&quot;midnight-grid&quot;,&quot;ink&quot;,&quot;peach&quot;,&quot;peach-grid&quot;,&quot;gold-grid&quot;,&quot;gold-vortex&quot;],&quot;default&quot;:&quot;gold-grid&quot;,&quot;section&quot;:&quot;Look&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+// ── Background motion switch ─────────────────────────────
+// false = lava blobs and cake splotches hold still (better performance on phones).
+// Set to true to bring the drifting/wobbling backgrounds back exactly as before.
+const BG_MOTION = false;
 const SHOW_SPRINKLES = false;
 const SHOW_SPLOTCHES = true;
 const SPLOTCH_ALPHA = 0.75;
@@ -337,6 +341,7 @@ class Component extends DCLogic {
   }
   componentDidUpdate() { this.syncChrome(); }
   componentDidMount() {
+    try { document.documentElement.classList.toggle('bg-still', !BG_MOTION); } catch (e) {}
     try { const pf = () => { ['About.dc.html', 'Home.dc.html', 'img/08bdd1c41567.png', 'img/0a36051cd6c9.webp', 'img/19677c9b1173.webp', 'img/1a502af3fe33.png', 'img/282142a06ca5.png', 'img/2efc14f99ed9.png', 'img/317dbf738d62.png', 'img/3e219c933ff9.png', 'img/63fd81ed4c77.png', 'img/6624632ca8a8.png', 'img/68fcea2b3795.png', 'img/990ce914406b.png', 'img/a2a4827493d3.webp', 'img/a67eb6dcfd82.webp', 'img/a72343420099.webp', 'img/c25fb204d327.png', 'img/c5752f00f2a5.webp', 'img/d093b9b25c2c.webp', 'img/d3f7bd0d77ed.png', 'img/d77b372efcad.png', 'img/da3ebc2e684d.png', 'img/df412fd0b42d.png', 'img/e4f34aba8a82.webp', 'img/f04be7b3c452.webp', 'img/f2c5c5ac7ee8.png'].forEach((u) => { try { fetch(u, { credentials: 'same-origin' }).catch(() => {}); } catch (e) {} }); }; (window.requestIdleCallback || ((cb) => setTimeout(cb, 2500)))(pf, { timeout: 4000 }); } catch (e) {}
     this.syncChrome();
     this.themeListen();
@@ -570,7 +575,7 @@ class Component extends DCLogic {
       if (this.cakeLast !== 'cake') { this.cakeLast = 'cake'; this.cakeDirty = true; }
       if (!this.cakeSprites && !build()) return;
       const st = this.state || {};
-      const moving = !reduce && (this.props.motion ?? true) && !st.paused;
+      const moving = BG_MOTION && !reduce && (this.props.motion ?? true) && !st.paused;
       const m = this.cakeMouse;
       if (moving) { tAcc += dt; m.x += (m.tx - m.x) * Math.min(1, dt * 3); m.y += (m.ty - m.y) * Math.min(1, dt * 3); }
       else if (!this.cakeDirty) return;
