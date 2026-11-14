@@ -11,7 +11,7 @@
 <helmet>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Figtree:wght@300;400;500;600&amp;display=swap">
 <style>
-body{margin:0;background:#17100D}html,body{overscroll-behavior:none}.edgesamp{position:fixed;left:0;right:0;height:12px;background:var(--edgec,#17100D);z-index:30;transition:background-color 1.6s cubic-bezier(.22,1,.36,1)}.edgefade{position:fixed;left:0;right:0;height:56px;pointer-events:none;z-index:1}
+body{margin:0;background:#17100D}html,body{overscroll-behavior:none}.edgesamp{position:fixed;left:0;right:0;height:12px;background:var(--edgec,#17100D);z-index:30;transition:background-color 1.6s cubic-bezier(.22,1,.36,1)}.inflow{height:auto!important;overflow:clip!important}.inflow>main,.inflow>.edgesamp,.inflow>.edgefade{display:none!important}.ovflow{position:relative!important;inset:auto!important;overflow:visible!important;scroll-behavior:auto!important}.edgefade{position:fixed;left:0;right:0;height:56px;pointer-events:none;z-index:1}
 *{box-sizing:border-box}
 a{color:#FBE9DC}a:hover{color:#FFFFFF}
 @keyframes driftA{0%{transform:translate(-18%,-12%) scale(.9)}25%{transform:translate(28%,2%) scale(1.3)}50%{transform:translate(14%,30%) scale(1.05)}75%{transform:translate(-14%,22%) scale(1.25)}100%{transform:translate(-6%,-4%) scale(.85)}}
@@ -701,6 +701,7 @@ class Component extends DCLogic {
       };
     };
     const theme = this.themeKey();
+    const inFlow = s.phase === 'home' && !s.kh;
     this.themeNow = theme;
     const intro = s.intro == null ? 0 : s.intro;
     const keysOn = intro === 7 || intro === 10;
@@ -720,7 +721,7 @@ class Component extends DCLogic {
       p: P[key],
       pw,
       still: motion && !s.paused ? '' : 'still',
-      rootCls: ((motion && !s.paused ? '' : 'still') + (theme === 'cake' ? ' cake' : ' lava')).trim(),
+      rootCls: ((motion && !s.paused ? '' : 'still') + (theme === 'cake' ? ' cake' : ' lava') + (inFlow ? ' inflow' : '')).trim(),
       isLava: theme !== 'cake',
       themeNow: theme,
       isCake: theme === 'cake',
@@ -764,7 +765,7 @@ class Component extends DCLogic {
         : 'left: 110%; opacity: 0',
       showHome: s.phase === 'home' || !!s.kh,
       showKh: !!s.kh,
-      ovClass: s.kh ? 'kh' : (s.khDone ? '' : 'ovin'),
+      ovClass: (s.kh ? 'kh' : (s.khDone ? '' : 'ovin')) + (inFlow ? ' ovflow' : ''),
       ovRef: (el) => { this.ovEl = el; },
       khRef: (el) => { this.khEl = el; },
       moodKey: key,
@@ -848,6 +849,7 @@ class Component extends DCLogic {
     [this.t0, this.t1, this.t2, this.t3, this.t4, this.t5, this.th, this.tu].forEach(clearTimeout);
     (this.ti || []).forEach(clearTimeout); this.ti = [];
     this.seqNow = [];
+    try { window.scrollTo(0, 0); } catch (e) {}
     this.setState({ intro: 0, pdown: false, phase: null, kh: false, khDone: false, unlatched: false, seq: [], hit: null, msg: '', shake: false, bad: false, pw: '', backLabel: '' });
     clearTimeout(this.tr);
     this.tr = setTimeout(() => this.startIntro(), 120);
