@@ -347,10 +347,10 @@ const bgPaint = (root) => {
     if (cv.width !== cw) cv.width = cw;
     if (cv.height !== ch) cv.height = ch;
     const ctx = cv.getContext('2d'); if (!ctx) return;
-    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cw, ch);
     const lr = layer.getBoundingClientRect();
     const sig = W + 'x' + H + ':' + [...layer.querySelectorAll(':scope > .blob, :scope > .cblob')].map((b) => { const r = b.getBoundingClientRect(), c2 = getComputedStyle(b); return Math.round(r.left - lr.left) + ',' + Math.round(r.top - lr.top) + ',' + Math.round(r.width) + ',' + c2.backgroundColor + ',' + c2.opacity; }).join(';');
-    if (cv.dataset.sig === sig) return; cv.dataset.sig = sig;
+    if (cv.dataset.sig === sig + '|' + cw + 'x' + ch) return; cv.dataset.sig = sig + '|' + cw + 'x' + ch;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cw, ch);
     const hasFilter = typeof ctx.filter === 'string';
     layer.querySelectorAll(':scope > .blob, :scope > .cblob').forEach((b) => {
       const cs = getComputedStyle(b);
