@@ -12,7 +12,7 @@
 <helmet>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Figtree:wght@300;400;500;600&amp;display=swap">
 <style>
-body{margin:0;background:#6E2C1A}.grainbg{position:absolute;inset:0;opacity:.13;mix-blend-mode:overlay;pointer-events:none;background:url(img/286a77ab77c7.webp) 0 0/160px 160px repeat}.no-grain .grainbg{display:none!important}.cakesp{position:absolute;inset:0;overflow:hidden;pointer-events:none}.cakesp img{position:absolute;display:block;max-width:none}.lump-off .gb,.hj-scrolling .gb{animation-play-state:paused!important}.bg-still .blob,.bg-still .cblob{animation-play-state:paused!important}.bg-still .blob,.bg-still .cblob{visibility:hidden!important}.blobcv{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}.hj-scrolling .blob,.hj-scrolling .cblob{animation-play-state:paused!important}html,body{overscroll-behavior:none}.edgesamp{position:fixed;left:0;right:0;height:12px;background:var(--edgec,#17100D);z-index:30;transition:background-color 1.6s cubic-bezier(.22,1,.36,1)}.inflow{height:auto!important;overflow:clip!important}.inflow>main,.inflow>.edgesamp,.inflow>.edgefade{display:none!important}.ovflow{position:relative!important;inset:auto!important;overflow:visible!important;scroll-behavior:auto!important}.edgefade{position:fixed;left:0;right:0;height:56px;pointer-events:none;z-index:1}.edgesamp,.edgefade{display:none}@media (hover:none) and (pointer:coarse){.edgesamp,.edgefade{display:block}}
+body{margin:0;background:#6E2C1A}:root{--gut:max(clamp(24px,9vw,140px),calc((100vw - 1180px) / 2))}.grainbg{position:absolute;inset:0;opacity:.13;mix-blend-mode:overlay;pointer-events:none;background:url(img/286a77ab77c7.webp) 0 0/160px 160px repeat}.no-grain .grainbg{display:none!important}.cakesp{position:absolute;inset:0;overflow:hidden;pointer-events:none}.cakesp img{position:absolute;display:block;max-width:none}.lump-off .gb,.hj-scrolling .gb{animation-play-state:paused!important}.bg-still .blob,.bg-still .cblob{animation-play-state:paused!important}.bg-still .blob,.bg-still .cblob{visibility:hidden!important}.blobcv{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}.hj-scrolling .blob,.hj-scrolling .cblob{animation-play-state:paused!important}html,body{overscroll-behavior:none}.edgesamp{position:fixed;left:0;right:0;height:12px;background:var(--edgec,#17100D);z-index:30;transition:background-color 1.6s cubic-bezier(.22,1,.36,1)}.inflow{height:auto!important;overflow:clip!important}.inflow>main,.inflow>.edgesamp,.inflow>.edgefade{display:none!important}.ovflow{position:relative!important;inset:auto!important;overflow:visible!important;scroll-behavior:auto!important}.edgefade{position:fixed;left:0;right:0;height:56px;pointer-events:none;z-index:1}.edgesamp,.edgefade{display:none}@media (hover:none) and (pointer:coarse){.edgesamp,.edgefade{display:block}}
 *{box-sizing:border-box}
 a{color:#FBE9DC}a:hover{color:#FFFFFF}
 @keyframes driftA{0%{transform:translate(-18%,-12%) scale(.9)}25%{transform:translate(28%,2%) scale(1.3)}50%{transform:translate(14%,30%) scale(1.05)}75%{transform:translate(-14%,22%) scale(1.25)}100%{transform:translate(-6%,-4%) scale(.85)}}
@@ -227,7 +227,7 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 </g>
 </svg>
 </div>
-<nav aria-label="Primary" class="tx-late" style="{{navStyle}}; position: absolute; right: clamp(24px, 9vw, 140px); top: calc(clamp(40px, 6vw, 88px) + 21px); display: flex; flex-wrap: wrap; gap: 8px 48px; z-index: 3">
+<nav aria-label="Primary" class="tx-late" style="{{navStyle}}; position: absolute; right: var(--gut); top: calc(clamp(40px, 6vw, 88px) + 21px); display: flex; flex-wrap: wrap; gap: 8px 48px; z-index: 3">
 <a class="navlink" href="About.dc.html" aria-current="page">About</a>
 <a class="navlink" href="Home.dc.html">Work</a>
 </nav>
@@ -803,7 +803,7 @@ class Component extends DCLogic {
     this.themeNow = theme;
     const intro = s.intro == null ? 0 : s.intro;
     const keysOn = intro === 7 || intro === 10;
-    const L = 'calc(0px + clamp(24px, 9vw, 140px))';
+    const L = 'calc(0px + var(--gut))';
     const T = 'calc(0px + clamp(40px, 6vw, 88px))';
     return {
       frame: this.props.frame || 'peach-grid',
@@ -852,7 +852,7 @@ class Component extends DCLogic {
       onReset: () => this.reset(),
       navStyle: open ? 'opacity: 1; transform: none' : 'opacity: 0; transform: translateY(10px); pointer-events: none',
       panelPos: open
-        ? 'left: ' + L + '; top: calc(clamp(40px, 6vw, 88px) + 170px); width: min(860px, calc(100% - 2 * clamp(24px, 9vw, 140px))); height: clamp(360px, 50vh, 460px)'
+        ? 'left: ' + L + '; top: calc(clamp(40px, 6vw, 88px) + 170px); width: min(860px, calc(100% - 2 * var(--gut))); height: clamp(360px, 50vh, 460px)'
         : 'left: calc(50% - ' + PW + ' / 2); top: calc(var(--gy, 50vh) + ' + (22 * gf).toFixed(1) + 'px); width: ' + PW + '; height: ' + pH + 'px; ' + (intro >= 4 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: translateY(80px)'),
       panelTilt: 'transform: none; --tilt: ' + (open ? 0 : tilt) + 'deg',
       bobClass: open ? '' : 'bob',
