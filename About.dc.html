@@ -853,15 +853,20 @@ class Component extends DCLogic {
         if (k >= kT) break;
       }
       if (best) {
-        const k = best.k;
-        F.lg = { x: best.inkL - INK_L * k, y: F.tg.y + F.tg.h - CAP_B * k, w: ow * k, h: oh * k };
+        let k = best.k, inkL = best.inkL, y = F.tg.y + F.tg.h - CAP_B * k;
+        if (window.innerWidth <= 480) {
+          // phones: logo a touch smaller, H top-aligned with the toggle, nudged slightly toward it (gap to toggle stays >= ~12px)
+          F.ax = inkL - INK_L * k; const inkR = inkL + (INK_R - INK_L) * k; k *= 0.94;
+          inkL = inkR + 2 - (INK_R - INK_L) * k; y = F.tg.y - CAP_T * k;
+        }
+        F.lg = { x: inkL - INK_L * k, y, w: ow * k, h: oh * k };
         F.tg = { x: F.tg.x + best.d, y: F.tg.y, w: F.tg.w, h: F.tg.h };
         F.nv = { x: F.nv.x + best.ns, y: F.nv.y, w: F.nv.w, h: F.nv.h };
         this._lgFit = { k, kT, d: best.d, ns: best.ns };
       }
     }
     const left = padL, right = h.clientWidth - padR;
-    const Fl = F.lg.x, Fr = F.nv.x + F.nv.w, Fcy = F.tg.y + F.tg.h / 2;
+    const Fl = F.ax != null ? F.ax : F.lg.x, Fr = F.nv.x + F.nv.w, Fcy = F.tg.y + F.tg.h / 2;
     const f = Math.min(1.6, (right - left) / Math.max(1, Fr - Fl));
     const Lcy = L.lg.y + L.lg.h / 2;
     const map = (r) => ({ x: left + (r.x - Fl) * f, y: Lcy + (r.y - Fcy) * f, w: r.w * f, h: r.h * f });
@@ -898,7 +903,7 @@ class Component extends DCLogic {
     const km = cx.measureText('K'); const ls = parseFloat(lc.letterSpacing) || 0;
     const R = hr.left + nav.offsetLeft + nav.offsetWidth;
     const trail = ls + (km.width - (km.actualBoundingBoxRight || km.width));
-    const target = window.innerWidth - barR - gap;
+    const target = window.innerWidth - barR - gap - (window.innerWidth > 640 ? 18 : 0);
     const tx = target - R + 0.86 * trail;
     if (isFinite(tx)) h.style.setProperty('--navtx', tx.toFixed(2) + 'px');
   }
