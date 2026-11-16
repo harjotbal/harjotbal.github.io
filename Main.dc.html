@@ -73,8 +73,8 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 .key.pop{animation:popIn .5s cubic-bezier(.3,1.2,.5,1) backwards}
 .keysout .key{transform:scale(.92)!important;transition:transform .3s ease-in}
 .still .key.pop{animation:none}
-.tx-logo{will-change:transform;transition:left 1.2s cubic-bezier(.7,0,.2,1),top 1.2s cubic-bezier(.7,0,.2,1),transform 1.2s cubic-bezier(.7,0,.2,1),opacity .9s ease,filter 1s ease}
-.tx-panel{transition:left 1.3s cubic-bezier(.7,0,.2,1) .1s,top 1.3s cubic-bezier(.7,0,.2,1) .1s,width 1.3s cubic-bezier(.7,0,.2,1) .1s,height 1.3s cubic-bezier(.7,0,.2,1) .1s,opacity 1s ease,transform 1.3s cubic-bezier(.22,1,.36,1)}
+.tx-logo{will-change:transform;transition:top 1.2s cubic-bezier(.7,0,.2,1),transform 1.2s cubic-bezier(.7,0,.2,1),opacity .9s ease,filter 1s ease}.gmove .tx-logo{transition:left 1.2s cubic-bezier(.7,0,.2,1),top 1.2s cubic-bezier(.7,0,.2,1),transform 1.2s cubic-bezier(.7,0,.2,1),opacity .9s ease,filter 1s ease}
+.tx-panel{transition:top 1.3s cubic-bezier(.7,0,.2,1) .1s,height 1.3s cubic-bezier(.7,0,.2,1) .1s,opacity 1s ease,transform 1.3s cubic-bezier(.22,1,.36,1)}.gmove .tx-panel{transition:left 1.3s cubic-bezier(.7,0,.2,1) .1s,top 1.3s cubic-bezier(.7,0,.2,1) .1s,width 1.3s cubic-bezier(.7,0,.2,1) .1s,height 1.3s cubic-bezier(.7,0,.2,1) .1s,opacity 1s ease,transform 1.3s cubic-bezier(.22,1,.36,1)}
 .tx-tilt{transition:transform 1.3s cubic-bezier(.7,0,.2,1) .1s}
 .tx-fade{transition:opacity .6s ease,transform .6s cubic-bezier(.22,1,.36,1)}
 .khline{position:absolute;left:0;top:0;z-index:11;overflow:visible;pointer-events:none;opacity:0;transition:opacity .35s ease}
@@ -452,7 +452,6 @@ class Component extends DCLogic {
       }
     }, 6000);
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    this.startIntro();
     const measure = () => {
       if (this.logoText && this.logoText.getComputedTextLength) {
         const w = this.logoText.getComputedTextLength();
@@ -469,6 +468,8 @@ class Component extends DCLogic {
     };
     window.addEventListener('keydown', this.onWinKey);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    // start the intro once the logo font has loaded and the logo is measured, so it never shifts sideways mid-animation (fallback after 1.2s)
+    { let go = false; const start = () => { if (go) return; go = true; measure(); this.startIntro(); }; const tryStart = () => { if (go) return; document.fonts.load("700 112px 'Josefin Sans'").then((f) => { if (f && f.length) start(); else setTimeout(tryStart, 80); }, start); }; if (document.fonts && document.fonts.load) tryStart(); else start(); this.mS = setTimeout(start, 1200); }
     this.m1 = setTimeout(measure, 400);
     this.m2 = setTimeout(measure, 1500);
     this.mI = setInterval(measure, 1200);
@@ -800,6 +801,10 @@ class Component extends DCLogic {
     const pTop = 22 * gf + Math.max(0, (oldH - pH) / 2); // keep the panel centred where the old, larger panel sat
     const UP = Math.round(Math.max(0, Math.min(26 * gf, gyPx - lo0 * gf - 16 - si))); // lift the gate stack (logo, tagline, toggle, panel); the motion button stays put
     const open = !!s.phase;
+    // horizontal (left/width) transitions only run while the gate is opening or closing; intro/measure updates move vertically only
+    if (this._lastOpen !== undefined && this._lastOpen !== open) { this._moveUntil = Date.now() + 1800; clearTimeout(this._mvT); this._mvT = setTimeout(() => this.setState({ mvTick: Date.now() }), 1850); }
+    this._lastOpen = open;
+    const moving = Date.now() < (this._moveUntil || 0);
     const mode = this.props.entry === 'text' ? 'text' : 'keys';
     const code = this.cleanCode();
     const n = code.length >= 3 ? code.length : (this.props.codeLength || 4);
@@ -836,7 +841,7 @@ class Component extends DCLogic {
       p: P[key],
       pw,
       still: motion && !s.paused ? '' : 'still',
-      rootCls: ((motion && !s.paused ? '' : 'still') + (theme === 'cake' ? ' cake' : ' lava') + (inFlow ? ' inflow' : '')).trim(),
+      rootCls: ((motion && !s.paused ? '' : 'still') + (theme === 'cake' ? ' cake' : ' lava') + (inFlow ? ' inflow' : '') + (moving ? ' gmove' : '')).trim(),
       isLava: theme !== 'cake',
       themeNow: theme,
       isCake: theme === 'cake',
@@ -855,7 +860,7 @@ class Component extends DCLogic {
       logoRef: (el) => { this.logoText = el; },
       logoStyle: open
         ? 'left: ' + L + '; top: ' + T + '; transform: scale(.5714)'
-        : 'left: calc(50% - ' + ((tw / 2 + 2) * gls).toFixed(2) + 'px); top: calc(var(--gy, 50vh) - ' + (lo0 * gf).toFixed(1) + 'px); ' + (intro >= 2 ? 'transform: scale(' + gls.toFixed(4) + '); opacity: 1; filter: blur(0px)' : 'transform: translateY(18px) scale(' + (0.97 * gls).toFixed(4) + '); opacity: 0; filter: blur(10px)'),
+        : 'left: calc(50% - ' + ((tw / 2 + 2) * gls).toFixed(2) + 'px); top: calc(var(--gy, 50vh) - ' + (lo0 * gf).toFixed(1) + 'px); ' + (intro >= 2 ? 'transform: scale(' + gls.toFixed(4) + '); opacity: 1; filter: blur(0px)' : 'transform: translateY(18px) scale(' + gls.toFixed(4) + '); opacity: 0; filter: blur(10px)'),
       gateStyle: open ? 'opacity: 0; transform: translateY(-14px); pointer-events: none' : (intro >= 3 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: translateY(12px)'),
       mainIntro: intro >= 1 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: scale(.985)',
       wobClass: '',
