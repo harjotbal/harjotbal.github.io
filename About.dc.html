@@ -102,7 +102,7 @@ html{scroll-behavior:smooth}
 .llava,.lcake{position:absolute;inset:0}.llavain{position:absolute;top:0;bottom:0;left:14.2857%;width:71.4286%;container-type:size}.llava{inset:-34% -20%;-webkit-mask-image:linear-gradient(180deg,transparent,#000 24%,#000 76%,transparent);mask-image:linear-gradient(180deg,transparent,#000 24%,#000 76%,transparent)}.lava .lstage{background:none!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;overflow:visible!important;outline:0!important}.lava .lstage::before,.lava .lstage::after{display:none!important}
 .lcake{display:none}.cake .lcake{display:block}.cake .llava{display:none}
 .lump{position:absolute;bottom:0;z-index:var(--z,1);display:flex;align-items:center;justify-content:center;animation:lumpRise var(--dur) linear var(--dly) infinite,lumpSway 8s ease-in-out 0s infinite alternate;will-change:transform}@keyframes lumpSway{from{translate:-5cqw 0}to{translate:5cqw 0}}
-.lgl{position:absolute;inset:0}.lgoo{position:absolute;inset:0}.lgoo i{position:absolute;display:block;border-radius:46% 54% 58% 42%/52% 44% 56% 48%;background:radial-gradient(circle at 34% 28%,var(--c1,#FFE8C8),var(--c2,#FF9250) 42%,var(--c3,#BA3A1A) 80%);box-shadow:inset 0 0 18px rgba(255,200,150,.6),inset 0 -10px 22px rgba(120,30,10,.4)}.lgoo .gb{inset:0;animation:lumpMorph var(--mor) ease-in-out var(--dly) infinite alternate}.lgoo .gd{width:var(--ds,0);height:var(--ds,0);left:calc(50% - var(--ds,0px) / 2);top:calc(50% - var(--ds,0px) / 2);animation:splitMerge var(--sd,10s) ease-in-out var(--sdl,0s) infinite alternate,lumpMorph 5s ease-in-out infinite alternate-reverse}@keyframes splitMerge{0%,22%{translate:0 0;scale:.85}58%{translate:calc(var(--dx) * .62) calc(var(--dy) * .62);scale:.92}78%,100%{translate:var(--dx) var(--dy);scale:1}}
+.lgl{position:absolute;inset:0}.lgsvg{position:absolute;inset:0;pointer-events:none;display:none}.svggoo>.lgsvg{display:block;opacity:.68;filter:drop-shadow(0 0 16px rgba(255,120,60,.3))}.lgsvg svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}.svggoo>.lgl:first-of-type{visibility:hidden;filter:none!important}.lgoo{position:absolute;inset:0}.lgoo i{position:absolute;display:block;border-radius:46% 54% 58% 42%/52% 44% 56% 48%;background:radial-gradient(circle at 34% 28%,var(--c1,#FFE8C8),var(--c2,#FF9250) 42%,var(--c3,#BA3A1A) 80%);box-shadow:inset 0 0 18px rgba(255,200,150,.6),inset 0 -10px 22px rgba(120,30,10,.4)}.lgoo .gb{inset:0;animation:lumpMorph var(--mor) ease-in-out var(--dly) infinite alternate}.lgoo .gd{width:var(--ds,0);height:var(--ds,0);left:calc(50% - var(--ds,0px) / 2);top:calc(50% - var(--ds,0px) / 2);animation:splitMerge var(--sd,10s) ease-in-out var(--sdl,0s) infinite alternate,lumpMorph 5s ease-in-out infinite alternate-reverse}@keyframes splitMerge{0%,22%{translate:0 0;scale:.85}58%{translate:calc(var(--dx) * .62) calc(var(--dy) * .62);scale:.92}78%,100%{translate:var(--dx) var(--dy);scale:1}}
 .lump .lmark{position:relative;z-index:1}
 @keyframes lumpRise{0%{transform:translate(0,100%)}17%{transform:translate(0,calc(75% - 25cqh))}34%{transform:translate(0,calc(50% - 50cqh))}51%{transform:translate(0,calc(25% - 75cqh))}68%,100%{transform:translate(0,-100cqh)}}
 @keyframes lumpMorph{0%{border-radius:46% 54% 58% 42%/52% 44% 56% 48%;transform:scale(1,1)}33%{border-radius:58% 42% 44% 56%/42% 58% 46% 54%;transform:scale(.94,1.07)}66%{border-radius:40% 60% 52% 48%/58% 46% 54% 42%;transform:scale(1.06,.95)}100%{border-radius:54% 46% 40% 60%/46% 54% 50% 50%;transform:scale(.97,1.04)}}
@@ -302,7 +302,7 @@ html{scroll-behavior:smooth}
 </ul>
 <div class="llava" aria-hidden="true"><div class="llavain">
 <svg width="0" height="0" style="position: absolute"><filter id="{{gooId}}" x="-60%" y="-60%" width="220%" height="220%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="12" result="b"></feGaussianBlur><feColorMatrix in="b" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -10"></feColorMatrix></filter></svg>
-<div class="lgl" style="{{gooNear}}"><sc-for list="{{brands}}" as="b" hint-placeholder-count="16"><span class="lump" style="{{b.lump}}"><span class="lgoo" style="{{b.goo}}"><i class="gb"></i><i class="gd"></i></span></span></sc-for></div>
+<div class="lgl" style="{{gooNear}}"><sc-for list="{{brands}}" as="b" hint-placeholder-count="16"><span class="lump" style="{{b.lump}}"><span class="lgoo" style="{{b.goo}}"><i class="gb"></i><i class="gd"></i></span></span></sc-for></div><div class="lgsvg" ref="{{gooSvgRef}}"></div>
 <div class="lgl"><sc-for list="{{brands}}" as="b" hint-placeholder-count="16"><span class="lump" style="{{b.lump}}"><span class="lmark" style="{{b.lumpMark}}"></span></span></sc-for></div>
 </div></div>
 <div class="lcake" aria-hidden="true"><div class="lcin">
@@ -363,6 +363,7 @@ const NO_FROST = false;
 const FLAT_HEADER_LOGO = true;
 // Performance test switches — set to false to restore the original motion.
 const FREEZE_BUBBLES = false;       // brand bubbles hold still (Lava)
+const GOO_MODE = 'auto';           // brand bubble merging: 'auto' = SVG-drawn on Safari & touch devices (CSS goo filter fails there), CSS elsewhere; or force 'svg' / 'css'
 const FREEZE_RIBBON_LOGOS = false;  // logos on the Cake ribbon hold still
 const glassTint = (hex) => { try { let r = parseInt(hex.slice(1, 3), 16) / 255, g = parseInt(hex.slice(3, 5), 16) / 255, b = parseInt(hex.slice(5, 7), 16) / 255; const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2; let h = 0, s = 0; if (mx !== mn) { const d = mx - mn; s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h /= 6; } s = Math.min(1, s * 1.8); const q = l < 0.5 ? l * (1 + s) : l + s - l * s, p2 = 2 * l - q; const f = (t) => { t = (t + 1) % 1; return t < 1 / 6 ? p2 + (q - p2) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? p2 + (q - p2) * (2 / 3 - t) * 6 : p2; }; return 'rgba(' + Math.round(f(h + 1 / 3) * 255) + ',' + Math.round(f(h) * 255) + ',' + Math.round(f(h - 1 / 3) * 255) + ',.12)'; } catch (e) { return 'transparent'; } };
 // ── Cake splotches ──────────────────────────────────────
@@ -970,7 +971,41 @@ class Component extends DCLogic {
     go(0); tick();
     this.carOff = () => { clearTimeout(t); clearTimeout(this.tFon); el.removeEventListener('pointerenter', on); el.removeEventListener('pointerleave', off); el.removeEventListener('focusin', on); el.removeEventListener('focusout', fo); tr.removeEventListener('pointerdown', pd); window.removeEventListener('pointerup', pu); tr.removeEventListener('click', ck, true); tr.removeEventListener('wheel', wh); el.removeEventListener('keydown', kd); dots.forEach((d, k) => d.removeEventListener('click', clicks[k])); };
   }
-  componentWillUnmount() { this.carOff && this.carOff(); this.hdrOff && this.hdrOff(); clearTimeout(this.tCopy); cancelAnimationFrame(this.chipRaf); if (this.lstRO) this.lstRO.disconnect(); this.themeUnlisten(); }
+  svgGooInit() {
+    // Safari (and touch-device browsers) don't apply the CSS goo filter to the animated bubbles, so there the bubbles are mirrored
+    // into an SVG each frame and the same goo filter is applied inside the SVG, where every browser supports it.
+    const box = this.gooBox; if (!box || this._gooOn) return;
+    let mode = GOO_MODE;
+    try { const q = new URLSearchParams(location.search).get('goo'); if (q === 'svg' || q === 'css') mode = q; } catch (e) {}
+    if (mode === 'auto') { const ua = navigator.userAgent || ''; const webkitOnly = /AppleWebKit/.test(ua) && !/Chrome\/|Chromium|Edg\//.test(ua); const touch = window.matchMedia && window.matchMedia('(pointer:coarse)').matches; mode = webkitOnly || touch ? 'svg' : 'css'; }
+    if (mode !== 'svg') return;
+    const wrap = box.parentElement, src = wrap && wrap.querySelector('.lgl'); if (!src) return;
+    const lumps = [...src.querySelectorAll('.lump')]; if (!lumps.length) return;
+    const NS = 'http://www.w3.org/2000/svg', uid = this._uid || 'g';
+    const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('aria-hidden', 'true');
+    const defs = document.createElementNS(NS, 'defs'), g = document.createElementNS(NS, 'g');
+    g.setAttribute('filter', 'url(#' + uid + 'goo)');
+    const items = lumps.map((lp, i) => {
+      const gv = lp.querySelector('.lgoo'), cs = gv ? gv.style : null;
+      const col = (k, d) => (cs && cs.getPropertyValue(k).trim()) || d;
+      const gr = document.createElementNS(NS, 'radialGradient'); gr.setAttribute('id', uid + 'sg' + i); gr.setAttribute('cx', '.34'); gr.setAttribute('cy', '.28'); gr.setAttribute('r', '.8');
+      [[0, col('--c1', '#FFE8C8')], [0.42, col('--c2', '#FF9250')], [0.8, col('--c3', '#BA3A1A')], [1, col('--c3', '#BA3A1A')]].forEach(([o, c]) => { const st = document.createElementNS(NS, 'stop'); st.setAttribute('offset', o); st.setAttribute('stop-color', c); gr.appendChild(st); });
+      defs.appendChild(gr);
+      const mk = () => { const e = document.createElementNS(NS, 'ellipse'); e.setAttribute('fill', 'url(#' + uid + 'sg' + i + ')'); e.setAttribute('rx', '0'); e.setAttribute('ry', '0'); g.appendChild(e); return e; };
+      return { b: lp.querySelector('.gb'), d: lp.querySelector('.gd'), eb: mk(), ed: mk() };
+    });
+    svg.appendChild(defs); svg.appendChild(g); box.appendChild(svg);
+    wrap.classList.add('svggoo'); this._gooOn = true;
+    let raf = 0, vis = true;
+    const put = (el, e, o) => { if (!el) return; const r = el.getBoundingClientRect(); if (r.width < 1 || r.height < 1) { e.setAttribute('rx', '0'); e.setAttribute('ry', '0'); return; } e.setAttribute('cx', (r.left - o.left + r.width / 2).toFixed(1)); e.setAttribute('cy', (r.top - o.top + r.height / 2).toFixed(1)); e.setAttribute('rx', (r.width / 2).toFixed(1)); e.setAttribute('ry', (r.height / 2).toFixed(1)); };
+    const tick = () => { raf = 0; if (!vis || document.hidden) return; const o = box.getBoundingClientRect(); if (o.width > 0) items.forEach((it) => { put(it.b, it.eb, o); put(it.d, it.ed, o); }); raf = requestAnimationFrame(tick); };
+    const go = () => { if (!raf && vis) raf = requestAnimationFrame(tick); };
+    let io = null; try { io = new IntersectionObserver((es) => { vis = es.some((e) => e.isIntersecting); if (vis) go(); }, { rootMargin: '160px 0px' }); io.observe(wrap); } catch (e) {}
+    const onVis = () => { if (!document.hidden) go(); }; document.addEventListener('visibilitychange', onVis);
+    go();
+    this.gooOff = () => { cancelAnimationFrame(raf); if (io) io.disconnect(); document.removeEventListener('visibilitychange', onVis); };
+  }
+  componentWillUnmount() { this.gooOff && this.gooOff(); this.carOff && this.carOff(); this.hdrOff && this.hdrOff(); clearTimeout(this.tCopy); cancelAnimationFrame(this.chipRaf); if (this.lstRO) this.lstRO.disconnect(); this.themeUnlisten(); }
   renderVals() {
     const P = {
       clay:  { base: '#6E2C1A', hi: '#A3482A', deep: '#3E170E', mid: '#8C3A20', glow: '#C46A42' },
@@ -1026,6 +1061,7 @@ class Component extends DCLogic {
       ribNId: this._uid + 'rn',
       gooId: this._uid + 'goo',
       gooNear: 'filter: url(#' + this._uid + 'goo) drop-shadow(0 0 16px rgba(255,120,60,.3)); opacity: .68',
+      gooSvgRef: (el) => { if (el && el !== this.gooBox) { this.gooBox = el; setTimeout(() => this.svgGooInit(), 0); } },
       ribBId: this._uid + 'rb',
       lstageRef: (el) => { if (el && el !== this.lstEl) { this.lstEl = el; if (this.lstRO) this.lstRO.disconnect(); const fit = () => { const w = el.clientWidth; if (w) el.style.setProperty('--k', (w / 580).toFixed(4)); }; fit(); if (window.ResizeObserver) { this.lstRO = new ResizeObserver(fit); this.lstRO.observe(el); } } },
       brands: BRANDS.map((b, i, all) => {
@@ -1039,12 +1075,13 @@ class Component extends DCLogic {
         const m = '--m: url(' + LOGOS[b.k] + ')';
         const mix = (A, B, t) => 'rgb(' + A.map((v, q) => Math.round(v + (B[q] - v) * t * 0.85)).join(',') + ')';
         const lumpS = 'left: ' + left.toFixed(1) + 'cqw; width: ' + lw.toFixed(1) + 'cqw; height: ' + lh.toFixed(1) + 'cqw; --dur: ' + dur + 's; --dly: ' + dly.toFixed(1) + 's; --sw: ' + ((r(6) < 0.5 ? -1 : 1) * (6 + r(6) * 8)).toFixed(1) + 'cqw; --z: ' + Math.round(1 + z * 9) ;
-        return { name: b.name, cat: b.cat, icon: ICONS[b.cat],
+        const c1 = mix([255, 232, 200], [214, 170, 200], 1 - z), c2 = mix([255, 146, 80], [190, 110, 150], 1 - z), c3 = mix([186, 58, 26], [120, 50, 110], 1 - z);
+        return { name: b.name, cat: b.cat, icon: ICONS[b.cat], c1, c2, c3,
           style: 'width: ' + Math.round(b.w * 100) + '%; height: ' + Math.round(b.h * 100) + '%; ' + m,
           lump: lumpS,
           lumpFar: lumpS + (z < 0.45 ? '' : '; display: none'),
           lumpNear: lumpS + (z < 0.45 ? '; display: none' : ''),
-          goo: '--mor: ' + (6 + r(7) * 5).toFixed(1) + 's; --c1: ' + mix([255, 232, 200], [214, 170, 200], 1 - z) + '; --c2: ' + mix([255, 146, 80], [190, 110, 150], 1 - z) + '; --c3: ' + mix([186, 58, 26], [120, 50, 110], 1 - z) + (r(18) < 0.85 ? '; --ds: ' + (34 + r(19) * 22).toFixed(0) + '%; --sd: ' + (8 + r(20) * 8).toFixed(1) + 's; --sdl: ' + (-r(21) * 16).toFixed(1) + 's; --dx: ' + ((r(22) < 0.5 ? -1 : 1) * (45 + r(24) * 55)).toFixed(0) + '%; --dy: ' + ((r(23) < 0.65 ? 1 : -1) * (70 + r(25) * 60)).toFixed(0) + '%' : ''),
+          goo: '--mor: ' + (6 + r(7) * 5).toFixed(1) + 's; --c1: ' + c1 + '; --c2: ' + c2 + '; --c3: ' + c3 + (r(18) < 0.85 ? '; --ds: ' + (34 + r(19) * 22).toFixed(0) + '%; --sd: ' + (8 + r(20) * 8).toFixed(1) + 's; --sdl: ' + (-r(21) * 16).toFixed(1) + 's; --dx: ' + ((r(22) < 0.5 ? -1 : 1) * (45 + r(24) * 55)).toFixed(0) + '%; --dy: ' + ((r(23) < 0.65 ? 1 : -1) * (70 + r(25) * 60)).toFixed(0) + '%' : ''),
           lumpMark: 'width: ' + Math.round(Math.min(b.w * 86 * size / lw, 88, 1600 / lw)) + '%; height: ' + Math.round(b.h * 86 * size / lh) + '%; opacity: ' + (0.7 + 0.3 * z).toFixed(2) + '; ' + m,
           chip: '--dly: ' + (-(i / all.length) * 85).toFixed(2) + 's',
           chipMark: m };
