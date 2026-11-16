@@ -172,7 +172,7 @@ html{scroll-behavior:smooth}
 
 .still .sugar{animation:none!important;opacity:0}
 @media (prefers-reduced-motion:reduce){.sugar{animation:none!important;opacity:0}}
-.edgefd{display:none}@media (hover:none) and (pointer:coarse){.edgefd{display:block;position:fixed;left:0;right:0;height:72px;pointer-events:none;z-index:35}.edgefd-t{top:8px;background:linear-gradient(to bottom,var(--edget,transparent),var(--edget0,transparent))}.edgefd-b{bottom:8px;background:linear-gradient(to top,var(--edgeb,transparent),var(--edgeb0,transparent))}}</style>
+</style>
 </helmet>
 <div class="{{rootClass}}" ref="{{rootRef}}" style="{{rootStyle}}; min-height: 100vh; background-color: #17100D; overflow: clip; font-family: 'Proxima Nova', Figtree, system-ui, sans-serif; color: #FBE9DC">
 <div class="pagebg" style="position: relative; min-height: 100vh; background-color: {{p.base}}; transition: background-color 1.6s cubic-bezier(.22,1,.36,1)">
@@ -353,48 +353,6 @@ const bgPaint = (root) => {
     ctx.globalAlpha = 1;
     try { layer.classList.add('bglay'); layer.style.backgroundImage = 'url(' + cv.toDataURL('image/png') + ')'; layer.style.backgroundSize = '100% 100%'; layer.style.backgroundRepeat = 'no-repeat'; } catch (e) {}
   });
-};
-// Phones/tablets: tint the browser's top/bottom bar area to the background colour right at the screen edges and fade into the page,
-// so the bars blend with the (scrolling) background in both themes. Edge colour is read from the painted background, not the DOM.
-const EDGE_BLEND = true;
-const edgeTintInit = (host) => {
-  if (!EDGE_BLEND || host._edgeOn || !window.matchMedia || !window.matchMedia('(hover:none) and (pointer:coarse)').matches) return;
-  host._edgeOn = true;
-  const de = document.documentElement;
-  const mk = (pos) => { const d = document.createElement('div'); d.className = 'edgefd edgefd-' + pos; d.setAttribute('aria-hidden', 'true'); document.body.appendChild(d); return d; };
-  mk('t'); mk('b');
-  let meta = document.querySelector('meta[name="theme-color"]'); if (!meta) { meta = document.createElement('meta'); meta.name = 'theme-color'; document.head.appendChild(meta); }
-  const parse = (c) => { const m = /rgba?\(([^)]+)\)/.exec(c || ''); if (!m) return null; const p = m[1].split(',').map(parseFloat); return [p[0], p[1], p[2], p.length > 3 ? p[3] : 1]; };
-  const baseOf = (el) => { for (let e = el; e && e !== document.documentElement; e = e.parentElement) { const c = parse(getComputedStyle(e).backgroundColor); if (c && c[3] > 0.5) return c; } return [110, 44, 26, 1]; };
-  let img = null, sig = '', lay = null, last = '', raf = 0, lastY = -1e9;
-  const sample = (vy) => {
-    const cake = !!document.querySelector('.cake');
-    if (cake) { const cb = document.querySelector('.cakebg'); const c = cb && parse(getComputedStyle(cb).backgroundColor); return c ? c.slice(0, 3) : [238, 251, 252]; }
-    if (!lay || !lay.isConnected) { const b = document.querySelector('.blob'); lay = b ? b.parentElement : null; img = null; sig = ''; }
-    if (!lay) return null;
-    const cv = lay.__bgcv; const s = lay.dataset.bgsig || '';
-    if (cv && s !== sig) { try { img = cv.getContext('2d').getImageData(0, 0, cv.width, cv.height); sig = s; } catch (e) { img = null; } }
-    const base = baseOf(lay);
-    if (!img) return base.slice(0, 3);
-    const r = lay.getBoundingClientRect(); if (!r.height) return base.slice(0, 3);
-    const yy = Math.max(0, Math.min(img.height - 1, Math.floor(((vy - r.top) / r.height) * img.height)));
-    let acc = [0, 0, 0], n = 0;
-    for (let i = 1; i <= 7; i++) { const xx = Math.min(img.width - 1, Math.floor((i / 8) * img.width)); const o = (yy * img.width + xx) * 4, a = img.data[o + 3] / 255; for (let q = 0; q < 3; q++) acc[q] += img.data[o + q] * a + base[q] * (1 - a); n++; }
-    return acc.map((v) => Math.round(v / n));
-  };
-  const apply = () => {
-    raf = 0;
-    const t = sample(24), b = sample(window.innerHeight - 24); if (!t || !b) return;
-    const key = t.join(',') + '|' + b.join(','); if (key === last) return; last = key;
-    de.style.setProperty('--edget', 'rgb(' + t.join(',') + ')'); de.style.setProperty('--edget0', 'rgba(' + t.join(',') + ',0)');
-    de.style.setProperty('--edgeb', 'rgb(' + b.join(',') + ')'); de.style.setProperty('--edgeb0', 'rgba(' + b.join(',') + ',0)');
-    de.style.backgroundColor = 'rgb(' + t.join(',') + ')'; meta.setAttribute('content', 'rgb(' + t.join(',') + ')');
-  };
-  const on = () => { if (Math.abs(window.scrollY - lastY) < 24 && last) return; lastY = window.scrollY; if (!raf) raf = requestAnimationFrame(apply); };
-  window.addEventListener('scroll', on, { passive: true });
-  window.addEventListener('resize', () => { last = ''; lastY = -1e9; on(); });
-  host._edgeKick = () => { last = ''; lastY = -1e9; on(); };
-  [0, 500, 1900, 3000].forEach((ms) => setTimeout(host._edgeKick, ms));
 };
 const bgPaintSoon = (host, root) => {
   if (BG_MOTION) return;
@@ -710,9 +668,8 @@ class Component extends DCLogic {
     };
     this._scR = requestAnimationFrame(run); this._scT = setTimeout(run, 1800);
   }
-  componentDidUpdate() { const k = String(this.themeNow) + '|' + String(this.props.mood) + '|' + String((this.state || {}).tick || 0) + '|' + String((this.state || {}).phase || ''); if (k === this._duKey) return; this._duKey = k; this.syncChrome(); bgPaintSoon(this, document.body); if (this._edgeKick) [60, 600, 1900].forEach((ms) => setTimeout(this._edgeKick, ms)); if (!CAKE_GENERATED && this.cakeCv) cakeStatic(this, this.cakeCv); }
+  componentDidUpdate() { const k = String(this.themeNow) + '|' + String(this.props.mood) + '|' + String((this.state || {}).tick || 0) + '|' + String((this.state || {}).phase || ''); if (k === this._duKey) return; this._duKey = k; this.syncChrome(); bgPaintSoon(this, document.body); if (!CAKE_GENERATED && this.cakeCv) cakeStatic(this, this.cakeCv); }
   componentDidMount() {
-    try { edgeTintInit(this); } catch (e) {}
     if (!BG_MOTION) { bgPaintSoon(this, document.body); this._bgRs = () => { const w = window.innerWidth, hh = document.body.scrollHeight; if (w === this._bgW && Math.abs(hh - (this._bgH || 0)) < 2) return; this._bgW = w; this._bgH = hh; bgPaintSoon(this, document.body); }; window.addEventListener('resize', this._bgRs); if (window.ResizeObserver) { this._bgRO = new ResizeObserver(this._bgRs); this._bgRO.observe(document.body); } if (document.fonts && document.fonts.ready) document.fonts.ready.then(this._bgRs); }
     try { document.documentElement.classList.toggle('bg-still', !BG_MOTION); document.documentElement.classList.toggle('no-grain', !SHOW_GRAIN); document.documentElement.classList.toggle('no-gblur', !GLASS_BLUR_ALL); document.documentElement.classList.toggle('no-frost', NO_FROST); document.documentElement.classList.toggle('flatlogo', FLAT_HEADER_LOGO); const touchDev = window.matchMedia && matchMedia('(hover: none) and (pointer: coarse)').matches; document.documentElement.classList.toggle('rows-paged', PAGED_ROWS_ON_PHONES && touchDev); } catch (e) {}
     try {
