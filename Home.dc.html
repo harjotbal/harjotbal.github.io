@@ -56,7 +56,7 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 
 html{scroll-behavior:smooth}
 .nointro .rise{animation:none!important}
-@media (max-width:860px){.sitefoot{flex-direction:column!important;justify-content:center!important;text-align:center;gap:26px!important}.sitefoot>*{justify-content:center}}.ptitle{white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}@media (max-width:600px){.ptitle{font-size:clamp(13px,4.2vw,26px)!important}.logo{zoom:.7}div:has(> .ptitle){gap:14px!important}}.site .glass::before,.site .glass::after{display:none!important;animation:none!important}.site .hdr .ltrace,.site .hdr .lshine{display:none!important;animation:none!important}.site .hdr .sugar{animation:none!important;opacity:.85!important}.navrow{display:flex;flex-wrap:wrap;gap:8px 48px}
+@media (max-width:860px){.sitefoot{flex-direction:column!important;justify-content:center!important;text-align:center;gap:26px!important}.sitefoot>*{justify-content:center}}.ptitle{white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis}.logo{zoom:1.11}@media (max-width:600px){.ptitle{font-size:clamp(13px,calc(4.2vw * 1.1),28px)!important}.logo{zoom:.77}div:has(> .ptitle){gap:14px!important}}@media (max-width:340px){.ptitle{font-size:13.6px!important}.logo{zoom:.73}}.site .glass::before,.site .glass::after{display:none!important;animation:none!important}.site .hdr .ltrace,.site .hdr .lshine{display:none!important;animation:none!important}.site .hdr .sugar{animation:none!important;opacity:.85!important}.navrow{display:flex;flex-wrap:wrap;gap:8px 48px}
 .hdr{position:sticky;top:0;z-index:40;pointer-events:none}.hdr-measure,.hdr-measure *{transition:none!important}.hdr>*{pointer-events:auto}
 .hdrglass{position:fixed;top:0;left:0;right:0;height:0;z-index:39;pointer-events:none;visibility:hidden;transition:visibility 0s linear .6s}.hdrglass.on{visibility:visible;transition:none}.hdrglass::before{content:"";position:absolute;z-index:-1;left:max(8px,calc(var(--gut) - 19.5px));right:max(8px,calc(var(--gut) - 19.5px));top:14px;height:78px;border-radius:22px;background:linear-gradient(135deg,rgba(255,236,224,.16),rgba(255,236,224,.06)),rgba(24,10,6,.22);box-shadow:inset 0 0 0 1px rgba(255,238,226,.24),inset 0 1px 0 rgba(255,255,255,.2),0 14px 34px -14px rgba(10,4,2,.55);opacity:0;transform:translateY(-10px) scale(.985);transition:opacity .45s ease,transform .6s cubic-bezier(.22,1,.36,1),background .6s,box-shadow .6s;pointer-events:none}
 .hdrglass.on::before{opacity:1;transform:none;-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%)}
@@ -218,8 +218,8 @@ html{scroll-behavior:smooth}
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 40px">
 <div style="display: flex; align-items: center; gap: 20px; min-width: 0">
 <span role="img" aria-label="{{pr.client}}" class="logo" style="{{pr.logoStyle}}"></span>
-<span aria-hidden="true" style="flex: none; width: 1px; height: 30px; background: rgba(251,233,220,.4)"></span>
-<h2 class="ptitle" style="margin: 0; font: 600 clamp(26px, 2.5vw, 36px)/1.1 Josefin Sans, Futura, sans-serif; letter-spacing: -0.005em">{{pr.title}}</h2>
+<span aria-hidden="true" style="flex: none; width: 1px; height: 33px; background: rgba(251,233,220,.4)"></span>
+<h2 class="ptitle" style="margin: 0; font: 600 clamp(29px, 2.8vw, 40px)/1.1 Josefin Sans, Futura, sans-serif; letter-spacing: -0.005em">{{pr.title}}</h2>
 </div>
 </div>
 </div>
@@ -889,6 +889,9 @@ class Component extends DCLogic {
       { id: 'slate-project-builder', n: '03', hero: STAPLES_HERO, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(255,226,190,.5), rgba(255,226,190,0) 62%), linear-gradient(165deg, #D9893F 0%, #B5481F 42%, #8E1F14 72%, #5A0E0B 100%)', client: 'Staples', logo: 'staples', lh: 24, title: 'SLATE Project Builder', mood: 'ochre', meta: '2018 · Retail · Digital kiosk', summary: "Architected Staples' SLATE project builder, used in 305 Canadian retail stores.", stat: '305', statLabel: 'Canadian retail stores', outcome: 'Used in 305 Canadian retail stores' },
       { id: 'borrowell-app', n: '04', hero: BORROWELL_HERO, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(206,212,250,.55), rgba(206,212,250,0) 62%), linear-gradient(165deg, #5B4BD8 0%, #3A2FA8 46%, #26227A 100%)', client: 'Borrowell', logo: 'borrowell', lh: 26, title: '0-1 Native Mobile App', mood: 'plum', meta: '2018 · Fintech · Native mobile app', summary: "Designed Borrowell's 0–1 app for iOS and Android: fintech for 4 million Canadians.", stat: '4M', statLabel: 'Canadians on Borrowell', outcome: 'Fintech for 4 million Canadians' }
     ];
+    // TEST: reuse the Staples overview tile (hero image + backdrop) on the other cases' first tile. Set to false to restore their own.
+    const TEST_STAPLES_TILE = true;
+    if (TEST_STAPLES_TILE) { const st = list.find((x) => x.id === 'slate-project-builder'); list.forEach((x) => { if (x !== st) { x.hero = st.hero; x.heroBg = st.heroBg; x.heroPad = st.heroPad; x.heroSize = st.heroSize; } }); }
     const prog = s.prog || {};
     const mood = s.mood || 'clay';
     return {
