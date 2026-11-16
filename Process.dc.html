@@ -762,6 +762,33 @@ class Component extends DCLogic {
     const F = { lg: rel(logo), tg: rel(tog), nv: grp() };
     h.classList.remove('hdr-on');
     h.classList.remove('hdr-oldpos');
+    // logo sizing: sit the "H" baseline on the toggle's bottom edge and grow the logo toward the toggle's full height, as far as the row allows
+    {
+      const CAP_T = 25.65, CAP_B = 73.1, INK_L = 7.2, INK_R = 205.45, kT = F.tg.h / (CAP_B - CAP_T);
+      const ow = logo.offsetWidth || 240, oh = logo.offsetHeight || 86;
+      const k0 = F.lg.w / ow, inkL0 = F.lg.x + INK_L * k0;
+      const barL = Math.max(8, padL - 19.5), barR = h.clientWidth - Math.max(8, padR - 19.5);
+      const navR = F.nv.x + F.nv.w, gapTN = F.nv.x - (F.tg.x + F.tg.w);
+      const P = 22, room0 = (F.tg.x - 14 - inkL0) / (INK_R - INK_L);
+      let best = null;
+      for (let d = 0; d <= 10; d += 0.5) {
+        // if the logo already fits at full size, leave everything where it is; otherwise even out side padding to P and nudge the toggle (max 10px)
+        const tight = room0 < kT;
+        const ns = tight ? Math.max(0, d - Math.max(0, gapTN - 12), barR - navR - P) : 0, rp = barR - (navR + ns);
+        if (rp < 18) break;
+        const inkL = tight ? Math.min(inkL0, barL + Math.min(rp, P)) : inkL0, avail = F.tg.x + d - 14 - inkL;
+        const k = Math.max(k0, Math.min(kT, avail / (INK_R - INK_L)));
+        if (!best || k > best.k + 0.001) best = { k, d, ns, inkL };
+        if (k >= kT) break;
+      }
+      if (best) {
+        const k = best.k;
+        F.lg = { x: best.inkL - INK_L * k, y: F.tg.y + F.tg.h - CAP_B * k, w: ow * k, h: oh * k };
+        F.tg = { x: F.tg.x + best.d, y: F.tg.y, w: F.tg.w, h: F.tg.h };
+        F.nv = { x: F.nv.x + best.ns, y: F.nv.y, w: F.nv.w, h: F.nv.h };
+        this._lgFit = { k, kT, d: best.d, ns: best.ns };
+      }
+    }
     const left = padL, right = h.clientWidth - padR;
     const Fl = F.lg.x, Fr = F.nv.x + F.nv.w, Fcy = F.tg.y + F.tg.h / 2;
     const f = Math.min(1.6, (right - left) / Math.max(1, Fr - Fl));
@@ -774,6 +801,14 @@ class Component extends DCLogic {
     const rowBottom = Math.max(map(F.lg).y + map(F.lg).h, map(F.tg).y + map(F.tg).h, map(F.nv).y + map(F.nv).h);
     h.style.setProperty('--hmb', Math.min(0, rowBottom + 8 - HH).toFixed(1) + 'px');
     h.classList.add('hdr-fit');
+    // correct any layout drift so the logo lands exactly on its targets (landing + floating)
+    // measured on the visible logo image itself: [H top, H baseline, H left] as fractions of each theme's image
+    const capOf = () => { const im = [...logo.querySelectorAll('.hdrlogo')].find((e) => getComputedStyle(e).display !== 'none'); if (!im) return null; const r = rel(im), fr = im.classList.contains('hl-cake') ? [16 / 244, 158 / 244, 43 / 669] : [6 / 198, 149 / 198, 6 / 611]; return { b: r.y + fr[1] * r.h, l: r.x + fr[2] * r.w }; };
+    const fixLg = (p, B, Lx) => { void h.offsetWidth; const c = capOf(); if (!c) return; const ax = parseFloat(h.style.getPropertyValue('--' + p + 'x')) || 0, ay = parseFloat(h.style.getPropertyValue('--' + p + 'y')) || 0; const z = parseFloat(getComputedStyle(logo).zoom) || 1; h.style.setProperty('--' + p + 'x', (ax + (Lx - c.l) / z).toFixed(2) + 'px'); h.style.setProperty('--' + p + 'y', (ay + (B - c.b) / z).toFixed(2) + 'px'); };
+    { const fB = F.lg.y + 73.1 * F.lg.h / 86, fL = F.lg.x + 7.2 * F.lg.w / 240;
+      const tgB = () => { void h.offsetWidth; const r = rel(tog); return r.y + r.h; };
+      fixLg('lg', tgB() + (fB - (F.tg.y + F.tg.h)) * f, left + (fL - Fl) * f);
+      h.classList.add('hdr-on'); fixLg('lgf', tgB() + (fB - (F.tg.y + F.tg.h)), fL); h.classList.remove('hdr-on'); }
   }
   hdrBalance() {
     this.hdrMobile();
