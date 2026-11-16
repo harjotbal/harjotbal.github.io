@@ -737,7 +737,7 @@ class Component extends DCLogic {
   }
   hdrMobileMeasure(h) {
     const VARS = ['--mnx', '--mny', '--mns', '--mtx', '--hmb', '--lgx', '--lgy', '--lgk', '--lgfx', '--lgfy', '--lgfk', '--tgx', '--tgy', '--tgk', '--tgfx', '--tgfy', '--tgfk', '--nvx', '--nvy', '--nvk', '--nvfx', '--nvfy', '--nvfk'];
-    if (window.innerWidth > 640) { VARS.forEach((k) => h.style.removeProperty(k)); h.classList.remove('hdr-fit'); return; }
+    if (window.innerWidth > 640) { VARS.forEach((k) => h.style.removeProperty(k)); h.classList.remove('hdr-fit'); this._hdrFit = false; return; }
     const tog = h.querySelector('.modetog.mini'); const links = h.querySelectorAll('.navrow .navlink'); if (!tog || !links.length) return;
     const logo = h.querySelector('.logowrap'), nav = h.querySelector('.navrow'); if (!logo || !nav) return;
     h.classList.add('hdr-oldpos');
@@ -810,7 +810,7 @@ class Component extends DCLogic {
     setT('nv', L.nvb, L.nv, map(F.nv)); setT('nvf', L.nvb, L.nv, F.nv);
     const rowBottom = Math.max(map(F.lg).y + map(F.lg).h, map(F.tg).y + map(F.tg).h, map(F.nv).y + map(F.nv).h);
     h.style.setProperty('--hmb', Math.min(0, rowBottom + 8 - HH).toFixed(1) + 'px');
-    h.classList.add('hdr-fit');
+    h.classList.add('hdr-fit'); this._hdrFit = true;
     // correct any layout drift so the logo lands exactly on its targets (landing + floating)
     // measured on the visible logo image itself: [H top, H baseline, H left] as fractions of each theme's image
     const capOf = () => { const im = [...logo.querySelectorAll('.hdrlogo')].find((e) => getComputedStyle(e).display !== 'none'); if (!im) return null; const r = rel(im), fr = im.classList.contains('hl-cake') ? [16 / 244, 158 / 244, 43 / 669] : [6 / 198, 149 / 198, 6 / 611]; return { b: r.y + fr[1] * r.h, l: r.x + fr[2] * r.w }; };
@@ -884,7 +884,7 @@ class Component extends DCLogic {
       cakePressed: this.themeKey() === 'cake' ? 'true' : 'false',
       onLava: () => this.setTheme('lava'),
       onCake: () => this.setTheme('cake'),
-      hdrCls: 'pad hdr' + (this._hdrOn ? ' hdr-on' : ''),
+      hdrCls: 'pad hdr' + (this._hdrOn ? ' hdr-on' : '') + (this._hdrFit ? ' hdr-fit' : ''),
       hdrGlassCls: 'hdrglass' + (this._hdrOn ? ' on' : ''),
       hdrRef: (el) => { if (el && el !== this.hdrEl) { this.hdrEl = el; this.hdrInit(); } },
       cakeRef: (el) => { if (el && el !== this.cakeCv) { this.cakeCv = el; if (CAKE_GENERATED) cakeEngine(this, el); else cakeStatic(this, el); } },
