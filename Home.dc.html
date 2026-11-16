@@ -889,9 +889,12 @@ class Component extends DCLogic {
       { id: 'slate-project-builder', n: '03', hero: STAPLES_HERO, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(255,226,190,.5), rgba(255,226,190,0) 62%), linear-gradient(165deg, #D9893F 0%, #B5481F 42%, #8E1F14 72%, #5A0E0B 100%)', client: 'Staples', logo: 'staples', lh: 24, title: 'SLATE Project Builder', mood: 'ochre', meta: '2018 · Retail · Digital kiosk', summary: "Architected Staples' SLATE project builder, used in 305 Canadian retail stores.", stat: '305', statLabel: 'Canadian retail stores', outcome: 'Used in 305 Canadian retail stores' },
       { id: 'borrowell-app', n: '04', hero: BORROWELL_HERO, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(206,212,250,.55), rgba(206,212,250,0) 62%), linear-gradient(165deg, #5B4BD8 0%, #3A2FA8 46%, #26227A 100%)', client: 'Borrowell', logo: 'borrowell', lh: 26, title: '0-1 Native Mobile App', mood: 'plum', meta: '2018 · Fintech · Native mobile app', summary: "Designed Borrowell's 0–1 app for iOS and Android: fintech for 4 million Canadians.", stat: '4M', statLabel: 'Canadians on Borrowell', outcome: 'Fintech for 4 million Canadians' }
     ];
-    // TEST: reuse the Staples overview tile (hero image + backdrop) on the other cases' first tile. Set to false to restore their own.
-    const TEST_STAPLES_TILE = true;
-    if (TEST_STAPLES_TILE) { const st = list.find((x) => x.id === 'slate-project-builder'); list.forEach((x) => { if (x !== st) { x.hero = st.hero; x.heroBg = st.heroBg; x.heroPad = st.heroPad; x.heroSize = st.heroSize; } }); }
+    // TEST: borrow another case's overview tile (hero image + backdrop) as a placeholder. Set to false to remove.
+    const TEST_BORROW_TILES = true;
+    if (TEST_BORROW_TILES) { const by = (id) => list.find((x) => x.id === id); const use = (to, from) => { const t = by(to), f = by(from); t.hero = f.hero; t.heroBg = f.heroBg; t.heroPad = f.heroPad; t.heroSize = f.heroSize; };
+      use('creator-homebase', 'slate-project-builder'); // Universal <- Staples
+      use('vehicle-tracker', 'borrowell-app'); // Audi <- Borrowell
+    }
     const prog = s.prog || {};
     const mood = s.mood || 'clay';
     return {
