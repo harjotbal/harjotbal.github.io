@@ -792,7 +792,7 @@ class Component extends DCLogic {
         const lst = links[links.length - 1], lcs = getComputedStyle(lst), tcx = (this.hdrCtx = this.hdrCtx || document.createElement('canvas').getContext('2d'));
         tcx.font = lcs.fontWeight + ' ' + lcs.fontSize + ' ' + lcs.fontFamily; const km = tcx.measureText('K');
         const trailF = ((parseFloat(lcs.letterSpacing) || 0) + km.width - (km.actualBoundingBoxRight || km.width)) * (F.nv.h / Math.max(1, lst.offsetHeight));
-        const navInkR = barR - PE - (phone ? 6 : 8), ns = navInkR - (F.nv.x + F.nv.w - trailF), navL = F.nv.x + ns;
+        const navInkR = barR - PE - (phone ? 3 : 4), ns = navInkR - (F.nv.x + F.nv.w - trailF), navL = F.nv.x + ns;
         const inkL = barL + PE;
         let k = best.k * (phone ? 0.94 : 1);
         k = Math.max(0.3, Math.min(k, (navL - 12 - F.tg.w - G - inkL) / (INK_R - INK_L)));
@@ -857,7 +857,7 @@ class Component extends DCLogic {
       h.classList.add('hdr-on'); void h.offsetWidth;
       hr = h.getBoundingClientRect();
       const PE = 47, bL = hr.left + Math.max(8, padL - 19.5), bR = hr.right - Math.max(8, padR - 19.5);
-      const fx = bL + PE - inkLeft(), nx = bR - PE - 12 - inkRight();
+      const fx = bL + PE - inkLeft(), nx = bR - PE - 6 - inkRight();
       if (isFinite(fx)) h.style.setProperty('--dlx', fx.toFixed(2) + 'px');
       if (isFinite(nx)) h.style.setProperty('--navtx', (-16.5 + nx).toFixed(2) + 'px');
     } finally { if (!wasOn) h.classList.remove('hdr-on'); void h.offsetWidth; h.classList.remove('hdr-measure'); }
