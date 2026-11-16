@@ -63,7 +63,7 @@ html{scroll-behavior:smooth}
 .hdr .logowrap{transform-origin:0 50%;transition:transform .6s cubic-bezier(.22,1,.36,1)}.hdr-on .logowrap{transform:translate(14px,6.7px) scale(.61)}
 .hdr .modetog.mini{transition:transform .6s cubic-bezier(.22,1,.36,1),color .6s,background .6s,border-color .6s,box-shadow .6s}.hdr-on .modetog.mini{transform:translate(-71.25px,-5px)}
 .hdr .navrow{transform-origin:100% 50%;transition:transform .6s cubic-bezier(.22,1,.36,1)}.hdr-on .navrow{transform:translate(var(--navtx,-16.5px),11.5px) scale(.86)}
-@media (max-width:480px){.hdr .logowrap{zoom:.8}.hdr .modetog.mini{margin-top:34px!important;margin-left:-3px!important}.hdr-on .modetog.mini{transform:translate(-80px,4px)}.hdr-on .logowrap{transform:translate(14px,22px) scale(.5)}.navrow{gap:8px 28px}}@media (max-width:360px){.hdr-on .modetog.mini{transform:translate(-94px,4px)}.hdr-on .logowrap{transform:translate(14px,22px) scale(.42)}}@media (max-width:640px){.hdr-fit:not(.hdr-oldpos){margin-bottom:var(--hmb,0px)}.hdr-fit:not(.hdr-oldpos) .logowrap,.hdr-fit:not(.hdr-oldpos) .modetog.mini,.hdr-fit:not(.hdr-oldpos) .navrow{transform-origin:0 0!important}.hdr-fit:not(.hdr-oldpos) .logowrap{transform:translate(var(--lgx),var(--lgy)) scale(var(--lgk))!important}.hdr-fit:not(.hdr-oldpos) .modetog.mini{transform:translate(var(--tgx),var(--tgy)) scale(var(--tgk))!important}.hdr-fit:not(.hdr-oldpos) .navrow{transform:translate(var(--nvx),var(--nvy)) scale(var(--nvk))!important}.hdr-fit.hdr-on:not(.hdr-oldpos) .logowrap{transform:translate(var(--lgfx),var(--lgfy)) scale(var(--lgfk))!important}.hdr-fit.hdr-on:not(.hdr-oldpos) .modetog.mini{transform:translate(var(--tgfx),var(--tgfy)) scale(var(--tgfk))!important}.hdr-fit.hdr-on:not(.hdr-oldpos) .navrow{transform:translate(var(--nvfx),var(--nvfy)) scale(var(--nvfk))!important}.hdr .navrow{flex-basis:100%;transform-origin:0 50%}.hdr-on .navrow{transform:translate(var(--mnx,15px),var(--mny,-22px)) scale(var(--mns,.86))}}@media (min-width:641px){.hdr{flex-wrap:nowrap!important}}
+@media (max-width:480px){.hdr .logowrap{zoom:.8}.hdr-fit:not(.hdr-oldpos) .logowrap{zoom:1!important;margin-right:-48px;margin-bottom:-17.2px}.hdr .modetog.mini{margin-top:34px!important;margin-left:-3px!important}.hdr-on .modetog.mini{transform:translate(-80px,4px)}.hdr-on .logowrap{transform:translate(14px,22px) scale(.5)}.navrow{gap:8px 28px}}@media (max-width:360px){.hdr-on .modetog.mini{transform:translate(-94px,4px)}.hdr-on .logowrap{transform:translate(14px,22px) scale(.42)}}@media (max-width:640px){.hdr-fit:not(.hdr-oldpos){margin-bottom:var(--hmb,0px)}.hdr-fit:not(.hdr-oldpos) .logowrap,.hdr-fit:not(.hdr-oldpos) .modetog.mini,.hdr-fit:not(.hdr-oldpos) .navrow{transform-origin:0 0!important}.hdr-fit:not(.hdr-oldpos) .logowrap{transform:translate(var(--lgx),var(--lgy)) scale(var(--lgk))!important}.hdr-fit:not(.hdr-oldpos) .modetog.mini{transform:translate(var(--tgx),var(--tgy)) scale(var(--tgk))!important}.hdr-fit:not(.hdr-oldpos) .navrow{transform:translate(var(--nvx),var(--nvy)) scale(var(--nvk))!important}.hdr-fit.hdr-on:not(.hdr-oldpos) .logowrap{transform:translate(var(--lgfx),var(--lgfy)) scale(var(--lgfk))!important}.hdr-fit.hdr-on:not(.hdr-oldpos) .modetog.mini{transform:translate(var(--tgfx),var(--tgfy)) scale(var(--tgfk))!important}.hdr-fit.hdr-on:not(.hdr-oldpos) .navrow{transform:translate(var(--nvfx),var(--nvfy)) scale(var(--nvfk))!important}.hdr .navrow{flex-basis:100%;transform-origin:0 50%}.hdr-on .navrow{transform:translate(var(--mnx,15px),var(--mny,-22px)) scale(var(--mns,.86))}}@media (min-width:641px){.hdr{flex-wrap:nowrap!important}}
 .eyebrow{font:600 13px/1 Josefin Sans,Futura,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:rgba(251,233,220,.86)}
 .pad{padding-left:var(--gut);padding-right:var(--gut)}
 
@@ -770,7 +770,7 @@ class Component extends DCLogic {
     // logo sizing: sit the "H" baseline on the toggle's bottom edge and grow the logo toward the toggle's full height, as far as the row allows
     {
       const CAP_T = 25.65, CAP_B = 73.1, INK_L = 7.2, INK_R = 205.45, kT = F.tg.h / (CAP_B - CAP_T);
-      const ow = logo.offsetWidth || 240, oh = logo.offsetHeight || 86;
+      const ow = 240, oh = 86;
       const k0 = F.lg.w / ow, inkL0 = F.lg.x + INK_L * k0;
       const barL = Math.max(8, padL - 19.5), barR = h.clientWidth - Math.max(8, padR - 19.5);
       const navR = F.nv.x + F.nv.w, gapTN = F.nv.x - (F.tg.x + F.tg.w);
@@ -782,7 +782,7 @@ class Component extends DCLogic {
         const ns = tight ? Math.max(0, d - Math.max(0, gapTN - 12), barR - navR - P) : 0, rp = barR - (navR + ns);
         if (rp < 18) break;
         const inkL = tight ? Math.min(inkL0, barL + Math.min(rp, P)) : inkL0, avail = F.tg.x + d - 14 - inkL;
-        const k = Math.max(k0, Math.min(kT, avail / (INK_R - INK_L)));
+        const k = Math.max(0.3, Math.min(kT, avail / (INK_R - INK_L)));
         if (!best || k > best.k + 0.001) best = { k, d, ns, inkL };
         if (k >= kT) break;
       }
@@ -800,7 +800,7 @@ class Component extends DCLogic {
     const Lcy = L.lg.y + L.lg.h / 2;
     const map = (r) => ({ x: left + (r.x - Fl) * f, y: Lcy + (r.y - Fcy) * f, w: r.w * f, h: r.h * f });
     const setT = (p, box, ref, T) => { const k = T.w / Math.max(1, ref.w); h.style.setProperty('--' + p + 'x', (T.x - box.x - k * (ref.x - box.x)).toFixed(2) + 'px'); h.style.setProperty('--' + p + 'y', (T.y - box.y - k * (ref.y - box.y)).toFixed(2) + 'px'); h.style.setProperty('--' + p + 'k', k.toFixed(4)); };
-    setT('lg', L.lg, L.lg, map(F.lg)); setT('lgf', L.lg, L.lg, F.lg);
+    const LR = { x: L.lg.x, y: L.lg.y, w: 240, h: 86 }; setT('lg', LR, LR, map(F.lg)); setT('lgf', LR, LR, F.lg);
     setT('tg', L.tg, L.tg, map(F.tg)); setT('tgf', L.tg, L.tg, F.tg);
     setT('nv', L.nvb, L.nv, map(F.nv)); setT('nvf', L.nvb, L.nv, F.nv);
     const rowBottom = Math.max(map(F.lg).y + map(F.lg).h, map(F.tg).y + map(F.tg).h, map(F.nv).y + map(F.nv).h);
