@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>try{var t=sessionStorage.getItem('harjot-theme');document.documentElement.style.backgroundColor=t==='cake'?'#EEFBFC':'#6E2C1A'}catch(e){}</script>
+<script>(function(){function k(){var w=window.innerWidth;document.documentElement.style.setProperty('--pk',(Math.min(760,w*(w<=600?.84:.78))/760).toFixed(4))}k();window.addEventListener('resize',k)})()</script>
 <title>Harjot — Work</title>
 <script src="./support.js"></script>
 </head>
@@ -71,7 +72,7 @@ html{scroll-behavior:smooth}
 
 .track{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:var(--gut);padding:96px var(--gut) 84px;margin-top:-56px;margin-bottom:-56px;scrollbar-width:none}
 .track::-webkit-scrollbar{display:none}
-@media (max-width:600px){.panel{flex-basis:84vw!important;height:clamp(300px,calc(84vw * 1.05),440px)!important}.capline p{font-size:11px!important;letter-spacing:.16em!important;text-wrap:balance}}.panel{flex:0 0 min(760px,78vw);height:clamp(380px,56vh,500px);border-radius:28px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:flex-end;padding:26px 28px}
+.panel .glass-dark h3{font-size:max(24px,calc(16px / var(--pk,1)))!important}.panel .glass-dark p{font-size:max(15px,calc(12.5px / var(--pk,1)))!important}.panel .capline p{font-size:max(13px,calc(10px / var(--pk,1)))!important}.panel{flex:0 0 760px;height:500px;zoom:var(--pk,1);border-radius:28px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:flex-end;padding:26px 28px}
 .visual{position:absolute;inset:14px 14px 150px 14px;border-radius:18px;border:1px dashed rgba(255,238,226,.32);display:flex;align-items:flex-start;justify-content:flex-end;padding:16px 18px}
 .arrowbtn{width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBE9DC;cursor:pointer;padding:0;transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .3s}
 .arrowbtn:hover{transform:translateY(-2px)}.arrowbtn{z-index:5}
@@ -230,7 +231,7 @@ html{scroll-behavior:smooth}
 <div class="track" ref="{{pr.trackRef}}" onScroll="{{pr.onScroll}}" tabindex="0" aria-label="{{pr.title}} story, scrolls sideways">
 <sc-for list="{{pr.steps}}" as="st" hint-placeholder-count="5">
 <article class="glass panel" style="{{st.panelStyle}}">
-<div class="visual" style="{{st.visStyle}}"><sc-if value="{{st.hasStat}}" hint-placeholder-val="{{ false }}"><div style="position: absolute; left: 22px; bottom: 18px; display: flex; flex-direction: column; gap: 10px"><span style="font: 300 clamp(72px, 9vw, 128px)/.9 Josefin Sans, Futura, sans-serif; letter-spacing: -0.03em; color: #FBE9DC">{{st.stat}}</span><span style="font: 600 12px/1 Josefin Sans, Futura, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(251,233,220,.86)">{{st.statLabel}}</span></div></sc-if></div>
+<div class="visual" style="{{st.visStyle}}"><sc-if value="{{st.hasStat}}" hint-placeholder-val="{{ false }}"><div style="position: absolute; left: 22px; bottom: 18px; display: flex; flex-direction: column; gap: 10px"><span style="font: 300 128px/.9 Josefin Sans, Futura, sans-serif; letter-spacing: -0.03em; color: #FBE9DC">{{st.stat}}</span><span style="font: 600 12px/1 Josefin Sans, Futura, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(251,233,220,.86)">{{st.statLabel}}</span></div></sc-if></div>
 <div class="glass-dark {{st.cardCls}}" style="position: relative; z-index: 2; border-radius: 18px; padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; margin: 0 -12px -12px">
 <h3 style="margin: 0; font: 600 24px/1.2 Josefin Sans, Futura, sans-serif">{{st.title}}</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(251,233,220,.86)">{{st.body}}</p>
