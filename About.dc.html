@@ -346,7 +346,7 @@ html{scroll-behavior:smooth}
 </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["lava","cake"],"default":"lava","section":"Look"},"mood":{"editor":"enum","options":["clay","plum","teal","ochre"],"default":"plum","section":"Look"},"motion":{"editor":"boolean","default":true,"section":"Motion"},"blur":{"editor":"range","min":8,"max":48,"step":2,"unit":"px","default":26,"section":"Look"},"skipIntro":{"editor":null,"default":false},"onLogo":{"editor":null,"default":null},"$preview":{"width":1440,"height":2950}}'>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["lava","cake"],"default":"lava","section":"Look"},"mood":{"editor":"enum","options":["clay"],"default":"clay","section":"Look"},"motion":{"editor":"boolean","default":true,"section":"Motion"},"blur":{"editor":"range","min":8,"max":48,"step":2,"unit":"px","default":26,"section":"Look"},"skipIntro":{"editor":null,"default":false},"onLogo":{"editor":null,"default":null},"$preview":{"width":1440,"height":2950}}'>
 // ── Background motion switch ─────────────────────────────
 // false = lava blobs and cake splotches hold still (better performance on phones).
 // Set to true to bring the drifting/wobbling backgrounds back exactly as before.
@@ -1013,7 +1013,7 @@ class Component extends DCLogic {
       teal:  { base: '#173F43', hi: '#1F6266', deep: '#0B2226', mid: '#1C4E55', glow: '#3E8A86' },
       ochre: { base: '#5A3F12', hi: '#7A5A16', deep: '#2E1F0A', mid: '#6B4A14', glow: '#A07A2A' }
     };
-    const mood = this.props.mood ?? 'plum';
+    const mood = 'clay'; // Lava uses the clay palette only
     return {
       clipId: (this._uid || (this._uid = 'ab' + Math.random().toString(36).slice(2, 9))) + 'c',
       rimId: this._uid + 'r',

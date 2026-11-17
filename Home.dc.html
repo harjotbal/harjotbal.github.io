@@ -896,7 +896,7 @@ class Component extends DCLogic {
       use('vehicle-tracker', 'borrowell-app'); // Audi <- Borrowell
     }
     const prog = s.prog || {};
-    const mood = s.mood || 'clay';
+    const mood = 'clay'; // Lava uses the clay palette only (was per-case moods)
     return {
       clipId: (this._uid || (this._uid = 'wk' + Math.random().toString(36).slice(2, 9))) + 'c',
       rimId: this._uid + 'r',
