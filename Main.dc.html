@@ -921,7 +921,7 @@ class Component extends DCLogic {
       wrapClass: s.pdown && intro === 4 ? 'press' : (intro === 7 || intro === 10 ? 'keysup' : (intro === 11 ? 'keysout' : '')),
       onPressDown: () => { if ((this.state || {}).intro === 4) { this.pdAt = Date.now(); this.setState({ pdown: true }); } },
       onPressCancel: () => { if ((this.state || {}).pdown) this.setState({ pdown: false }); },
-      backLabel: s.backLabel || 'Enter passcode',
+      backLabel: s.backLabel || 'Enter',
       backTextStyle: s.backLabel ? 'color: #FFFFFF' : '',
       backStyle: keysOn || intro === 11 || open ? 'opacity: 0; pointer-events: none' : (intro === 4 ? 'opacity: 1' : 'opacity: 1; pointer-events: none'),
       onFlip: () => this.flip(),
