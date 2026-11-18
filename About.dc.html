@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Figtree:wght@300;400;500;600&amp;display=swap">
 <style>
 body{margin:0;background:#6E2C1A}html,body{overscroll-behavior-y:none}:root{--gut:max(clamp(24px,9vw,140px),calc((100vw - 1360px) / 2))}.cake .lcake{left:-400px;top:-400px;bottom:-400px;right:calc(-1 * var(--gut));-webkit-mask-image:linear-gradient(to right,#000 calc(100% - var(--gut)),transparent calc(100% - var(--gut) + min(var(--gut),220px)));mask-image:linear-gradient(to right,#000 calc(100% - var(--gut)),transparent calc(100% - var(--gut) + min(var(--gut),220px)))}.cake .lcin{left:400px;top:400px}.fcar{padding-top:120px;padding-bottom:70px;margin-top:-32px!important;margin-bottom:-70px;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 var(--gut),#000 calc(100% - var(--gut)),transparent 100%);mask-image:linear-gradient(to right,transparent 0,#000 var(--gut),#000 calc(100% - var(--gut)),transparent 100%)}.grainbg{position:absolute;inset:0;opacity:.13;mix-blend-mode:overlay;pointer-events:none;background:url(img/286a77ab77c7.webp) 0 0/160px 160px repeat}.no-grain .grainbg{display:none!important}/* Safari 26 fix: keep pinned header off the top-edge zone Safari samples for toolbar tint (prevented scroll re-rendering) */.hdr{top:8px!important}.hdr-on .logowrap,.hdr-on .modetog.mini,.hdr-on .navrow{translate:0 -8px}@media (min-width:641px){.hdr-on .logowrap{translate:0 -8.5px}.hdr-on .navrow{translate:0 -7.4px}}@media (min-width:641px){.hdr .logowrap{margin-left:var(--lgml,0px)}.hdr .navrow{margin-right:var(--navmr,0px)}.hdr.hdr-on .logowrap{transform:translate(calc(14px + var(--dlx,0px)),6.7px) scale(.61)}.hdr.hdr-on .modetog.mini{transform:translate(calc(-71.25px + var(--dlx,0px)),-5px)}}.hdr-fit.hdr-on:not(.hdr-oldpos) .logowrap,.hdr-fit.hdr-on:not(.hdr-oldpos) .modetog.mini,.hdr-fit.hdr-on:not(.hdr-oldpos) .navrow{translate:none}.hdrglass{top:8px!important;left:12%!important;right:12%!important}.hdrglass::before{top:6px!important;left:calc(max(8px,calc(var(--gut) - 19.5px)) - 12vw)!important;right:calc(max(8px,calc(var(--gut) - 19.5px)) - 12vw)!important}.hdrlogo{display:none;position:absolute;max-width:none;pointer-events:none}.flatlogo .hdr .logowrap>.hdrlogo{display:block}.flatlogo .hdr .logowrap>:not(.hdrlogo){display:none!important}.flatlogo .lava .hdr .hl-cake,.flatlogo .cake .hdr .hl-lava{display:none!important}.bubbles-still .lump,.bubbles-still .gb,.bubbles-still .gd{animation-play-state:paused!important;will-change:auto!important}.chips-still .lcin .chip{animation-play-state:paused!important}@media (hover:none) and (pointer:coarse){.fcar,.track,.cake .lcake{-webkit-mask-image:none!important;mask-image:none!important}.lump-off .lump,.lump-off .gb,.lump-off .gd{will-change:auto!important}}.bg-still .blob,.bg-still .cblob{will-change:auto!important}.bglay{transform:none!important}.cakebg{visibility:hidden;transition:opacity .9s ease,visibility 0s linear .9s}.cake .cakebg{visibility:visible;transition:opacity .9s ease,visibility 0s}.fcar .fact.fout,.fcar .fact.fout *{will-change:auto!important}.no-frost *,.no-frost *::before,.no-frost *::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}.no-gblur .glass,.no-gblur .glass-dark,.no-gblur .modetog,.no-gblur .motionbtn{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}.no-gblur .lava .glass,.no-gblur .lava .modetog,.no-gblur .lava .motionbtn,.no-gblur.lava .glass{background-color:var(--gtint,transparent)!important}.no-gblur .lava .glass-dark{background-image:linear-gradient(var(--gtint,transparent),var(--gtint,transparent))}.cakesp{position:absolute;inset:0;overflow:hidden;pointer-events:none}.cakesp img{position:absolute;display:block;max-width:none}.lump-off .gb{animation-play-state:paused!important}.bg-still .blob,.bg-still .cblob{animation-play-state:paused!important}.bg-still .blob,.bg-still .cblob{visibility:hidden!important}.blobcv{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.fstack .fclone{display:none!important}.fcar.fstack .fact{justify-self:start;align-self:stretch;will-change:transform,opacity;transform-origin:50% 60%}.fcar.fstack .fact:not(.fcur):not(.fexit)>*{opacity:0;transition:opacity .25s ease}.fcar.fstack .fact.fcur>*,.fcar.fstack .fact.fexit>*{opacity:1;transition:opacity .45s ease .15s}.fcar.fstack .fact.fcur{cursor:grab}.fcar.fstack .fact.fcur:active{cursor:grabbing}
 *{box-sizing:border-box}
 a{color:#FBE9DC}a:hover{color:#FFFFFF}
 @keyframes driftA{0%{transform:translate(-18%,-12%) scale(.9)}25%{transform:translate(28%,2%) scale(1.3)}50%{transform:translate(14%,30%) scale(1.05)}75%{transform:translate(-14%,22%) scale(1.25)}100%{transform:translate(-6%,-4%) scale(.85)}}
@@ -265,7 +266,7 @@ html{scroll-behavior:smooth}
 <h1 class="rise" style="margin: 0; font: 600 clamp(42px, 5.1vw, 76px)/1 Josefin Sans, Futura, sans-serif; letter-spacing: -0.015em; animation-delay: .08s">I&nbsp;<span class="heart" role="img" aria-label="love"><svg aria-hidden="true" class="heartsvg" viewBox="0 0 24 24" width="0.9em" height="0.9em"><path d="M12 21.2C11.2 20.6 1.6 14.6 1.6 8.6 1.6 5.6 3.9 3.4 6.8 3.4c2.1 0 3.9 1.2 5.2 3 1.3-1.8 3.1-3 5.2-3 2.9 0 5.2 2.2 5.2 5.2 0 6-9.6 12-10.4 12.6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg></span> design.</h1>
 <p class="rise" style="margin: 0; font: 400 clamp(22px, 2.2vw, 30px)/1.4 Josefin Sans, Futura, sans-serif; text-wrap: pretty; max-width: 820px; animation-delay: .16s">Hands-on leader making and shipping cool stuff.</p>
 </section>
-<section aria-label="A few things about me" aria-roledescription="carousel" class="pad fcar" ref="{{carRef}}" style="margin-top: 88px"><div class="fview reveal"><div class="ftrack">
+<section aria-label="A few things about me" aria-roledescription="carousel" class="{{fcarCls}}" ref="{{carRef}}" style="margin-top: 88px"><div class="fview reveal"><div class="ftrack">
 <article class="glass fact">
 <div class="art daff"><span class="daffclip" aria-hidden="true"><span class="daffwall"></span><img class="daffin" alt="" src="img/f04be7b3c452.webp"></span><span class="daffabove" aria-hidden="true"><img class="daffpop" alt="" src="img/f04be7b3c452.webp"></span><span class="daffpin" role="img" aria-label="Daffodil pin, the symbol of cancer survivorship"><img class="daffimg" alt="" aria-hidden="true" src="img/c5752f00f2a5.webp"><img class="daffcen" alt="" aria-hidden="true" src="img/e4f34aba8a82.webp"></span></div>
 <h2 style="margin: 0; font: 600 26px/1.15 Josefin Sans, Futura, sans-serif">Cancer survivor.</h2>
@@ -382,6 +383,9 @@ const glassTint = (hex) => { try { let r = parseInt(hex.slice(1, 3), 16) / 255, 
 const CAKE_GENERATED = false;
 // ── Cake falling sprinkles (switch: window.CAKE_SPRINKLES in the <head> script) ──
 const CAKE_SPRINKLES = window.CAKE_SPRINKLES === true;
+// ── Personal tiles: true = swipeable card stack that auto-cycles; false = previous sliding carousel ──
+const CAR_STACK = true;
+const STACK_POSE = ['translate3d(0,0,0) rotate(0deg) scale(1)', 'translate3d(14px,-16px,0) rotate(3deg) scale(.97)', 'translate3d(-10px,12px,0) rotate(-2.5deg) scale(.95)'];
 const CSP_COL = ['#F28C38', '#F6C445', '#7BC67E', '#F49AC1', '#6EC1E4', '#E84B3C', '#B9A6E0', '#FFFFFF'];
 const CSP_BAND = 900;
 // 'rosette' = piped buttercream rosettes, 'sprinkle' = sprinkles
@@ -976,6 +980,95 @@ class Component extends DCLogic {
       if (isFinite(nx)) h.style.setProperty('--navtx', (-16.5 + nx).toFixed(2) + 'px');
     } finally { if (!wasOn) h.classList.remove('hdr-on'); void h.offsetWidth; h.classList.remove('hdr-measure'); }
   }
+  stackInit() {
+    this.carOff && this.carOff();
+    const el = this.carEl; if (!el) return;
+    const tr = el.querySelector('.ftrack'); if (!tr) return;
+    const cards = Array.from(tr.children).filter((c) => c.classList.contains('fact') && !c.classList.contains('fclone'));
+    const N = cards.length; if (!N) return;
+    const order = cards.map((_, k) => k);
+    const EASE = 'cubic-bezier(.22,1,.36,1)';
+    let hold = false, t = null, busy = false, drag = null, dragged = false, wheelLock = 0, tBusy = null, tBack = null;
+    const pose = (d) => d < STACK_POSE.length ? STACK_POSE[d] : STACK_POSE[STACK_POSE.length - 1];
+    const setCard = (sl, tf, op, z, dur) => {
+      sl.style.transition = dur ? 'transform ' + dur + 'ms ' + EASE + ', opacity ' + Math.round(dur * 0.7) + 'ms ease' : 'none';
+      sl.style.transform = tf; sl.style.opacity = String(op); sl.style.zIndex = String(z);
+    };
+    const layout = (dur, skip) => {
+      order.forEach((k, d) => {
+        const sl = cards[k];
+        sl.classList.toggle('fcur', d === 0); if (d) sl.classList.remove('fon');
+        if (d) sl.setAttribute('aria-hidden', 'true'); else sl.removeAttribute('aria-hidden');
+        sl.querySelectorAll('a,button').forEach((x) => { if (d) x.setAttribute('tabindex', '-1'); else x.removeAttribute('tabindex'); });
+        if (sl !== skip) setCard(sl, pose(d), d < STACK_POSE.length ? 1 : 0, N - d + 1, dur);
+      });
+      clearTimeout(this.tFon); const cur = cards[order[0]];
+      this.tFon = setTimeout(() => { if (cur.classList.contains('fcur')) cur.classList.add('fon'); }, dur ? dur + 100 : 0);
+    };
+    const settle = (ms) => { clearTimeout(tBusy); tBusy = setTimeout(() => { busy = false; }, ms); };
+    // send the front card off to one side, then tuck it in at the back of the stack
+    const next = (dir) => {
+      if (busy) return; busy = true;
+      const k = order.shift(); order.push(k); const sl = cards[k];
+      sl.classList.add('fexit');
+      setCard(sl, 'translate3d(' + (dir * 118) + '%,26px,0) rotate(' + (dir * 14) + 'deg)', 0, N + 5, 520);
+      layout(650, sl);
+      clearTimeout(tBack);
+      tBack = setTimeout(() => {
+        sl.classList.remove('fexit');
+        setCard(sl, 'translate3d(' + (dir * 30) + '%,10px,0) rotate(' + (dir * 8) + 'deg) scale(.9)', 0, 0, 0);
+        void sl.offsetWidth; layout(600); settle(250);
+      }, 470);
+    };
+    // bring the back card in from the side to the front
+    const prev = () => {
+      if (busy) return; busy = true;
+      const k = order.pop(); order.unshift(k); const sl = cards[k];
+      setCard(sl, 'translate3d(-118%,26px,0) rotate(-14deg)', 0, N + 5, 0); void sl.offsetWidth;
+      layout(650); settle(650);
+    };
+    const still = () => !!el.closest('.still') || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const tick = () => { clearTimeout(t); t = setTimeout(() => { if (!hold && !drag && !still() && !document.hidden) next(-1); tick(); }, 6000); };
+    const on = () => { hold = true; }, off = () => { hold = false; tick(); };
+    const pd = (e) => {
+      if (busy || (e.pointerType === 'mouse' && e.button !== 0)) return;
+      const front = cards[order[0]]; if (!front.contains(e.target)) return;
+      drag = { x: e.clientX, y: e.clientY, id: e.pointerId, on: false, dx: 0, front };
+      dragged = false;
+    };
+    const pm = (e) => {
+      if (!drag || e.pointerId !== drag.id) return;
+      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (!drag.on) {
+        if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { drag = null; return; }
+        if (Math.abs(dx) < 8) return;
+        drag.on = true; try { drag.front.setPointerCapture(e.pointerId); } catch (er) {}
+      }
+      drag.dx = dx;
+      setCard(drag.front, 'translate3d(' + dx + 'px,' + (dy * 0.15).toFixed(1) + 'px,0) rotate(' + (dx * 0.035).toFixed(2) + 'deg)', 1, N + 5, 0);
+    };
+    const pu = (e) => {
+      if (!drag || e.pointerId !== drag.id) return;
+      const d = drag; drag = null;
+      if (!d.on) return;
+      dragged = true;
+      if (Math.abs(d.dx) > Math.min(110, d.front.offsetWidth * 0.22)) next(d.dx < 0 ? -1 : 1); else layout(420);
+      tick();
+    };
+    const ck = (e) => {
+      if (dragged) { e.preventDefault(); e.stopPropagation(); dragged = false; return; }
+      const sl = e.target.closest('.fact'); if (sl && !sl.classList.contains('fcur')) { e.preventDefault(); next(-1); tick(); }
+    };
+    const wh = (e) => { if (Math.abs(e.deltaX) < 30 || Math.abs(e.deltaX) < Math.abs(e.deltaY)) return; e.preventDefault(); const now = Date.now(); if (now < wheelLock) return; wheelLock = now + 800; if (e.deltaX > 0) next(-1); else prev(); tick(); };
+    const kd = (e) => { if (e.key === 'ArrowRight') { next(-1); tick(); } else if (e.key === 'ArrowLeft') { prev(); tick(); } };
+    const fo = (e) => { if (!el.contains(e.relatedTarget)) off(); };
+    el.addEventListener('pointerenter', on); el.addEventListener('pointerleave', off);
+    el.addEventListener('focusin', on); el.addEventListener('focusout', fo);
+    tr.addEventListener('pointerdown', pd); window.addEventListener('pointermove', pm); window.addEventListener('pointerup', pu); window.addEventListener('pointercancel', pu);
+    tr.addEventListener('click', ck, true); tr.addEventListener('wheel', wh, { passive: false }); el.addEventListener('keydown', kd);
+    layout(0); tick();
+    this.carOff = () => { clearTimeout(t); clearTimeout(tBusy); clearTimeout(tBack); clearTimeout(this.tFon); el.removeEventListener('pointerenter', on); el.removeEventListener('pointerleave', off); el.removeEventListener('focusin', on); el.removeEventListener('focusout', fo); tr.removeEventListener('pointerdown', pd); window.removeEventListener('pointermove', pm); window.removeEventListener('pointerup', pu); window.removeEventListener('pointercancel', pu); tr.removeEventListener('click', ck, true); tr.removeEventListener('wheel', wh); el.removeEventListener('keydown', kd); };
+  }
   carInit() {
     this.carOff && this.carOff();
     const el = this.carEl; if (!el) return;
@@ -1081,7 +1174,8 @@ class Component extends DCLogic {
       onCake: () => this.setTheme('cake'),
       hdrCls: 'pad hdr' + (this._hdrOn ? ' hdr-on' : '') + (this._hdrFit ? ' hdr-fit' : ''),
       hdrGlassCls: 'hdrglass' + (this._hdrOn ? ' on' : ''),
-      carRef: (el) => { if (el && el !== this.carEl) { this.carEl = el; this.carInit(); } },
+      carRef: (el) => { if (el && el !== this.carEl) { this.carEl = el; if (CAR_STACK) this.stackInit(); else this.carInit(); } },
+      fcarCls: 'pad fcar' + (CAR_STACK ? ' fstack' : ''),
       hdrRef: (el) => { if (el && el !== this.hdrEl) { this.hdrEl = el; this.hdrInit(); } },
       cakeRef: (el) => { if (el && el !== this.cakeCv) { this.cakeCv = el; if (CAKE_GENERATED) cakeEngine(this, el); else cakeStatic(this, el); } },
       isPaused: !!(this.state && this.state.paused),
