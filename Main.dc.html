@@ -335,7 +335,7 @@ const cakeSprinkles = (host, W, H) => {
     const band = document.createElement('div'); band.className = 'cspb';
     band.style.cssText = 'top:' + (b * B) + 'px;height:' + B + 'px';
     for (let i = 0; i < per; i++) {
-      const z = Math.random(), rod = Math.random() < 0.75, c = CSP_COL[Math.floor(Math.random() * CSP_COL.length)], k = (0.6 + z * 1.4) * u * 0.85;
+      const z = Math.random(), rod = Math.random() < 0.75, c = CSP_COL[Math.floor(Math.random() * CSP_COL.length)], k = (0.6 + z * 1.4) * u * 0.68;
       const w = (rod ? 18 : 9) * k, h = (rod ? 5.5 : 9) * k, r0 = Math.round(Math.random() * 360);
       const t = 1.3 * (40 - z * 22) * (B + 120) / 860;
       const sp = document.createElement('span'); sp.className = 'csp';
