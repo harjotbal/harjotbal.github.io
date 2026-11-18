@@ -170,7 +170,7 @@ html{scroll-behavior:smooth}
 
 .still .sugar{animation:none!important;opacity:0}
 @media (prefers-reduced-motion:reduce){.sugar{animation:none!important;opacity:0}}
-@media (hover:none) and (pointer:coarse){.lava .bglay:has(> .blob)::after{content:'';position:absolute;left:0;right:0;top:0;height:260px;pointer-events:none;background:linear-gradient(to bottom,#6E2C1A 0,#6E2C1A 64px,rgba(110,44,26,.86) 100px,rgba(110,44,26,.55) 150px,rgba(110,44,26,.22) 205px,rgba(110,44,26,0) 260px)}}.lava-move .lava .blob{visibility:visible!important;animation-play-state:running!important;will-change:transform!important}.lava-move .lava .bglay{background-image:none!important}.cake-ridges .cakebg::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.7;background:url(img/b4957d458bbb.webp) 0 0/1200px 480px repeat}@media (max-width:600px){.cake-ridges .cakebg::before{background-size:840px 336px}}</style>
+@media (hover:none) and (pointer:coarse){.lava .bglay:has(> .blob)::after{content:'';position:absolute;left:0;right:0;top:0;height:260px;pointer-events:none;background:linear-gradient(to bottom,#6E2C1A 0,#6E2C1A 64px,rgba(110,44,26,.86) 100px,rgba(110,44,26,.55) 150px,rgba(110,44,26,.22) 205px,rgba(110,44,26,0) 260px)}}.lava-move .lava .blob{visibility:visible!important;animation-play-state:running!important;will-change:transform!important}.lava-move .lava .bglay{background-image:none!important}</style>
 </helmet>
 <div class="{{rootClass}}" ref="{{rootRef}}" style="{{rootStyle}}; min-height: 100vh; background-color: #17100D; overflow: clip; font-family: 'Proxima Nova', Figtree, system-ui, sans-serif; color: #FBE9DC">
 <div class="pagebg" style="position: relative; min-height: 100vh; background-color: {{p.base}}; transition: background-color 1.6s cubic-bezier(.22,1,.36,1)">
@@ -288,7 +288,6 @@ html{scroll-behavior:smooth}
 // Set to true to bring the drifting/wobbling backgrounds back exactly as before.
 const BG_MOTION = false;
 const LAVA_MOTION = true;          // Lava only: live drifting colour blobs (overrides BG_MOTION for Lava; Cake stays still). false = back to the still painted background
-const CAKE_RIDGES = true;          // Cake only: subtle buttercream-ridge texture in the background. false = plain cream background
 // Film grain over the Lava background. Set to true to bring it back.
 const SHOW_GRAIN = false;
 // Only the floating header bar uses a live blur. Other glass panels use a tint that
@@ -700,7 +699,7 @@ class Component extends DCLogic {
   componentDidUpdate() { const k = String(this.themeNow) + '|' + String(this.props.mood) + '|' + String((this.state || {}).tick || 0) + '|' + String((this.state || {}).phase || ''); if (k === this._duKey) return; this._duKey = k; this.syncChrome(); bgPaintSoon(this, document.body); if (!CAKE_GENERATED && this.cakeCv) cakeStatic(this, this.cakeCv); }
   componentDidMount() {
     if (!BG_MOTION) { bgPaintSoon(this, document.body); this._bgRs = () => { const w = window.innerWidth, hh = document.body.scrollHeight; if (w === this._bgW && Math.abs(hh - (this._bgH || 0)) < 2) return; this._bgW = w; this._bgH = hh; bgPaintSoon(this, document.body); }; window.addEventListener('resize', this._bgRs); if (window.ResizeObserver) { this._bgRO = new ResizeObserver(this._bgRs); this._bgRO.observe(document.body); } if (document.fonts && document.fonts.ready) document.fonts.ready.then(this._bgRs); }
-    try { document.documentElement.classList.toggle('bg-still', !BG_MOTION); document.documentElement.classList.toggle('lava-move', LAVA_MOTION); document.documentElement.classList.toggle('cake-ridges', CAKE_RIDGES); document.documentElement.classList.toggle('no-grain', !SHOW_GRAIN); document.documentElement.classList.toggle('no-gblur', !GLASS_BLUR_ALL); document.documentElement.classList.toggle('no-frost', NO_FROST); document.documentElement.classList.toggle('flatlogo', FLAT_HEADER_LOGO); } catch (e) {}
+    try { document.documentElement.classList.toggle('bg-still', !BG_MOTION); document.documentElement.classList.toggle('lava-move', LAVA_MOTION); document.documentElement.classList.toggle('no-grain', !SHOW_GRAIN); document.documentElement.classList.toggle('no-gblur', !GLASS_BLUR_ALL); document.documentElement.classList.toggle('no-frost', NO_FROST); document.documentElement.classList.toggle('flatlogo', FLAT_HEADER_LOGO); } catch (e) {}
     try {
       const rv = () => {
         const els = [...document.querySelectorAll('.reveal:not(.revealed)')];
