@@ -849,17 +849,21 @@ class Component extends DCLogic {
     const kh0 = GATE_KEYS_3COL ? kw0 / 1.75 : kw0;
     const pH0 = GATE_KEYS_3COL ? 4 * kh0 + 3 * kgPx + 2 * GATE_PANEL_PADV : 2 * kh0 + kgPx + 2 * GATE_PANEL_PADV;
     const BELOW = GATE_KEYS_3COL ? Math.max(330, 22 + pH0 + GATE_FOOT_GAP + 30) : 330; // gate line -> bottom of the Stop motion button
-    const gf = Math.max(0.5, Math.min(1, (vhNow - 32 - si - sb) / (lo0 + BELOW)));
-    const gyPx = Math.max(16 + si + lo0 * gf, Math.min(Math.max(vhNow / 2, 322), vhNow - 16 - sb - BELOW * gf));
+    const UNIT0 = (lo0 - GATE_LOGO_DOWN - 43 * ls) + 26 + Math.max(300, 22 + pH0 + GATE_FOOT_GAP) + 30; // unscaled logo-ink-top -> Stop-motion-bottom height
+    const gf = Math.max(0.5, Math.min(1, (vhNow - 32 - si - sb) / UNIT0));
     const gls = ls * gf;
     const kwPx = kw0 * gf, ksPx = kh0 * gf;
     const pwPx = Math.round(GATE_KEYS_3COL ? 3 * kwPx + 2 * kgPx : 5 * ksPx + 4 * kgPx);
     const PW = pwPx + 'px';
     const pH = Math.round(GATE_KEYS_3COL ? 4 * ksPx + 3 * kgPx + 2 * GATE_PANEL_PADV * gf : 2 * ksPx + kgPx + 2 * GATE_PANEL_PADV * gf); // keypad centred vertically in the panel
     const footY = GATE_KEYS_3COL ? Math.max(300, (22 * gf + pH) / gf + GATE_FOOT_GAP) : 300; // Stop motion offset below the gate line (unscaled)
+    // centre the whole gate unit (logo ink top -> bottom of Stop motion) in the visible height; UP (the stack lift) is assumed at its usual 26px
+    const unitAbove = lo0 - GATE_LOGO_DOWN - 43 * ls, unitBelow = 26 + footY + 30;
+    const gyC = si + (vhNow - si - sb) / 2 + gf * (unitAbove - unitBelow) / 2 + 26 * gf;
+    const gyPx = Math.max(16 + si + (unitAbove + 26) * gf, Math.min(gyC, vhNow - 16 - sb - (footY + 30) * gf));
     const oldW = Math.min(484, vwNow - 2 * Math.max(32, Math.min(48, 0.12 * vwNow))) * gf, oldH = Math.max(190, Math.min(232, 0.72 * oldW / gf)) * gf;
     const pTop = 22 * gf + Math.max(0, (oldH - pH) / 2); // keep the panel centred where the old, larger panel sat
-    const UP = Math.round(Math.max(0, Math.min(26 * gf, gyPx - lo0 * gf - 16 - si))); // lift the gate stack (logo, tagline, toggle, panel); the motion button stays put
+    const UP = Math.round(Math.max(0, Math.min(26 * gf, gyPx - unitAbove * gf - 16 - si))); // lift the gate stack (logo, tagline, toggle, panel); the motion button stays put
     const open = !!s.phase;
     // horizontal (left/width) transitions only run while the gate is opening or closing; intro/measure updates move vertically only
     if (this._lastOpen !== undefined && this._lastOpen !== open) { this._moveUntil = Date.now() + 1800; clearTimeout(this._mvT); this._mvT = setTimeout(() => this.setState({ mvTick: Date.now() }), 1850); }
