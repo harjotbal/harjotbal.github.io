@@ -314,7 +314,8 @@ const SHOW_GRAIN = false;
 // Gate: tagline "The experience matters." — true brings it back (and set GATE_LOGO_DOWN / GATE_TOG_UP to 0 / 22 for the old layout)
 const SHOW_TAGLINE = false;
 const GATE_LOGO_DOWN = 50;   // px the gate logo sits lower than before (at full scale)
-const GATE_TOG_UP = 48;      // toggle top = gate line minus this (was 22)
+const GATE_TOG_UP = 48;
+const GATE_LOGO_SMALL = 0.92;  // gate logo scale on screens ≤600px wide (1 = previous size)      // toggle top = gate line minus this (was 22)
 // Only the floating header bar uses a live blur. Other glass panels use a tint that
 // mimics the saturation the blur used to add. Set to true to restore live blur everywhere.
 const GLASS_BLUR_ALL = false;
@@ -834,7 +835,7 @@ class Component extends DCLogic {
     const tilt = this.props.panelTilt ?? 0; // flat panel (was 18deg tilted back)
     const tw = s.tw || 392;
     const vwNow = s.vw || (typeof window !== 'undefined' ? window.innerWidth : 1440);
-    const ls = Math.max(0.5, Math.min(1, (vwNow - Math.max(48, Math.min(120, vwNow * 0.27))) / (tw + 8)));
+    const ls = Math.max(0.5, Math.min(1, (vwNow - Math.max(48, Math.min(120, vwNow * 0.27))) / (tw + 8))) * (vwNow <= 600 ? GATE_LOGO_SMALL : 1);
     const vhNow = s.vh || (typeof window !== 'undefined' ? window.innerHeight : 900);
     const lo0 = 182 + 118 * ls;
     const si = s.si || 0, sb = s.sb || 0;
