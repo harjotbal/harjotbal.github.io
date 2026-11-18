@@ -851,7 +851,8 @@ class Component extends DCLogic {
     const pH0 = GATE_KEYS_3COL ? 4 * kh0 + 3 * kgPx + 2 * GATE_PANEL_PADV : 2 * kh0 + kgPx + 2 * GATE_PANEL_PADV;
     const BELOW = GATE_KEYS_3COL ? Math.max(330, 22 + pH0 + GATE_FOOT_GAP + 30) : 330; // gate line -> bottom of the Stop motion button
     const UNIT0 = (lo0 - GATE_LOGO_DOWN - 43 * ls) + 26 + Math.max(300, 22 + pH0 + GATE_FOOT_GAP) + 30; // unscaled logo-ink-top -> Stop-motion-bottom height
-    const gf = Math.max(0.5, Math.min(1, (vhNow - 32 - si - sb) / UNIT0));
+    const BLOCK0 = (lo0 - GATE_LOGO_DOWN - 43 * ls) + 22 + pH0; // logo ink top -> panel bottom (unscaled), centred on the page
+    const gf = Math.max(0.5, Math.min(1, (vhNow - 32 - si - sb) / UNIT0, ((vhNow - si - sb) / 2 - 16) / (BLOCK0 / 2 + 26 + GATE_FOOT_GAP + 30)));
     const gls = ls * gf;
     const kwPx = GATE_KEYS_3COL ? Math.min(kw0 * gf, (tw * gls - 2 * kgPx) / 3) : kw0 * gf, ksPx = kh0 * gf; // 3-col keypad spans the logo's width
     const pwPx = Math.round(GATE_KEYS_3COL ? 3 * kwPx + 2 * kgPx : 5 * ksPx + 4 * kgPx);
@@ -860,7 +861,8 @@ class Component extends DCLogic {
     const footY = GATE_KEYS_3COL ? Math.max(300, (22 * gf + pH) / gf + GATE_FOOT_GAP) : 300; // Stop motion offset below the gate line (unscaled)
     // centre the whole gate unit (logo ink top -> bottom of Stop motion) in the visible height; UP (the stack lift) is assumed at its usual 26px
     const unitAbove = lo0 - GATE_LOGO_DOWN - 43 * ls, unitBelow = 26 + footY + 30;
-    const gyC = si + (vhNow - si - sb) / 2 + gf * (unitAbove - unitBelow) / 2 + 26 * gf;
+    // centre the logo-ink-top -> panel-bottom block in the visible height (Stop motion keeps its gap below the panel)
+    const gyC = si + (vhNow - si - sb) / 2 + (unitAbove * gf - (22 * gf + pH)) / 2 + 26 * gf;
     const gyPx = Math.max(16 + si + (unitAbove + 26) * gf, Math.min(gyC, vhNow - 16 - sb - (footY + 30) * gf));
     const oldW = Math.min(484, vwNow - 2 * Math.max(32, Math.min(48, 0.12 * vwNow))) * gf, oldH = Math.max(190, Math.min(232, 0.72 * oldW / gf)) * gf;
     const pTop = 22 * gf + Math.max(0, (oldH - pH) / 2); // keep the panel centred where the old, larger panel sat
