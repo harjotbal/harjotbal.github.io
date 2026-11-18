@@ -315,6 +315,7 @@ const SHOW_GRAIN = false;
 const SHOW_TAGLINE = false;
 const GATE_LOGO_DOWN = 50;   // px the gate logo sits lower than before (at full scale)
 const GATE_TOG_UP = 48;
+const GATE_PANEL_PADV = 22;   // extra space above and below the keypad inside the passcode panel (0 = panel hugs the keypad)
 const GATE_LOGO_SMALL = 0.92;  // gate logo scale on screens ≤600px wide (1 = previous size)      // toggle top = gate line minus this (was 22)
 // Only the floating header bar uses a live blur. Other glass panels use a tint that
 // mimics the saturation the blur used to add. Set to true to restore live blur everywhere.
@@ -848,7 +849,7 @@ class Component extends DCLogic {
     const ksPx = Math.min(68, (kAvail - 4 * kgPx) / 5) * gf;
     const pwPx = Math.round(5 * ksPx + 4 * kgPx);
     const PW = pwPx + 'px';
-    const pH = Math.round(2 * ksPx + kgPx);
+    const pH = Math.round(2 * ksPx + kgPx + 2 * GATE_PANEL_PADV * gf); // keypad stays the same size, centred vertically in the taller panel
     const oldW = Math.min(484, vwNow - 2 * Math.max(32, Math.min(48, 0.12 * vwNow))) * gf, oldH = Math.max(190, Math.min(232, 0.72 * oldW / gf)) * gf;
     const pTop = 22 * gf + Math.max(0, (oldH - pH) / 2); // keep the panel centred where the old, larger panel sat
     const UP = Math.round(Math.max(0, Math.min(26 * gf, gyPx - lo0 * gf - 16 - si))); // lift the gate stack (logo, tagline, toggle, panel); the motion button stays put
