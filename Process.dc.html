@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<script>/* CAKE_SPRINKLES: true = Cake mode uses falling sprinkles on buttercream. false = back to the pastel glow + crumbs. */window.CAKE_SPRINKLES=true;try{if(window.CAKE_SPRINKLES)document.documentElement.classList.add('cake-spr');var t=sessionStorage.getItem('harjot-theme');document.documentElement.style.backgroundColor=t==='cake'?(window.CAKE_SPRINKLES?'#F9F2E7':'#EEFBFC'):'#6E2C1A'}catch(e){}</script>
+<script>/* CAKE_SPRINKLES: true = Cake mode shows falling sprinkles over the pastel gradient. false = back to the crumbs. */window.CAKE_SPRINKLES=true;try{if(window.CAKE_SPRINKLES)document.documentElement.classList.add('cake-spr');var t=sessionStorage.getItem('harjot-theme');document.documentElement.style.backgroundColor=t==='cake'?'#EEFBFC':'#6E2C1A'}catch(e){}</script>
 <title>Harjot — Process</title>
 <script src="./support.js"></script>
 </head>
@@ -101,9 +101,7 @@ html{scroll-behavior:smooth}
 .cblob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.75;will-change:transform}
 .cglow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 50% at 50% 50%,rgba(255,255,255,.95),rgba(255,255,255,0) 70%)}
 .cakecv{position:absolute;inset:0;width:100%;height:100%;display:block}
-:root{--cakebase:#EEFBFC}.cake-spr{--cakebase:#F9F2E7}
-.cake-spr .cakebg{background:radial-gradient(1600px 1000px at 28% 0,#FFFDF8,rgba(255,253,248,0)),var(--cakebase)}
-.cake-spr .cblob{display:none}
+:root{--cakebase:#EEFBFC}
 .cake-spr .cake .glass:not(.key){background:linear-gradient(135deg,rgba(255,255,255,.93),rgba(255,255,255,.8))}.cake-spr .cake .glass-dark{background:rgba(255,255,255,.9)}
 .cspb{position:absolute;left:0;right:0}
 .csp{position:absolute;top:0;border-radius:999px;animation:cspFall var(--t) linear var(--d) infinite;animation-play-state:paused}
