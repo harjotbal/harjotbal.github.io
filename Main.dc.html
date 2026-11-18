@@ -195,9 +195,9 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 <div class="edgesamp" aria-hidden="true" style="bottom: -7px"></div>
 <div class="edgefade" aria-hidden="true" style="top: 5px; background: linear-gradient(to bottom, var(--edgec, #17100D), transparent)"></div>
 <div class="edgefade" aria-hidden="true" style="bottom: 5px; background: linear-gradient(to top, var(--edgec, #17100D), transparent)"></div>
-<div class="tx-fade" style="{{gateStyle}}; position: absolute; left: 0; right: 0; top: calc(var(--gy, 50vh) - 112px * var(--gf, 1)); z-index: 3; pointer-events: none"><p style="margin: 0; text-align: center; font-family: Josefin Sans, Futura, sans-serif; font-weight: 500; font-size: 16px; letter-spacing: .3em; text-transform: uppercase; color: #EADBC0; animation-delay: .12s" class="tagline">The experience matters.</p></div>
+<sc-if value="{{showTagline}}" hint-placeholder-val="{{ false }}"><div class="tx-fade" style="{{gateStyle}}; position: absolute; left: 0; right: 0; top: calc(var(--gy, 50vh) - 112px * var(--gf, 1)); z-index: 3; pointer-events: none"><p style="margin: 0; text-align: center; font-family: Josefin Sans, Futura, sans-serif; font-weight: 500; font-size: 16px; letter-spacing: .3em; text-transform: uppercase; color: #EADBC0; animation-delay: .12s" class="tagline">The experience matters.</p></div></sc-if>
 
-<div class="tx-fade" style="{{gateStyle}}; position: absolute; left: 0; right: 0; top: calc(var(--gy, 50vh) - 22px * var(--gf, 1)); z-index: 4; display: flex; justify-content: center; scale: var(--gf, 1); transform-origin: 50% 0">
+<div class="tx-fade" style="{{gateStyle}}; position: absolute; left: 0; right: 0; top: calc(var(--gy, 50vh) - var(--togup, 22px) * var(--gf, 1)); z-index: 4; display: flex; justify-content: center; scale: var(--gf, 1); transform-origin: 50% 0">
 <div class="modetog" role="group" aria-label="Theme">
 <span class="modethumb" aria-hidden="true"></span>
 <button type="button" aria-pressed="{{lavaPressed}}" onClick="{{onLava}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5c.9 3.6 5.6 5.9 5.6 11a5.6 5.6 0 0 1-11.2 0c0-2.5 1.3-4.1 2.7-5.2.2 1.8 1 2.9 2.3 3.5-.6-3.4-.2-6.6.6-9.3z"></path></svg><span>Lava</span></button>
@@ -311,6 +311,10 @@ const LAVA_MOTION = true;          // Lava only: live drifting colour blobs (ove
 const CAKE_CRUMBS = true;          // Cake only: cake-crumb sprites instead of paint splotches. false = back to the splotches
 // Film grain over the Lava background. Set to true to bring it back.
 const SHOW_GRAIN = false;
+// Gate: tagline "The experience matters." — true brings it back (and set GATE_LOGO_DOWN / GATE_TOG_UP to 0 / 22 for the old layout)
+const SHOW_TAGLINE = false;
+const GATE_LOGO_DOWN = 28;   // px the gate logo sits lower than before (at full scale)
+const GATE_TOG_UP = 36;      // toggle top = gate line minus this (was 22)
 // Only the floating header bar uses a live blur. Other glass panels use a tint that
 // mimics the saturation the blur used to add. Set to true to restore live blur everywhere.
 const GLASS_BLUR_ALL = false;
@@ -898,16 +902,17 @@ class Component extends DCLogic {
       onCake: () => this.setTheme('cake'),
       cakeRef: (el) => { if (el && el !== this.cakeCv) { this.cakeCv = el; if (CAKE_GENERATED) this.cakeInit(); else cakeStatic(this, el); } },
       isPaused: !!s.paused,
+      showTagline: SHOW_TAGLINE,
       isPlaying: !s.paused,
       motionLabel: s.paused ? 'Start motion' : 'Stop motion',
       motionPressed: s.paused ? 'true' : 'false',
       onToggleMotion: () => this.setState({ paused: !(this.state && this.state.paused) }),
-      rootStyle: '--gtint: ' + glassTint(P[key].hi) + '; --blur: ' + blur + 'px; --gy: ' + (gyPx - UP).toFixed(1) + 'px; --gup: ' + UP + 'px; --gf: ' + gf.toFixed(4) + '; --tls: ' + gls.toFixed(4) + '; height: ' + Math.round(vhNow) + 'px; --edgec: ' + (theme === 'cake' ? '#EEFBFC' : P[key].base),
+      rootStyle: '--gtint: ' + glassTint(P[key].hi) + '; --blur: ' + blur + 'px; --gy: ' + (gyPx - UP).toFixed(1) + 'px; --gup: ' + UP + 'px; --togup: ' + GATE_TOG_UP + 'px; --gf: ' + gf.toFixed(4) + '; --tls: ' + gls.toFixed(4) + '; height: ' + Math.round(vhNow) + 'px; --edgec: ' + (theme === 'cake' ? '#EEFBFC' : P[key].base),
       logoW: Math.ceil(tw + 8),
       logoRef: (el) => { this.logoText = el; },
       logoStyle: open
         ? 'left: ' + L + '; top: ' + T + '; transform: scale(.5714)'
-        : 'left: calc(50% - ' + ((tw / 2 + 2) * gls).toFixed(2) + 'px); top: calc(var(--gy, 50vh) - ' + (lo0 * gf).toFixed(1) + 'px); ' + (intro >= 2 ? 'transform: scale(' + gls.toFixed(4) + '); opacity: 1; filter: blur(0px)' : 'transform: translateY(18px) scale(' + gls.toFixed(4) + '); opacity: 0; filter: blur(10px)'),
+        : 'left: calc(50% - ' + ((tw / 2 + 2) * gls).toFixed(2) + 'px); top: calc(var(--gy, 50vh) - ' + ((lo0 - GATE_LOGO_DOWN) * gf).toFixed(1) + 'px); ' + (intro >= 2 ? 'transform: scale(' + gls.toFixed(4) + '); opacity: 1; filter: blur(0px)' : 'transform: translateY(18px) scale(' + gls.toFixed(4) + '); opacity: 0; filter: blur(10px)'),
       gateStyle: open ? 'opacity: 0; transform: translateY(-14px); pointer-events: none' : (intro >= 3 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: translateY(12px)'),
       mainIntro: intro >= 1 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: scale(.985)',
       wobClass: '',
