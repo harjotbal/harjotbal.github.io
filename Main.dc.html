@@ -316,7 +316,9 @@ const SHOW_TAGLINE = false;
 const GATE_LOGO_DOWN = 50;   // px the gate logo sits lower than before (at full scale)
 const GATE_TOG_UP = 48;
 const GATE_KEYS_3COL = true;
-const GATE_SPIN_MS = 900;      // Enter panel <-> keypad spin duration
+const GATE_SPIN_MS = 900;
+const GATE_ENTER_W = 0.8;      // Enter panel width as a share of the keypad panel (10% in from each side)
+const GATE_ENTER_H = 0.6;      // Enter panel height as a share of the keypad panel (20% in from top and bottom)      // Enter panel <-> keypad spin duration
 const GATE_FOOT_GAP = 40;      // space between the passcode panel and Stop motion (unscaled px; was 64)    // passcode keypad as 3 x 4 (123 / 456 / 789 / 0) with wider keys
 const GATE_PANEL_PADV = 22;   // extra space above and below the keypad inside the passcode panel (0 = panel hugs the keypad)
 const GATE_LOGO_SMALL = 0.92;  // gate logo scale on screens ≤600px wide (1 = previous size)      // toggle top = gate line minus this (was 22)
@@ -943,7 +945,7 @@ class Component extends DCLogic {
       navStyle: open ? 'opacity: 1; transform: none' : 'opacity: 0; transform: translateY(10px); pointer-events: none',
       panelPos: open
         ? 'left: ' + L + '; top: calc(clamp(40px, 6vw, 88px) + 170px); width: min(860px, calc(100% - 2 * var(--gut))); height: clamp(360px, 50vh, 460px)'
-        : 'left: calc(50% - ' + PW + ' / 2); top: calc(var(--gy, 50vh) + ' + pTop.toFixed(1) + 'px); width: ' + PW + '; height: ' + pH + 'px; ' + (intro >= 4 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: translateY(80px)'),
+        : (keysOn ? 'left: calc(50% - ' + PW + ' / 2); top: calc(var(--gy, 50vh) + ' + pTop.toFixed(1) + 'px); width: ' + PW + '; height: ' + pH + 'px; ' : 'left: calc(50% - ' + (pwPx * GATE_ENTER_W / 2).toFixed(1) + 'px); top: calc(var(--gy, 50vh) + ' + (pTop + pH * (1 - GATE_ENTER_H) / 2).toFixed(1) + 'px); width: ' + (pwPx * GATE_ENTER_W).toFixed(1) + 'px; height: ' + (pH * GATE_ENTER_H).toFixed(1) + 'px; ') + (moving ? '' : 'transition: opacity 1s ease, transform 1.3s cubic-bezier(.22,1,.36,1); ') + (intro >= 4 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: translateY(80px)'),
       panelTilt: 'transform: none; --tilt: ' + (open ? 0 : tilt) + 'deg',
       bobClass: open ? '' : 'bob',
       cardInner: 'opacity: 0; pointer-events: none',
