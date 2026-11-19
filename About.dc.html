@@ -236,10 +236,10 @@ html{scroll-behavior:smooth}
 .cdlbody{position:absolute;left:-.75cqw;top:.9cqh;width:1.5cqw;height:120cqh;border-radius:.8cqw .8cqw 0 0;background:linear-gradient(90deg,#DDB24A,#F6E3A2 38%,#F9EDBE 50%,#EDCF78 72%,#D3A53E);transform:rotate(var(--tilt));transform-origin:50% 0;box-shadow:inset 0 .4cqh .3cqh rgba(255,255,255,.35)}
 .cdlwick{position:absolute;left:-.16cqw;top:-.9cqh;width:.32cqw;height:2.2cqh;border-radius:.2cqw;background:#3B2416;transform:rotate(calc(var(--tilt) * .6));transform-origin:50% 100%}
 .cdlember{position:absolute;left:-.32cqw;top:-1.2cqh;width:.64cqw;height:.64cqw;border-radius:50%;background:#FF7B2E;box-shadow:0 0 .9cqw .3cqw rgba(255,120,40,.6);opacity:0;animation:cember var(--T) linear var(--fd) infinite}
-.cdlflame{position:absolute;left:-1.15cqw;top:-10.6cqh;width:2.3cqw;height:9.8cqh;filter:blur(.22cqw);transform-origin:50% 92%;animation:cflame var(--T) ease-in-out var(--fd) infinite}
+.cdlflame{position:absolute;left:-1.2cqw;top:-20.4cqh;width:2.4cqw;height:19.6cqh;filter:blur(.22cqw);transform-origin:50% 92%;animation:cflame var(--T) ease-in-out var(--fd) infinite}
 .cdlfl{position:absolute;inset:0;border-radius:50% 50% 50% 50%/72% 72% 28% 28%;background:radial-gradient(ellipse 50% 60% at 50% 76%,#FFFFFF 0 26%,#FFF1B8 40%,#FFC24E 64%,rgba(255,150,46,.55) 80%,rgba(255,150,46,0) 100%);box-shadow:0 0 .6cqw rgba(255,190,90,.6);transform-origin:50% 90%;animation:cflick var(--fl) ease-in-out infinite alternate}
 .cdlfl::after{content:"";position:absolute;left:34%;right:34%;bottom:4%;height:20%;border-radius:50%;background:radial-gradient(ellipse at 50% 60%,rgba(110,150,255,.75),rgba(110,150,255,0) 72%)}
-.cdlglow{position:absolute;left:-5.4cqw;top:-3cqh;width:13cqw;height:17cqh;border-radius:50%;background:radial-gradient(closest-side,rgba(255,196,110,.42),rgba(255,196,110,.14) 55%,rgba(255,196,110,0))}
+.cdlglow{position:absolute;left:-5.3cqw;top:-2cqh;width:13cqw;height:28cqh;border-radius:50%;background:radial-gradient(closest-side,rgba(255,196,110,.42),rgba(255,196,110,.14) 55%,rgba(255,196,110,0))}
 @keyframes cflick{0%{transform:scale(1,1) skewX(0)}50%{transform:scale(.94,1.06) skewX(2deg)}100%{transform:scale(1.04,.95) skewX(-2deg)}}
 @keyframes cflame{0%{transform:none;opacity:1}2.5%{transform:translateX(.9cqw) skewX(-32deg) scale(.75,.55);opacity:.85}5%{transform:translateX(1.2cqw) skewX(-40deg) scale(.15,.12);opacity:0}36%{transform:scale(.1);opacity:0}41%{transform:scale(1.1,1.18);opacity:1}46%,100%{transform:none;opacity:1}}
 @keyframes cember{0%,3.5%{opacity:0}5%{opacity:1}28%{opacity:0}100%{opacity:0}}
@@ -248,7 +248,7 @@ html{scroll-behavior:smooth}
 .clogo{position:absolute;left:-11cqw;top:-17cqw;width:22cqw;height:15cqw;display:flex;align-items:center;justify-content:center;opacity:0;animation:clogo var(--P) linear var(--d) infinite;will-change:transform,opacity}
 .clogo .lmark{animation:csway 4.6s ease-in-out infinite alternate}
 .cake .clogo .lmark{background-color:#55301C!important}
-@keyframes clogo{0%,3%{opacity:0;transform:translate(0,8cqh) scale(.6)}12%{opacity:.88}34%{opacity:.88}44%{opacity:0;transform:translate(var(--sx),-60cqh) scale(1)}100%{opacity:0;transform:translate(var(--sx),-60cqh) scale(1)}}
+@keyframes clogo{0%,3%{opacity:0;transform:translate(0,2cqh) scale(.6)}12%{opacity:.88}34%{opacity:.88}44%{opacity:0;transform:translate(var(--sx),-76cqh) scale(1)}100%{opacity:0;transform:translate(var(--sx),-76cqh) scale(1)}}
 @keyframes csway{from{translate:-1.6cqw 0}to{translate:1.6cqw 0}}
 .still .lcandle *,.bubbles-still .lcandle *{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){.lcandle *{animation-play-state:paused!important}}
@@ -672,6 +672,7 @@ const ICONS = {"Entertainment": "M3 7h12v10H3zM15 10l6-3v10l-6-3", "Automotive":
 // CAKE_BRANDS: 'candles' = candle tops blown out, logos rise in the smoke; 'ribbon' = previous frosting ribbon
 const CAKE_BRANDS = 'candles';
 const CANDLE_COUNT = 16;             // candles in the bunch (logos are shared out across them; with 16 each candle hosts one)
+const CANDLE_SHOW = 0.65;            // share of each candle's length left showing above the contact panel (1 = previous, taller candles)
 const CANDLE_T = 16;                 // seconds per blow-out / rise / relight cycle on one candle
 const CANDLE_ORDER = [0, 9, 4, 13, 2, 11, 6, 15, 1, 8, 5, 12, 3, 10, 7, 14]; // which candle goes next, so the blow-outs don't sweep left to right
 const candleAt = (c) => { const q = (n) => { const x = Math.sin((c + 1) * 91.17 + n * 37.71) * 43758.5453; return x - Math.floor(x); }; const x = 50 + (c - (CANDLE_COUNT - 1) / 2) * (56 / (CANDLE_COUNT - 1)) + (q(1) - 0.5) * 2.4; return { x, y: 48 + q(2) * 26, tilt: (x - 50) / 28 * 7 + (q(3) - 0.5) * 6 }; };
@@ -1370,7 +1371,7 @@ class Component extends DCLogic {
       gooSvgRef: (el) => { if (el && el !== this.gooBox) { this.gooBox = el; setTimeout(() => this.svgGooInit(), 0); } },
       ribBId: this._uid + 'rb',
       lstageRef: (el) => { if (el && el !== this.lstEl) { this.lstEl = el; if (this.lstRO) this.lstRO.disconnect(); const fit = () => { const w = el.clientWidth; if (w) el.style.setProperty('--k', (w / 580).toFixed(4)); const pn = document.querySelector('#contact .ctapanel'); const root = el.closest('.site') || document; const pnl = (root.querySelector && root.querySelector('#contact .ctapanel')) || pn; if (pnl) { const ty = (e) => { const m = getComputedStyle(e).transform; return m && m !== 'none' ? new DOMMatrix(m).m42 : 0; }; const g = (pnl.getBoundingClientRect().top - ty(pnl)) - (el.getBoundingClientRect().bottom - ty(el)); if (g > -200 && g < 1200) el.style.setProperty('--cgap', Math.round(g + 1) + 'px'); } }; fit(); setTimeout(fit, 400); setTimeout(fit, 1500); if (window.ResizeObserver) { this.lstRO = new ResizeObserver(fit); this.lstRO.observe(el); const pnl = (el.closest('.site') || document).querySelector('#contact .ctapanel'); if (pnl) this.lstRO.observe(pnl); } } },
-      candles: Array.from({ length: CANDLE_COUNT }, (_, c) => { const cd = candleAt(c), T = CANDLE_T; return { st: 'left: ' + cd.x.toFixed(2) + 'cqw; top: calc(30cqh + ' + cd.y.toFixed(2) + 'cqh); --tilt: ' + cd.tilt.toFixed(1) + 'deg; --T: ' + T + 's; --fd: ' + ((CANDLE_ORDER[c % CANDLE_ORDER.length] * T / CANDLE_COUNT) - T).toFixed(2) + 's; --fl: ' + (0.16 + (c % 3) * 0.03).toFixed(2) + 's' }; }),
+      candles: Array.from({ length: CANDLE_COUNT }, (_, c) => { const cd = candleAt(c), T = CANDLE_T; return { st: 'left: ' + cd.x.toFixed(2) + 'cqw; top: calc(30cqh + ' + (1 - CANDLE_SHOW) + ' * (100cqh + var(--cgap, 30cqh)) + ' + (CANDLE_SHOW * cd.y).toFixed(2) + 'cqh); --tilt: ' + cd.tilt.toFixed(1) + 'deg; --T: ' + T + 's; --fd: ' + ((CANDLE_ORDER[c % CANDLE_ORDER.length] * T / CANDLE_COUNT) - T).toFixed(2) + 's; --fl: ' + (0.16 + (c % 3) * 0.03).toFixed(2) + 's' }; }),
       brands: BRANDS.map((b, i, all) => {
         const r = (n) => { const x = Math.sin((i + 1) * 12.9898 + n * 78.233) * 43758.5453; return x - Math.floor(x); };
         const lane = i % 4, k = Math.floor(i / 4), z = r(8);
@@ -1391,7 +1392,7 @@ class Component extends DCLogic {
           goo: '--mor: ' + (6 + r(7) * 5).toFixed(1) + 's; --c1: ' + c1 + '; --c2: ' + c2 + '; --c3: ' + c3 + (r(18) < 0.85 ? '; --ds: ' + (34 + r(19) * 22).toFixed(0) + '%; --sd: ' + (8 + r(20) * 8).toFixed(1) + 's; --sdl: ' + (-r(21) * 16).toFixed(1) + 's; --dx: ' + ((r(22) < 0.5 ? -1 : 1) * (45 + r(24) * 55)).toFixed(0) + '%; --dy: ' + ((r(23) < 0.65 ? 1 : -1) * (70 + r(25) * 60)).toFixed(0) + '%' : ''),
           lumpMark: 'width: ' + Math.round(Math.min(b.w * 86 * size / lw, 88, 1600 / lw)) + '%; height: ' + Math.round(b.h * 86 * size / lh) + '%; opacity: ' + (0.7 + 0.3 * z).toFixed(2) + '; ' + m,
           chip: '--dly: ' + (-(i / all.length) * 85).toFixed(2) + 's',
-          smoke: (() => { const C = CANDLE_COUNT, T = CANDLE_T, P = Math.ceil(BRANDS.length / CANDLE_COUNT) * T, c = i % C, kk = Math.floor(i / C), s0 = (CANDLE_ORDER[c % CANDLE_ORDER.length] * T / C + kk * T) % P; const cd = candleAt(c); return 'left: ' + cd.x.toFixed(2) + 'cqw; top: calc(30cqh + ' + cd.y.toFixed(2) + 'cqh); --P: ' + P + 's; --d: ' + (s0 - P).toFixed(2) + 's; --sx: ' + ((r(30) < 0.5 ? -1 : 1) * (3 + r(31) * 5)).toFixed(1) + 'cqw'; })(),
+          smoke: (() => { const C = CANDLE_COUNT, T = CANDLE_T, P = Math.ceil(BRANDS.length / CANDLE_COUNT) * T, c = i % C, kk = Math.floor(i / C), s0 = (CANDLE_ORDER[c % CANDLE_ORDER.length] * T / C + kk * T) % P; const cd = candleAt(c); return 'left: ' + cd.x.toFixed(2) + 'cqw; top: calc(30cqh + ' + (1 - CANDLE_SHOW) + ' * (100cqh + var(--cgap, 30cqh)) + ' + (CANDLE_SHOW * cd.y).toFixed(2) + 'cqh); --P: ' + P + 's; --d: ' + (s0 - P).toFixed(2) + 's; --sx: ' + ((r(30) < 0.5 ? -1 : 1) * (3 + r(31) * 5)).toFixed(1) + 'cqw'; })(),
           chipMark: m };
       }),
       jobs: [
