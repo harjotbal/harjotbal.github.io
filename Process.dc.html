@@ -326,7 +326,8 @@ const CAKE_SPRINKLE_SETTLE = true;
 // CSP_MID_BOOST: how much denser the sprinkles are over the middle of the page (the content column, 15%–85% of the width) than a uniform spread (1 = uniform)
 const CSP_MID_BOOST = 1.25;
 const cspX = (W) => { const a = 0.15, b = 0.85, share = Math.min(1, (b - a) * CSP_MID_BOOST); if (Math.random() < share) return W * (a + Math.random() * (b - a)); const r = Math.random() * (1 - (b - a)); return W * (r < a ? r : b + (r - a)); };
-const CSP_FG_Z = 0.8; // sprinkles at this depth or closer are simulated in the foreground
+const CSP_FG_Z = 0.75; // sprinkles at this depth or closer share the content's plane (25% of all sprinkles; was 0.8 = 20%)
+const CSP_FG_ON_CONTENT = true; // content-plane sprinkles fall over the core content (logo, panels, buttons) so more of them collect there
 // top edge of the (rounded) logo letters, one value per logo unit across (-1 = no ink); lets sprinkles rest on the letters
 const CSP_LOGO_TOP = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,48,46.5,46,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.8,46.2,47.5,76,77.8,78.2,78.5,78.5,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.5,78.2,78,76.8,48.5,46.5,46,45.8,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.8,46.2,47.2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,102,95,92,89.8,88,86.5,85.2,84,83,82.2,81.2,80.5,80,79.5,79,78.5,78,77.8,77.5,77.2,77,76.8,76.8,76.8,76.8,76.8,76.8,76.8,76.8,77,77,77.2,77.5,78,78.2,78.8,79.2,80,80.5,81,81.2,80.8,80.2,79.8,79.2,79,79,79,79,79,79,79,79,79,79.2,79.5,80.2,83.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,81,79.8,79.2,79,79,79,79,79,79,79,79,79,79.2,79.8,81,83.8,85.5,85.8,85.2,84.2,83.5,82.8,81.8,81,80.5,79.8,79.2,78.8,78.2,78,77.8,77.8,77.8,78.5,-1,-1,-1,-1,-1,-1,-1,139.8,138.2,136.8,134.8,131.5,58.8,57,56,55.2,54.8,54.2,54,54,54,54,54.2,54.5,54.8,55.2,56.2,57.2,59,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,98.8,94.5,91.8,89.8,88.2,86.8,85.8,84.5,83.8,82.8,82,81.2,80.8,80.2,79.8,79.2,78.8,78.2,78,77.8,77.5,77.2,77.2,77,76.8,76.8,76.8,76.8,76.8,76.8,76.8,76.8,76.8,77,77,77.2,77.5,77.8,78,78.2,78.8,79,79.5,80,80.8,81.5,82,83,83.8,84.8,86,87.2,88.8,90.8,93,96.5,-1,-1,-1,-1,-1,-1,-1,-1,80.5,79.5,79,78.8,78.5,78,77.2,62.2,58.8,58,57.8,57.5,57.5,57.5,57.5,57.5,57.5,57.5,57.5,57.5,57.8,58,58.5,60,76.8,77.8,78.2,78.5,78.8,78.8,78.8,78.8,79,79.2,80,82,-1,-1,-1,-1,117,115.2,114,113.2,112.8,112.2,112,112,112,112,112.5,112.8,113.5,114.2,115.5,117.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
 const cspFG = () => {
@@ -364,12 +365,20 @@ const cspFG = () => {
     n.style.cssText = 'width:' + w.toFixed(1) + 'px;height:' + h.toFixed(1) + 'px;background:' + c + ';opacity:' + (0.55 + z * 0.45).toFixed(2) + ';box-shadow:0 2px 2px rgba(91,52,30,.18),inset 0 1px 0 rgba(255,255,255,.55)' + (c === '#FFFFFF' ? ',0 0 0 1px rgba(91,52,30,.14)' : '');
     S.lay.appendChild(n);
     const sp = 860 / (1.3 * (40 - z * 22));
-    S.parts.push({ n, w, h, rod, x: cspX(vw), y: yy, vx: (Math.random() - 0.5) * 6, vy: sp, sp, ang: Math.random() * 360, av: (Math.random() < 0.5 ? -1 : 1) * (8 + Math.random() * 16), st: 'fall', el: null, skip: new Set(), ox: 0, w0: 0, t0: 0, life: 10 + Math.random() * 16, slide: 0 });
+    S.parts.push({ n, w, h, rod, x: fgX(vw), y: yy, vx: (Math.random() - 0.5) * 6, vy: sp, sp, ang: Math.random() * 360, av: (Math.random() < 0.5 ? -1 : 1) * (8 + Math.random() * 16), st: 'fall', el: null, skip: new Set(), ox: 0, w0: 0, t0: 0, life: 10 + Math.random() * 16, slide: 0 });
   };
   // logo surfaces: screen y of the letter tops at screen x (null where there is no letter)
   const topAt = (R, X) => { const L = R.logo, lx = Math.round(((X - R.left) / R.s - L.ox) / L.k); const v = CSP_LOGO_TOP[lx]; return v == null || v < 0 ? null : R.top + (v * L.k + L.oy) * R.s; };
   // a sprinkle shares the content's plane, so it can never sit behind a panel/button/letter
   const inside = (p) => { for (const [el, r] of S.rects) { if (p.x <= r.l || p.x >= r.r || p.y >= r.bottom) continue; const yt = r.logo ? topAt(r, p.x) : r.top; if (yt != null && p.y > yt + 1) { r.el = el; return r; } } return null; };
+  // spawn x for content-plane sprinkles: over the core content, weighted by each surface's width (falls back to the middle-weighted spread)
+  const fgX = (vw) => {
+    if (!CSP_FG_ON_CONTENT || !S.surf.length) return cspX(vw);
+    const rs = S.surf.map((q) => q.el.getBoundingClientRect()).filter((r) => r.width > 20 && r.right > 0 && r.left < vw && r.bottom > 0);
+    const tot = rs.reduce((a, r) => a + r.width + 40, 0); if (!tot) return cspX(vw);
+    let k = Math.random() * tot; for (const r of rs) { k -= r.width + 40; if (k <= 0) return Math.max(0, Math.min(vw, r.left - 20 + Math.random() * (r.width + 40))); }
+    return cspX(vw);
+  };
   const halfY = (p) => { const a = p.ang * Math.PI / 180; return (Math.abs(Math.sin(a)) * p.w + Math.abs(Math.cos(a)) * p.h) / 2; };
   const fall = (p, dir) => { p.st = 'fall'; p.skip.add(p.el); p.el = null; p.vx = dir * (28 + Math.random() * 30); p.vy = p.sp * 0.5; p.av = dir * (160 + Math.random() * 220); };
   const frame = (t) => {
@@ -379,7 +388,7 @@ const cspFG = () => {
     if (!S.root || !S.lay) return;
     if (document.hidden || reduce() || S.root.closest('.still') || S.root.classList.contains('still')) return; // frozen in place
     const vw = window.innerWidth, vh = window.innerHeight;
-    const rate = 0.3 * (0.3 + 0.7 * Math.min(1.3, vw / 1280));
+    const rate = 0.3 * ((1 - CSP_FG_Z) / 0.2) * (0.3 + 0.7 * Math.min(1.3, vw / 1280));
     S.acc += rate * dt; while (S.acc >= 1 && S.parts.filter((q) => q.st === 'fall').length < 60) { S.acc -= 1; add(-30); }
     S.rects.clear(); S.surf.forEach((s) => { const r = s.el.getBoundingClientRect(); let l = r.left, rr = r.right; if (s.clip) { const c = s.clip.getBoundingClientRect(); l = Math.max(l, c.left); rr = Math.min(rr, c.right); } S.rects.set(s.el, { top: r.top, bottom: r.bottom, l, r: rr, w: r.width, left: r.left, rad: s.rad, logo: s.logo, s: s.logo ? r.width / s.logo.bw : 1 }); });
     if (!S.seeded) { S.seeded = true; const n0 = Math.round(rate * (vh / 32)); for (let i = 0; i < n0; i++) { add(Math.random() * vh); const q = S.parts[S.parts.length - 1]; for (let k = 0; k < 12 && inside(q); k++) { q.x = cspX(vw); q.y = Math.random() * vh; } if (inside(q)) { q.n.remove(); S.parts.pop(); } } }
