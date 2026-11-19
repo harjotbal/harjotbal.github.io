@@ -1404,7 +1404,7 @@ class Component extends DCLogic {
           lumpMark: 'width: ' + Math.round(Math.min(b.w * 86 * size / lw, 88, 1600 / lw)) + '%; height: ' + Math.round(b.h * 86 * size / lh) + '%; opacity: ' + (0.7 + 0.3 * z).toFixed(2) + '; ' + m,
           chip: '--dly: ' + (-(i / all.length) * 85).toFixed(2) + 's',
           smoke: (() => { const T = CANDLE_T, P = T, s0 = CANDLE_ORDER[i % CANDLE_ORDER.length] * T / all.length; const cd = candleAt(brandCandle(i)); return 'left: ' + cd.x.toFixed(2) + 'cqw; top: calc(30cqh + ' + (1 - CANDLE_SHOW) + ' * (100cqh + var(--cgap, 30cqh)) + ' + (CANDLE_SHOW * cd.y).toFixed(2) + 'cqh); --P: ' + P + 's; --d: ' + (s0 - P).toFixed(2) + 's; --sx: ' + ((r(30) < 0.5 ? -1 : 1) * (3 + r(31) * 5)).toFixed(1) + 'cqw'; })(),
-          wispSt: '--wf: ' + (r(32) < 0.5 ? -1 : 1) + '; --wsc: ' + (0.85 + r(33) * 0.3).toFixed(2) + '; --sk: ' + (-Math.atan((50 - candleAt(brandCandle(i)).x) * 0.75 / 50) * 180 / Math.PI).toFixed(1) + 'deg',
+          wispSt: '--wf: ' + (r(32) < 0.5 ? -1 : 1) + '; --wsc: ' + (0.85 + r(33) * 0.3).toFixed(2) + '; --sk: ' + (-candleAt(brandCandle(i)).tilt).toFixed(1) + 'deg',
           wispDur: (5.5 + r(34) * 3).toFixed(1) + 's', wispBegin: '-' + (r(35) * 8).toFixed(1) + 's',
           chipMark: m };
       }),
