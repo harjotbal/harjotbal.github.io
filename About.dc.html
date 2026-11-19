@@ -442,6 +442,8 @@ const cspFG = () => {
   };
   // logo surfaces: screen y of the letter tops at screen x (null where there is no letter)
   const topAt = (R, X) => { const L = R.logo, lx = Math.round(((X - R.left) / R.s - L.ox) / L.k); const v = CSP_LOGO_TOP[lx]; return v == null || v < 0 ? null : R.top + (v * L.k + L.oy) * R.s; };
+  // a sprinkle shares the content's plane, so it can never sit behind a panel/button/letter
+  const inside = (p) => { for (const [el, r] of S.rects) { if (p.x <= r.l || p.x >= r.r || p.y >= r.bottom) continue; const yt = r.logo ? topAt(r, p.x) : r.top; if (yt != null && p.y > yt + 1) { r.el = el; return r; } } return null; };
   const halfY = (p) => { const a = p.ang * Math.PI / 180; return (Math.abs(Math.sin(a)) * p.w + Math.abs(Math.cos(a)) * p.h) / 2; };
   const fall = (p, dir) => { p.st = 'fall'; p.skip.add(p.el); p.el = null; p.vx = dir * (28 + Math.random() * 30); p.vy = p.sp * 0.5; p.av = dir * (160 + Math.random() * 220); };
   const frame = (t) => {
@@ -452,9 +454,9 @@ const cspFG = () => {
     if (document.hidden || reduce() || S.root.closest('.still') || S.root.classList.contains('still')) return; // frozen in place
     const vw = window.innerWidth, vh = window.innerHeight;
     const rate = 0.3 * (0.3 + 0.7 * Math.min(1.3, vw / 1280));
-    if (!S.seeded) { S.seeded = true; const n0 = Math.round(rate * (vh / 32)); for (let i = 0; i < n0; i++) add(Math.random() * vh); }
     S.acc += rate * dt; while (S.acc >= 1 && S.parts.filter((q) => q.st === 'fall').length < 60) { S.acc -= 1; add(-30); }
-    S.rects.clear(); S.surf.forEach((s) => { const r = s.el.getBoundingClientRect(); let l = r.left, rr = r.right; if (s.clip) { const c = s.clip.getBoundingClientRect(); l = Math.max(l, c.left); rr = Math.min(rr, c.right); } S.rects.set(s.el, { top: r.top, l, r: rr, w: r.width, left: r.left, rad: s.rad, logo: s.logo, s: s.logo ? r.width / s.logo.bw : 1 }); });
+    S.rects.clear(); S.surf.forEach((s) => { const r = s.el.getBoundingClientRect(); let l = r.left, rr = r.right; if (s.clip) { const c = s.clip.getBoundingClientRect(); l = Math.max(l, c.left); rr = Math.min(rr, c.right); } S.rects.set(s.el, { top: r.top, bottom: r.bottom, l, r: rr, w: r.width, left: r.left, rad: s.rad, logo: s.logo, s: s.logo ? r.width / s.logo.bw : 1 }); });
+    if (!S.seeded) { S.seeded = true; const n0 = Math.round(rate * (vh / 32)); for (let i = 0; i < n0; i++) { add(Math.random() * vh); const q = S.parts[S.parts.length - 1]; for (let k = 0; k < 12 && inside(q); k++) { q.x = cspX(vw); q.y = Math.random() * vh; } if (inside(q)) { q.n.remove(); S.parts.pop(); } } }
     const perEl = new Map(), LR = S.lay.getBoundingClientRect();
     for (let i = S.parts.length - 1; i >= 0; i--) {
       const p = S.parts[i];
@@ -464,6 +466,7 @@ const cspFG = () => {
         p.vx *= Math.max(0, 1 - dt * 0.6);
         p.x += p.vx * dt; p.y += p.vy * dt; p.ang += p.av * dt;
         const hy = p.y + halfY(p);
+        { const r = inside(p); if (r) { const yt = r.logo ? topAt(r, p.x) : r.top; if (!p.skip.has(r.el) && p.y - yt < 14) { p.y = yt - halfY(p); } else { const dl = p.x - r.l, dr = r.r - p.x; p.x = dl < dr ? r.l - p.w / 2 - 1 : r.r + p.w / 2 + 1; p.vx = (dl < dr ? -1 : 1) * Math.max(10, Math.abs(p.vx)); } } }
         for (const [el, r] of S.rects) {
           if (p.skip.has(el) || r.r - r.l < 20) continue;
           if (r.logo) {
@@ -484,7 +487,7 @@ const cspFG = () => {
         if (p.y > vh + 60 || p.x < -60 || p.x > vw + 60) { p.n.remove(); S.parts.splice(i, 1); continue; }
       } else {
         const r = S.rects.get(p.el);
-        if (!r || Math.abs(r.w - p.w0) > p.w0 * 0.12) { p.el = p.el || null; fall(p, Math.random() < 0.5 ? -1 : 1); p.vx *= 0.3; }
+        if (!r || Math.abs(r.w - p.w0) > p.w0 * 0.12) { const e0 = p.el; fall(p, Math.random() < 0.5 ? -1 : 1); p.skip.delete(e0); p.vx *= 0.3; }
         else if (r.logo) {
           p.lx += p.slide * dt / r.s; p.x = r.left + p.lx * r.s;
           const yc = topAt(r, p.x), yl = topAt(r, p.x - p.w / 2), yr = topAt(r, p.x + p.w / 2);
