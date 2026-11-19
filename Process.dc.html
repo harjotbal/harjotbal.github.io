@@ -350,7 +350,7 @@ const cspFG = () => {
       if (root) { S.host = root.querySelector('.cakebg') || root; S.lay = document.createElement('div'); S.lay.className = 'cspfg'; S.lay.setAttribute('aria-hidden', 'true'); S.host.appendChild(S.lay); }
     }
     if (S.lay && !S.lay.isConnected && S.host) S.host.appendChild(S.lay);
-    S.surf = !root ? [] : [...root.querySelectorAll(SEL)].filter((el) => !el.closest('.hdr, .hdrglass, .fclone, .cspfg') && !(el.classList.contains('fact') && !el.classList.contains('fcur')) && el.offsetWidth >= 36 && el.offsetHeight >= 20 && vis(el))
+    S.surf = !root ? [] : [...root.querySelectorAll(SEL)].filter((el) => !el.closest('.hdr, .hdrglass, .fclone, .cspfg, .lstage') && !(el.classList.contains('fact') && !el.classList.contains('fcur')) && el.offsetWidth >= 36 && el.offsetHeight >= 20 && vis(el))
       .map((el) => ({ el, rad: Math.min(parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0, el.offsetHeight / 2), clip: el.closest('.track') }));
     if (root) {
       root.querySelectorAll('div.tx-logo').forEach((el) => { if (el.offsetWidth && vis(el)) S.surf.push({ el, logo: { bw: el.offsetWidth, k: 1, ox: 0, oy: 0 } }); });
