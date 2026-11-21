@@ -233,11 +233,11 @@ html{scroll-behavior:smooth}
 .cake-balloons .cake .lballoon{display:block}
 .lballin{position:absolute;top:0;bottom:0;left:14.2857%;width:71.4286%;container-type:size}
 .blump{position:absolute;bottom:0;z-index:var(--z,1);display:flex;align-items:center;justify-content:center;animation:lumpRise var(--dur) linear var(--dly) infinite,lumpSway 8s ease-in-out 0s infinite alternate;will-change:transform}
-.bln{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;border-radius:50% 50% 47% 47%/56% 56% 44% 44%;background:radial-gradient(circle at 32% 26%,rgba(255,255,255,.95) 0 6%,rgba(255,255,255,.45) 13%,rgba(255,255,255,0) 30%),radial-gradient(circle at 50% 46%,var(--bc) 0 52%,color-mix(in srgb,var(--bc),#55301C 16%) 100%);box-shadow:inset -.6cqw -.9cqw 1.6cqw rgba(85,48,28,.14),inset .4cqw .5cqw 1cqw rgba(255,255,255,.4),0 1.4cqw 2.4cqw -1cqw rgba(85,48,28,.22);transform-origin:50% 112%;animation:blnwob var(--bw) ease-in-out var(--bwd) infinite alternate}
-.blnglow{position:absolute;left:18%;top:12%;width:18%;height:26%;border-radius:50%;background:rgba(255,255,255,.55);filter:blur(.35cqw);transform:rotate(-24deg)}
-.blnknot{position:absolute;left:calc(50% - 1.1cqw);bottom:-1.3cqw;width:2.2cqw;height:1.6cqw;background:color-mix(in srgb,var(--bc),#55301C 22%);clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:.3cqw}
-.blnstr{position:absolute;left:calc(50% - 1.5cqw);top:calc(100% + .2cqw);width:3cqw;height:120%;overflow:visible}
-.bln .lmark{position:relative;z-index:2;background-color:#55301C!important;opacity:.92}
+.bln{position:relative;width:100%;height:118%;margin-bottom:-12%;display:flex;align-items:center;justify-content:center;transform-origin:50% 112%;animation:blnwob var(--bw) ease-in-out var(--bwd) infinite alternate;filter:drop-shadow(0 1.2cqw 1.6cqw rgba(30,40,80,.22));color:color-mix(in srgb,var(--bc),#000 12%)}.bln::before{content:"";position:absolute;inset:0;border-radius:50% 50% 50% 50%/42% 42% 58% 58%;background:radial-gradient(ellipse 34% 26% at 34% 24%,rgba(255,255,255,.7),rgba(255,255,255,.18) 55%,rgba(255,255,255,0) 75%),radial-gradient(ellipse 62% 56% at 50% 46%,rgba(255,255,255,0) 82%,rgba(255,255,255,.55) 92%,rgba(255,255,255,0) 100%),radial-gradient(ellipse 70% 60% at 44% 40%,color-mix(in srgb,var(--bc),#fff 14%) 0,var(--bc) 48%,color-mix(in srgb,var(--bc),#000 30%) 100%);opacity:.93}
+.blnglow{position:absolute;left:20%;top:9%;width:30%;height:16%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.75),rgba(255,255,255,0));filter:blur(.3cqw);transform:rotate(-28deg);z-index:1}
+.blnknot{position:absolute;left:calc(50% - .9cqw);bottom:-.9cqw;width:1.8cqw;height:1.3cqw;background:color-mix(in srgb,var(--bc),#000 25%);clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:.3cqw}
+.blnstr{position:absolute;left:calc(50% - 1.5cqw);top:calc(100% + .2cqw);width:3cqw;height:75%;overflow:visible}
+.cake .lballoon .bln .lmark{position:relative;z-index:2;background-color:#FFFFFF!important;opacity:.95;top:-5%}
 @keyframes blnwob{from{transform:rotate(calc(var(--bt) - 4deg))}to{transform:rotate(calc(var(--bt) + 4deg))}}
 .still .blump,.still .bln,.bubbles-still .blump,.bubbles-still .bln{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){.blump,.bln{animation-play-state:paused!important}}
@@ -378,7 +378,7 @@ html{scroll-behavior:smooth}
 <sc-for list="{{brands}}" as="b" hint-placeholder-count="16"><span class="chip" style="{{b.chip}}"><span class="lmark" style="{{b.chipMark}}"></span></span></sc-for>
 </div></div>
 <div class="lballoon" aria-hidden="true"><div class="lballin">
-<sc-for list="{{brands}}" as="b" hint-placeholder-count="16"><span class="blump" style="{{b.lump}}"><span class="bln" style="{{b.bal}}"><i class="blnglow"></i><i class="blnknot"></i><svg class="blnstr" viewBox="0 0 20 120" preserveAspectRatio="none"><path d="M10 0 C 3 18, 17 34, 10 52 S 3 86, 10 120" fill="none" stroke="rgba(85,48,28,.42)" stroke-width="1.4" stroke-linecap="round"></path></svg><span class="lmark" style="{{b.lumpMark}}"></span></span></span></sc-for>
+<sc-for list="{{brands}}" as="b" hint-placeholder-count="16"><span class="blump" style="{{b.lump}}"><span class="bln" style="{{b.bal}}"><i class="blnglow"></i><i class="blnknot"></i><svg class="blnstr" viewBox="0 0 20 120" preserveAspectRatio="none"><path d="M10 0 C 3 18, 17 34, 10 52 S 3 86, 10 120" fill="none" stroke="currentColor" stroke-width="1.3" vector-effect="non-scaling-stroke" stroke-linecap="round"></path></svg><span class="lmark" style="{{b.lumpMark}}"></span></span></span></sc-for>
 </div></div>
 <div class="lcandle" aria-hidden="true">
 <i class="chaze"></i><i class="chaze cz2"></i><i class="chaze cz3"></i>
@@ -697,7 +697,7 @@ const ICONS = {"Entertainment": "M3 7h12v10H3zM15 10l6-3v10l-6-3", "Automotive":
 // ── Cake: client logos rise out of the smoke of birthday candles being blown out ──
 // CAKE_BRANDS: 'candles' = candle tops blown out, logos rise in the smoke; 'ribbon' = previous frosting ribbon
 const CAKE_BRANDS = 'balloons';    // 'balloons' = logos float up in balloons (same rise as the Lava bubbles); 'candles' = blown-out candles + smoke; 'ribbon' = frosting ribbon
-const BALLOON_COLS = ['#F7B6CF', '#BFE6CF', '#FBE3A0', '#D5C6EE', '#BFE3F4', '#FFD3B5', '#FFF6E8', '#F49AC1'];
+const BALLOON_COLS = ['#1E5BD8', '#F4D21C', '#FF7417', '#E1222E', '#13996F', '#2F6FE8', '#FF8A1F', '#F2C40F'];
 const CANDLE_COUNT = 22;             // candles in the bunch; 16 of them (spread evenly through the bunch) carry a client logo, the rest just stay lit
 const CANDLE_SHOW = 0.47;            // share of each candle's length left showing above the contact panel (1 = previous, taller candles)
 const CANDLE_T = 16;                 // seconds per blow-out / rise / relight cycle on one candle
