@@ -1009,6 +1009,10 @@ class Component extends DCLogic {
       h.classList.remove('hdr-on'); }
   }
   hdrBalance() {
+    // the header logo image is only visible once 'flatlogo' is on the page; make sure it is before measuring,
+    // otherwise the first fit runs without the image and the Cake logo hops a few px when fonts finish loading
+    if (typeof FLAT_HEADER_LOGO !== 'undefined') document.documentElement.classList.toggle('flatlogo', FLAT_HEADER_LOGO);
+    if (this.hdrEl && !this._lgImgHook) { this._lgImgHook = true; this.hdrEl.querySelectorAll('img.hdrlogo').forEach((im) => { if (!im.complete) im.addEventListener('load', () => this.hdrBalance(), { once: true }); }); }
     this.hdrMobile();
     const h = this.hdrEl; if (!h) return;
     const VARS = ['--lgml', '--navmr', '--dlx', '--navtx'];
