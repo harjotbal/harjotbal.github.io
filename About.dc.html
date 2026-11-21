@@ -253,6 +253,8 @@ html{scroll-behavior:smooth}
 @keyframes blnstrsway{from{transform:skewX(5deg) scaleX(1.2)}to{transform:skewX(-5deg) scaleX(.85)}}
 .still .blnstr2,.bubbles-still .blnstr2{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){.blnstr2{animation-play-state:paused!important}}
+.lballoon .blump{animation-name:blnRise,lumpSway}
+@keyframes blnRise{0%{transform:translate(0,100%)}100%{transform:translate(0,calc(-100cqh - 240%))}}
 .still .blump,.still .bln,.bubbles-still .blump,.bubbles-still .bln{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){.blump,.bln{animation-play-state:paused!important}}
 .cake-candles .cake .lcake{display:none!important}
