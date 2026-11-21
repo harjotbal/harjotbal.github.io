@@ -208,6 +208,17 @@ html{scroll-behavior:smooth}
 .hcenter .hdr .logowrap,.hcenter .hdr .navrow{transition:transform .6s cubic-bezier(.22,1,.36,1),translate .6s cubic-bezier(.22,1,.36,1)}
 .hcenter .hdr .modetog.mini{transition:transform .6s cubic-bezier(.22,1,.36,1),translate .6s cubic-bezier(.22,1,.36,1),color .6s,background .6s,border-color .6s,box-shadow .6s}
 .hcenter .hdr-measure .logowrap,.hcenter .hdr-measure .navrow,.hcenter .hdr-measure .modetog.mini{transition:none!important}
+
+/* CASE_ARROWS (larger screens): small prev / next buttons laid over the peeking next panel of each case.
+   Prev is dimmed on the first panel; on the last panel next becomes a reset back to the first. Delete these rules to hide them */
+.pnav{display:none}
+@media (min-width:761px){
+  .pnav{display:block;position:relative;height:0;z-index:6;pointer-events:none}
+  .pnavin{position:absolute;left:calc(var(--gut) + 760px * var(--pk, 1) + 28px);right:0;top:calc(-28px - 250px * var(--pk, 1));transform:translateY(-50%);display:flex;justify-content:center;gap:12px}
+  .pbtn{width:44px;height:44px;pointer-events:auto}
+  .pbtn.isdis{opacity:.38;cursor:default}
+  .pbtn.isdis:hover{transform:none}
+}
 </style>
 </helmet>
 <div class="{{rootClass}}" ref="{{rootRef}}" style="{{rootStyle}}; min-height: 100vh; background-color: #17100D; overflow: clip; font-family: 'Proxima Nova', Figtree, system-ui, sans-serif; color: #FBE9DC">
@@ -271,6 +282,13 @@ html{scroll-behavior:smooth}
 </article>
 </sc-for>
 </div>
+<div class="pnav"><div class="pnavin">
+<button class="{{pr.prevCls}}" type="button" aria-label="Previous step of {{pr.title}}" aria-disabled="{{pr.prevDis}}" onClick="{{pr.prevAct}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg></button>
+<button class="glass arrowbtn pbtn" type="button" aria-label="{{pr.nextLabel}}" onClick="{{pr.nextAct}}">
+<sc-if value="{{pr.atEnd}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36"></path><path d="M3 4v5h5"></path></svg></sc-if>
+<sc-if value="{{pr.notEnd}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></sc-if>
+</button>
+</div></div>
 <div class="pad pbar-bot" aria-hidden="true"><div class="bar"><span style="{{pr.barStyle}}"></span></div></div>
 </section>
 </sc-for>
@@ -1188,6 +1206,12 @@ class Component extends DCLogic {
         logoStyle: 'width: 94px; height: ' + (94 / LOGOS[x.logo].r).toFixed(1) + 'px; -webkit-mask-image: url(' + LOGOS[x.logo].u + '); mask-image: url(' + LOGOS[x.logo].u + ')',
         secStyle: x.n === '01' ? 'margin-top: 72px' : 'margin-top: var(--csgap, 120px)',
         barStyle: 'width: ' + Math.round(20 + 80 * (prog[x.id] || 0)) + '%',
+        prevDis: (prog[x.id] || 0) < 0.02 ? 'true' : 'false',
+        prevCls: 'glass arrowbtn pbtn' + ((prog[x.id] || 0) < 0.02 ? ' isdis' : ''),
+        prevAct: () => { const t = this.tracks && this.tracks[x.id]; if (t && t.scrollLeft > 4) this.step(x.id, -1); },
+        atEnd: (prog[x.id] || 0) > 0.98, notEnd: !((prog[x.id] || 0) > 0.98),
+        nextLabel: (prog[x.id] || 0) > 0.98 ? 'Back to the start of ' + x.title : 'Next step of ' + x.title,
+        nextAct: () => { const t = this.tracks && this.tracks[x.id]; if (!t) return; if (t.scrollLeft >= t.scrollWidth - t.clientWidth - 4) t.scrollTo({ left: 0, behavior: 'smooth' }); else this.step(x.id, 1); },
         trackRef: (el) => { this.tracks = this.tracks || {}; this.tracks[x.id] = el; if (el && !el.__swipe) { el.__swipe = 1; let sx = 0, sy = 0, on = false; el.addEventListener('touchstart', (e) => { if (!document.documentElement.classList.contains('rows-paged')) return; const t = e.touches[0]; sx = t.clientX; sy = t.clientY; on = true; }, { passive: true }); el.addEventListener('touchend', (e) => { if (!on) return; on = false; const t = e.changedTouches[0]; const dx = t.clientX - sx, dy = t.clientY - sy; if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) this.step(x.id, dx < 0 ? 1 : -1); }, { passive: true }); } },
         secRef: (el) => { this.secs = this.secs || {}; if (el && this.io && this.secs[x.id] !== el) this.io.observe(el); this.secs[x.id] = el; },
         prev: () => this.step(x.id, -1),
