@@ -219,6 +219,15 @@ html{scroll-behavior:smooth}
   .pbtn.isdis{opacity:.38;cursor:default}
   .pbtn.isdis:hover{transform:none}
 }
+
+/* CASE_ARROWS_MID (761–1099px, where the peek is too narrow and the progress line would wrap): the arrows take the progress line's place on the title row */
+.pnav-top{display:none}
+@media (min-width:761px) and (max-width:1099px){
+  .pbar-top{display:none!important}
+  .pnav{display:none!important}
+  .pnav-top{display:flex;gap:10px;margin-left:auto;flex:none}
+  .pnav-top .pbtn{width:40px;height:40px}
+}
 </style>
 </helmet>
 <div class="{{rootClass}}" ref="{{rootRef}}" style="{{rootStyle}}; min-height: 100vh; background-color: #17100D; overflow: clip; font-family: 'Proxima Nova', Figtree, system-ui, sans-serif; color: #FBE9DC">
@@ -269,6 +278,13 @@ html{scroll-behavior:smooth}
 <h2 class="ptitle" style="margin: 0; font: 600 clamp(29px, 2.8vw, 40px)/1.1 Josefin Sans, Futura, sans-serif; letter-spacing: -0.005em">{{pr.title}}</h2>
 </div>
 <div class="bar pbar-top" aria-hidden="true"><span style="{{pr.barStyle}}"></span></div>
+<div class="pnav-top">
+<button class="{{pr.prevCls}}" type="button" aria-label="Previous step of {{pr.title}}" aria-disabled="{{pr.prevDis}}" onClick="{{pr.prevAct}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg></button>
+<button class="glass arrowbtn pbtn" type="button" aria-label="{{pr.nextLabel}}" onClick="{{pr.nextAct}}">
+<sc-if value="{{pr.atEnd}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36"></path><path d="M3 4v5h5"></path></svg></sc-if>
+<sc-if value="{{pr.notEnd}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></sc-if>
+</button>
+</div>
 </div>
 </div>
 <div class="track" ref="{{pr.trackRef}}" onScroll="{{pr.onScroll}}" tabindex="0" aria-label="{{pr.title}} story, scrolls sideways">
