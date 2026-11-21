@@ -472,6 +472,7 @@ const HDR_CENTER_GAP = 30;     // px between rows on larger screens
 const HDR_CENTER_GAP_S = 22;   // px between rows on phones (≤640px)
 // HDR_CENTER_TOG_ROW: true = two rows (logo, then toggle + About/Work together); false = three rows (logo / toggle / About+Work)
 const HDR_CENTER_TOG_ROW = true;
+const HDR_CENTER_MAX_W = 640;   // centred landing header only up to this viewport width (phones); wider screens keep the original left/right header
 const HDR_CENTER_TOG_GAP = 36;   // px between the toggle and About on the shared row (phones use 2/3 of this)
 // Performance test switches — set to false to restore the original motion.
 const FREEZE_BUBBLES = false;       // brand bubbles hold still (Lava)
@@ -1235,7 +1236,7 @@ class Component extends DCLogic {
   }
   // centred landing header: logo, toggle and About/Work each centred on their own row (landing state only)
   hdrCenter() {
-    const h = this.hdrEl; if (!h || !HDR_CENTER_LANDING) return;
+    const h = this.hdrEl; if (!h || !HDR_CENTER_LANDING || window.innerWidth > HDR_CENTER_MAX_W) return;
     const logo = h.querySelector('.logowrap'), tog = h.querySelector('.modetog.mini'), links = h.querySelectorAll('.navrow .navlink'); if (!logo || !tog || !links.length) return;
     const wasOn = h.classList.contains('hdr-on'); h.classList.add('hdr-measure'); h.classList.remove('hdr-on'); void h.offsetWidth;
     try {
