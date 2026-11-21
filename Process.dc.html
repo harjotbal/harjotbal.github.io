@@ -182,7 +182,15 @@ html{scroll-behavior:smooth}
 @media (hover:none) and (pointer:coarse){.lava .bglay:has(> .blob)::after{content:'';position:absolute;left:0;right:0;top:0;height:260px;pointer-events:none;background:linear-gradient(to bottom,#6E2C1A 0,#6E2C1A 64px,rgba(110,44,26,.86) 100px,rgba(110,44,26,.55) 150px,rgba(110,44,26,.22) 205px,rgba(110,44,26,0) 260px)}}
 /* CAKE_TOP_FADE: same touch-screen top fade as Lava, in the Cake page colour (matches the browser bar), so the blobs/sprinkles melt into the top bar */
 @media (hover:none) and (pointer:coarse){.cake .cakebg::after{content:'';position:absolute;left:0;right:0;top:0;height:260px;pointer-events:none;background:linear-gradient(to bottom,#EEFBFC 0,#EEFBFC 64px,rgba(238,251,252,.86) 100px,rgba(238,251,252,.55) 150px,rgba(238,251,252,.22) 205px,rgba(238,251,252,0) 260px)}}
-.lava-move .lava .blob{visibility:visible!important;animation-play-state:running!important;will-change:transform!important}.lava-move .lava .bglay{background-image:none!important}</style>
+.lava-move .lava .blob{visibility:visible!important;animation-play-state:running!important;will-change:transform!important}.lava-move .lava .bglay{background-image:none!important}
+/* HDR_CENTER_LANDING (desktop/tablet landing only): centred logo + toggle row, About / Work row below; floating bar unchanged */
+@media (min-width:641px){
+  .hcenter .hdr{padding-bottom:calc(clamp(40px, 6vw, 88px) - clamp(40px, 6vw, 64px) + 44px)!important}
+  .hcenter .hdr:not(.hdr-on) .logowrap{transform:translate(var(--clx,0px),calc(30.1px * (1 - var(--lgland)))) scale(var(--lgland))}
+  .hcenter .hdr:not(.hdr-on) .modetog.mini{transform:translateX(calc(-216px * (1 - var(--lgland)) + var(--clx,0px)))}
+  .hcenter .hdr:not(.hdr-on) .navrow{transform:translate(var(--cnx,0px),var(--cny,0px))}
+}
+</style>
 </helmet>
 <div class="{{rootClass}}" ref="{{rootRef}}" style="{{rootStyle}}; min-height: 100vh; background-color: #17100D; overflow: clip; font-family: 'Proxima Nova', Figtree, system-ui, sans-serif; color: #FBE9DC">
 <div class="pagebg" style="position: relative; min-height: 100vh; background-color: {{p.base}}; transition: background-color 1.6s cubic-bezier(.22,1,.36,1)">
@@ -311,6 +319,10 @@ const GLASS_BLUR_ALL = false;
 const NO_FROST = false;
 // Header logo: true = flat images of the pass-gate logo (Lava + Cake). false = the live frosted/fondant logo.
 const FLAT_HEADER_LOGO = true;
+// HDR_CENTER_LANDING: on screens wider than 640px the landing header is centred — logo + toggle centred on their row, About / Work centred on a row below.
+// The floating header is untouched. false = previous left/right landing layout
+const HDR_CENTER_LANDING = true;
+const HDR_CENTER_NAV_DY = 52;   // px from the logo/toggle row's centre down to the About/Work row's centre
 const glassTint = (hex) => { try { let r = parseInt(hex.slice(1, 3), 16) / 255, g = parseInt(hex.slice(3, 5), 16) / 255, b = parseInt(hex.slice(5, 7), 16) / 255; const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2; let h = 0, s = 0; if (mx !== mn) { const d = mx - mn; s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h /= 6; } s = Math.min(1, s * 1.8); const q = l < 0.5 ? l * (1 + s) : l + s - l * s, p2 = 2 * l - q; const f = (t) => { t = (t + 1) % 1; return t < 1 / 6 ? p2 + (q - p2) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? p2 + (q - p2) * (2 / 3 - t) * 6 : p2; }; return 'rgba(' + Math.round(f(h + 1 / 3) * 255) + ',' + Math.round(f(h) * 255) + ',' + Math.round(f(h - 1 / 3) * 255) + ',.12)'; } catch (e) { return 'transparent'; } };
 // ── Cake splotches ──────────────────────────────────────
 // false = use the pre-made splotch images below (light, nothing generated at load).
@@ -1015,7 +1027,8 @@ class Component extends DCLogic {
     if (this.hdrEl && !this._lgImgHook) { this._lgImgHook = true; this.hdrEl.querySelectorAll('img.hdrlogo').forEach((im) => { if (!im.complete) im.addEventListener('load', () => this.hdrBalance(), { once: true }); }); }
     this.hdrMobile();
     const h = this.hdrEl; if (!h) return;
-    const VARS = ['--lgml', '--navmr', '--dlx', '--navtx'];
+    document.documentElement.classList.toggle('hcenter', HDR_CENTER_LANDING);
+    const VARS = ['--lgml', '--navmr', '--dlx', '--navtx', '--clx', '--cnx', '--cny'];
     VARS.forEach((k) => h.style.removeProperty(k));
     if (window.innerWidth <= 640) return;
     const logo = h.querySelector('.logowrap'), links = h.querySelectorAll('.navrow .navlink'); if (!logo || !links.length) return;
@@ -1041,6 +1054,25 @@ class Component extends DCLogic {
       const fx = bL + PE - inkLeft(), nx = bR - PE - 6 - inkRight();
       if (isFinite(fx)) h.style.setProperty('--dlx', fx.toFixed(2) + 'px');
       if (isFinite(nx)) h.style.setProperty('--navtx', (-16.5 + nx).toFixed(2) + 'px');
+      // centred landing: shift logo + toggle as a group to the page centre, and drop About / Work onto a centred row below
+      if (HDR_CENTER_LANDING) {
+        h.classList.remove('hdr-on'); void h.offsetWidth;
+        hr = h.getBoundingClientRect();
+        const tog = h.querySelector('.modetog.mini'), first = links[0];
+        if (tog && first) {
+          const im = [...logo.querySelectorAll('.hdrlogo')].find((e) => getComputedStyle(e).display !== 'none');
+          const ir = im ? im.getBoundingClientRect() : logo.getBoundingClientRect(), fr = im && im.classList.contains('hl-cake') ? 43 / 669 : 6 / 611;
+          const tr = tog.getBoundingClientRect(), cX = (hr.left + hr.right) / 2;
+          const gL = ir.left + fr * ir.width, gR = tr.right;
+          const clx = cX - (gL + gR) / 2;
+          const fl = first.getBoundingClientRect(), nR = inkRight(), nCY = fl.top + fl.height / 2;
+          const cnx = cX - (fl.left + nR) / 2, cny = (tr.top + tr.height / 2 + HDR_CENTER_NAV_DY) - nCY;
+          if (isFinite(clx)) h.style.setProperty('--clx', clx.toFixed(2) + 'px');
+          if (isFinite(cnx)) h.style.setProperty('--cnx', cnx.toFixed(2) + 'px');
+          if (isFinite(cny)) h.style.setProperty('--cny', cny.toFixed(2) + 'px');
+        }
+        h.classList.add('hdr-on'); void h.offsetWidth;
+      }
     } finally { if (!wasOn) h.classList.remove('hdr-on'); void h.offsetWidth; h.classList.remove('hdr-measure'); }
   }
   componentWillUnmount() { this.hdrOff && this.hdrOff(); this.themeUnlisten(); }

@@ -198,6 +198,14 @@ html{scroll-behavior:smooth}
   .track .panel{scroll-snap-align:center}
 }
 @media (max-width:600px){.track{padding-left:8vw;padding-right:8vw}}
+
+/* HDR_CENTER_LANDING (desktop/tablet landing only): centred logo + toggle row, About / Work row below; floating bar unchanged */
+@media (min-width:641px){
+  .hcenter .hdr{padding-bottom:calc(clamp(40px, 6vw, 88px) - clamp(40px, 6vw, 64px) + 44px)!important}
+  .hcenter .hdr:not(.hdr-on) .logowrap{transform:translate(var(--clx,0px),calc(30.1px * (1 - var(--lgland)))) scale(var(--lgland))}
+  .hcenter .hdr:not(.hdr-on) .modetog.mini{transform:translateX(calc(-216px * (1 - var(--lgland)) + var(--clx,0px)))}
+  .hcenter .hdr:not(.hdr-on) .navrow{transform:translate(var(--cnx,0px),var(--cny,0px))}
+}
 </style>
 </helmet>
 <div class="{{rootClass}}" ref="{{rootRef}}" style="{{rootStyle}}; min-height: 100vh; background-color: #17100D; overflow: clip; font-family: 'Proxima Nova', Figtree, system-ui, sans-serif; color: #FBE9DC">
@@ -296,6 +304,10 @@ const GLASS_BLUR_ALL = false;
 const NO_FROST = false;
 // Header logo: true = flat images of the pass-gate logo (Lava + Cake). false = the live frosted/fondant logo.
 const FLAT_HEADER_LOGO = true;
+// HDR_CENTER_LANDING: on screens wider than 640px the landing header is centred — logo + toggle centred on their row, About / Work centred on a row below.
+// The floating header is untouched. false = previous left/right landing layout
+const HDR_CENTER_LANDING = true;
+const HDR_CENTER_NAV_DY = 52;   // px from the logo/toggle row's centre down to the About/Work row's centre
 // Performance test switch — on phones/tablets the case rows page with swipes/arrows instead of native sideways scrolling.
 // Set to false to restore native sideways scrolling.
 const PAGED_ROWS_ON_PHONES = false;
@@ -1032,7 +1044,8 @@ class Component extends DCLogic {
     if (this.hdrEl && !this._lgImgHook) { this._lgImgHook = true; this.hdrEl.querySelectorAll('img.hdrlogo').forEach((im) => { if (!im.complete) im.addEventListener('load', () => this.hdrBalance(), { once: true }); }); }
     this.hdrMobile();
     const h = this.hdrEl; if (!h) return;
-    const VARS = ['--lgml', '--navmr', '--dlx', '--navtx'];
+    document.documentElement.classList.toggle('hcenter', HDR_CENTER_LANDING);
+    const VARS = ['--lgml', '--navmr', '--dlx', '--navtx', '--clx', '--cnx', '--cny'];
     VARS.forEach((k) => h.style.removeProperty(k));
     if (window.innerWidth <= 640) return;
     const logo = h.querySelector('.logowrap'), links = h.querySelectorAll('.navrow .navlink'); if (!logo || !links.length) return;
@@ -1058,6 +1071,25 @@ class Component extends DCLogic {
       const fx = bL + PE - inkLeft(), nx = bR - PE - 6 - inkRight();
       if (isFinite(fx)) h.style.setProperty('--dlx', fx.toFixed(2) + 'px');
       if (isFinite(nx)) h.style.setProperty('--navtx', (-16.5 + nx).toFixed(2) + 'px');
+      // centred landing: shift logo + toggle as a group to the page centre, and drop About / Work onto a centred row below
+      if (HDR_CENTER_LANDING) {
+        h.classList.remove('hdr-on'); void h.offsetWidth;
+        hr = h.getBoundingClientRect();
+        const tog = h.querySelector('.modetog.mini'), first = links[0];
+        if (tog && first) {
+          const im = [...logo.querySelectorAll('.hdrlogo')].find((e) => getComputedStyle(e).display !== 'none');
+          const ir = im ? im.getBoundingClientRect() : logo.getBoundingClientRect(), fr = im && im.classList.contains('hl-cake') ? 43 / 669 : 6 / 611;
+          const tr = tog.getBoundingClientRect(), cX = (hr.left + hr.right) / 2;
+          const gL = ir.left + fr * ir.width, gR = tr.right;
+          const clx = cX - (gL + gR) / 2;
+          const fl = first.getBoundingClientRect(), nR = inkRight(), nCY = fl.top + fl.height / 2;
+          const cnx = cX - (fl.left + nR) / 2, cny = (tr.top + tr.height / 2 + HDR_CENTER_NAV_DY) - nCY;
+          if (isFinite(clx)) h.style.setProperty('--clx', clx.toFixed(2) + 'px');
+          if (isFinite(cnx)) h.style.setProperty('--cnx', cnx.toFixed(2) + 'px');
+          if (isFinite(cny)) h.style.setProperty('--cny', cny.toFixed(2) + 'px');
+        }
+        h.classList.add('hdr-on'); void h.offsetWidth;
+      }
     } finally { if (!wasOn) h.classList.remove('hdr-on'); void h.offsetWidth; h.classList.remove('hdr-measure'); }
   }
   componentWillUnmount() { this.hdrOff && this.hdrOff(); window.removeEventListener('pagehide', this.onPgHide); window.removeEventListener('pageshow', this.onPgShow); clearTimeout(this.tReset); this.themeUnlisten(); if (this.io) this.io.disconnect(); cancelAnimationFrame(this.raf); }
