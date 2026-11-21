@@ -220,9 +220,10 @@ html{scroll-behavior:smooth}
   .pbtn.isdis:hover{transform:none}
 }
 
-/* CASE_ARROWS_MID (761–1099px, where the peek is too narrow and the progress line would wrap): the arrows take the progress line's place on the title row */
+/* CASE_ARROWS_ROW (all screens wider than 760px): the arrows sit on the title row in place of the progress line; the peek overlay is off.
+   Phones (≤760px) keep the centred layout with the progress line under the panels */
 .pnav-top{display:none}
-@media (min-width:761px) and (max-width:1099px){
+@media (min-width:761px){
   .pbar-top{display:none!important}
   .pnav{display:none!important}
   .pnav-top{display:flex;gap:10px;margin-left:auto;flex:none}
