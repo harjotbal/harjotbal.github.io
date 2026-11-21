@@ -307,8 +307,9 @@ html{scroll-behavior:smooth}
 .hcenter .hdr .modetog.mini{transition:transform .6s cubic-bezier(.22,1,.36,1),translate .6s cubic-bezier(.22,1,.36,1),color .6s,background .6s,border-color .6s,box-shadow .6s}
 .hcenter .hdr-measure .logowrap,.hcenter .hdr-measure .navrow,.hcenter .hdr-measure .modetog.mini{transition:none!important}
 
-/* pastel balloons: soft satin sheen, chocolate strings (colours: muted pâtisserie tones) */
-.bal-pastel .bln::before{background:radial-gradient(ellipse 24% 15% at 32% 18%,rgba(255,255,255,.55),rgba(255,255,255,0) 100%),radial-gradient(ellipse 74% 68% at 46% 42%,color-mix(in srgb,var(--bc),#fff 12%) 0,var(--bc) 52%,color-mix(in srgb,var(--bc),#55301C 14%) 100%)!important}
+/* pastel balloons: pearly satin sheen, chocolate strings (colours: blush / rose-gold / ivory pearl / chocolate / champagne) */
+.bal-pastel .bln{--brose:radial-gradient(ellipse 12% 8% at 30% 16%,rgba(255,246,240,.95),rgba(255,240,232,0) 100%),radial-gradient(ellipse 30% 20% at 32% 20%,rgba(255,222,210,.6),rgba(255,222,210,0) 100%),radial-gradient(ellipse 22% 30% at 78% 74%,rgba(246,196,180,.45),rgba(246,196,180,0) 100%),radial-gradient(ellipse 74% 68% at 44% 40%,#E7B3A3 0,#D49A88 38%,#B7796A 68%,#9A5F52 86%,#CC9585 100%)}
+.bal-pastel .bln::before{background:var(--bfin,radial-gradient(ellipse 24% 15% at 32% 18%,rgba(255,255,255,.55),rgba(255,255,255,0) 100%),radial-gradient(ellipse 74% 68% at 46% 42%,color-mix(in srgb,var(--bc),#fff 12%) 0,var(--bc) 52%,color-mix(in srgb,var(--bc),#55301C 14%) 100%))!important}
 .bal-pastel .bln{filter:drop-shadow(0 1cqw 1.4cqw rgba(85,48,28,.12))}
 .bal-pastel .blnknot{background:color-mix(in srgb,var(--bc),#55301C 18%)}
 .bal-pastel .blnstr2{color:rgba(110,61,34,.55)}
@@ -755,7 +756,7 @@ const CAKE_BRANDS = 'balloons';    // 'balloons' = logos float up in balloons (s
 const BALLOON_STYLE = 'pastel';   // 'pastel' = soft sprinkle colours (pink, sky, mint, lavender, butter, peach) with chocolate logos to match Cake;
                                   // 'sage' = sage green / chrome gold / matte nude; 'party' = glossy primary-colour latex balloons
 const BALLOON_COLS = BALLOON_STYLE === 'pastel'
-  ? ['#D8AFA9', '#B7C8D2', '#BFC9B0', '#C9B7C4', '#E6D5B8', '#D6B48C', '#E2C2B6', '#A9BCC6']   // muted pâtisserie tones: dusty rose, powder blue, sage, mauve, oat, caramel, blush, slate
+  ? ['#F0C6C8', 'rosegold', '#F3EADC', '#6B3E26', '#EBD4A6', 'rosegold', '#F0C6C8', '#6B3E26']   // luxe cake set: blush, rose-gold, ivory pearl, chocolate, champagne
   : BALLOON_STYLE === 'sage'
   ? ['#8C9C80', 'gold', '#E0CDB4', '#829377', 'gold', '#E4D3BC', '#92A387', 'gold']
   : ['#1E5BD8', '#F4D21C', '#FF7417', '#E1222E', '#13996F', '#2F6FE8', '#FF8A1F', '#F2C40F'];
@@ -1521,7 +1522,7 @@ class Component extends DCLogic {
           goo: '--mor: ' + (6 + r(7) * 5).toFixed(1) + 's; --c1: ' + c1 + '; --c2: ' + c2 + '; --c3: ' + c3 + (r(18) < 0.85 ? '; --ds: ' + (34 + r(19) * 22).toFixed(0) + '%; --sd: ' + (8 + r(20) * 8).toFixed(1) + 's; --sdl: ' + (-r(21) * 16).toFixed(1) + 's; --dx: ' + ((r(22) < 0.5 ? -1 : 1) * (45 + r(24) * 55)).toFixed(0) + '%; --dy: ' + ((r(23) < 0.65 ? 1 : -1) * (70 + r(25) * 60)).toFixed(0) + '%' : ''),
           lumpMark: 'width: ' + Math.round(Math.min(b.w * 86 * size / lw, 88, 1600 / lw)) + '%; height: ' + Math.round(b.h * 86 * size / lh) + '%; opacity: ' + (0.7 + 0.3 * z).toFixed(2) + '; ' + m,
           chip: '--dly: ' + (-(i / all.length) * 85).toFixed(2) + 's',
-          bal: (BALLOON_STYLE === 'pastel' ? '--bc: ' + BALLOON_COLS[i % BALLOON_COLS.length] + '; --lm: #55301C; --lsh: rgba(255,255,255,.6)' : BALLOON_COLS[i % BALLOON_COLS.length] === 'gold' ? '--bc: #B8954F; --bfin: var(--bgold); --lm: #FFF8E8' : '--bc: ' + BALLOON_COLS[i % BALLOON_COLS.length] + (/^#[DE]/.test(BALLOON_COLS[i % BALLOON_COLS.length]) ? '; --lm: #6A5440; --lsh: rgba(255,248,236,.55)' : '')) + '; --bt: ' + ((r(40) - 0.5) * 14).toFixed(1) + 'deg; --bw: ' + (3.2 + r(41) * 2.2).toFixed(1) + 's; --bwd: -' + (r(42) * 4).toFixed(1) + 's',
+          bal: (BALLOON_STYLE === 'pastel' ? (BALLOON_COLS[i % BALLOON_COLS.length] === 'rosegold' ? '--bc: #C98E7E; --bfin: var(--brose); --lm: #FFF6F0; --lsh: rgba(90,40,30,.35)' : BALLOON_COLS[i % BALLOON_COLS.length] === '#6B3E26' ? '--bc: #6B3E26; --lm: #F6E9DA; --lsh: rgba(30,12,4,.4)' : '--bc: ' + BALLOON_COLS[i % BALLOON_COLS.length] + '; --lm: #55301C; --lsh: rgba(255,255,255,.6)') : BALLOON_COLS[i % BALLOON_COLS.length] === 'gold' ? '--bc: #B8954F; --bfin: var(--bgold); --lm: #FFF8E8' : '--bc: ' + BALLOON_COLS[i % BALLOON_COLS.length] + (/^#[DE]/.test(BALLOON_COLS[i % BALLOON_COLS.length]) ? '; --lm: #6A5440; --lsh: rgba(255,248,236,.55)' : '')) + '; --bt: ' + ((r(40) - 0.5) * 14).toFixed(1) + 'deg; --bw: ' + (3.2 + r(41) * 2.2).toFixed(1) + 's; --bwd: -' + (r(42) * 4).toFixed(1) + 's',
           smoke: (() => { const T = CANDLE_T, P = T, s0 = CANDLE_ORDER[i % CANDLE_ORDER.length] * T / all.length; const cd = candleAt(brandCandle(i)); return 'left: ' + cd.x.toFixed(2) + 'cqw; top: calc(30cqh + ' + (1 - CANDLE_SHOW) + ' * (100cqh + var(--cgap, 30cqh)) + ' + (CANDLE_SHOW * cd.y).toFixed(2) + 'cqh); --P: ' + P + 's; --d: ' + (s0 - P).toFixed(2) + 's; --sx: ' + ((r(30) < 0.5 ? -1 : 1) * (3 + r(31) * 5)).toFixed(1) + 'cqw'; })(),
           wispSt: '--wf: ' + (r(32) < 0.5 ? -1 : 1) + '; --wsc: ' + (0.85 + r(33) * 0.3).toFixed(2) + '; --sk: ' + (-candleAt(brandCandle(i)).tilt).toFixed(1) + 'deg',
           wispDur: (5.5 + r(34) * 3).toFixed(1) + 's', wispBegin: '-' + (r(35) * 8).toFixed(1) + 's',
