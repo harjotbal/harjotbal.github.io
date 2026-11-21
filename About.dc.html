@@ -478,6 +478,7 @@ const CAKE_SPRINKLE_SETTLE = true;
 const CSP_MID_BOOST = 1.25;
 const cspX = (W) => { const a = 0.15, b = 0.85, share = Math.min(1, (b - a) * CSP_MID_BOOST); if (Math.random() < share) return W * (a + Math.random() * (b - a)); const r = Math.random() * (1 - (b - a)); return W * (r < a ? r : b + (r - a)); };
 const CSP_FG_Z = 0.75; // sprinkles at this depth or closer share the content's plane (25% of all sprinkles; was 0.8 = 20%)
+const CSP_HDR_SETTLE = false; // false = sprinkles never rest on the header (landing logo or floating bar); ones resting on content that slides under the floating bar drop off
 const CSP_FG_ON_CONTENT = true; // content-plane sprinkles fall over the core content (logo, panels, buttons) so more of them collect there
 // top edge of the (rounded) logo letters, one value per logo unit across (-1 = no ink); lets sprinkles rest on the letters
 const CSP_LOGO_TOP = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,48,46.5,46,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.8,46.2,47.5,76,77.8,78.2,78.5,78.5,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.5,78.2,78,76.8,48.5,46.5,46,45.8,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.8,46.2,47.2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,102,95,92,89.8,88,86.5,85.2,84,83,82.2,81.2,80.5,80,79.5,79,78.5,78,77.8,77.5,77.2,77,76.8,76.8,76.8,76.8,76.8,76.8,76.8,76.8,77,77,77.2,77.5,78,78.2,78.8,79.2,80,80.5,81,81.2,80.8,80.2,79.8,79.2,79,79,79,79,79,79,79,79,79,79.2,79.5,80.2,83.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,81,79.8,79.2,79,79,79,79,79,79,79,79,79,79.2,79.8,81,83.8,85.5,85.8,85.2,84.2,83.5,82.8,81.8,81,80.5,79.8,79.2,78.8,78.2,78,77.8,77.8,77.8,78.5,-1,-1,-1,-1,-1,-1,-1,139.8,138.2,136.8,134.8,131.5,58.8,57,56,55.2,54.8,54.2,54,54,54,54,54.2,54.5,54.8,55.2,56.2,57.2,59,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,98.8,94.5,91.8,89.8,88.2,86.8,85.8,84.5,83.8,82.8,82,81.2,80.8,80.2,79.8,79.2,78.8,78.2,78,77.8,77.5,77.2,77.2,77,76.8,76.8,76.8,76.8,76.8,76.8,76.8,76.8,76.8,77,77,77.2,77.5,77.8,78,78.2,78.8,79,79.5,80,80.8,81.5,82,83,83.8,84.8,86,87.2,88.8,90.8,93,96.5,-1,-1,-1,-1,-1,-1,-1,-1,80.5,79.5,79,78.8,78.5,78,77.2,62.2,58.8,58,57.8,57.5,57.5,57.5,57.5,57.5,57.5,57.5,57.5,57.5,57.8,58,58.5,60,76.8,77.8,78.2,78.5,78.8,78.8,78.8,78.8,79,79.2,80,82,-1,-1,-1,-1,117,115.2,114,113.2,112.8,112.2,112,112,112,112,112.5,112.8,113.5,114.2,115.5,117.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
@@ -505,7 +506,7 @@ const cspFG = () => {
       .map((el) => ({ el, rad: Math.min(parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0, el.offsetHeight / 2), clip: el.closest('.track') }));
     if (root) {
       root.querySelectorAll('div.tx-logo').forEach((el) => { if (el.offsetWidth && vis(el)) S.surf.push({ el, logo: { bw: el.offsetWidth, k: 1, ox: 0, oy: 0 } }); });
-      root.querySelectorAll('.hdr:not(.hdr-on) .logowrap').forEach((el) => { if (el.offsetWidth && vis(el)) S.surf.push({ el, logo: { bw: el.offsetWidth, k: 64 / 112, ox: 0.86, oy: -0.14 } }); });
+      if (CSP_HDR_SETTLE) root.querySelectorAll('.hdr:not(.hdr-on) .logowrap').forEach((el) => { if (el.offsetWidth && vis(el)) S.surf.push({ el, logo: { bw: el.offsetWidth, k: 64 / 112, ox: 0.86, oy: -0.14 } }); });
     }
   };
   const add = (yy) => {
@@ -541,7 +542,7 @@ const cspFG = () => {
     const vw = window.innerWidth, vh = window.innerHeight;
     const rate = 0.3 * ((1 - CSP_FG_Z) / 0.2) * (0.3 + 0.7 * Math.min(1.3, vw / 1280));
     S.acc += rate * dt; while (S.acc >= 1 && S.parts.filter((q) => q.st === 'fall').length < 60) { S.acc -= 1; add(-30); }
-    S.rects.clear(); S.surf.forEach((s) => { const r = s.el.getBoundingClientRect(); let l = r.left, rr = r.right; if (s.clip) { const c = s.clip.getBoundingClientRect(); l = Math.max(l, c.left); rr = Math.min(rr, c.right); } S.rects.set(s.el, { top: r.top, bottom: r.bottom, l, r: rr, w: r.width, left: r.left, rad: s.rad, logo: s.logo, s: s.logo ? r.width / s.logo.bw : 1 }); });
+    S.hdrB = -1e9; if (!CSP_HDR_SETTLE && S.root) { const hg = S.root.parentElement && S.root.parentElement.querySelector('.hdrglass.on'), hd = S.root.querySelector('.hdr.hdr-on') || (hg && S.root.querySelector('.hdr')); if (hd) { const hr = hd.getBoundingClientRect(); if (hr.height) S.hdrB = hr.bottom; } } S.rects.clear(); S.surf.forEach((s) => { const r = s.el.getBoundingClientRect(); let l = r.left, rr = r.right; if (s.clip) { const c = s.clip.getBoundingClientRect(); l = Math.max(l, c.left); rr = Math.min(rr, c.right); } S.rects.set(s.el, { top: r.top, bottom: r.bottom, l, r: rr, w: r.width, left: r.left, rad: s.rad, logo: s.logo, s: s.logo ? r.width / s.logo.bw : 1 }); });
     if (!S.seeded) { S.seeded = true; const n0 = Math.round(rate * (vh / 32)); for (let i = 0; i < n0; i++) { add(Math.random() * vh); const q = S.parts[S.parts.length - 1]; for (let k = 0; k < 12 && inside(q); k++) { q.x = cspX(vw); q.y = Math.random() * vh; } if (inside(q)) { q.n.remove(); S.parts.pop(); } } }
     const perEl = new Map(), LR = S.lay.getBoundingClientRect();
     for (let i = S.parts.length - 1; i >= 0; i--) {
@@ -572,7 +573,7 @@ const cspFG = () => {
         }
         if (p.y > vh + 60 || p.x < -60 || p.x > vw + 60) { p.n.remove(); S.parts.splice(i, 1); continue; }
       } else {
-        const r = S.rects.get(p.el);
+        const r0 = S.rects.get(p.el), r = r0 && !r0.logo && r0.top < S.hdrB ? null : r0;
         if (!r || Math.abs(r.w - p.w0) > p.w0 * 0.12) { const e0 = p.el; fall(p, Math.random() < 0.5 ? -1 : 1); p.skip.delete(e0); p.vx *= 0.3; }
         else if (r.logo) {
           p.lx += p.slide * dt / r.s; p.x = r.left + p.lx * r.s;
