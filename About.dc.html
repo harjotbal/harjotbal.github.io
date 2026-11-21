@@ -247,6 +247,12 @@ html{scroll-behavior:smooth}
 .bal-sage .blnstr{display:none}
 .bal-sage .blnline{display:block;position:absolute;left:calc(50% - .5px);top:calc(100% + 1cqw);width:1px;height:95%;background:linear-gradient(180deg,#C6A96C,rgba(198,169,108,.35))}
 .bal-sage.cake .lballoon .bln .lmark,.bal-sage .cake .lballoon .bln .lmark{background-color:var(--lm,#FFFFFF)!important;opacity:1!important;filter:drop-shadow(0 .15cqw .35cqw var(--lsh,rgba(40,30,10,.3)))}
+.blnstr2{display:none}
+.bal-sage .blnline{display:none!important}
+.bal-sage .blnstr2{display:block;position:absolute;left:calc(50% - 1.5cqw);top:calc(100% + .9cqw);width:3cqw;height:95%;overflow:visible;color:#C6A96C;opacity:.85;transform-origin:50% 0;animation:blnstrsway var(--bw) ease-in-out var(--bwd) infinite alternate;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent)}
+@keyframes blnstrsway{from{transform:skewX(5deg) scaleX(1.2)}to{transform:skewX(-5deg) scaleX(.85)}}
+.still .blnstr2,.bubbles-still .blnstr2{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.blnstr2{animation-play-state:paused!important}}
 .still .blump,.still .bln,.bubbles-still .blump,.bubbles-still .bln{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){.blump,.bln{animation-play-state:paused!important}}
 .cake-candles .cake .lcake{display:none!important}
@@ -386,7 +392,7 @@ html{scroll-behavior:smooth}
 <sc-for list="{{brands}}" as="b" hint-placeholder-count="16"><span class="chip" style="{{b.chip}}"><span class="lmark" style="{{b.chipMark}}"></span></span></sc-for>
 </div></div>
 <div class="lballoon" aria-hidden="true"><div class="lballin">
-<sc-for list="{{brands}}" as="b" hint-placeholder-count="16"><span class="blump" style="{{b.lump}}"><span class="bln" style="{{b.bal}}"><i class="blnglow"></i><i class="blnknot"></i><i class="blnline"></i><svg class="blnstr" viewBox="0 0 20 120" preserveAspectRatio="none"><path d="M10 0 C 3 18, 17 34, 10 52 S 3 86, 10 120" fill="none" stroke="currentColor" stroke-width="1.3" vector-effect="non-scaling-stroke" stroke-linecap="round"></path></svg><span class="lmark" style="{{b.lumpMark}}"></span></span></span></sc-for>
+<sc-for list="{{brands}}" as="b" hint-placeholder-count="16"><span class="blump" style="{{b.lump}}"><span class="bln" style="{{b.bal}}"><i class="blnglow"></i><i class="blnknot"></i><i class="blnline"></i><svg class="blnstr2" viewBox="0 0 20 120" preserveAspectRatio="none"><path d="M10 0 C 7 14, 6 26, 9 40 S 14 66, 11 82 S 7 108, 9 120" fill="none" stroke="currentColor" stroke-width="1.1" vector-effect="non-scaling-stroke" stroke-linecap="round"></path></svg><svg class="blnstr" viewBox="0 0 20 120" preserveAspectRatio="none"><path d="M10 0 C 3 18, 17 34, 10 52 S 3 86, 10 120" fill="none" stroke="currentColor" stroke-width="1.3" vector-effect="non-scaling-stroke" stroke-linecap="round"></path></svg><span class="lmark" style="{{b.lumpMark}}"></span></span></span></sc-for>
 </div></div>
 <div class="lcandle" aria-hidden="true">
 <i class="chaze"></i><i class="chaze cz2"></i><i class="chaze cz3"></i>
