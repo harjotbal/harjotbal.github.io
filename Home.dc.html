@@ -184,7 +184,21 @@ html{scroll-behavior:smooth}
 @media (hover:none) and (pointer:coarse){.lava .bglay:has(> .blob)::after{content:'';position:absolute;left:0;right:0;top:0;height:260px;pointer-events:none;background:linear-gradient(to bottom,#6E2C1A 0,#6E2C1A 64px,rgba(110,44,26,.86) 100px,rgba(110,44,26,.55) 150px,rgba(110,44,26,.22) 205px,rgba(110,44,26,0) 260px)}}
 /* CAKE_TOP_FADE: same touch-screen top fade as Lava, in the Cake page colour (matches the browser bar), so the blobs/sprinkles melt into the top bar */
 @media (hover:none) and (pointer:coarse){.cake .cakebg::after{content:'';position:absolute;left:0;right:0;top:0;height:260px;pointer-events:none;background:linear-gradient(to bottom,#EEFBFC 0,#EEFBFC 64px,rgba(238,251,252,.86) 100px,rgba(238,251,252,.55) 150px,rgba(238,251,252,.22) 205px,rgba(238,251,252,0) 260px)}}
-.lava-move .lava .blob{visibility:visible!important;animation-play-state:running!important;will-change:transform!important}.lava-move .lava .bglay{background-image:none!important}</style>
+.lava-move .lava .blob{visibility:visible!important;animation-play-state:running!important;will-change:transform!important}.lava-move .lava .bglay{background-image:none!important}
+/* WORK_PROGRESS: per-case progress line. Large screens: on the logo + name row, right-aligned. Small screens (≤760px): under the panels,
+   with the logo + name, the panel in focus and the line all centred. Set .pbar-top,.pbar-bot{display:none!important} to hide it again */
+.pbar-top{flex:0 0 min(360px,100%);margin-left:auto}
+.pbar-bot{display:none}
+@media (max-width:760px){
+  .pbar-top{display:none}
+  .pbar-bot{display:flex;justify-content:center;position:relative;z-index:3;margin-top:-4px}
+  .pbar-bot .bar{flex:0 0 min(240px,56vw)}
+  .phead,.pheadin{justify-content:center!important}
+  .track{scroll-padding-left:0;padding-left:11vw;padding-right:11vw}
+  .track .panel{scroll-snap-align:center}
+}
+@media (max-width:600px){.track{padding-left:8vw;padding-right:8vw}}
+</style>
 </helmet>
 <div class="{{rootClass}}" ref="{{rootRef}}" style="{{rootStyle}}; min-height: 100vh; background-color: #17100D; overflow: clip; font-family: 'Proxima Nova', Figtree, system-ui, sans-serif; color: #FBE9DC">
 <div class="pagebg" style="position: relative; min-height: 100vh; background-color: {{p.base}}; transition: background-color 1.6s cubic-bezier(.22,1,.36,1)">
@@ -227,12 +241,13 @@ html{scroll-behavior:smooth}
 <sc-for list="{{projects}}" as="pr" hint-placeholder-count="4">
 <section id="{{pr.id}}" data-mood="{{pr.mood}}" ref="{{pr.secRef}}" aria-label="{{pr.title}} case study" style="{{pr.secStyle}}; scroll-margin-top: 32px">
 <div class="pad" style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px">
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 40px">
-<div style="display: flex; align-items: center; gap: 20px; min-width: 0">
+<div class="phead" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 40px">
+<div class="pheadin" style="display: flex; align-items: center; gap: 20px; min-width: 0">
 <span role="img" aria-label="{{pr.client}}" class="logo" style="{{pr.logoStyle}}"></span>
 <span aria-hidden="true" style="flex: none; width: 1px; height: 33px; background: rgba(251,233,220,.4)"></span>
 <h2 class="ptitle" style="margin: 0; font: 600 clamp(29px, 2.8vw, 40px)/1.1 Josefin Sans, Futura, sans-serif; letter-spacing: -0.005em">{{pr.title}}</h2>
 </div>
+<div class="bar pbar-top" aria-hidden="true"><span style="{{pr.barStyle}}"></span></div>
 </div>
 </div>
 <div class="track" ref="{{pr.trackRef}}" onScroll="{{pr.onScroll}}" tabindex="0" aria-label="{{pr.title}} story, scrolls sideways">
@@ -246,6 +261,7 @@ html{scroll-behavior:smooth}
 </article>
 </sc-for>
 </div>
+<div class="pad pbar-bot" aria-hidden="true"><div class="bar"><span style="{{pr.barStyle}}"></span></div></div>
 </section>
 </sc-for>
 <footer class="pad sitefoot" style="margin-top: 120px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font: 500 13px/1 Josefin Sans, Futura, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(251,233,220,.86)">
