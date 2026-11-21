@@ -307,7 +307,7 @@ html{scroll-behavior:smooth}
 .hcenter .hdr .modetog.mini{transition:transform .6s cubic-bezier(.22,1,.36,1),translate .6s cubic-bezier(.22,1,.36,1),color .6s,background .6s,border-color .6s,box-shadow .6s}
 .hcenter .hdr-measure .logowrap,.hcenter .hdr-measure .navrow,.hcenter .hdr-measure .modetog.mini{transition:none!important}
 
-/* pastel balloons: soft satin sheen, chocolate strings */
+/* pastel balloons: soft satin sheen, chocolate strings (colours: muted pâtisserie tones) */
 .bal-pastel .bln::before{background:radial-gradient(ellipse 24% 15% at 32% 18%,rgba(255,255,255,.55),rgba(255,255,255,0) 100%),radial-gradient(ellipse 74% 68% at 46% 42%,color-mix(in srgb,var(--bc),#fff 12%) 0,var(--bc) 52%,color-mix(in srgb,var(--bc),#55301C 14%) 100%)!important}
 .bal-pastel .bln{filter:drop-shadow(0 1cqw 1.4cqw rgba(85,48,28,.12))}
 .bal-pastel .blnknot{background:color-mix(in srgb,var(--bc),#55301C 18%)}
@@ -755,7 +755,7 @@ const CAKE_BRANDS = 'balloons';    // 'balloons' = logos float up in balloons (s
 const BALLOON_STYLE = 'pastel';   // 'pastel' = soft sprinkle colours (pink, sky, mint, lavender, butter, peach) with chocolate logos to match Cake;
                                   // 'sage' = sage green / chrome gold / matte nude; 'party' = glossy primary-colour latex balloons
 const BALLOON_COLS = BALLOON_STYLE === 'pastel'
-  ? ['#F6B5CF', '#9FD6EE', '#A9DDB0', '#CBBCEB', '#F8D97E', '#F8B98A', '#F2A9C4', '#93CFE8']
+  ? ['#D8AFA9', '#B7C8D2', '#BFC9B0', '#C9B7C4', '#E6D5B8', '#D6B48C', '#E2C2B6', '#A9BCC6']   // muted pâtisserie tones: dusty rose, powder blue, sage, mauve, oat, caramel, blush, slate
   : BALLOON_STYLE === 'sage'
   ? ['#8C9C80', 'gold', '#E0CDB4', '#829377', 'gold', '#E4D3BC', '#92A387', 'gold']
   : ['#1E5BD8', '#F4D21C', '#FF7417', '#E1222E', '#13996F', '#2F6FE8', '#FF8A1F', '#F2C40F'];
