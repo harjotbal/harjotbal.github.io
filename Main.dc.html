@@ -395,9 +395,13 @@ const cspFG = () => {
     S.parts.push({ n, w, h, rod, x: fgX(vw), y: yy, vx: (Math.random() - 0.5) * 6, vy: sp, sp, ang: Math.random() * 360, av: (Math.random() < 0.5 ? -1 : 1) * (8 + Math.random() * 16), st: 'fall', el: null, skip: new Set(), ox: 0, w0: 0, t0: 0, life: 10 + Math.random() * 16, slide: 0 });
   };
   // logo surfaces: screen y of the letter tops at screen x (null where there is no letter)
+  // ricochet bookkeeping: the letter a sprinkle just bounced off can't catch it again, and after a few bounces it just falls
+  const CSP_MAX_BOUNCE = 3;
+  const segAt = (R, X) => { const L = R.logo, i0 = Math.round(((X - R.left) / R.s - L.ox) / L.k); let a = i0, b = i0; const T = CSP_LOGO_TOP, ok = (i, j) => T[j] >= 0 && Math.abs(T[j] - T[i]) < 6; while (a > 0 && ok(a, a - 1)) a--; while (b < T.length - 1 && ok(b, b + 1)) b++; const sx = (i) => R.left + (i * L.k + L.ox) * R.s; return [sx(a) - 2, sx(b) + 2]; };
+  const logoOK = (p, el, X) => !CSP_LOGO_RICOCHET || !(p.ghost || (p.lb || 0) >= CSP_MAX_BOUNCE || (p.seg && p.seg[0] === el && X >= p.seg[1] && X <= p.seg[2]));
   const topAt = (R, X) => { const L = R.logo, lx = Math.round(((X - R.left) / R.s - L.ox) / L.k); const v = CSP_LOGO_TOP[lx]; return v == null || v < 0 ? null : R.top + (v * L.k + L.oy) * R.s; };
   // a sprinkle shares the content's plane, so it can never sit behind a panel/button/letter
-  const inside = (p) => { for (const [el, r] of S.rects) { if (p.x <= r.l || p.x >= r.r || p.y >= r.bottom) continue; const yt = r.logo ? topAt(r, p.x) : r.top; if (yt != null && p.y > yt + 1) { r.el = el; return r; } } return null; };
+  const inside = (p) => { for (const [el, r] of S.rects) { if (r.logo && p.ghost) continue; if (p.x <= r.l || p.x >= r.r || p.y >= r.bottom) continue; const yt = r.logo ? topAt(r, p.x) : r.top; if (yt != null && p.y > yt + 1) { r.el = el; return r; } } return null; };
   // spawn x for content-plane sprinkles: over the core content, weighted by each surface's width (falls back to the middle-weighted spread)
   const fgX = (vw) => {
     if (!CSP_FG_ON_CONTENT || !S.surf.length) return cspX(vw);
@@ -407,7 +411,7 @@ const cspFG = () => {
     return cspX(vw);
   };
   const halfY = (p) => { const a = p.ang * Math.PI / 180; return (Math.abs(Math.sin(a)) * p.w + Math.abs(Math.cos(a)) * p.h) / 2; };
-  const fall = (p, dir) => { p.st = 'fall'; if (!CSP_LOGO_RICOCHET || !(S.rects.get(p.el) || {}).logo) p.skip.add(p.el); p.el = null; p.vx = dir * (28 + Math.random() * 30); p.vy = p.sp * 0.5; p.av = dir * (160 + Math.random() * 220); };
+  const fall = (p, dir) => { p.st = 'fall'; const fr = S.rects.get(p.el); if (CSP_LOGO_RICOCHET && fr && fr.logo) { p.lb = (p.lb || 0) + 1; const sg = segAt(fr, p.x); p.seg = [p.el, sg[0], sg[1]]; } else p.skip.add(p.el); p.el = null; p.vx = dir * (28 + Math.random() * 30); p.vy = p.sp * 0.5; p.av = dir * (160 + Math.random() * 220); };
   const frame = (t) => {
     S.raf = requestAnimationFrame(frame);
     if (t > S.nextRef) { S.nextRef = t + 450; refresh(); }
@@ -424,15 +428,16 @@ const cspFG = () => {
       const p = S.parts[i];
       if (p.st === 'fall') {
         const hy0 = p.y + halfY(p);
+        if (CSP_LOGO_RICOCHET && p.lb) { p.lt = (p.lt || 0) + dt; if (p.lt > 1.2) p.ghost = 1; } // safety: never ricochet around the logo for more than ~1s
         p.vy += (p.sp * (p.vx ? 1.6 : 1) - p.vy) * Math.min(1, dt * 1.5);
         p.vx *= Math.max(0, 1 - dt * 0.6);
         p.x += p.vx * dt; p.y += p.vy * dt; p.ang += p.av * dt;
         const hy = p.y + halfY(p);
-        { const r = inside(p); if (r) { const yt = r.logo ? topAt(r, p.x) : r.top; if (!p.skip.has(r.el) && p.y - yt < 14) { p.y = yt - halfY(p); } else if (CSP_LOGO_RICOCHET && r.logo) { let nx = null; for (let d = 1; d <= 60 && nx == null; d++) for (const sx of (p.vx < 0 ? [-1, 1] : [1, -1])) { const x2 = p.x + sx * d, y2 = topAt(r, x2); if (y2 == null || y2 > p.y + halfY(p)) { nx = x2 + sx * (p.w / 2 + 1); break; } } if (nx == null) p.y = yt - halfY(p); else { p.vx = Math.sign(nx - p.x) * Math.max(10, Math.abs(p.vx)); p.x = nx; } } else { const dl = p.x - r.l, dr = r.r - p.x; p.x = dl < dr ? r.l - p.w / 2 - 1 : r.r + p.w / 2 + 1; p.vx = (dl < dr ? -1 : 1) * Math.max(10, Math.abs(p.vx)); } } }
+        { const r = inside(p); if (r) { const yt = r.logo ? topAt(r, p.x) : r.top; if (!p.skip.has(r.el) && (!r.logo || logoOK(p, r.el, p.x)) && p.y - yt < 14) { p.y = yt - halfY(p); } else if (CSP_LOGO_RICOCHET && r.logo) { let nx = null; for (let d = 1; d <= 60 && nx == null; d++) for (const sx of (p.vx < 0 ? [-1, 1] : [1, -1])) { const x2 = p.x + sx * d, y2 = topAt(r, x2); if (y2 == null || y2 > p.y + halfY(p)) { nx = x2 + sx * (p.w / 2 + 1); break; } } if (nx == null) { p.y = yt - halfY(p); p.seg = null; p.lb = 0; } else { const sx = Math.sign(nx - p.x); p.vx = sx * Math.max(10, Math.abs(p.vx)); if (Math.abs(nx - p.x) <= 5) p.x = nx; else { p.x += sx * 5; const y3 = topAt(r, p.x); if (y3 != null) p.y = Math.min(p.y, y3 - halfY(p)); } } } else { const dl = p.x - r.l, dr = r.r - p.x; p.x = dl < dr ? r.l - p.w / 2 - 1 : r.r + p.w / 2 + 1; p.vx = (dl < dr ? -1 : 1) * Math.max(10, Math.abs(p.vx)); } } }
         for (const [el, r] of S.rects) {
           if (p.skip.has(el) || r.r - r.l < 20) continue;
           if (r.logo) {
-            const yc = topAt(r, p.x); if (yc == null || !(hy0 <= yc + 1 && hy >= yc)) continue;
+            const yc = topAt(r, p.x); if (yc == null || !(hy0 <= yc + 1 && hy >= yc) || !logoOK(p, el, p.x)) continue;
             const yl = topAt(r, p.x - p.w / 2), yr = topAt(r, p.x + p.w / 2);
             const sl = yl == null || yr == null ? (yl == null ? -9 : 9) : (yr - yl) / p.w;
             if (Math.abs(sl) > 0.55) { p.el = el; fall(p, sl > 0 ? 1 : -1); p.y = yc - halfY(p); }
