@@ -1178,6 +1178,7 @@ class Component extends DCLogic {
     };
     const s = this.state || {};
     const BORROWELL_HERO = 'img/bdaad165fa30.webp';
+    const AUDI_HERO = 'img/53f895d2f483.webp';
     const STAPLES_HERO = 'img/f88849cdbe5f.webp';
     const story = (title, x) => [
       { k: '01', label: 'Overview', title: '', body: String(x.meta || '').split(' · ').join('\u2002·\u2002'), visual: '[Hero image]', visStyle: x.hero ? 'border: none; top: -34px; left: ' + (x.heroPad || 6) + 'px; right: ' + (x.heroPad || 6) + 'px; bottom: 128px; background: url(' + x.hero + ') center top / ' + (x.heroSize || 'contain') + ' no-repeat; filter: drop-shadow(0 14px 18px rgba(14,10,60,.38)) drop-shadow(0 3px 5px rgba(14,10,60,.22)); z-index: 3' : '', cardCls: 'capline' + (x.hero ? ' herocap' : ''), panelStyle: x.hero ? 'overflow: visible; background: ' + x.heroBg : '' },
@@ -1188,7 +1189,7 @@ class Component extends DCLogic {
     ];
     const list = [
       { id: 'creator-homebase', n: '01', client: 'NBCUniversal', logo: 'universal', lh: 44, title: 'Creator Homebase', mood: 'clay', meta: '2026 · Entertainment · SaaS', summary: "Led AI-first design on NBCUniversal's Creator Homebase, a custom SaaS platform." },
-      { id: 'vehicle-tracker', n: '02', client: 'Audi (Global)', logo: 'audi', lh: 26, title: 'Vehicle Order Tracker', mood: 'teal', meta: '2024 · Automotive · Web and app feature', summary: "Directed the design of Audi's Vehicle Tracker for web and app, launched in 8 countries.", stat: '8', statLabel: 'Countries at launch', outcome: 'Launched in 8 countries' },
+      { id: 'vehicle-tracker', n: '02', client: 'Audi (Global)', logo: 'audi', lh: 26, title: 'Vehicle Order Tracker', mood: 'teal', hero: AUDI_HERO, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(226,232,240,.5), rgba(226,232,240,0) 62%), linear-gradient(165deg, #8E99A6 0%, #4A535E 44%, #1E2228 78%, #121418 100%)', meta: '2024 · Automotive · Web and app feature', summary: "Directed the design of Audi's Vehicle Tracker for web and app, launched in 8 countries.", stat: '8', statLabel: 'Countries at launch', outcome: 'Launched in 8 countries' },
       { id: 'slate-project-builder', n: '03', hero: STAPLES_HERO, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(255,226,190,.5), rgba(255,226,190,0) 62%), linear-gradient(165deg, #D9893F 0%, #B5481F 42%, #8E1F14 72%, #5A0E0B 100%)', client: 'Staples', logo: 'staples', lh: 24, title: 'SLATE Project Builder', mood: 'ochre', meta: '2018 · Retail · Digital kiosk', summary: "Architected Staples' SLATE project builder, used in 305 Canadian retail stores.", stat: '305', statLabel: 'Canadian retail stores', outcome: 'Used in 305 Canadian retail stores' },
       { id: 'borrowell-app', n: '04', hero: BORROWELL_HERO, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(206,212,250,.55), rgba(206,212,250,0) 62%), linear-gradient(165deg, #5B4BD8 0%, #3A2FA8 46%, #26227A 100%)', client: 'Borrowell', logo: 'borrowell', lh: 26, title: '0-1 Native Mobile App', mood: 'plum', meta: '2018 · Fintech · Native mobile app', summary: "Designed Borrowell's 0–1 app for iOS and Android: fintech for 4 million Canadians.", stat: '4M', statLabel: 'Canadians on Borrowell', outcome: 'Fintech for 4 million Canadians' }
     ];
@@ -1196,7 +1197,6 @@ class Component extends DCLogic {
     const TEST_BORROW_TILES = true;
     if (TEST_BORROW_TILES) { const by = (id) => list.find((x) => x.id === id); const use = (to, from) => { const t = by(to), f = by(from); t.hero = f.hero; t.heroBg = f.heroBg; t.heroPad = f.heroPad; t.heroSize = f.heroSize; };
       use('creator-homebase', 'slate-project-builder'); // Universal <- Staples
-      use('vehicle-tracker', 'borrowell-app'); // Audi <- Borrowell
     }
     const prog = s.prog || {};
     const mood = 'clay'; // Lava uses the clay palette only (was per-case moods)
