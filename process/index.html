@@ -1,0 +1,1160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<base href="../Process.dc.html">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>/* CAKE_SPRINKLES: true = Cake mode shows falling sprinkles over the pastel gradient. false = back to the crumbs. */window.CAKE_SPRINKLES=true;try{if(window.CAKE_SPRINKLES)document.documentElement.classList.add('cake-spr');var t=sessionStorage.getItem('harjot-theme');document.documentElement.style.backgroundColor=t==='cake'?'#EEFBFC':'#6E2C1A'}catch(e){}</script>
+<title>Harjot — Process</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Figtree:wght@300;400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#6E2C1A}html,body{overscroll-behavior-y:none}:root{--gut:max(clamp(24px,9vw,140px),calc((100vw - 1360px) / 2))}.grainbg{position:absolute;inset:0;opacity:.13;mix-blend-mode:overlay;pointer-events:none;background:url(img/286a77ab77c7.webp) 0 0/160px 160px repeat}.no-grain .grainbg{display:none!important}/* Safari 26 fix: keep pinned header off the top-edge zone Safari samples for toolbar tint (prevented scroll re-rendering) */.hdr{top:8px!important}.hdr-on .logowrap,.hdr-on .modetog.mini,.hdr-on .navrow{translate:0 -8px}@media (min-width:641px){.hdr-on .logowrap{translate:0 -8.5px}.hdr-on .navrow{translate:0 -7.4px}}@media (min-width:641px){.hdr .logowrap{margin-left:var(--lgml,0px)}.hdr{--lgland:.806}.hdr:not(.hdr-on) .logowrap{transform:translate(0,calc(30.1px * (1 - var(--lgland)))) scale(var(--lgland))}.hdr:not(.hdr-on) .modetog.mini{transform:translateX(calc(-216px * (1 - var(--lgland))))}.hdr .navrow{margin-right:var(--navmr,0px)}.hdr.hdr-on .logowrap{transform:translate(calc(14px + var(--dlx,0px)),6.7px) scale(.61)}.hdr.hdr-on .modetog.mini{transform:translate(calc(-71.25px + var(--dlx,0px)),-5px)}}.hdr-fit.hdr-on:not(.hdr-oldpos) .logowrap,.hdr-fit.hdr-on:not(.hdr-oldpos) .modetog.mini,.hdr-fit.hdr-on:not(.hdr-oldpos) .navrow{translate:none}.hdrglass{top:8px!important;left:12%!important;right:12%!important}.hdrglass::before{top:6px!important;left:calc(max(8px,calc(var(--gut) - 19.5px)) - 12vw)!important;right:calc(max(8px,calc(var(--gut) - 19.5px)) - 12vw)!important}.hdrlogo{display:none;position:absolute;max-width:none;pointer-events:none}.flatlogo .hdr .logowrap>.hdrlogo{display:block}.flatlogo .hdr .logowrap>:not(.hdrlogo){display:none!important}.flatlogo .lava .hdr .hl-cake,.flatlogo .cake .hdr .hl-lava{display:none!important}.bg-still .blob,.bg-still .cblob{will-change:auto!important}.bglay{transform:none!important}.cakebg{visibility:hidden;transition:opacity .9s ease,visibility 0s linear .9s}.cake .cakebg{visibility:visible;transition:opacity .9s ease,visibility 0s}.fcar .fact.fout,.fcar .fact.fout *{will-change:auto!important}.no-frost *,.no-frost *::before,.no-frost *::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}.no-gblur .glass,.no-gblur .glass-dark,.no-gblur .modetog,.no-gblur .motionbtn{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}.no-gblur .lava .glass,.no-gblur .lava .modetog,.no-gblur .lava .motionbtn,.no-gblur.lava .glass{background-color:var(--gtint,transparent)!important}.no-gblur .lava .glass-dark{background-image:linear-gradient(var(--gtint,transparent),var(--gtint,transparent))}.cakesp{position:absolute;inset:0;overflow:hidden;pointer-events:none}.cakesp img{position:absolute;display:block;max-width:none}.lump-off .gb{animation-play-state:paused!important}.bg-still .blob,.bg-still .cblob{animation-play-state:paused!important}.bg-still .blob,.bg-still .cblob{visibility:hidden!important}.blobcv{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+*{box-sizing:border-box}
+a{color:#FBE9DC}a:hover{color:#FFFFFF}
+@keyframes driftA{0%{transform:translate(-18%,-12%) scale(.9)}25%{transform:translate(28%,2%) scale(1.3)}50%{transform:translate(14%,30%) scale(1.05)}75%{transform:translate(-14%,22%) scale(1.25)}100%{transform:translate(-6%,-4%) scale(.85)}}
+@keyframes driftB{0%{transform:translate(4%,-6%) scale(1.1)}25%{transform:translate(-30%,16%) scale(.8)}50%{transform:translate(-12%,-22%) scale(1.25)}75%{transform:translate(16%,8%) scale(.95)}100%{transform:translate(22%,-14%) scale(1.3)}}
+@keyframes driftC{0%{transform:translate(10%,12%) scale(.85)}33%{transform:translate(-22%,26%) scale(1.25)}66%{transform:translate(-30%,-12%) scale(1)}100%{transform:translate(8%,-20%) scale(1.35)}}
+@keyframes float{0%{transform:translateY(0) rotate(3deg)}100%{transform:translateY(-18px) rotate(1deg)}}
+
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.blob{position:absolute;border-radius:50%;filter:blur(88px);transition:background-color 1.6s cubic-bezier(.22,1,.36,1);will-change:transform}
+.glass{position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(135deg,rgba(255,236,224,.18),rgba(255,236,224,.03));backdrop-filter:blur(calc(var(--blur,26px) * .35)) saturate(140%);-webkit-backdrop-filter:blur(calc(var(--blur,26px) * .35)) saturate(140%);border:none;outline:1px solid transparent;box-shadow:inset 0 0 0 1px rgba(255,238,226,.30),inset 0 0 6px rgba(255,240,228,.18),inset 0 1px 0 rgba(255,255,255,.30),0 30px 70px -30px rgba(30,8,2,.6)}
+
+
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes ring{to{--ang:360deg}}
+.glass::before,.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:ring 9s linear infinite}
+.glass::before{padding:7px;background:conic-gradient(from var(--ang),rgba(255,244,222,0) 0deg,rgba(255,244,222,0) 268deg,rgba(255,244,222,.42) 326deg,rgba(255,244,222,0) 360deg)}
+.glass::after{padding:2px;background:conic-gradient(from var(--ang),rgba(255,252,242,0) 0deg,rgba(255,252,242,0) 284deg,rgba(255,252,242,1) 334deg,rgba(255,252,242,0) 360deg)}
+.still .glass::before,.still .glass::after{animation:none}
+@media (prefers-reduced-motion:reduce){.glass::before,.glass::after{animation:none}}
+.glass-dark{background:rgba(24,9,5,.40);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border:1px solid rgba(255,238,226,.18)}
+.emboss{background:linear-gradient(180deg,rgba(255,232,214,.92),rgba(236,196,170,.70));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 0 rgba(255,255,255,.22)) drop-shadow(0 3px 4px rgba(20,6,2,.45))}
+.rise{animation:rise .9s cubic-bezier(.22,1,.36,1) both}
+.hj-rv .reveal{transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}.hj-rv .reveal:not(.revealed){opacity:0;transform:translateY(28px)}.hj-rv .still .reveal:not(.revealed){opacity:1;transform:none}.still .reveal{transition:none!important}
+.navlink{color:#FBE9DC;text-decoration:none;font:600 14px/1 Josefin Sans,Futura,sans-serif;letter-spacing:.28em;text-transform:uppercase;padding:15px 0;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .5s cubic-bezier(.22,1,.36,1)}
+.navlink:hover,.navlink[aria-current="page"]{background-size:100% 1px;color:#FFFFFF}
+.row{transition:transform .5s cubic-bezier(.22,1,.36,1),background-color .5s}
+.row:hover{transform:translateX(8px)}
+.pill{text-decoration:none;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.pill:hover{transform:translateY(-2px)}
+:focus-visible{outline:2px solid #FBE9DC;outline-offset:4px}
+.still .blob,.still .float,.still .rise,.still .reveal{animation:none!important}
+@media (prefers-reduced-motion:reduce){.blob,.float,.rise,.reveal{animation:none!important}}
+@keyframes lsheen{0%{transform:translateX(-140%) skewX(-18deg)}60%,100%{transform:translateX(320%) skewX(-18deg)}}
+@keyframes ltrace{from{stroke-dashoffset:0}to{stroke-dashoffset:-412}}
+.ltrace{stroke-dasharray:63 349;animation:ltrace 9s linear infinite}
+@keyframes lsweep{0%{left:-1em}70%,100%{left:3.9em}}
+.lshine{animation:lsweep 7s cubic-bezier(.45,0,.55,1) infinite}
+.still .ltrace,.still .lshine{animation:none!important}
+@media (prefers-reduced-motion:reduce){.ltrace,.lshine{animation:none!important}}
+
+html{scroll-behavior:smooth}
+.nointro .rise{animation:none!important}
+@media (max-width:860px){.sitefoot{flex-direction:column!important;justify-content:center!important;text-align:center;gap:26px!important}.sitefoot>*{justify-content:center}}.site .glass::before,.site .glass::after{display:none!important;animation:none!important}.site .hdr .ltrace,.site .hdr .lshine{display:none!important;animation:none!important}.site .hdr .sugar{animation:none!important;opacity:.85!important}.navrow{display:flex;flex-wrap:wrap;gap:8px 48px}
+.hdr{position:sticky;top:0;z-index:40;pointer-events:none}.hdr-measure,.hdr-measure *{transition:none!important}.hdr>*{pointer-events:auto}
+.hdrglass{position:fixed;top:0;left:0;right:0;height:0;z-index:39;pointer-events:none;visibility:hidden;transition:visibility 0s linear .6s}.hdrglass.on{visibility:visible;transition:none}.hdrglass::before{content:"";position:absolute;z-index:-1;left:max(8px,calc(var(--gut) - 19.5px));right:max(8px,calc(var(--gut) - 19.5px));top:14px;height:78px;border-radius:22px;background:linear-gradient(135deg,rgba(255,236,224,.16),rgba(255,236,224,.06)),rgba(24,10,6,.22);box-shadow:inset 0 0 0 1px rgba(255,238,226,.24),inset 0 1px 0 rgba(255,255,255,.2),0 14px 34px -14px rgba(10,4,2,.55);opacity:0;transform:translateY(-10px) scale(.985);transition:opacity .45s ease,transform .6s cubic-bezier(.22,1,.36,1),background .6s,box-shadow .6s;pointer-events:none}
+.hdrglass.on::before{opacity:1;transform:none;-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%)}
+.cake .hdrglass::before{background:linear-gradient(135deg,rgba(255,255,255,.86),rgba(255,255,255,.68));box-shadow:inset 0 0 0 1px rgba(85,48,28,.16),inset 0 1px 0 #fff,0 14px 32px -16px rgba(74,42,24,.32)}
+.hdr .logowrap{transform-origin:0 50%;transition:transform .6s cubic-bezier(.22,1,.36,1)}.hdr-on .logowrap{transform:translate(14px,6.7px) scale(.61)}
+.hdr .modetog.mini{transition:transform .6s cubic-bezier(.22,1,.36,1),color .6s,background .6s,border-color .6s,box-shadow .6s}.hdr-on .modetog.mini{transform:translate(-71.25px,-5px)}
+.hdr .navrow{transform-origin:100% 50%;transition:transform .6s cubic-bezier(.22,1,.36,1)}.hdr-on .navrow{transform:translate(var(--navtx,-16.5px),11.5px) scale(.86)}
+@media (max-width:480px){.hdr .logowrap{zoom:.8}.hdr-fit:not(.hdr-oldpos) .logowrap{zoom:1!important;margin-right:-48px;margin-bottom:-17.2px}.hdr .modetog.mini{margin-top:34px!important;margin-left:-3px!important}.hdr-on .modetog.mini{transform:translate(-80px,4px)}.hdr-on .logowrap{transform:translate(14px,22px) scale(.5)}.navrow{gap:8px 28px}}@media (max-width:360px){.hdr-on .modetog.mini{transform:translate(-94px,4px)}.hdr-on .logowrap{transform:translate(14px,22px) scale(.42)}}@media (max-width:640px){.hdr-fit:not(.hdr-oldpos){margin-bottom:var(--hmb,0px)}.hdr-fit:not(.hdr-oldpos) .logowrap,.hdr-fit:not(.hdr-oldpos) .modetog.mini,.hdr-fit:not(.hdr-oldpos) .navrow{transform-origin:0 0!important}.hdr-fit:not(.hdr-oldpos) .logowrap{transform:translate(var(--lgx),var(--lgy)) scale(var(--lgk))!important}.hdr-fit:not(.hdr-oldpos) .modetog.mini{transform:translate(var(--tgx),var(--tgy)) scale(var(--tgk))!important}.hdr-fit:not(.hdr-oldpos) .navrow{transform:translate(var(--nvx),var(--nvy)) scale(var(--nvk))!important}.hdr-fit.hdr-on:not(.hdr-oldpos) .logowrap{transform:translate(var(--lgfx),var(--lgfy)) scale(var(--lgfk))!important}.hdr-fit.hdr-on:not(.hdr-oldpos) .modetog.mini{transform:translate(var(--tgfx),var(--tgfy)) scale(var(--tgfk))!important}.hdr-fit.hdr-on:not(.hdr-oldpos) .navrow{transform:translate(var(--nvfx),var(--nvfy)) scale(var(--nvfk))!important}.hdr .navrow{flex-basis:100%;transform-origin:0 50%}.hdr-on .navrow{transform:translate(var(--mnx,15px),var(--mny,-22px)) scale(var(--mns,.86))}}@media (min-width:641px){.hdr{flex-wrap:nowrap!important}}
+.eyebrow{font:600 13px/1 Josefin Sans,Futura,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:rgba(251,233,220,.86)}
+.pad{padding-left:var(--gut);padding-right:var(--gut)}
+
+
+
+.track{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:var(--gut);padding:8px var(--gut) 28px;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.panel{flex:0 0 min(760px,78vw);height:clamp(380px,56vh,500px);border-radius:28px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:space-between;padding:26px 28px}
+.visual{position:absolute;inset:14px 14px 150px 14px;border-radius:18px;border:1px dashed rgba(255,238,226,.32);display:flex;align-items:flex-start;justify-content:flex-end;padding:16px 18px}
+.arrowbtn{width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:#FBE9DC;cursor:pointer;padding:0;transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .3s}
+.arrowbtn:hover{transform:translateY(-2px)}
+.bar{position:relative;flex:1 1 auto;height:2px;border-radius:2px;background:rgba(255,238,226,.18);overflow:hidden}
+.bar span{position:absolute;left:0;top:0;bottom:0;background:#FBE9DC;border-radius:2px;transition:width .25s ease}
+.fact{border-radius:28px;padding:26px;display:flex;flex-direction:column;gap:18px}
+.fact .art{position:relative;height:150px;border-radius:18px;overflow:hidden;background:linear-gradient(160deg,rgba(255,236,224,.14),rgba(20,8,4,.18));box-shadow:inset 0 0 0 1px rgba(255,238,226,.16)}
+.cta{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px;border-radius:999px;color:#FBE9DC;text-decoration:none;font:600 13px/1 Josefin Sans,Futura,sans-serif;letter-spacing:.22em;text-transform:uppercase;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.cta:hover{transform:translateY(-2px)}
+.tlink{color:#FBE9DC;text-underline-offset:5px;text-decoration-thickness:1px;text-decoration-color:rgba(251,233,220,.5)}
+.tlink:hover{text-decoration-color:#FFFFFF}
+.step{border-radius:28px;padding:clamp(20px,3vw,30px);display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(16px,2.4vw,24px);align-items:stretch}@media (min-width:700px){.step{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.step>.shot:last-child{grid-column:1 / -1;min-height:180px}}@media (min-width:1080px){.step{grid-template-columns:repeat(3,minmax(0,1fr))}.step>.shot:last-child{grid-column:auto;min-height:200px}}
+.shot{position:relative;min-height:200px;border-radius:18px;border:1px dashed rgba(255,238,226,.32);display:flex;align-items:flex-end;padding:16px}
+.prompt{border-radius:18px;padding:22px 24px;font-size:17px;line-height:1.55;color:#FBE9DC;display:flex;flex-direction:column;gap:14px}
+.tag{display:inline-flex;align-items:center;height:26px;padding:1px 12px 0;border-radius:999px;border:1px solid rgba(255,238,226,.35);font:600 10px/1 Josefin Sans,Futura,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(251,233,220,.9)}
+
+
+
+.motionbtn{display:flex;align-items:center;gap:8px;height:30px;padding:0 13px 0 11px;border:1px solid rgba(255,238,226,.42);border-radius:999px;background:linear-gradient(135deg,rgba(255,236,224,.16),rgba(255,236,224,.04));backdrop-filter:blur(10px) saturate(140%);-webkit-backdrop-filter:blur(10px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28);color:#FBE9DC;cursor:pointer;font:600 10px/1 Josefin Sans,Futura,sans-serif;letter-spacing:.22em;text-transform:uppercase;transition:background-color .3s,transform .3s cubic-bezier(.22,1,.36,1)}
+.motionbtn span{display:block;text-box:trim-both cap alphabetic;line-height:1}
+.motionbtn svg{display:block;flex:none}
+.motionbtn:hover{background:linear-gradient(135deg,rgba(255,236,224,.26),rgba(255,236,224,.08));transform:translateY(-1px)}
+/* ---------- Lava / Cake theme ---------- */
+.blob{transition:background-color 1.6s cubic-bezier(.22,1,.36,1),opacity .9s ease}
+.cakebg{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;background:var(--cakebase);pointer-events:none}
+.cake .cakebg{opacity:1}
+.cblob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.75;will-change:transform}
+.cglow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 50% at 50% 50%,rgba(255,255,255,.95),rgba(255,255,255,0) 70%)}
+.cakecv{position:absolute;inset:0;width:100%;height:100%;display:block}
+:root{--cakebase:#EEFBFC}
+.cake-spr .cake .glass:not(.key){background:linear-gradient(135deg,rgba(255,255,255,.93),rgba(255,255,255,.8))}.cake-spr .cake .glass-dark{background:rgba(255,255,255,.9)}
+.cspb{position:absolute;left:0;right:0}.cspfg{position:absolute;inset:0;pointer-events:none;overflow:hidden}.cspf{position:absolute;left:0;top:0;border-radius:999px;will-change:transform}
+.csp{position:absolute;top:0;border-radius:999px;animation:cspFall var(--t) linear var(--d) infinite;animation-play-state:paused}
+.cspb.on .csp{animation-play-state:running}
+.still .csp{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.csp{animation-play-state:paused!important}}
+@keyframes cspFall{0%{transform:translate3d(0,-60px,0) rotate(var(--r0))}100%{transform:translate3d(var(--dx),var(--fy),0) rotate(var(--r1))}}
+.lava .cblob{animation-play-state:paused}
+.still .cblob{animation:none!important}
+.cake main{background-color:var(--cakebase)!important}
+.cake .blob{opacity:0!important}
+.tagline,.gatemsg,.backface span,.backface svg,.key,.motionbtn,.modetog{transition:color .6s ease,stroke .6s ease,background .6s ease,border-color .6s ease,box-shadow .6s ease}
+.cake .tagline{color:#55301C!important;opacity:.85}
+.cake .gatemsg{color:#55301C!important}
+.cake .logofill{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .86 0 0 0 0 .7 0 0 0 1.9 -1.3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23m)'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .14 0 0 0 0 .06 0 0 0 0 .02 0 0 0 2.6 -1.2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(120% 90% at 30% 15%,rgba(255,214,176,.28),rgba(255,214,176,0) 55%),linear-gradient(180deg,#80502f 0%,#653a22 40%,#4e2a17 75%,#3e2011 100%)!important;background-size:120px 120px,140px 140px,100% 100%,100% 100%!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.cake .lsheen{background:linear-gradient(90deg,rgba(255,240,224,0),rgba(255,240,224,.16) 50%,rgba(255,240,224,0))!important}
+.cake .lrim{stroke:rgba(255,222,190,.42)}
+.cake .tglow{stroke:rgba(255,226,196,.18)}
+.cake .tline{stroke:rgba(255,232,206,.55)}
+.cake div.tx-logo[aria-hidden]{filter:drop-shadow(0 7px 11px rgba(52,26,12,.17)) drop-shadow(0 1.5px 2px rgba(52,26,12,.17))!important}
+.cake .glass:not(.key){background:linear-gradient(135deg,rgba(255,255,255,.62),rgba(255,255,255,.28));box-shadow:inset 0 0 0 1.5px rgba(85,48,28,.28),inset 0 1px 0 rgba(255,255,255,1),inset 0 -1px 0 rgba(85,48,28,.06),0 26px 60px -28px rgba(74,42,24,.38),0 2px 8px rgba(74,42,24,.06)}
+.cake .glass::before{background:conic-gradient(from var(--ang),rgba(255,255,255,0) 0deg,rgba(255,255,255,0) 268deg,rgba(255,255,255,.7) 326deg,rgba(255,255,255,0) 360deg)}
+.cake .backface span{color:#55301C!important}
+.cake .backface svg{stroke:#55301C}
+.cake .key{color:#55301C;background:linear-gradient(160deg,rgba(255,255,255,.8),rgba(255,255,255,.42));--depth:inset 0 1px 0 rgba(255,255,255,1),inset 0 -2px 5px rgba(85,48,28,.06),0 6px 12px -6px rgba(74,42,24,.35),0 1px 2px rgba(74,42,24,.12)}
+.cake .key:not(.sel){box-shadow:inset 0 0 0 1px rgba(85,48,28,.28),var(--depth)}
+.cake .key:active,.cake .key.hit{color:#55301C;background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(240,246,255,.4))}
+.cake .key.sel{color:#55301C;background:linear-gradient(135deg,rgba(255,255,255,.7),rgba(255,255,255,.35))}
+.cake .motionbtn{color:#55301C;border-color:rgba(85,48,28,.28);background:linear-gradient(135deg,rgba(255,255,255,.7),rgba(255,255,255,.35));box-shadow:inset 0 1px 0 rgba(255,255,255,1),0 4px 12px -6px rgba(74,42,24,.3)}
+.cake .navlink{color:#55301C}
+.modetog{position:relative;display:flex;align-items:center;height:30px;padding:2px;border:1px solid rgba(255,238,226,.42);border-radius:999px;background:linear-gradient(135deg,rgba(255,236,224,.16),rgba(255,236,224,.04));backdrop-filter:blur(10px) saturate(140%);-webkit-backdrop-filter:blur(10px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28);color:#FBE9DC}
+.modetog button{position:relative;z-index:1;display:flex;align-items:center;gap:6px;height:24px;width:76px;justify-content:center;padding:0;border:0;background:none;color:inherit;cursor:pointer;font:600 10px/1 Josefin Sans,Futura,sans-serif;letter-spacing:.22em;text-transform:uppercase;opacity:.7;transition:opacity .3s,color .6s}
+.modetog button span{display:block;text-box:trim-both cap alphabetic;line-height:1;padding-left:.22em}
+.modetog button[aria-pressed="true"]{opacity:1}
+.modetog button:hover{opacity:1}
+.modethumb{position:absolute;top:2px;left:2px;width:76px;height:24px;border-radius:999px;background:rgba(255,236,224,.22);box-shadow:inset 0 0 0 1px rgba(255,238,226,.35);transition:transform .5s cubic-bezier(.22,1,.36,1),background .6s,box-shadow .6s}
+.cake .modethumb{transform:translateX(76px);background:#FFFFFF;box-shadow:0 2px 8px -2px rgba(74,42,24,.35),inset 0 0 0 1px rgba(85,48,28,.08)}
+.cake .modetog{color:#55301C;border-color:rgba(85,48,28,.28);background:linear-gradient(135deg,rgba(255,255,255,.6),rgba(255,255,255,.28));box-shadow:inset 0 1px 0 rgba(255,255,255,1)}
+.modetog.mini button{width:32px;gap:0}.modetog.mini button span{display:none}.modetog.mini button svg{width:13px;height:13px}.modetog.mini .modethumb{width:32px}.cake .modetog.mini .modethumb{transform:translateX(32px)}
+/* ---------- Cake: content pages ---------- */
+.cake{color:#55301C!important;background-color:var(--cakebase)!important}
+.cake .pagebg{background-color:var(--cakebase)!important}
+.cake [style*="251,233,220"],.cake [style*="251, 233, 220"],.cake [style*="#FBE9DC"],.cake [style*="#EADBC0"],.cake [style*="234, 219, 192"],.cake [style*="255, 238, 226"],.cake [style*="255,238,226"]{color:rgba(85,48,28,.82)!important}
+.cake [style*="background: rgba(251,233,220"],.cake [style*="background: rgba(251, 233, 220"]{background:rgba(85,48,28,.3)!important}
+.cake [style*="border-top: 1px solid rgba(255,238,226"],.cake [style*="border-top: 1px solid rgba(255, 238, 226"]{border-top-color:rgba(85,48,28,.2)!important}
+.cake.cake{color:#55301C!important}
+.cake a{color:#55301C}
+.cake .navlink,.cake .tlink,.cake .cta,.cake .arrowbtn,.cake .prompt,.cake .eyebrow{color:#55301C!important}
+.cake .navlink:hover,.cake .navlink[aria-current="page"]{color:#1f0f08!important}
+.cake .tlink{text-decoration-color:rgba(85,48,28,.4)}
+.cake .tlink:hover{text-decoration-color:#55301C}
+.cake .emboss{background:linear-gradient(180deg,#55301C,#7a4a2e);-webkit-background-clip:text;background-clip:text;filter:none}
+.cake .bar{background:rgba(85,48,28,.14)}
+.cake .bar span{background:#55301C}
+.cake .tag{border-color:rgba(85,48,28,.3);color:#55301C!important}
+.cake .visual,.cake .shot{border-color:rgba(85,48,28,.24)!important}
+
+.cake .glass-dark{background:rgba(255,255,255,.6);border-color:rgba(85,48,28,.14)}
+.cake .fact .art{background:linear-gradient(160deg,#4d2c1b,#2c180d);box-shadow:inset 0 0 0 1px rgba(85,48,28,.25)}
+.cake .logo,.cake .lmark{background-color:#55301C!important}
+
+.cake .logowrap{filter:drop-shadow(0 6px 9px rgba(52,26,12,.25)) drop-shadow(0 1px 2px rgba(52,26,12,.25))}.flatlogo .cake .logowrap{filter:drop-shadow(0 1px 1.5px rgba(52,26,12,.1))}
+:focus-visible{outline-color:currentColor}
+.fondant{display:none;pointer-events:none}
+.cake .fondant{display:block;will-change:transform;transform:translateZ(0)}
+.cake .lrim{stroke:transparent!important}
+.cake .tline{stroke:rgba(255,240,224,.35)!important}
+.cake .tglow{stroke:rgba(255,236,214,.12)!important}
+.crise{display:none}
+.cake .crise{display:inline;stroke-dasharray:140 272!important}
+/* CAKE_LOGO_TRACE off: the moving caramel outline on the Cake logo is hidden. Delete this rule to bring it back. */.cake .crise{display:none!important}
+.cake .tline,.cake .tglow{display:none}
+.sugar{display:none;position:absolute;inset:0;pointer-events:none;z-index:2}
+.cake .sugar{display:block;opacity:.85;transform:translateZ(0)}
+
+.still .sugar{animation:none!important;opacity:0}
+@media (prefers-reduced-motion:reduce){.sugar{animation:none!important;opacity:0}}
+@media (hover:none) and (pointer:coarse){.lava .pagebg > .bglay::after{content:'';position:absolute;left:0;right:0;top:0;height:260px;pointer-events:none;background:linear-gradient(to bottom,#6E2C1A 0,#6E2C1A 64px,rgba(110,44,26,.86) 100px,rgba(110,44,26,.55) 150px,rgba(110,44,26,.22) 205px,rgba(110,44,26,0) 260px)}}
+/* (Lava top fade no longer uses :has() — iOS Safari kept it painted after switching to Cake) */
+.cake .pagebg > .bglay::after{content:none!important;display:none!important}
+/* CAKE_TOP_FADE: same touch-screen top fade as Lava, in the Cake page colour (matches the browser bar), so the blobs/sprinkles melt into the top bar */
+@media (hover:none) and (pointer:coarse){.cake .cakebg::after{content:'';position:absolute;left:0;right:0;top:0;height:260px;pointer-events:none;background:linear-gradient(to bottom,#EEFBFC 0,#EEFBFC 64px,rgba(238,251,252,.86) 100px,rgba(238,251,252,.55) 150px,rgba(238,251,252,.22) 205px,rgba(238,251,252,0) 260px)}}
+.lava-move .lava .blob{visibility:visible!important;animation-play-state:running!important;will-change:transform!important}.lava-move .lava .bglay{background-image:none!important}
+/* HDR_CENTER_LANDING (landing only, all sizes): logo / toggle / About+Work each centred on their own row; the floating bar is unchanged.
+   Offsets are measured in hdrCenter() and applied with the 'translate' property so they stack on top of the existing landing transforms */
+.hcenter .hdr.hc-on{padding-bottom:calc(clamp(40px, 6vw, 88px) - clamp(40px, 6vw, 64px) + var(--cPad, 0px))!important}
+.hcenter .hdr.hc-on:not(.hdr-on) .logowrap{translate:var(--cLx,0px) 0px}
+.hcenter .hdr.hc-on:not(.hdr-on) .modetog.mini{translate:var(--cTx,0px) var(--cTy,0px)}
+.hcenter .hdr.hc-on:not(.hdr-on) .navrow{translate:var(--cNx,0px) var(--cNy,0px)}
+.hcenter .hdr .logowrap,.hcenter .hdr .navrow{transition:transform .6s cubic-bezier(.22,1,.36,1),translate .6s cubic-bezier(.22,1,.36,1)}
+.hcenter .hdr .modetog.mini{transition:transform .6s cubic-bezier(.22,1,.36,1),translate .6s cubic-bezier(.22,1,.36,1),color .6s,background .6s,border-color .6s,box-shadow .6s}
+.hcenter .hdr-measure .logowrap,.hcenter .hdr-measure .navrow,.hcenter .hdr-measure .modetog.mini{transition:none!important}
+
+/* THEME_SWAP_INSTANT: no transitions during the one-frame Lava/Cake swap */
+.tswap *,.tswap *::before,.tswap *::after{transition:none!important}
+</style>
+</helmet>
+<div class="{{rootClass}}" ref="{{rootRef}}" style="{{rootStyle}}; min-height: 100vh; background-color: #17100D; overflow: clip; font-family: 'Proxima Nova', Figtree, system-ui, sans-serif; color: #FBE9DC">
+<div class="pagebg" style="position: relative; min-height: 100vh; background-color: {{p.base}}; transition: background-color 1.6s cubic-bezier(.22,1,.36,1)">
+<div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; isolation: isolate; transform: translateZ(0)">
+<div class="blob" style="left: -18%; top: 4%; width: 66%; aspect-ratio: 1; background-color: {{p.hi}}; animation: driftA 10s ease-in-out infinite alternate"></div>
+<div class="blob" style="left: 50%; top: 18%; width: 60%; aspect-ratio: 1; background-color: {{p.deep}}; animation: driftB 12s ease-in-out infinite alternate"></div>
+<div class="blob" style="right: -22%; top: 40%; width: 50%; aspect-ratio: 1; background-color: {{p.mid}}; animation: driftC 8s ease-in-out infinite alternate"></div>
+<div class="blob" style="left: 6%; top: 66%; width: 40%; aspect-ratio: 1; background-color: {{p.glow}}; opacity: .7; animation: driftC 11s ease-in-out infinite alternate-reverse"></div>
+<div class="grainbg" aria-hidden="true"></div>
+<div class="cakebg">
+<div class="cblob" style="left: -12%; top: -6%; width: 62%; aspect-ratio: 1; background: #CFF3FF; animation: driftA 26s ease-in-out infinite alternate"></div>
+<div class="cblob" style="right: -16%; top: 30%; width: 56%; aspect-ratio: 1; background: #FFE6F3; animation: driftB 30s ease-in-out infinite alternate"></div>
+<div class="cblob" style="left: 18%; bottom: -10%; width: 58%; aspect-ratio: 1; background: #E4FFE9; animation: driftC 24s ease-in-out infinite alternate"></div>
+<canvas ref="{{cakeRef}}" class="cakecv"></canvas>
+</div>
+</div>
+<div style="position: relative; padding: clamp(40px, 6vw, 64px) 0 112px">
+<div class="{{hdrGlassCls}}" aria-hidden="true"></div>
+<header class="{{hdrCls}}" ref="{{hdrRef}}" style="padding-bottom: calc(clamp(40px, 6vw, 88px) - clamp(40px, 6vw, 64px)); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px">
+<div class="hdrleft" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 0">
+<a href="./" aria-label="Harjot. — back to start" onClick="{{onLogo}}" class="logowrap" style="position: relative; display: block; width: 240px; height: 86px; flex: none; text-decoration: none">
+<img class="hdrlogo hl-lava" alt="" aria-hidden="true" src="img/8088860c6ea5.webp" style="left: 4.86px; top: 23.43px; width: 203.71px; height: 66.0px"><img class="hdrlogo hl-cake" alt="" aria-hidden="true" src="img/ae048e159013.webp" style="left: -1.23px; top: 13.57px; width: 214.33px; height: 82.67px">
+<svg aria-hidden="true" width="300" height="86" style="position: absolute; inset: 0; overflow: visible"><defs><clipPath id="{{clipId}}"><text x="2" y="73" font-family="'Josefin Sans', Futura, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6">Harjot.</text></clipPath><linearGradient id="{{rimId}}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(255,248,232,.92)"></stop><stop offset=".55" stop-color="rgba(232,218,190,.45)"></stop><stop offset="1" stop-color="rgba(196,176,140,.28)"></stop></linearGradient></defs></svg>
+<span aria-hidden="true" class="logofill" style="position: absolute; inset: 0; overflow: hidden; clip-path: url(#{{clipId}}); background: linear-gradient(180deg, rgba(240,226,198,.62), rgba(216,198,164,.46)); backdrop-filter: blur(28px) saturate(105%) brightness(1.14); -webkit-backdrop-filter: blur(28px) saturate(105%) brightness(1.14)"><span class="lshine lsheen" style="position: absolute; top: -10%; bottom: -10%; font-size: 64px; left: -1em; width: .8em; transform: skewX(-18deg); background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,248,232,.45), rgba(255,255,255,0))"></span></span>
+<svg class="fondant" aria-hidden="true" width="300" height="86" style="position: absolute; inset: 0; overflow: visible"><defs><filter id="{{fondId}}" x="-10%" y="-25%" width="120%" height="150%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2" result="b"></feGaussianBlur><feDiffuseLighting in="b" surfaceScale="3.2" diffuseConstant="1.05" lighting-color="#ffffff" result="d"><feDistantLight azimuth="235" elevation="58"></feDistantLight></feDiffuseLighting><feComposite in="d" in2="SourceAlpha" operator="in" result="dIn"></feComposite><feBlend in="SourceGraphic" in2="dIn" mode="multiply" result="base"></feBlend><feSpecularLighting in="b" surfaceScale="3.2" specularConstant=".45" specularExponent="9" lighting-color="#fff3e6" result="s"><feDistantLight azimuth="235" elevation="50"></feDistantLight></feSpecularLighting><feComposite in="s" in2="SourceAlpha" operator="in" result="sIn"></feComposite><feComposite in="base" in2="sIn" operator="arithmetic" k1="0" k2="1" k3=".45" k4="0"></feComposite></filter><filter id="{{riseId}}" x="-10%" y="-30%" width="120%" height="160%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="1" result="b"></feGaussianBlur><feDiffuseLighting in="b" surfaceScale="3" diffuseConstant="1.1" lighting-color="#ffffff" result="d"><feDistantLight azimuth="235" elevation="55"></feDistantLight></feDiffuseLighting><feComposite in="d" in2="SourceAlpha" operator="in" result="dIn"></feComposite><feBlend in="SourceGraphic" in2="dIn" mode="multiply" result="base"></feBlend><feSpecularLighting in="b" surfaceScale="3" specularConstant=".4" specularExponent="10" lighting-color="#fff4e4" result="s"><feDistantLight azimuth="235" elevation="50"></feDistantLight></feSpecularLighting><feComposite in="s" in2="SourceAlpha" operator="in" result="sIn"></feComposite><feComposite in="base" in2="sIn" operator="arithmetic" k1="0" k2="1" k3=".5" k4="0"></feComposite></filter></defs><text x="2" y="73" font-family="'Josefin Sans', Futura, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="#6e3d22" filter="url(#{{fondId}})">Harjot.</text></svg>
+<div class="sugar" aria-hidden="true"><svg aria-hidden="true" width="300" height="86" style="position: absolute; inset: 0; overflow: visible"><defs><filter id="{{sgnId}}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="3"></feTurbulence><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 3.3 -1.6"></feColorMatrix></filter><filter id="{{sgbId}}" x="-5%" y="-20%" width="110%" height="140%"><feGaussianBlur stdDeviation="1.3"></feGaussianBlur></filter><mask id="{{sgmId}}" maskUnits="userSpaceOnUse" x="-40" y="-40" width="2400" height="260"><text x="2" font-family="'Josefin Sans', Futura, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" y="73" fill="#fff" filter="url(#{{sgbId}})"><tspan y="51.24" fill-opacity="0">H<animate attributeName="y" values="51.24;73;73" keyTimes="0;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate><animate attributeName="fill-opacity" values="0;.5;0;0" keyTimes="0;.05;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan y="51.24" fill-opacity="0">a<animate attributeName="y" values="51.24;73;73" keyTimes="0;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate><animate attributeName="fill-opacity" values="0;.5;0;0" keyTimes="0;.05;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan y="51.24" fill-opacity="0">r<animate attributeName="y" values="51.24;73;73" keyTimes="0;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate><animate attributeName="fill-opacity" values="0;.5;0;0" keyTimes="0;.05;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan y="51.24" fill-opacity="0">j<animate attributeName="y" values="51.24;73;73" keyTimes="0;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate><animate attributeName="fill-opacity" values="0;.5;0;0" keyTimes="0;.05;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan y="51.24" fill-opacity="0">o<animate attributeName="y" values="51.24;73;73" keyTimes="0;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate><animate attributeName="fill-opacity" values="0;.5;0;0" keyTimes="0;.05;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan y="51.24" fill-opacity="0">t<animate attributeName="y" values="51.24;73;73" keyTimes="0;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate><animate attributeName="fill-opacity" values="0;.5;0;0" keyTimes="0;.05;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan y="51.24" fill-opacity="0">.<animate attributeName="y" values="51.24;73;73" keyTimes="0;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate><animate attributeName="fill-opacity" values="0;.5;0;0" keyTimes="0;.05;.13;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan></text><text x="2" y="73" font-family="'Josefin Sans', Futura, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="#fff"><tspan fill-opacity="0">H<animate attributeName="fill-opacity" values="0;1;1;0;0" keyTimes="0;.03;.62;.74;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan fill-opacity="0">a<animate attributeName="fill-opacity" values="0;1;1;0;0" keyTimes="0;.03;.62;.74;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan fill-opacity="0">r<animate attributeName="fill-opacity" values="0;1;1;0;0" keyTimes="0;.03;.62;.74;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan fill-opacity="0">j<animate attributeName="fill-opacity" values="0;1;1;0;0" keyTimes="0;.03;.62;.74;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan fill-opacity="0">o<animate attributeName="fill-opacity" values="0;1;1;0;0" keyTimes="0;.03;.62;.74;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan fill-opacity="0">t<animate attributeName="fill-opacity" values="0;1;1;0;0" keyTimes="0;.03;.62;.74;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan fill-opacity="0">.<animate attributeName="fill-opacity" values="0;1;1;0;0" keyTimes="0;.03;.62;.74;1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan></text><text x="2" y="73" font-family="'Josefin Sans', Futura, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="#000" filter="url(#{{sgbId}})"><tspan y="73">H<animate attributeName="y" values="73;78.5;78.5;73;73" keyTimes="0;.14;.78;.8;1" calcMode="spline" keySplines=".3 0 .4 1;0 0 1 1;0 0 1 1;0 0 1 1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan y="73">a<animate attributeName="y" values="73;78.5;78.5;73;73" keyTimes="0;.14;.78;.8;1" calcMode="spline" keySplines=".3 0 .4 1;0 0 1 1;0 0 1 1;0 0 1 1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan y="73">r<animate attributeName="y" values="73;78.5;78.5;73;73" keyTimes="0;.14;.78;.8;1" calcMode="spline" keySplines=".3 0 .4 1;0 0 1 1;0 0 1 1;0 0 1 1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan y="73">j<animate attributeName="y" values="73;78.5;78.5;73;73" keyTimes="0;.14;.78;.8;1" calcMode="spline" keySplines=".3 0 .4 1;0 0 1 1;0 0 1 1;0 0 1 1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan y="73">o<animate attributeName="y" values="73;78.5;78.5;73;73" keyTimes="0;.14;.78;.8;1" calcMode="spline" keySplines=".3 0 .4 1;0 0 1 1;0 0 1 1;0 0 1 1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan y="73">t<animate attributeName="y" values="73;78.5;78.5;73;73" keyTimes="0;.14;.78;.8;1" calcMode="spline" keySplines=".3 0 .4 1;0 0 1 1;0 0 1 1;0 0 1 1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan><tspan y="73">.<animate attributeName="y" values="73;78.5;78.5;73;73" keyTimes="0;.14;.78;.8;1" calcMode="spline" keySplines=".3 0 .4 1;0 0 1 1;0 0 1 1;0 0 1 1" dur="7.0s" begin="0.00s" repeatCount="indefinite"></animate></tspan></text></mask></defs><g mask="url(#{{sgmId}})"><rect x="-20" y="-20" width="2400" height="260" filter="url(#{{sgnId}})"></rect><rect x="-20" y="-20" width="2400" height="260" fill="rgba(255,252,248,.4)"></rect></g></svg></div>
+<svg aria-hidden="true" width="300" height="86" style="position: absolute; inset: 0; overflow: visible"><defs><mask id="{{maskId}}" maskUnits="userSpaceOnUse" x="-40" y="-40" width="400" height="170"><rect x="-40" y="-40" width="400" height="170" fill="#fff"></rect><text x="2" y="73" font-family="'Josefin Sans', Futura, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="#000">Harjot.</text></mask></defs><g mask="url(#{{maskId}})"><text x="2" y="73" font-family="'Josefin Sans', Futura, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="none" stroke="url(#{{rimId}})" stroke-width="2" class="lrim">Harjot.</text><text class="ltrace tglow" x="2" y="73" font-family="'Josefin Sans', Futura, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="none" stroke="rgba(255,244,222,.28)" stroke-width="5.5" stroke-linecap="round" style="filter: blur(1.5px)">Harjot.</text><text class="ltrace tline" x="2" y="73" font-family="'Josefin Sans', Futura, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="none" stroke="rgba(255,250,238,.8)" stroke-width="2" stroke-linecap="round">Harjot.</text><text class="ltrace crise" x="2" y="73" font-family="'Josefin Sans', Futura, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="none" stroke="#c78b52" stroke-width="4.6" opacity=".88" stroke-linecap="round" stroke-linejoin="round" filter="url(#{{riseId}})">Harjot.</text></g></svg>
+</a>
+<div class="modetog mini" role="group" aria-label="Theme" style="margin-left: -4px; align-self: flex-start; margin-top: 43px">
+<span class="modethumb" aria-hidden="true"></span>
+<button type="button" aria-pressed="{{lavaPressed}}" onClick="{{onLava}}" aria-label="Lava" title="Lava"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5c.9 3.6 5.6 5.9 5.6 11a5.6 5.6 0 0 1-11.2 0c0-2.5 1.3-4.1 2.7-5.2.2 1.8 1 2.9 2.3 3.5-.6-3.4-.2-6.6.6-9.3z"></path></svg><span>Lava</span></button>
+<button type="button" aria-pressed="{{cakePressed}}" onClick="{{onCake}}" aria-label="Cake" title="Cake"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20.5h16"></path><path d="M5.5 20.5v-6.5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v6.5"></path><path d="M5.5 16.2c1.6 1.1 3.2 1.1 4.4 0s2.8-1.1 4.2 0 2.8 1.1 4.4 0"></path><path d="M12 12V8.6"></path><path d="M12 6.4c.8-.7.8-1.7 0-2.9-.8 1.2-.8 2.2 0 2.9z" fill="currentColor"></path></svg><span>Cake</span></button>
+</div>
+</div>
+<nav aria-label="Primary" class="navrow">
+<a class="navlink" href="about/">About</a>
+<a class="navlink" href="work/">Work</a>
+</nav>
+</header>
+<section class="pad" style="margin-top: 96px; display: flex; flex-direction: column; gap: 24px; max-width: calc(1100px - 2 * clamp(24px, 9vw, 140px) + 2 * var(--gut))">
+<h1 class="rise" style="margin: 0; font: 600 clamp(40px, calc(24px + 4.4vw), 96px)/1 Josefin Sans, Futura, sans-serif; letter-spacing: -0.015em; animation-delay: .08s">Bye, Squarespace.</h1>
+<p class="rise" style="margin: 0; font: 400 clamp(20px, 2vw, 26px)/1.45 Josefin Sans, Futura, sans-serif; text-wrap: pretty; max-width: 860px; animation-delay: .16s">This site was designed and built in conversation with Claude. I brought Figma frames, screenshots and references, then shaped it with creative, design and technical prompts. Here's how it came together.</p>
+</section>
+<section aria-label="How it came together" class="pad" style="margin-top: 80px; display: flex; flex-direction: column; gap: 24px">
+<article class="glass step reveal">
+<div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 12px"><span class="tag">Creative</span></div>
+<h2 style="margin: 0; font: 600 30px/1.1 Josefin Sans, Futura, sans-serif">Setting the mood</h2>
+<div class="shot"><span class="eyebrow" style="font-size: 11px">Input · [Mood board / Figma frames]</span></div>
+</div>
+<div class="glass-dark prompt"><span class="eyebrow" style="font-size: 11px">Prompt</span><p style="margin: 0">“Frosted glass, subtle animation, and moving gradients under gliding glass panels. Pretty dynamic.”</p></div>
+<div class="shot"><span class="eyebrow" style="font-size: 11px">Result · [First canvas]</span></div>
+</article>
+<article class="glass step reveal">
+<div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 12px"><span class="tag">Design</span></div>
+<h2 style="margin: 0; font: 600 30px/1.1 Josefin Sans, Futura, sans-serif">Finding the logo</h2>
+<div class="shot"><span class="eyebrow" style="font-size: 11px">Input · [Logo sketches]</span></div>
+</div>
+<div class="glass-dark prompt"><span class="eyebrow" style="font-size: 11px">Prompt</span><p style="margin: 0">“Can the frosted glass be slightly less transparent and with a gold tint? … Make the glowing sheen move to trace the letters in a subtle continuous animation.”</p></div>
+<div class="shot"><span class="eyebrow" style="font-size: 11px">Result · [Frosted logo]</span></div>
+</article>
+<article class="glass step reveal">
+<div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 12px"><span class="tag">Design</span></div>
+<h2 style="margin: 0; font: 600 30px/1.1 Josefin Sans, Futura, sans-serif">Choreographing the unlock</h2>
+<div class="shot"><span class="eyebrow" style="font-size: 11px">Input · [Flow screenshots]</span></div>
+</div>
+<div class="glass-dark prompt"><span class="eyebrow" style="font-size: 11px">Prompt</span><p style="margin: 0">“Once the user unlocks the correct password, the transition from this screen to screen 02 should be fluid: the logo should move to the top-left and the glass panel should transform into place.”</p></div>
+<div class="shot"><span class="eyebrow" style="font-size: 11px">Result · [Gate → Work transition]</span></div>
+</article>
+<article class="glass step reveal">
+<div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 12px"><span class="tag">Technical</span></div>
+<h2 style="margin: 0; font: 600 30px/1.1 Josefin Sans, Futura, sans-serif">Sweating the edges</h2>
+<div class="shot"><span class="eyebrow" style="font-size: 11px">Input · [Before screenshot]</span></div>
+</div>
+<div class="glass-dark prompt"><span class="eyebrow" style="font-size: 11px">Prompt</span><p style="margin: 0">“The edge of the panel is aliasing/pixelating as it moves, how can we reduce/remove that? Anti-aliasing?”</p></div>
+<div class="shot"><span class="eyebrow" style="font-size: 11px">Result · [After screenshot]</span></div>
+</article>
+<article class="glass step reveal">
+<div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 12px"><span class="tag">Creative</span></div>
+<h2 style="margin: 0; font: 600 30px/1.1 Josefin Sans, Futura, sans-serif">Adding a little delight</h2>
+<div class="shot"><span class="eyebrow" style="font-size: 11px">Input · [Reference images]</span></div>
+</div>
+<div class="glass-dark prompt"><span class="eyebrow" style="font-size: 11px">Prompt</span><p style="margin: 0">“I want to explore a more creative way to submit a passcode — I'm thinking like dials on a briefcase.”</p></div>
+<div class="shot"><span class="eyebrow" style="font-size: 11px">Result · [Glass keypad]</span></div>
+</article>
+</section>
+<section class="pad" style="margin-top: 88px">
+<div class="glass reveal" style="border-radius: 28px; padding: clamp(28px, 4vw, 48px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px">
+<h2 style="margin: 0; font: 600 clamp(28px, 3vw, 40px)/1.1 Josefin Sans, Futura, sans-serif">See where it landed.</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 14px"><a class="glass cta" href="work/">View the work<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a><a class="glass cta" href="about/">About me</a></div>
+</div>
+</section>
+<footer class="pad sitefoot" style="margin-top: 104px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font: 500 13px/1 Josefin Sans, Futura, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(251,233,220,.86)">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+
+<button type="button" class="motionbtn" onClick="{{onToggleMotion}}" aria-pressed="{{motionPressed}}">
+<sc-if value="{{isPaused}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"></path></svg></sc-if>
+<sc-if value="{{isPlaying}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4.5" width="4" height="15" rx="1"></rect><rect x="14" y="4.5" width="4" height="15" rx="1"></rect></svg></sc-if>
+<span>{{motionLabel}}</span>
+</button>
+</div>
+<p style="margin: 0; font: 400 15px/1.4 'Proxima Nova', Figtree, system-ui, sans-serif; letter-spacing: 0; text-transform: none; color: rgba(251,233,220,.88)">I vibe-coded this website, <a class="tlink" href="#">see how</a>.</p>
+</footer>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["lava","cake"],"default":"lava","section":"Look"},"mood":{"editor":"enum","options":["clay"],"default":"clay","section":"Look"},"motion":{"editor":"boolean","default":true,"section":"Motion"},"blur":{"editor":"range","min":8,"max":48,"step":2,"unit":"px","default":26,"section":"Look"},"$preview":{"width":1440,"height":2800}}'>
+// ── Background motion switch ─────────────────────────────
+// false = lava blobs and cake splotches hold still (better performance on phones).
+// Set to true to bring the drifting/wobbling backgrounds back exactly as before.
+const BG_MOTION = false;
+const LAVA_MOTION = true;          // Lava only: live drifting colour blobs (overrides BG_MOTION for Lava; Cake stays still). false = back to the still painted background
+const CAKE_CRUMBS = true;          // Cake only: cake-crumb sprites instead of paint splotches. false = back to the splotches
+// Film grain over the Lava background. Set to true to bring it back.
+const SHOW_GRAIN = false;
+// Only the floating header bar uses a live blur. Other glass panels use a tint that
+// mimics the saturation the blur used to add. Set to true to restore live blur everywhere.
+const GLASS_BLUR_ALL = false;
+// TEST SWITCH: true = no blur anywhere (incl. the floating header bar and the logo's frosted fill).
+// Set back to false to restore the frosted header and logo.
+const NO_FROST = false;
+// Header logo: true = flat images of the pass-gate logo (Lava + Cake). false = the live frosted/fondant logo.
+const FLAT_HEADER_LOGO = true;
+// HDR_CENTER_LANDING: the landing header is centred in three rows — logo, then the Lava/Cake toggle, then About / Work (all screen sizes).
+// The floating header is untouched. false = previous left/right landing layout
+const HDR_CENTER_LANDING = true;
+const HDR_CENTER_GAP = 30;     // px between rows on larger screens
+const HDR_CENTER_GAP_S = 22;   // px between rows on phones (≤640px)
+// HDR_CENTER_TOG_ROW: true = two rows (logo, then toggle + About/Work together); false = three rows (logo / toggle / About+Work)
+const HDR_CENTER_TOG_ROW = true;
+const HDR_CENTER_MAX_W = 640;   // centred landing header only up to this viewport width (phones); wider screens keep the original left/right header
+const HDR_CENTER_TOG_GAP = 36;   // px between the toggle and About on the shared row (phones use 2/3 of this)
+const glassTint = (hex) => { try { let r = parseInt(hex.slice(1, 3), 16) / 255, g = parseInt(hex.slice(3, 5), 16) / 255, b = parseInt(hex.slice(5, 7), 16) / 255; const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2; let h = 0, s = 0; if (mx !== mn) { const d = mx - mn; s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h /= 6; } s = Math.min(1, s * 1.8); const q = l < 0.5 ? l * (1 + s) : l + s - l * s, p2 = 2 * l - q; const f = (t) => { t = (t + 1) % 1; return t < 1 / 6 ? p2 + (q - p2) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? p2 + (q - p2) * (2 / 3 - t) * 6 : p2; }; return 'rgba(' + Math.round(f(h + 1 / 3) * 255) + ',' + Math.round(f(h) * 255) + ',' + Math.round(f(h - 1 / 3) * 255) + ',.12)'; } catch (e) { return 'transparent'; } };
+// ── Cake splotches ──────────────────────────────────────
+// false = use the pre-made splotch images below (light, nothing generated at load).
+// true  = bring back the original code-generated splotch canvas.
+const CAKE_GENERATED = false;
+// ── Cake falling sprinkles (switch: window.CAKE_SPRINKLES in the <head> script) ──
+const CAKE_SPRINKLES = window.CAKE_SPRINKLES === true;
+const CSP_COL = ['#F28C38', '#F6C445', '#7BC67E', '#F49AC1', '#6EC1E4', '#E84B3C', '#B9A6E0', '#FFFFFF'];
+const CSP_BAND = 900;
+// 'rosette' = piped buttercream rosettes, 'sprinkle' = sprinkles
+const CSP_SHAPE = 'sprinkle';
+const CSP_ROSETTES = ['data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Cdefs%3E%3CradialGradient id=%22g%22 cx=%22.35%22 cy=%22.3%22 r=%22.8%22%3E%3Cstop offset=%220%22 stop-color=%22%23fff%22 stop-opacity=%22.35%22/%3E%3Cstop offset=%22.6%22 stop-color=%22%23fff%22 stop-opacity=%220%22/%3E%3Cstop offset=%221%22 stop-color=%22%23000%22 stop-opacity=%22.12%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2220%22 cy=%2221.3%22 r=%2216.5%22 fill=%22%23D58BAA%22 opacity=%22.35%22/%3E%3Cpath d=%22M34.6 20 Q36.7 26.0 31.1 29.3 Q28.9 35.4 22.5 34.3 Q16.9 37.5 12.7 32.6 Q6.3 31.4 6.2 24.9 Q2.2 20.0 6.2 15.0 Q6.3 8.5 12.7 7.3 Q16.9 2.4 22.5 5.6 Q28.9 4.5 31.1 10.6 Q36.7 13.9 34.6 20.0Z%22 fill=%22%23F7B6CF%22 stroke=%22%23D58BAA%22 stroke-width=%22.9%22/%3E%3Cpath d=%22M19.3 20.7 L19.0 21.7 L18.9 22.7 L19.1 23.8 L19.5 24.8 L20.3 25.8 L21.3 26.7 L22.5 27.4 L23.9 27.8 L25.4 28.1 L27.0 28.1 L28.6 27.8 L30.2 27.4 L31.8 26.7 L33.3 26.0 L34.6 25.3%22 fill=%22none%22 stroke=%22%23D58BAA%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M18.2 22.0 L18.4 23.1 L18.8 24.1 L19.6 25.1 L20.6 26.0 L21.8 26.7 L23.2 27.1 L24.7 27.4 L26.3 27.4 L27.9 27.1%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.0 20.1 L18.1 20.6 L17.4 21.4 L16.8 22.3 L16.5 23.4 L16.4 24.6 L16.6 25.9 L17.1 27.2 L17.9 28.5 L18.9 29.7 L20.1 30.7 L21.5 31.6 L23.1 32.2 L24.7 32.8 L26.3 33.1 L27.8 33.5%22 fill=%22none%22 stroke=%22%23D58BAA%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M16.7 20.7 L16.1 21.6 L15.8 22.7 L15.7 23.9 L15.9 25.2 L16.4 26.5 L17.2 27.8 L18.2 29.0 L19.4 30.0 L20.8 30.9%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.1 19.5 L18.1 19.3 L17.1 19.4 L16.0 19.7 L15.1 20.4 L14.2 21.3 L13.6 22.4 L13.1 23.7 L12.9 25.2 L12.9 26.7 L13.2 28.3 L13.7 29.9 L14.4 31.4 L15.4 32.8 L16.4 34.1 L17.2 35.3%22 fill=%22none%22 stroke=%22%23D58BAA%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M16.4 18.7 L15.3 19.0 L14.4 19.7 L13.5 20.6 L12.9 21.7 L12.4 23.0 L12.2 24.5 L12.2 26.0 L12.5 27.6 L13.0 29.2%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.6 19.0 L19.0 18.2 L18.1 17.6 L17.1 17.3 L15.9 17.1 L14.7 17.3 L13.5 17.7 L12.3 18.4 L11.2 19.4 L10.2 20.6 L9.4 22.0 L8.8 23.5 L8.4 25.2 L8.2 26.8 L8.1 28.5 L8.0 30.0%22 fill=%22none%22 stroke=%22%23D58BAA%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M17.4 16.9 L16.4 16.6 L15.2 16.4 L14.0 16.6 L12.8 17.0 L11.6 17.7 L10.5 18.7 L9.5 19.9 L8.7 21.3 L8.1 22.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.3 19.0 L20.3 18.0 L20.0 17.0 L19.5 16.1 L18.7 15.2 L17.7 14.6 L16.4 14.1 L15.1 13.9 L13.6 13.9 L12.1 14.2 L10.6 14.7 L9.1 15.5 L7.8 16.5 L6.5 17.7 L5.4 18.9 L4.4 20.0%22 fill=%22none%22 stroke=%22%23D58BAA%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M19.3 16.3 L18.8 15.4 L18.0 14.5 L17.0 13.9 L15.7 13.4 L14.4 13.2 L12.9 13.2 L11.4 13.5 L9.9 14.0 L8.4 14.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.8 19.4 L21.5 18.7 L21.9 17.8 L22.1 16.7 L22.0 15.5 L21.7 14.3 L21.0 13.2 L20.1 12.1 L19.0 11.2 L17.6 10.5 L16.1 9.9 L14.5 9.6 L12.8 9.5 L11.1 9.5 L9.5 9.8 L8.0 9.9%22 fill=%22none%22 stroke=%22%23D58BAA%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M21.2 17.1 L21.4 16.0 L21.3 14.8 L21.0 13.6 L20.3 12.5 L19.4 11.4 L18.3 10.5 L16.9 9.8 L15.4 9.2 L13.8 8.9%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.9 20.1 L21.9 20.0 L22.9 19.5 L23.7 18.8 L24.4 17.9 L24.9 16.8 L25.1 15.5 L25.1 14.1 L24.8 12.6 L24.3 11.2 L23.5 9.8 L22.4 8.5 L21.2 7.3 L19.9 6.3 L18.5 5.4 L17.2 4.6%22 fill=%22none%22 stroke=%22%23D58BAA%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M22.2 18.8 L23.0 18.1 L23.7 17.2 L24.2 16.1 L24.4 14.8 L24.4 13.4 L24.1 11.9 L23.6 10.5 L22.8 9.1 L21.7 7.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.6 20.7 L21.5 21.2 L22.5 21.5 L23.6 21.5 L24.7 21.2 L25.8 20.7 L26.8 19.8 L27.7 18.8 L28.4 17.5 L28.9 16.0 L29.2 14.4 L29.2 12.8 L29.0 11.1 L28.7 9.5 L28.2 7.9 L27.8 6.4%22 fill=%22none%22 stroke=%22%23D58BAA%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M21.8 20.8 L22.9 20.8 L24.0 20.5 L25.1 20.0 L26.1 19.1 L27.0 18.1 L27.7 16.8 L28.2 15.3 L28.5 13.7 L28.5 12.1%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.0 21.0 L20.3 21.9 L20.9 22.8 L21.7 23.5 L22.8 24.0 L24.0 24.2 L25.3 24.3 L26.6 24.0 L28.0 23.5 L29.3 22.7 L30.6 21.7 L31.7 20.4 L32.6 19.0 L33.4 17.5 L34.0 16.0 L34.6 14.6%22 fill=%22none%22 stroke=%22%23D58BAA%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M20.2 22.1 L21.0 22.8 L22.1 23.3 L23.3 23.5 L24.6 23.6 L25.9 23.3 L27.3 22.8 L28.6 22.0 L29.9 21.0 L31.0 19.7%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%2216%22 fill=%22url%28%23g%29%22/%3E%3C/svg%3E', 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Cdefs%3E%3CradialGradient id=%22g%22 cx=%22.35%22 cy=%22.3%22 r=%22.8%22%3E%3Cstop offset=%220%22 stop-color=%22%23fff%22 stop-opacity=%22.35%22/%3E%3Cstop offset=%22.6%22 stop-color=%22%23fff%22 stop-opacity=%220%22/%3E%3Cstop offset=%221%22 stop-color=%22%23000%22 stop-opacity=%22.12%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2220%22 cy=%2221.3%22 r=%2216.5%22 fill=%22%2386BE9D%22 opacity=%22.35%22/%3E%3Cpath d=%22M34.6 20 Q36.7 26.0 31.1 29.3 Q28.9 35.4 22.5 34.3 Q16.9 37.5 12.7 32.6 Q6.3 31.4 6.2 24.9 Q2.2 20.0 6.2 15.0 Q6.3 8.5 12.7 7.3 Q16.9 2.4 22.5 5.6 Q28.9 4.5 31.1 10.6 Q36.7 13.9 34.6 20.0Z%22 fill=%22%23BFE6CF%22 stroke=%22%2386BE9D%22 stroke-width=%22.9%22/%3E%3Cpath d=%22M19.3 20.7 L19.0 21.7 L18.9 22.7 L19.1 23.8 L19.5 24.8 L20.3 25.8 L21.3 26.7 L22.5 27.4 L23.9 27.8 L25.4 28.1 L27.0 28.1 L28.6 27.8 L30.2 27.4 L31.8 26.7 L33.3 26.0 L34.6 25.3%22 fill=%22none%22 stroke=%22%2386BE9D%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M18.2 22.0 L18.4 23.1 L18.8 24.1 L19.6 25.1 L20.6 26.0 L21.8 26.7 L23.2 27.1 L24.7 27.4 L26.3 27.4 L27.9 27.1%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.0 20.1 L18.1 20.6 L17.4 21.4 L16.8 22.3 L16.5 23.4 L16.4 24.6 L16.6 25.9 L17.1 27.2 L17.9 28.5 L18.9 29.7 L20.1 30.7 L21.5 31.6 L23.1 32.2 L24.7 32.8 L26.3 33.1 L27.8 33.5%22 fill=%22none%22 stroke=%22%2386BE9D%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M16.7 20.7 L16.1 21.6 L15.8 22.7 L15.7 23.9 L15.9 25.2 L16.4 26.5 L17.2 27.8 L18.2 29.0 L19.4 30.0 L20.8 30.9%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.1 19.5 L18.1 19.3 L17.1 19.4 L16.0 19.7 L15.1 20.4 L14.2 21.3 L13.6 22.4 L13.1 23.7 L12.9 25.2 L12.9 26.7 L13.2 28.3 L13.7 29.9 L14.4 31.4 L15.4 32.8 L16.4 34.1 L17.2 35.3%22 fill=%22none%22 stroke=%22%2386BE9D%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M16.4 18.7 L15.3 19.0 L14.4 19.7 L13.5 20.6 L12.9 21.7 L12.4 23.0 L12.2 24.5 L12.2 26.0 L12.5 27.6 L13.0 29.2%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.6 19.0 L19.0 18.2 L18.1 17.6 L17.1 17.3 L15.9 17.1 L14.7 17.3 L13.5 17.7 L12.3 18.4 L11.2 19.4 L10.2 20.6 L9.4 22.0 L8.8 23.5 L8.4 25.2 L8.2 26.8 L8.1 28.5 L8.0 30.0%22 fill=%22none%22 stroke=%22%2386BE9D%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M17.4 16.9 L16.4 16.6 L15.2 16.4 L14.0 16.6 L12.8 17.0 L11.6 17.7 L10.5 18.7 L9.5 19.9 L8.7 21.3 L8.1 22.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.3 19.0 L20.3 18.0 L20.0 17.0 L19.5 16.1 L18.7 15.2 L17.7 14.6 L16.4 14.1 L15.1 13.9 L13.6 13.9 L12.1 14.2 L10.6 14.7 L9.1 15.5 L7.8 16.5 L6.5 17.7 L5.4 18.9 L4.4 20.0%22 fill=%22none%22 stroke=%22%2386BE9D%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M19.3 16.3 L18.8 15.4 L18.0 14.5 L17.0 13.9 L15.7 13.4 L14.4 13.2 L12.9 13.2 L11.4 13.5 L9.9 14.0 L8.4 14.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.8 19.4 L21.5 18.7 L21.9 17.8 L22.1 16.7 L22.0 15.5 L21.7 14.3 L21.0 13.2 L20.1 12.1 L19.0 11.2 L17.6 10.5 L16.1 9.9 L14.5 9.6 L12.8 9.5 L11.1 9.5 L9.5 9.8 L8.0 9.9%22 fill=%22none%22 stroke=%22%2386BE9D%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M21.2 17.1 L21.4 16.0 L21.3 14.8 L21.0 13.6 L20.3 12.5 L19.4 11.4 L18.3 10.5 L16.9 9.8 L15.4 9.2 L13.8 8.9%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.9 20.1 L21.9 20.0 L22.9 19.5 L23.7 18.8 L24.4 17.9 L24.9 16.8 L25.1 15.5 L25.1 14.1 L24.8 12.6 L24.3 11.2 L23.5 9.8 L22.4 8.5 L21.2 7.3 L19.9 6.3 L18.5 5.4 L17.2 4.6%22 fill=%22none%22 stroke=%22%2386BE9D%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M22.2 18.8 L23.0 18.1 L23.7 17.2 L24.2 16.1 L24.4 14.8 L24.4 13.4 L24.1 11.9 L23.6 10.5 L22.8 9.1 L21.7 7.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.6 20.7 L21.5 21.2 L22.5 21.5 L23.6 21.5 L24.7 21.2 L25.8 20.7 L26.8 19.8 L27.7 18.8 L28.4 17.5 L28.9 16.0 L29.2 14.4 L29.2 12.8 L29.0 11.1 L28.7 9.5 L28.2 7.9 L27.8 6.4%22 fill=%22none%22 stroke=%22%2386BE9D%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M21.8 20.8 L22.9 20.8 L24.0 20.5 L25.1 20.0 L26.1 19.1 L27.0 18.1 L27.7 16.8 L28.2 15.3 L28.5 13.7 L28.5 12.1%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.0 21.0 L20.3 21.9 L20.9 22.8 L21.7 23.5 L22.8 24.0 L24.0 24.2 L25.3 24.3 L26.6 24.0 L28.0 23.5 L29.3 22.7 L30.6 21.7 L31.7 20.4 L32.6 19.0 L33.4 17.5 L34.0 16.0 L34.6 14.6%22 fill=%22none%22 stroke=%22%2386BE9D%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M20.2 22.1 L21.0 22.8 L22.1 23.3 L23.3 23.5 L24.6 23.6 L25.9 23.3 L27.3 22.8 L28.6 22.0 L29.9 21.0 L31.0 19.7%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%2216%22 fill=%22url%28%23g%29%22/%3E%3C/svg%3E', 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Cdefs%3E%3CradialGradient id=%22g%22 cx=%22.35%22 cy=%22.3%22 r=%22.8%22%3E%3Cstop offset=%220%22 stop-color=%22%23fff%22 stop-opacity=%22.35%22/%3E%3Cstop offset=%22.6%22 stop-color=%22%23fff%22 stop-opacity=%220%22/%3E%3Cstop offset=%221%22 stop-color=%22%23000%22 stop-opacity=%22.12%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2220%22 cy=%2221.3%22 r=%2216.5%22 fill=%22%23D5AF55%22 opacity=%22.35%22/%3E%3Cpath d=%22M34.6 20 Q36.7 26.0 31.1 29.3 Q28.9 35.4 22.5 34.3 Q16.9 37.5 12.7 32.6 Q6.3 31.4 6.2 24.9 Q2.2 20.0 6.2 15.0 Q6.3 8.5 12.7 7.3 Q16.9 2.4 22.5 5.6 Q28.9 4.5 31.1 10.6 Q36.7 13.9 34.6 20.0Z%22 fill=%22%23FBE3A0%22 stroke=%22%23D5AF55%22 stroke-width=%22.9%22/%3E%3Cpath d=%22M19.3 20.7 L19.0 21.7 L18.9 22.7 L19.1 23.8 L19.5 24.8 L20.3 25.8 L21.3 26.7 L22.5 27.4 L23.9 27.8 L25.4 28.1 L27.0 28.1 L28.6 27.8 L30.2 27.4 L31.8 26.7 L33.3 26.0 L34.6 25.3%22 fill=%22none%22 stroke=%22%23D5AF55%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M18.2 22.0 L18.4 23.1 L18.8 24.1 L19.6 25.1 L20.6 26.0 L21.8 26.7 L23.2 27.1 L24.7 27.4 L26.3 27.4 L27.9 27.1%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.0 20.1 L18.1 20.6 L17.4 21.4 L16.8 22.3 L16.5 23.4 L16.4 24.6 L16.6 25.9 L17.1 27.2 L17.9 28.5 L18.9 29.7 L20.1 30.7 L21.5 31.6 L23.1 32.2 L24.7 32.8 L26.3 33.1 L27.8 33.5%22 fill=%22none%22 stroke=%22%23D5AF55%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M16.7 20.7 L16.1 21.6 L15.8 22.7 L15.7 23.9 L15.9 25.2 L16.4 26.5 L17.2 27.8 L18.2 29.0 L19.4 30.0 L20.8 30.9%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.1 19.5 L18.1 19.3 L17.1 19.4 L16.0 19.7 L15.1 20.4 L14.2 21.3 L13.6 22.4 L13.1 23.7 L12.9 25.2 L12.9 26.7 L13.2 28.3 L13.7 29.9 L14.4 31.4 L15.4 32.8 L16.4 34.1 L17.2 35.3%22 fill=%22none%22 stroke=%22%23D5AF55%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M16.4 18.7 L15.3 19.0 L14.4 19.7 L13.5 20.6 L12.9 21.7 L12.4 23.0 L12.2 24.5 L12.2 26.0 L12.5 27.6 L13.0 29.2%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.6 19.0 L19.0 18.2 L18.1 17.6 L17.1 17.3 L15.9 17.1 L14.7 17.3 L13.5 17.7 L12.3 18.4 L11.2 19.4 L10.2 20.6 L9.4 22.0 L8.8 23.5 L8.4 25.2 L8.2 26.8 L8.1 28.5 L8.0 30.0%22 fill=%22none%22 stroke=%22%23D5AF55%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M17.4 16.9 L16.4 16.6 L15.2 16.4 L14.0 16.6 L12.8 17.0 L11.6 17.7 L10.5 18.7 L9.5 19.9 L8.7 21.3 L8.1 22.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.3 19.0 L20.3 18.0 L20.0 17.0 L19.5 16.1 L18.7 15.2 L17.7 14.6 L16.4 14.1 L15.1 13.9 L13.6 13.9 L12.1 14.2 L10.6 14.7 L9.1 15.5 L7.8 16.5 L6.5 17.7 L5.4 18.9 L4.4 20.0%22 fill=%22none%22 stroke=%22%23D5AF55%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M19.3 16.3 L18.8 15.4 L18.0 14.5 L17.0 13.9 L15.7 13.4 L14.4 13.2 L12.9 13.2 L11.4 13.5 L9.9 14.0 L8.4 14.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.8 19.4 L21.5 18.7 L21.9 17.8 L22.1 16.7 L22.0 15.5 L21.7 14.3 L21.0 13.2 L20.1 12.1 L19.0 11.2 L17.6 10.5 L16.1 9.9 L14.5 9.6 L12.8 9.5 L11.1 9.5 L9.5 9.8 L8.0 9.9%22 fill=%22none%22 stroke=%22%23D5AF55%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M21.2 17.1 L21.4 16.0 L21.3 14.8 L21.0 13.6 L20.3 12.5 L19.4 11.4 L18.3 10.5 L16.9 9.8 L15.4 9.2 L13.8 8.9%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.9 20.1 L21.9 20.0 L22.9 19.5 L23.7 18.8 L24.4 17.9 L24.9 16.8 L25.1 15.5 L25.1 14.1 L24.8 12.6 L24.3 11.2 L23.5 9.8 L22.4 8.5 L21.2 7.3 L19.9 6.3 L18.5 5.4 L17.2 4.6%22 fill=%22none%22 stroke=%22%23D5AF55%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M22.2 18.8 L23.0 18.1 L23.7 17.2 L24.2 16.1 L24.4 14.8 L24.4 13.4 L24.1 11.9 L23.6 10.5 L22.8 9.1 L21.7 7.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.6 20.7 L21.5 21.2 L22.5 21.5 L23.6 21.5 L24.7 21.2 L25.8 20.7 L26.8 19.8 L27.7 18.8 L28.4 17.5 L28.9 16.0 L29.2 14.4 L29.2 12.8 L29.0 11.1 L28.7 9.5 L28.2 7.9 L27.8 6.4%22 fill=%22none%22 stroke=%22%23D5AF55%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M21.8 20.8 L22.9 20.8 L24.0 20.5 L25.1 20.0 L26.1 19.1 L27.0 18.1 L27.7 16.8 L28.2 15.3 L28.5 13.7 L28.5 12.1%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.0 21.0 L20.3 21.9 L20.9 22.8 L21.7 23.5 L22.8 24.0 L24.0 24.2 L25.3 24.3 L26.6 24.0 L28.0 23.5 L29.3 22.7 L30.6 21.7 L31.7 20.4 L32.6 19.0 L33.4 17.5 L34.0 16.0 L34.6 14.6%22 fill=%22none%22 stroke=%22%23D5AF55%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M20.2 22.1 L21.0 22.8 L22.1 23.3 L23.3 23.5 L24.6 23.6 L25.9 23.3 L27.3 22.8 L28.6 22.0 L29.9 21.0 L31.0 19.7%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%2216%22 fill=%22url%28%23g%29%22/%3E%3C/svg%3E', 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Cdefs%3E%3CradialGradient id=%22g%22 cx=%22.35%22 cy=%22.3%22 r=%22.8%22%3E%3Cstop offset=%220%22 stop-color=%22%23fff%22 stop-opacity=%22.35%22/%3E%3Cstop offset=%22.6%22 stop-color=%22%23fff%22 stop-opacity=%220%22/%3E%3Cstop offset=%221%22 stop-color=%22%23000%22 stop-opacity=%22.12%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2220%22 cy=%2221.3%22 r=%2216.5%22 fill=%22%23A28CCB%22 opacity=%22.35%22/%3E%3Cpath d=%22M34.6 20 Q36.7 26.0 31.1 29.3 Q28.9 35.4 22.5 34.3 Q16.9 37.5 12.7 32.6 Q6.3 31.4 6.2 24.9 Q2.2 20.0 6.2 15.0 Q6.3 8.5 12.7 7.3 Q16.9 2.4 22.5 5.6 Q28.9 4.5 31.1 10.6 Q36.7 13.9 34.6 20.0Z%22 fill=%22%23D5C6EE%22 stroke=%22%23A28CCB%22 stroke-width=%22.9%22/%3E%3Cpath d=%22M19.3 20.7 L19.0 21.7 L18.9 22.7 L19.1 23.8 L19.5 24.8 L20.3 25.8 L21.3 26.7 L22.5 27.4 L23.9 27.8 L25.4 28.1 L27.0 28.1 L28.6 27.8 L30.2 27.4 L31.8 26.7 L33.3 26.0 L34.6 25.3%22 fill=%22none%22 stroke=%22%23A28CCB%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M18.2 22.0 L18.4 23.1 L18.8 24.1 L19.6 25.1 L20.6 26.0 L21.8 26.7 L23.2 27.1 L24.7 27.4 L26.3 27.4 L27.9 27.1%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.0 20.1 L18.1 20.6 L17.4 21.4 L16.8 22.3 L16.5 23.4 L16.4 24.6 L16.6 25.9 L17.1 27.2 L17.9 28.5 L18.9 29.7 L20.1 30.7 L21.5 31.6 L23.1 32.2 L24.7 32.8 L26.3 33.1 L27.8 33.5%22 fill=%22none%22 stroke=%22%23A28CCB%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M16.7 20.7 L16.1 21.6 L15.8 22.7 L15.7 23.9 L15.9 25.2 L16.4 26.5 L17.2 27.8 L18.2 29.0 L19.4 30.0 L20.8 30.9%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.1 19.5 L18.1 19.3 L17.1 19.4 L16.0 19.7 L15.1 20.4 L14.2 21.3 L13.6 22.4 L13.1 23.7 L12.9 25.2 L12.9 26.7 L13.2 28.3 L13.7 29.9 L14.4 31.4 L15.4 32.8 L16.4 34.1 L17.2 35.3%22 fill=%22none%22 stroke=%22%23A28CCB%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M16.4 18.7 L15.3 19.0 L14.4 19.7 L13.5 20.6 L12.9 21.7 L12.4 23.0 L12.2 24.5 L12.2 26.0 L12.5 27.6 L13.0 29.2%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.6 19.0 L19.0 18.2 L18.1 17.6 L17.1 17.3 L15.9 17.1 L14.7 17.3 L13.5 17.7 L12.3 18.4 L11.2 19.4 L10.2 20.6 L9.4 22.0 L8.8 23.5 L8.4 25.2 L8.2 26.8 L8.1 28.5 L8.0 30.0%22 fill=%22none%22 stroke=%22%23A28CCB%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M17.4 16.9 L16.4 16.6 L15.2 16.4 L14.0 16.6 L12.8 17.0 L11.6 17.7 L10.5 18.7 L9.5 19.9 L8.7 21.3 L8.1 22.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.3 19.0 L20.3 18.0 L20.0 17.0 L19.5 16.1 L18.7 15.2 L17.7 14.6 L16.4 14.1 L15.1 13.9 L13.6 13.9 L12.1 14.2 L10.6 14.7 L9.1 15.5 L7.8 16.5 L6.5 17.7 L5.4 18.9 L4.4 20.0%22 fill=%22none%22 stroke=%22%23A28CCB%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M19.3 16.3 L18.8 15.4 L18.0 14.5 L17.0 13.9 L15.7 13.4 L14.4 13.2 L12.9 13.2 L11.4 13.5 L9.9 14.0 L8.4 14.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.8 19.4 L21.5 18.7 L21.9 17.8 L22.1 16.7 L22.0 15.5 L21.7 14.3 L21.0 13.2 L20.1 12.1 L19.0 11.2 L17.6 10.5 L16.1 9.9 L14.5 9.6 L12.8 9.5 L11.1 9.5 L9.5 9.8 L8.0 9.9%22 fill=%22none%22 stroke=%22%23A28CCB%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M21.2 17.1 L21.4 16.0 L21.3 14.8 L21.0 13.6 L20.3 12.5 L19.4 11.4 L18.3 10.5 L16.9 9.8 L15.4 9.2 L13.8 8.9%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.9 20.1 L21.9 20.0 L22.9 19.5 L23.7 18.8 L24.4 17.9 L24.9 16.8 L25.1 15.5 L25.1 14.1 L24.8 12.6 L24.3 11.2 L23.5 9.8 L22.4 8.5 L21.2 7.3 L19.9 6.3 L18.5 5.4 L17.2 4.6%22 fill=%22none%22 stroke=%22%23A28CCB%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M22.2 18.8 L23.0 18.1 L23.7 17.2 L24.2 16.1 L24.4 14.8 L24.4 13.4 L24.1 11.9 L23.6 10.5 L22.8 9.1 L21.7 7.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.6 20.7 L21.5 21.2 L22.5 21.5 L23.6 21.5 L24.7 21.2 L25.8 20.7 L26.8 19.8 L27.7 18.8 L28.4 17.5 L28.9 16.0 L29.2 14.4 L29.2 12.8 L29.0 11.1 L28.7 9.5 L28.2 7.9 L27.8 6.4%22 fill=%22none%22 stroke=%22%23A28CCB%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M21.8 20.8 L22.9 20.8 L24.0 20.5 L25.1 20.0 L26.1 19.1 L27.0 18.1 L27.7 16.8 L28.2 15.3 L28.5 13.7 L28.5 12.1%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.0 21.0 L20.3 21.9 L20.9 22.8 L21.7 23.5 L22.8 24.0 L24.0 24.2 L25.3 24.3 L26.6 24.0 L28.0 23.5 L29.3 22.7 L30.6 21.7 L31.7 20.4 L32.6 19.0 L33.4 17.5 L34.0 16.0 L34.6 14.6%22 fill=%22none%22 stroke=%22%23A28CCB%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M20.2 22.1 L21.0 22.8 L22.1 23.3 L23.3 23.5 L24.6 23.6 L25.9 23.3 L27.3 22.8 L28.6 22.0 L29.9 21.0 L31.0 19.7%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%2216%22 fill=%22url%28%23g%29%22/%3E%3C/svg%3E', 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Cdefs%3E%3CradialGradient id=%22g%22 cx=%22.35%22 cy=%22.3%22 r=%22.8%22%3E%3Cstop offset=%220%22 stop-color=%22%23fff%22 stop-opacity=%22.35%22/%3E%3Cstop offset=%22.6%22 stop-color=%22%23fff%22 stop-opacity=%220%22/%3E%3Cstop offset=%221%22 stop-color=%22%23000%22 stop-opacity=%22.12%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2220%22 cy=%2221.3%22 r=%2216.5%22 fill=%22%23D9CAB6%22 opacity=%22.35%22/%3E%3Cpath d=%22M34.6 20 Q36.7 26.0 31.1 29.3 Q28.9 35.4 22.5 34.3 Q16.9 37.5 12.7 32.6 Q6.3 31.4 6.2 24.9 Q2.2 20.0 6.2 15.0 Q6.3 8.5 12.7 7.3 Q16.9 2.4 22.5 5.6 Q28.9 4.5 31.1 10.6 Q36.7 13.9 34.6 20.0Z%22 fill=%22%23FFFDF8%22 stroke=%22%23D9CAB6%22 stroke-width=%22.9%22/%3E%3Cpath d=%22M19.3 20.7 L19.0 21.7 L18.9 22.7 L19.1 23.8 L19.5 24.8 L20.3 25.8 L21.3 26.7 L22.5 27.4 L23.9 27.8 L25.4 28.1 L27.0 28.1 L28.6 27.8 L30.2 27.4 L31.8 26.7 L33.3 26.0 L34.6 25.3%22 fill=%22none%22 stroke=%22%23D9CAB6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M18.2 22.0 L18.4 23.1 L18.8 24.1 L19.6 25.1 L20.6 26.0 L21.8 26.7 L23.2 27.1 L24.7 27.4 L26.3 27.4 L27.9 27.1%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.0 20.1 L18.1 20.6 L17.4 21.4 L16.8 22.3 L16.5 23.4 L16.4 24.6 L16.6 25.9 L17.1 27.2 L17.9 28.5 L18.9 29.7 L20.1 30.7 L21.5 31.6 L23.1 32.2 L24.7 32.8 L26.3 33.1 L27.8 33.5%22 fill=%22none%22 stroke=%22%23D9CAB6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M16.7 20.7 L16.1 21.6 L15.8 22.7 L15.7 23.9 L15.9 25.2 L16.4 26.5 L17.2 27.8 L18.2 29.0 L19.4 30.0 L20.8 30.9%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.1 19.5 L18.1 19.3 L17.1 19.4 L16.0 19.7 L15.1 20.4 L14.2 21.3 L13.6 22.4 L13.1 23.7 L12.9 25.2 L12.9 26.7 L13.2 28.3 L13.7 29.9 L14.4 31.4 L15.4 32.8 L16.4 34.1 L17.2 35.3%22 fill=%22none%22 stroke=%22%23D9CAB6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M16.4 18.7 L15.3 19.0 L14.4 19.7 L13.5 20.6 L12.9 21.7 L12.4 23.0 L12.2 24.5 L12.2 26.0 L12.5 27.6 L13.0 29.2%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.6 19.0 L19.0 18.2 L18.1 17.6 L17.1 17.3 L15.9 17.1 L14.7 17.3 L13.5 17.7 L12.3 18.4 L11.2 19.4 L10.2 20.6 L9.4 22.0 L8.8 23.5 L8.4 25.2 L8.2 26.8 L8.1 28.5 L8.0 30.0%22 fill=%22none%22 stroke=%22%23D9CAB6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M17.4 16.9 L16.4 16.6 L15.2 16.4 L14.0 16.6 L12.8 17.0 L11.6 17.7 L10.5 18.7 L9.5 19.9 L8.7 21.3 L8.1 22.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.3 19.0 L20.3 18.0 L20.0 17.0 L19.5 16.1 L18.7 15.2 L17.7 14.6 L16.4 14.1 L15.1 13.9 L13.6 13.9 L12.1 14.2 L10.6 14.7 L9.1 15.5 L7.8 16.5 L6.5 17.7 L5.4 18.9 L4.4 20.0%22 fill=%22none%22 stroke=%22%23D9CAB6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M19.3 16.3 L18.8 15.4 L18.0 14.5 L17.0 13.9 L15.7 13.4 L14.4 13.2 L12.9 13.2 L11.4 13.5 L9.9 14.0 L8.4 14.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.8 19.4 L21.5 18.7 L21.9 17.8 L22.1 16.7 L22.0 15.5 L21.7 14.3 L21.0 13.2 L20.1 12.1 L19.0 11.2 L17.6 10.5 L16.1 9.9 L14.5 9.6 L12.8 9.5 L11.1 9.5 L9.5 9.8 L8.0 9.9%22 fill=%22none%22 stroke=%22%23D9CAB6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M21.2 17.1 L21.4 16.0 L21.3 14.8 L21.0 13.6 L20.3 12.5 L19.4 11.4 L18.3 10.5 L16.9 9.8 L15.4 9.2 L13.8 8.9%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.9 20.1 L21.9 20.0 L22.9 19.5 L23.7 18.8 L24.4 17.9 L24.9 16.8 L25.1 15.5 L25.1 14.1 L24.8 12.6 L24.3 11.2 L23.5 9.8 L22.4 8.5 L21.2 7.3 L19.9 6.3 L18.5 5.4 L17.2 4.6%22 fill=%22none%22 stroke=%22%23D9CAB6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M22.2 18.8 L23.0 18.1 L23.7 17.2 L24.2 16.1 L24.4 14.8 L24.4 13.4 L24.1 11.9 L23.6 10.5 L22.8 9.1 L21.7 7.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.6 20.7 L21.5 21.2 L22.5 21.5 L23.6 21.5 L24.7 21.2 L25.8 20.7 L26.8 19.8 L27.7 18.8 L28.4 17.5 L28.9 16.0 L29.2 14.4 L29.2 12.8 L29.0 11.1 L28.7 9.5 L28.2 7.9 L27.8 6.4%22 fill=%22none%22 stroke=%22%23D9CAB6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M21.8 20.8 L22.9 20.8 L24.0 20.5 L25.1 20.0 L26.1 19.1 L27.0 18.1 L27.7 16.8 L28.2 15.3 L28.5 13.7 L28.5 12.1%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.0 21.0 L20.3 21.9 L20.9 22.8 L21.7 23.5 L22.8 24.0 L24.0 24.2 L25.3 24.3 L26.6 24.0 L28.0 23.5 L29.3 22.7 L30.6 21.7 L31.7 20.4 L32.6 19.0 L33.4 17.5 L34.0 16.0 L34.6 14.6%22 fill=%22none%22 stroke=%22%23D9CAB6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M20.2 22.1 L21.0 22.8 L22.1 23.3 L23.3 23.5 L24.6 23.6 L25.9 23.3 L27.3 22.8 L28.6 22.0 L29.9 21.0 L31.0 19.7%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%2216%22 fill=%22url%28%23g%29%22/%3E%3C/svg%3E', 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Cdefs%3E%3CradialGradient id=%22g%22 cx=%22.35%22 cy=%22.3%22 r=%22.8%22%3E%3Cstop offset=%220%22 stop-color=%22%23fff%22 stop-opacity=%22.35%22/%3E%3Cstop offset=%22.6%22 stop-color=%22%23fff%22 stop-opacity=%220%22/%3E%3Cstop offset=%221%22 stop-color=%22%23000%22 stop-opacity=%22.12%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2220%22 cy=%2221.3%22 r=%2216.5%22 fill=%22%237FB8D6%22 opacity=%22.35%22/%3E%3Cpath d=%22M34.6 20 Q36.7 26.0 31.1 29.3 Q28.9 35.4 22.5 34.3 Q16.9 37.5 12.7 32.6 Q6.3 31.4 6.2 24.9 Q2.2 20.0 6.2 15.0 Q6.3 8.5 12.7 7.3 Q16.9 2.4 22.5 5.6 Q28.9 4.5 31.1 10.6 Q36.7 13.9 34.6 20.0Z%22 fill=%22%23BFE3F4%22 stroke=%22%237FB8D6%22 stroke-width=%22.9%22/%3E%3Cpath d=%22M19.3 20.7 L19.0 21.7 L18.9 22.7 L19.1 23.8 L19.5 24.8 L20.3 25.8 L21.3 26.7 L22.5 27.4 L23.9 27.8 L25.4 28.1 L27.0 28.1 L28.6 27.8 L30.2 27.4 L31.8 26.7 L33.3 26.0 L34.6 25.3%22 fill=%22none%22 stroke=%22%237FB8D6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M18.2 22.0 L18.4 23.1 L18.8 24.1 L19.6 25.1 L20.6 26.0 L21.8 26.7 L23.2 27.1 L24.7 27.4 L26.3 27.4 L27.9 27.1%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.0 20.1 L18.1 20.6 L17.4 21.4 L16.8 22.3 L16.5 23.4 L16.4 24.6 L16.6 25.9 L17.1 27.2 L17.9 28.5 L18.9 29.7 L20.1 30.7 L21.5 31.6 L23.1 32.2 L24.7 32.8 L26.3 33.1 L27.8 33.5%22 fill=%22none%22 stroke=%22%237FB8D6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M16.7 20.7 L16.1 21.6 L15.8 22.7 L15.7 23.9 L15.9 25.2 L16.4 26.5 L17.2 27.8 L18.2 29.0 L19.4 30.0 L20.8 30.9%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.1 19.5 L18.1 19.3 L17.1 19.4 L16.0 19.7 L15.1 20.4 L14.2 21.3 L13.6 22.4 L13.1 23.7 L12.9 25.2 L12.9 26.7 L13.2 28.3 L13.7 29.9 L14.4 31.4 L15.4 32.8 L16.4 34.1 L17.2 35.3%22 fill=%22none%22 stroke=%22%237FB8D6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M16.4 18.7 L15.3 19.0 L14.4 19.7 L13.5 20.6 L12.9 21.7 L12.4 23.0 L12.2 24.5 L12.2 26.0 L12.5 27.6 L13.0 29.2%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M19.6 19.0 L19.0 18.2 L18.1 17.6 L17.1 17.3 L15.9 17.1 L14.7 17.3 L13.5 17.7 L12.3 18.4 L11.2 19.4 L10.2 20.6 L9.4 22.0 L8.8 23.5 L8.4 25.2 L8.2 26.8 L8.1 28.5 L8.0 30.0%22 fill=%22none%22 stroke=%22%237FB8D6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M17.4 16.9 L16.4 16.6 L15.2 16.4 L14.0 16.6 L12.8 17.0 L11.6 17.7 L10.5 18.7 L9.5 19.9 L8.7 21.3 L8.1 22.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.3 19.0 L20.3 18.0 L20.0 17.0 L19.5 16.1 L18.7 15.2 L17.7 14.6 L16.4 14.1 L15.1 13.9 L13.6 13.9 L12.1 14.2 L10.6 14.7 L9.1 15.5 L7.8 16.5 L6.5 17.7 L5.4 18.9 L4.4 20.0%22 fill=%22none%22 stroke=%22%237FB8D6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M19.3 16.3 L18.8 15.4 L18.0 14.5 L17.0 13.9 L15.7 13.4 L14.4 13.2 L12.9 13.2 L11.4 13.5 L9.9 14.0 L8.4 14.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.8 19.4 L21.5 18.7 L21.9 17.8 L22.1 16.7 L22.0 15.5 L21.7 14.3 L21.0 13.2 L20.1 12.1 L19.0 11.2 L17.6 10.5 L16.1 9.9 L14.5 9.6 L12.8 9.5 L11.1 9.5 L9.5 9.8 L8.0 9.9%22 fill=%22none%22 stroke=%22%237FB8D6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M21.2 17.1 L21.4 16.0 L21.3 14.8 L21.0 13.6 L20.3 12.5 L19.4 11.4 L18.3 10.5 L16.9 9.8 L15.4 9.2 L13.8 8.9%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.9 20.1 L21.9 20.0 L22.9 19.5 L23.7 18.8 L24.4 17.9 L24.9 16.8 L25.1 15.5 L25.1 14.1 L24.8 12.6 L24.3 11.2 L23.5 9.8 L22.4 8.5 L21.2 7.3 L19.9 6.3 L18.5 5.4 L17.2 4.6%22 fill=%22none%22 stroke=%22%237FB8D6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M22.2 18.8 L23.0 18.1 L23.7 17.2 L24.2 16.1 L24.4 14.8 L24.4 13.4 L24.1 11.9 L23.6 10.5 L22.8 9.1 L21.7 7.8%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.6 20.7 L21.5 21.2 L22.5 21.5 L23.6 21.5 L24.7 21.2 L25.8 20.7 L26.8 19.8 L27.7 18.8 L28.4 17.5 L28.9 16.0 L29.2 14.4 L29.2 12.8 L29.0 11.1 L28.7 9.5 L28.2 7.9 L27.8 6.4%22 fill=%22none%22 stroke=%22%237FB8D6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M21.8 20.8 L22.9 20.8 L24.0 20.5 L25.1 20.0 L26.1 19.1 L27.0 18.1 L27.7 16.8 L28.2 15.3 L28.5 13.7 L28.5 12.1%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Cpath d=%22M20.0 21.0 L20.3 21.9 L20.9 22.8 L21.7 23.5 L22.8 24.0 L24.0 24.2 L25.3 24.3 L26.6 24.0 L28.0 23.5 L29.3 22.7 L30.6 21.7 L31.7 20.4 L32.6 19.0 L33.4 17.5 L34.0 16.0 L34.6 14.6%22 fill=%22none%22 stroke=%22%237FB8D6%22 stroke-width=%221.1%22 stroke-linecap=%22round%22 stroke-opacity=%22.8%22/%3E%3Cpath d=%22M20.2 22.1 L21.0 22.8 L22.1 23.3 L23.3 23.5 L24.6 23.6 L25.9 23.3 L27.3 22.8 L28.6 22.0 L29.9 21.0 L31.0 19.7%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-width=%22.8%22 stroke-linecap=%22round%22 stroke-opacity=%22.7%22 transform=%22rotate%2814 20 20%29%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%2216%22 fill=%22url%28%23g%29%22/%3E%3C/svg%3E'];
+// ── Cake foreground sprinkles: the closest sprinkles share the content's plane (drawn just behind it), land on the tops of
+// panels and buttons, settle flat, and tip off rounded corners/edges (switch: CAKE_SPRINKLE_SETTLE) ──
+const CAKE_SPRINKLE_SETTLE = true;
+// CSP_MID_BOOST: how much denser the sprinkles are over the middle of the page (the content column, 15%–85% of the width) than a uniform spread (1 = uniform)
+const CSP_MID_BOOST = 1.25;
+const cspX = (W) => { const a = 0.15, b = 0.85, share = Math.min(1, (b - a) * CSP_MID_BOOST); if (Math.random() < share) return W * (a + Math.random() * (b - a)); const r = Math.random() * (1 - (b - a)); return W * (r < a ? r : b + (r - a)); };
+const CSP_FG_Z = 0.75; // sprinkles at this depth or closer share the content's plane (25% of all sprinkles; was 0.8 = 20%)
+const CSP_HDR_SETTLE = false; // false = sprinkles never rest on the header (landing logo or floating bar); ones resting on content that slides under the floating bar drop off
+const CSP_LOGO_RICOCHET = true; // true = a sprinkle bouncing off one letter can land on / slide off the next letter instead of jumping out to the logo's outer edge
+const CSP_FG_ON_CONTENT = true; // content-plane sprinkles fall over the core content (logo, panels, buttons) so more of them collect there
+// top edge of the (rounded) logo letters, one value per logo unit across (-1 = no ink); lets sprinkles rest on the letters
+const CSP_LOGO_TOP = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,48,46.5,46,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.8,46.2,47.5,76,77.8,78.2,78.5,78.5,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.8,78.5,78.2,78,76.8,48.5,46.5,46,45.8,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.5,45.8,46.2,47.2,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,102,95,92,89.8,88,86.5,85.2,84,83,82.2,81.2,80.5,80,79.5,79,78.5,78,77.8,77.5,77.2,77,76.8,76.8,76.8,76.8,76.8,76.8,76.8,76.8,77,77,77.2,77.5,78,78.2,78.8,79.2,80,80.5,81,81.2,80.8,80.2,79.8,79.2,79,79,79,79,79,79,79,79,79,79.2,79.5,80.2,83.8,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,81,79.8,79.2,79,79,79,79,79,79,79,79,79,79.2,79.8,81,83.8,85.5,85.8,85.2,84.2,83.5,82.8,81.8,81,80.5,79.8,79.2,78.8,78.2,78,77.8,77.8,77.8,78.5,-1,-1,-1,-1,-1,-1,-1,139.8,138.2,136.8,134.8,131.5,58.8,57,56,55.2,54.8,54.2,54,54,54,54,54.2,54.5,54.8,55.2,56.2,57.2,59,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,98.8,94.5,91.8,89.8,88.2,86.8,85.8,84.5,83.8,82.8,82,81.2,80.8,80.2,79.8,79.2,78.8,78.2,78,77.8,77.5,77.2,77.2,77,76.8,76.8,76.8,76.8,76.8,76.8,76.8,76.8,76.8,77,77,77.2,77.5,77.8,78,78.2,78.8,79,79.5,80,80.8,81.5,82,83,83.8,84.8,86,87.2,88.8,90.8,93,96.5,-1,-1,-1,-1,-1,-1,-1,-1,80.5,79.5,79,78.8,78.5,78,77.2,62.2,58.8,58,57.8,57.5,57.5,57.5,57.5,57.5,57.5,57.5,57.5,57.5,57.8,58,58.5,60,76.8,77.8,78.2,78.5,78.8,78.8,78.8,78.8,79,79.2,80,82,-1,-1,-1,-1,117,115.2,114,113.2,112.8,112.2,112,112,112,112,112.5,112.8,113.5,114.2,115.5,117.5,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+const cspFG = () => {
+  if (!CAKE_SPRINKLE_SETTLE || CSP_SHAPE !== 'sprinkle' || typeof window === 'undefined' || window.__cspFG) return;
+  const S = window.__cspFG = { parts: [], surf: [], rects: new Map(), root: null, lay: null, last: 0, acc: 0, nextRef: 0, seeded: false };
+  const SEL = '.glass, .cta, .copybtn, .modetog, .motionbtn';
+  const reduce = () => window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const vis = (el) => {
+    if (!el.getClientRects().length) return false;
+    const cs = getComputedStyle(el); if (cs.visibility === 'hidden' || cs.display === 'none') return false;
+    let o = 1, a = el; for (let i = 0; a && i < 7; i++, a = a.parentElement) { o *= parseFloat(getComputedStyle(a).opacity) || 0; if (o < 0.5) return false; }
+    return true;
+  };
+  const pickRoot = () => { const rs = [...document.querySelectorAll('.cake')].filter((e) => e.getBoundingClientRect().height > 0 && getComputedStyle(e).visibility !== 'hidden'); return rs[rs.length - 1] || null; };
+  const refresh = () => {
+    const root = pickRoot();
+    if (root !== S.root) {
+      S.root = root; S.parts.forEach((p) => p.n.remove()); S.parts = []; S.seeded = false;
+      if (S.lay) S.lay.remove(); S.lay = null;
+      if (root) { S.host = root.querySelector('.cakebg') || root; S.lay = document.createElement('div'); S.lay.className = 'cspfg'; S.lay.setAttribute('aria-hidden', 'true'); S.host.appendChild(S.lay); }
+    }
+    if (S.lay && !S.lay.isConnected && S.host) S.host.appendChild(S.lay);
+    S.surf = !root ? [] : [...root.querySelectorAll(SEL)].filter((el) => !el.closest('.hdr, .hdrglass, .fclone, .cspfg, .lstage') && !(el.classList.contains('fact') && !el.classList.contains('fcur')) && el.offsetWidth >= 36 && el.offsetHeight >= 20 && vis(el))
+      .map((el) => ({ el, rad: Math.min(parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0, el.offsetHeight / 2), clip: el.closest('.track') }));
+    if (root) {
+      root.querySelectorAll('div.tx-logo').forEach((el) => { if (el.offsetWidth && vis(el)) S.surf.push({ el, logo: { bw: el.offsetWidth, k: 1, ox: 0, oy: 0 } }); });
+      if (CSP_HDR_SETTLE) root.querySelectorAll('.hdr:not(.hdr-on) .logowrap').forEach((el) => { if (el.offsetWidth && vis(el)) S.surf.push({ el, logo: { bw: el.offsetWidth, k: 64 / 112, ox: 0.86, oy: -0.14 } }); });
+    }
+  };
+  const add = (yy) => {
+    const vw = window.innerWidth, u = Math.max(0.7, Math.min(1.2, vw / 1440));
+    const z = CSP_FG_Z + Math.random() * (1 - CSP_FG_Z), rod = Math.random() < 0.75, c = CSP_COL[Math.floor(Math.random() * CSP_COL.length)], k = (0.6 + z * 1.4) * u * 0.544;
+    const w = (rod ? 18 : 9) * k, h = (rod ? 5.5 : 9) * k;
+    const n = document.createElement('span'); n.className = 'cspf';
+    n.style.cssText = 'width:' + w.toFixed(1) + 'px;height:' + h.toFixed(1) + 'px;background:' + c + ';opacity:' + (0.55 + z * 0.45).toFixed(2) + ';box-shadow:0 2px 2px rgba(91,52,30,.18),inset 0 1px 0 rgba(255,255,255,.55)' + (c === '#FFFFFF' ? ',0 0 0 1px rgba(91,52,30,.14)' : '');
+    S.lay.appendChild(n);
+    const sp = 860 / (1.3 * (40 - z * 22));
+    S.parts.push({ n, w, h, rod, x: fgX(vw), y: yy, vx: (Math.random() - 0.5) * 6, vy: sp, sp, ang: Math.random() * 360, av: (Math.random() < 0.5 ? -1 : 1) * (8 + Math.random() * 16), st: 'fall', el: null, skip: new Set(), ox: 0, w0: 0, t0: 0, life: 10 + Math.random() * 16, slide: 0 });
+  };
+  // logo surfaces: screen y of the letter tops at screen x (null where there is no letter)
+  // ricochet bookkeeping: the letter a sprinkle just bounced off can't catch it again, and after a few bounces it just falls
+  const CSP_MAX_BOUNCE = 3;
+  const segAt = (R, X) => { const L = R.logo, i0 = Math.round(((X - R.left) / R.s - L.ox) / L.k); let a = i0, b = i0; const T = CSP_LOGO_TOP, ok = (i, j) => T[j] >= 0 && Math.abs(T[j] - T[i]) < 6; while (a > 0 && ok(a, a - 1)) a--; while (b < T.length - 1 && ok(b, b + 1)) b++; const sx = (i) => R.left + (i * L.k + L.ox) * R.s; return [sx(a) - 2, sx(b) + 2]; };
+  const logoOK = (p, el, X) => !CSP_LOGO_RICOCHET || !(p.ghost || (p.lb || 0) >= CSP_MAX_BOUNCE || (p.seg && p.seg[0] === el && X >= p.seg[1] && X <= p.seg[2]));
+  const topAt = (R, X) => { const L = R.logo, lx = Math.round(((X - R.left) / R.s - L.ox) / L.k); const v = CSP_LOGO_TOP[lx]; return v == null || v < 0 ? null : R.top + (v * L.k + L.oy) * R.s; };
+  // a sprinkle shares the content's plane, so it can never sit behind a panel/button/letter
+  const inside = (p) => { for (const [el, r] of S.rects) { if (r.logo && p.ghost) continue; if (p.x <= r.l || p.x >= r.r || p.y >= r.bottom) continue; const yt = r.logo ? topAt(r, p.x) : r.top; if (yt != null && p.y > yt + 1) { r.el = el; return r; } } return null; };
+  // spawn x for content-plane sprinkles: over the core content, weighted by each surface's width (falls back to the middle-weighted spread)
+  const fgX = (vw) => {
+    if (!CSP_FG_ON_CONTENT || !S.surf.length) return cspX(vw);
+    const rs = S.surf.map((q) => q.el.getBoundingClientRect()).filter((r) => r.width > 20 && r.right > 0 && r.left < vw && r.bottom > 0);
+    const tot = rs.reduce((a, r) => a + r.width + 40, 0); if (!tot) return cspX(vw);
+    let k = Math.random() * tot; for (const r of rs) { k -= r.width + 40; if (k <= 0) return Math.max(0, Math.min(vw, r.left - 20 + Math.random() * (r.width + 40))); }
+    return cspX(vw);
+  };
+  const halfY = (p) => { const a = p.ang * Math.PI / 180; return (Math.abs(Math.sin(a)) * p.w + Math.abs(Math.cos(a)) * p.h) / 2; };
+  const fall = (p, dir) => { p.st = 'fall'; const fr = S.rects.get(p.el); if (CSP_LOGO_RICOCHET && fr && fr.logo) { p.lb = (p.lb || 0) + 1; const sg = segAt(fr, p.x); p.seg = [p.el, sg[0], sg[1]]; } else p.skip.add(p.el); p.el = null; p.vx = dir * (28 + Math.random() * 30); p.vy = p.sp * 0.5; p.av = dir * (160 + Math.random() * 220); };
+  const frame = (t) => {
+    S.raf = requestAnimationFrame(frame);
+    if (t > S.nextRef) { S.nextRef = t + 450; refresh(); }
+    const dt = Math.min(0.05, S.last ? (t - S.last) / 1000 : 0); S.last = t;
+    if (!S.root || !S.lay) return;
+    if (document.hidden || reduce() || S.root.closest('.still') || S.root.classList.contains('still')) return; // frozen in place
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const rate = 0.3 * ((1 - CSP_FG_Z) / 0.2) * (0.3 + 0.7 * Math.min(1.3, vw / 1280));
+    S.acc += rate * dt; while (S.acc >= 1 && S.parts.filter((q) => q.st === 'fall').length < 60) { S.acc -= 1; add(-30); }
+    S.hdrB = -1e9; if (!CSP_HDR_SETTLE && S.root) { const hg = S.root.parentElement && S.root.parentElement.querySelector('.hdrglass.on'), hd = S.root.querySelector('.hdr.hdr-on') || (hg && S.root.querySelector('.hdr')); if (hd) { const hr = hd.getBoundingClientRect(); if (hr.height) S.hdrB = hr.bottom; } } S.rects.clear(); S.surf.forEach((s) => { const r = s.el.getBoundingClientRect(); let l = r.left, rr = r.right; if (s.clip) { const c = s.clip.getBoundingClientRect(); l = Math.max(l, c.left); rr = Math.min(rr, c.right); } S.rects.set(s.el, { top: r.top, bottom: r.bottom, l, r: rr, w: r.width, left: r.left, rad: s.rad, logo: s.logo, s: s.logo ? r.width / s.logo.bw : 1 }); });
+    if (!S.seeded) { S.seeded = true; const n0 = Math.round(rate * (vh / 32)); for (let i = 0; i < n0; i++) { add(Math.random() * vh); const q = S.parts[S.parts.length - 1]; for (let k = 0; k < 12 && inside(q); k++) { q.x = cspX(vw); q.y = Math.random() * vh; } if (inside(q)) { q.n.remove(); S.parts.pop(); } } }
+    const perEl = new Map(), LR = S.lay.getBoundingClientRect();
+    for (let i = S.parts.length - 1; i >= 0; i--) {
+      const p = S.parts[i];
+      if (p.st === 'fall') {
+        const hy0 = p.y + halfY(p);
+        if (CSP_LOGO_RICOCHET && p.lb) { p.lt = (p.lt || 0) + dt; if (p.lt > 1.2) p.ghost = 1; } // safety: never ricochet around the logo for more than ~1s
+        p.vy += (p.sp * (p.vx ? 1.6 : 1) - p.vy) * Math.min(1, dt * 1.5);
+        p.vx *= Math.max(0, 1 - dt * 0.6);
+        p.x += p.vx * dt; p.y += p.vy * dt; p.ang += p.av * dt;
+        const hy = p.y + halfY(p);
+        { const r = inside(p); if (r) { const yt = r.logo ? topAt(r, p.x) : r.top; if (!p.skip.has(r.el) && (!r.logo || logoOK(p, r.el, p.x)) && p.y - yt < 14) { p.y = yt - halfY(p); } else if (CSP_LOGO_RICOCHET && r.logo) { let nx = null; for (let d = 1; d <= 60 && nx == null; d++) for (const sx of (p.vx < 0 ? [-1, 1] : [1, -1])) { const x2 = p.x + sx * d, y2 = topAt(r, x2); if (y2 == null || y2 > p.y + halfY(p)) { nx = x2 + sx * (p.w / 2 + 1); break; } } if (nx == null) { p.y = yt - halfY(p); p.seg = null; p.lb = 0; } else { const sx = Math.sign(nx - p.x); p.vx = sx * Math.max(10, Math.abs(p.vx)); if (Math.abs(nx - p.x) <= 5) p.x = nx; else { p.x += sx * 5; const y3 = topAt(r, p.x); if (y3 != null) p.y = Math.min(p.y, y3 - halfY(p)); } } } else { const dl = p.x - r.l, dr = r.r - p.x; p.x = dl < dr ? r.l - p.w / 2 - 1 : r.r + p.w / 2 + 1; p.vx = (dl < dr ? -1 : 1) * Math.max(10, Math.abs(p.vx)); } } }
+        for (const [el, r] of S.rects) {
+          if (p.skip.has(el) || r.r - r.l < 20) continue;
+          if (r.logo) {
+            const yc = topAt(r, p.x); if (yc == null || !(hy0 <= yc + 1 && hy >= yc) || !logoOK(p, el, p.x)) continue;
+            const yl = topAt(r, p.x - p.w / 2), yr = topAt(r, p.x + p.w / 2);
+            const sl = yl == null || yr == null ? (yl == null ? -9 : 9) : (yr - yl) / p.w;
+            if (Math.abs(sl) > 0.55) { p.el = el; fall(p, sl > 0 ? 1 : -1); p.y = yc - halfY(p); }
+            else { p.st = 'rest'; p.el = el; p.lx = (p.x - r.left) / r.s; p.w0 = r.w; p.t0 = t; p.av = 0; p.vx = 0; p.tgt = Math.round(p.ang / 180) * 180 + Math.atan(sl) * 180 / Math.PI; p.y = Math.min(yc, yl, yr) - p.h / 2; }
+            break;
+          }
+          if (hy0 <= r.top + 1 && hy >= r.top && p.x >= r.l - 2 && p.x <= r.r + 2) {
+            const m = Math.max(4, r.rad * 0.7);
+            if (p.x < r.l + m || p.x > r.r - m) { p.el = el; fall(p, p.x < (r.l + r.r) / 2 ? -1 : 1); p.y = r.top - halfY(p); }
+            else { p.st = 'rest'; p.el = el; p.ox = p.x - r.left; p.w0 = r.w; p.top0 = r.top; p.t0 = t; p.av = 0; p.vx = 0; p.tgt = Math.round(p.ang / 180) * 180; p.y = r.top - p.h / 2; }
+            break;
+          }
+        }
+        if (p.y > vh + 60 || p.x < -60 || p.x > vw + 60) { p.n.remove(); S.parts.splice(i, 1); continue; }
+      } else {
+        const r0 = S.rects.get(p.el), r = r0 && !r0.logo && r0.top < S.hdrB ? null : r0;
+        if (!r || Math.abs(r.w - p.w0) > p.w0 * 0.12) { const e0 = p.el; fall(p, Math.random() < 0.5 ? -1 : 1); p.skip.delete(e0); p.vx *= 0.3; }
+        else if (r.logo) {
+          p.lx += p.slide * dt / r.s; p.x = r.left + p.lx * r.s;
+          const yc = topAt(r, p.x), yl = topAt(r, p.x - p.w / 2), yr = topAt(r, p.x + p.w / 2);
+          const sl = yl == null || yr == null ? 9 : (yr - yl) / p.w;
+          if (yc == null || Math.abs(sl) > 0.55) fall(p, yl == null ? -1 : yr == null ? 1 : (sl > 0 ? 1 : -1));
+          else { p.tgt = Math.round((p.tgt - Math.atan(sl) * 180 / Math.PI) / 180) * 180 + Math.atan(sl) * 180 / Math.PI; p.ang += (p.tgt - p.ang) * Math.min(1, dt * 7); p.y = Math.min(yc, yl, yr) - p.h / 2; }
+        }
+        else {
+          const cnt = (perEl.get(p.el) || 0) + 1; perEl.set(p.el, cnt);
+          p.ox += p.slide * dt; p.x = r.left + p.ox; p.ang += (p.tgt - p.ang) * Math.min(1, dt * 7);
+          p.y = r.top - p.h / 2;
+          const m = Math.max(4, r.rad * 0.7);
+          if (p.x < r.l + m || p.x > r.r - m) fall(p, p.slide ? Math.sign(p.slide) : (p.x < (r.l + r.r) / 2 ? -1 : 1));
+        }
+      }
+      p.n.style.transform = 'translate3d(' + (p.x - p.w / 2 - LR.left).toFixed(1) + 'px,' + (p.y - p.h / 2 - LR.top).toFixed(1) + 'px,0) rotate(' + p.ang.toFixed(1) + 'deg)';
+    }
+  };
+  S.raf = requestAnimationFrame(frame);
+};
+const cakeSprinkles = (host, W, H) => {
+  cspFG();
+  const B = CSP_BAND, nb = Math.ceil(H / B);
+  const u = Math.max(0.7, Math.min(1.2, W / 1440));
+  const per = Math.round(33.75 * (B / 800) * (0.3 + 0.7 * Math.min(1.3, W / 1280)));
+  const frag = document.createDocumentFragment(), bands = [];
+  for (let b = 0; b < nb; b++) {
+    const band = document.createElement('div'); band.className = 'cspb';
+    band.style.cssText = 'top:' + (b * B) + 'px;height:' + B + 'px';
+    for (let i = 0; i < per; i++) {
+      const z = (CAKE_SPRINKLE_SETTLE && CSP_SHAPE === 'sprinkle' ? CSP_FG_Z : 1) * Math.random(), rod = Math.random() < 0.75, c = CSP_COL[Math.floor(Math.random() * CSP_COL.length)], k = (0.6 + z * 1.4) * u * 0.544;
+      const ros = CSP_SHAPE === 'rosette', rd = ros ? (14 + z * 22) * u : 0;
+      const w = ros ? rd : (rod ? 18 : 9) * k, h = ros ? rd : (rod ? 5.5 : 9) * k, r0 = Math.round(Math.random() * 360);
+      const t = 1.3 * (40 - z * 22) * (B + 120) / 860;
+      const sp = document.createElement('span'); sp.className = 'csp';
+      sp.style.cssText = 'left:' + cspX(W).toFixed(0) + 'px;width:' + w.toFixed(1) + 'px;height:' + h.toFixed(1) + 'px;background:' + (ros ? 'url("' + CSP_ROSETTES[Math.floor(Math.random() * CSP_ROSETTES.length)] + '") center/contain no-repeat;border-radius:0' : c) + ';opacity:' + (0.55 + z * 0.45).toFixed(2) +
+        ';--r0:' + r0 + 'deg;--r1:' + (r0 + (Math.random() < 0.5 ? -1 : 1) * (ros ? 60 + Math.random() * 140 : 180 + Math.random() * 360)).toFixed(0) + 'deg;--dx:' + ((Math.random() - 0.5) * 160).toFixed(0) + 'px;--fy:' + (B + 60) + 'px;--t:' + t.toFixed(1) + 's;--d:-' + (Math.random() * t).toFixed(1) + 's'
+        + (ros ? '' : ';box-shadow:0 2px 2px rgba(91,52,30,.18),inset 0 1px 0 rgba(255,255,255,.55)' + (c === '#FFFFFF' ? ',0 0 0 1px rgba(91,52,30,.14)' : '')) + (z < 0.2 ? ';filter:blur(1.5px)' : '');
+      band.appendChild(sp);
+    }
+    frag.appendChild(band); bands.push(band);
+  }
+  if (host._cspIO) host._cspIO.disconnect();
+  if (window.IntersectionObserver) {
+    host._cspIO = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle('on', e.isIntersecting)), { rootMargin: '200px 0px' });
+    bands.forEach((b) => host._cspIO.observe(b));
+  } else bands.forEach((b) => b.classList.add('on'));
+  return frag;
+};
+const cakeStatic = (host, cv) => {
+  if (!cv) return;
+  cv.style.display = 'none';
+  if (host.themeNow !== 'cake' && !host._csBox) return;
+  const lay = cv.parentElement; if (!lay) return;
+  const W = lay.clientWidth, H = lay.clientHeight; if (!W || !H) return;
+  const key = CAKE_SPRINKLES ? W + 'x' + Math.ceil(H / CSP_BAND) : W + 'x' + H;
+  if (host._csKey === key && host._csBox && host._csBox.isConnected) return;
+  host._csKey = key;
+  let box = host._csBox;
+  if (!box || !box.isConnected) {
+    box = document.createElement('div'); box.className = 'cakesp'; box.setAttribute('aria-hidden', 'true');
+    cv.insertAdjacentElement('afterend', box); host._csBox = box;
+    if (window.ResizeObserver && !host._csRO) { host._csRO = new ResizeObserver(() => cakeStatic(host, cv)); host._csRO.observe(lay); }
+  }
+  if (CAKE_SPRINKLES) { box.replaceChildren(cakeSprinkles(host, W, H)); return; }
+  const u = Math.max(0.6, Math.min(1.25, W / 1440));
+  const frag = document.createDocumentFragment();
+  for (let k = 0; k * CAKE_TILE < H; k++) {
+    const mir = k % 2 === 1;
+    const short = H < CAKE_TILE * 0.75;
+    (CAKE_CRUMBS ? CAKE_CRUMB_SPR : CAKE_SPR).forEach((s, i) => {
+      if (short && i % 2) return;
+      const Y = short ? s.y * H : (s.y + k) * CAKE_TILE; if (Y > H + 40) return;
+      const X = (mir ? 1 - s.x : s.x) * W;
+      const ox = (mir ? s.iw - s.ox : s.ox) * u, oy = s.oy * u;
+      const im = document.createElement('img');
+      im.alt = ''; im.decoding = 'async'; im.src = s.src;
+      im.style.cssText = 'left:' + (X - ox).toFixed(1) + 'px;top:' + (Y - oy).toFixed(1) + 'px;width:' + (s.iw * u).toFixed(1) + 'px;height:' + (s.ih * u).toFixed(1) + 'px;transform-origin:' + ox.toFixed(1) + 'px ' + oy.toFixed(1) + 'px;transform:' + (mir ? 'rotate(' + (-s.a).toFixed(3) + 'rad) scaleX(-1)' : 'rotate(' + s.a.toFixed(3) + 'rad)');
+      frag.appendChild(im);
+    });
+  }
+  box.replaceChildren(frag);
+};
+const CAKE_TILE = 1826;
+const CAKE_CRUMB_SPR = [{"x":0.873,"y":0.7992,"a":1.683,"iw":59.46,"ih":44.99,"ox":27.05,"oy":22.52,"src":"img/e6d2a6885ac5.webp"},{"x":0.9691,"y":0.663,"a":1.606,"iw":28.56,"ih":24.41,"ox":13.26,"oy":12.24,"src":"img/fce41afee140.webp"},{"x":0.9721,"y":0.1931,"a":1.798,"iw":71.11,"ih":60.18,"ox":32.52,"oy":30.09,"src":"img/0ae491239442.webp"},{"x":0.0393,"y":0.7093,"a":1.785,"iw":53.99,"ih":45.26,"ox":24.93,"oy":22.64,"src":"img/3c6ce8071489.webp"},{"x":0.6255,"y":0.6055,"a":1.774,"iw":41.27,"ih":32.24,"ox":17.82,"oy":16.16,"src":"img/16d375f08ae8.webp"},{"x":0.6669,"y":0.2193,"a":1.544,"iw":29.57,"ih":25.63,"ox":13.29,"oy":12.91,"src":"img/32c664aecee3.webp"},{"x":0.1337,"y":0.6776,"a":1.606,"iw":34.89,"ih":32.25,"ox":15.8,"oy":16.17,"src":"img/521e714d1df5.webp"},{"x":0.4623,"y":0.8561,"a":1.581,"iw":109.34,"ih":73.37,"ox":49.33,"oy":36.71,"src":"img/1f0931ceba08.webp"},{"x":0.033,"y":0.8807,"a":1.469,"iw":102.79,"ih":72.89,"ox":39.36,"oy":36.47,"src":"img/0686e9ceb084.webp"},{"x":0.8997,"y":0.9607,"a":1.414,"iw":121.31,"ih":69.2,"ox":45.95,"oy":34.61,"src":"img/0bda85afb9b9.webp"},{"x":0.2375,"y":0.1256,"a":1.574,"iw":78.82,"ih":51.64,"ox":30.73,"oy":25.86,"src":"img/f2300a65d03d.webp"},{"x":0.8819,"y":0.8689,"a":1.555,"iw":169.9,"ih":129.71,"ox":72.38,"oy":64.86,"src":"img/432fdc9145a4.webp"},{"x":0.9153,"y":0.4717,"a":1.671,"iw":63.12,"ih":46.73,"ox":27.14,"oy":23.39,"src":"img/8616e5b65c95.webp"},{"x":0.8687,"y":0.0375,"a":1.769,"iw":34.53,"ih":29.94,"ox":15.26,"oy":15.02,"src":"img/0fe8c812ea74.webp"},{"x":0.0424,"y":0.3561,"a":1.505,"iw":258.78,"ih":190.0,"ox":86.76,"oy":95.0,"src":"img/def7001f356d.webp"},{"x":0.9181,"y":0.3049,"a":1.751,"iw":172.42,"ih":133.72,"ox":72.15,"oy":66.87,"src":"img/21a58091db26.webp"},{"x":0.0259,"y":0.793,"a":1.795,"iw":96.24,"ih":62.55,"ox":37.95,"oy":31.3,"src":"img/635497b1320b.webp"},{"x":0.1952,"y":0.9318,"a":1.573,"iw":264.63,"ih":195.95,"ox":100.66,"oy":97.97,"src":"img/d1f1843f541f.webp"},{"x":0.9594,"y":0.3675,"a":1.525,"iw":72.19,"ih":55.99,"ox":30.5,"oy":28.01,"src":"img/7e8a018cd1bb.webp"},{"x":0.8702,"y":0.4071,"a":1.732,"iw":73.9,"ih":57.18,"ox":26.97,"oy":28.6,"src":"img/e2e2c3fc90fc.webp"},{"x":0.1523,"y":0.8333,"a":1.678,"iw":339.36,"ih":168.03,"ox":118.33,"oy":84.02,"src":"img/bf266eb0a86a.webp"},{"x":0.1141,"y":0.3147,"a":1.534,"iw":132.27,"ih":94.31,"ox":47.86,"oy":47.16,"src":"img/9ea7d81c5d03.webp"},{"x":0.9578,"y":0.8298,"a":1.409,"iw":337.74,"ih":200.99,"ox":119.94,"oy":100.5,"src":"img/d729fa65310a.webp"},{"x":0.8542,"y":0.5689,"a":1.749,"iw":288.16,"ih":192.18,"ox":98.46,"oy":96.09,"src":"img/90e9df7d32e0.webp"}];
+const CAKE_SPR = [{"x":0.873,"y":0.7992,"a":1.683,"iw":59.46,"ih":44.99,"ox":27.05,"oy":22.52,"src":"img/d56629c5efe2.webp"},{"x":0.9691,"y":0.663,"a":1.606,"iw":28.56,"ih":24.41,"ox":13.26,"oy":12.24,"src":"data:image/webp;base64,UklGRrABAABXRUJQVlA4WAoAAAAQAAAAMgAAKgAAQUxQSLYAAAARf0A2QJkyFiIiYsVVzhE4qq09cRIH+VMFAQUDBtAAC5gpCEABLIANoAE0AA7IAThol/2XXUb0fwLIX5sBAEVhAFJKjgLSMD2/RBGYMKK4XNGAIcNGf9K2OYaRL1arWcDpb+B0TrfLOlUIIhxdX49DVQPG+Pp9H2s2xxhdP+9DFYM5o/Pzsck0RTDq2/NlnioMkfemu2HACSI4RWPSslGYcKNyogGDgDA8U1IUAkJyIMgMgPyFAVZQOCDUAAAAkAYAnQEqMwArAD6VOppIJaMioTVYCgCwEoljANI1i9frG+UC4XH5NV9tD3acoPPZdsipwuCA61ADMlmsAAD++hX/7T/lx//mOo/G/nLPrepyzZb4m6YLHG9jqq76mdEOilKPLG4gI5v7FCC+5jwtsaOa0ZEoRWECI7TIc+06vs9A+8tLjEq+Z8dXP6eXuyFprjrjtVdverW0R3yCzLSxIqk28aQweFybxKXkLpIjtylua/K6GfyU84h+mSDz0XlYQ6gKZcFgvhxrmlHuMM+p/wAAAAA="},{"x":0.9721,"y":0.1931,"a":1.798,"iw":71.11,"ih":60.18,"ox":32.52,"oy":30.09,"src":"img/32dbf2a8ab2d.webp"},{"x":0.0393,"y":0.7093,"a":1.785,"iw":53.99,"ih":45.26,"ox":24.93,"oy":22.64,"src":"data:image/webp;base64,UklGRn4FAABXRUJQVlA4WAoAAAAQAAAAXgAATgAAQUxQSDYCAAARf2CmbdtU39VdRESOreZRkFVte+M4/89A3x8EkpZANGMCO2MHgBuArQCaDaATqARaCDg2gm0EXBh4lkGd9TmRcperiP5PAP1HrwAOQoGPaIMgAHwHF0kQ2siRJA5C6UiYACIdjBFSABOcRQgEgJQ2TDDCQSgwKWOYFBBGXmlhIjAFCOQIoEDVkXCV/lcUgEDwHbQRBIB8TukoioR9KQAwYCKCq1wWLYgIXrQxLrIgUrrSGTUKwqTAHuCiKKnGwoTT1mw1rlsmAvlI0vTivmQBUx48Pi2uT0B+cZpW2qPrWHR0u9zu1s1Y2JNLzgfzZsG6SufhsH/uF3wp7c6n834pTm5n2yx77pcs2AvB3cxW46v0Yvh4yLKXST0W+FHudrlaNGrt5TZ7f91PrlIr7Odnrnc/eDy8v7/vfzdqsfWkb2arxbg73b7l1qNG/QReSJeH8/moOzuyGDcLwoAHJHfdbvfY02rVLwkA/nvKVS4vL++mudfc+NcPQHxol6RpdbDJ3t9fn9ffMEAeoI1xSfvh8PaePS/m815JWPlAXrvb5TbL9uvxqHcdC/lUMABgKsPH3f550ri/Klp4gYsMWOmk/Wf7vOjVimkk7EUnqRUG3O3yad2/SiMrIE9FKwDc+exx0ShaA5Cv1AIQfTZdjeuxAOQZzgoUoMvTebNoweRbQUAEIBmMrmNh8g8wERHcbaNkQeEqXanFwgGRdqkFhQxthIMAviMAFKLSxwgUiBwLFQiOQ/s/H1ZQOCAiAwAAkA8AnQEqXwBPAD6dRJ1LJaOioaiUC6CwE4lkAM+T8i5fuXDt2T21O448//qZt5VYBGBQWEdscKUORBUdmokggQ/Olf30ngNijleFTOqEM2psp8FCowB+RtyLKCH+2qx/a3RN3RRd9ODmhAjiQzfSASg5kmnNY7AKWZxW7Lef1KuiOj0TAAD++0ACR8ROtJVBUcIPvMYau54psuxpvzZDmnkk2Hun50zjQXkb8auHMIj4jufPhC7ePe5mO51Iaj9Dd++mV/XNBnvurIA9RdgNvbDEJzqr1y5ftvMhsd4M8GeIwEaN1cEUfahPKYHIqnNUzJ6V9uuQI7lwMZmId9Uqk9lnHrvPlFp02TEa2kYqOU1iyYVZCC2W2FjtqnJMKz83rDkPT5lUsb+nEB6sKRR1n+KWvBUzKTUA4JLJo7sIqi3TlZlcwz+PwJX83oxLlQvZyPBHdxAMC/Tmmzn9XekbYQbQm9QBWY+VrKWdJyAEMsYmZuKNcwoXw/qGjjsZ+vORFj6VVK6hfn4k151h3hjUIl/cwFckE6CdurXSKqg2ViWhp8/AOoc670frnWKRS0X6TjfHNjE3b228QFoEpaR+kOs3V/Ok5iOdXXFKR24E7Gl7NvA3a70FPzdvbT6aRjkxxcxF1lHntVdMn376PICzR8T14/TtMNM6+55qLEdgJk7KAfHkyOUvNHQAu+7lUAsQcf1ahD73xDN6G4V/C3QU9RXG5dJ1FqPKLH3nqwU809KIg/xchr5K+z9kM/NV2mj/HNDH+9/RO6GrP2GVj0fJHKzFR4ZIT72j2K2sW3D94+nzLSIkYEdCGLh5AaSc2z6kjEippxb91Ebzr0Gg3B2p+Lxw3wJ+O/zg+RwZ47UyZcRIyIKlUR6WVpMhwLa9cWtgHa2FzhHbHc3XTauCyrmS1os0OnukRjei6gT21p/LWowhb0VtNtwNaEAX5T1dAGIymlxE5n/bSpCDPLPW7bVBGPp48Biekbqk0T14xbD4VSe3yaqb6rzBwL0rnmJlxKWfvMIh6M4K3/JfvT3iOaMk7n9QDQcQkokin9QzmCdoAAAAAA=="},{"x":0.6255,"y":0.6055,"a":1.774,"iw":41.27,"ih":32.24,"ox":17.82,"oy":16.16,"src":"data:image/webp;base64,UklGRgoDAABXRUJQVlA4WAoAAAAQAAAARwAAOAAAQUxQSDUBAAARf6C2bRsWZ6puERHVHzyAfZAHwK22vXUibaBPXgD98gI3YNfZA8QFYk2FqZ0GIEOfqZ0nSAvYsAGXEXKQTKaK6P8EsP+UYiXWVuITBewJALCgXoAikjDncCYYFCUiWsIYY4wLUL606WsJCwzKq+wOi76W3JyAmyl3p/WCT7CgsrnW5Pqok9HSEH+h1VsG49GWL7kZAeZQtncd3AeziwjBUIjD3Z7c3t/f3YzSWnIjSgLuziS4v7+bH6e0hBEBwD1ZBPf3N1fVVEJb6C+XQTCuF/xGVHJj3el0Nj0s+l4pYigWgts4HFwOqimPNqKGlAQlyq2LTsojIgIzCoC8ZL6W8gjPzQho5SeSvkd4zs0wAeUnPE0SzCZUoxMmgFkVKtsJg1kWKr5O1hiIJLcmADD7AF+BP1EAVlA4IK4BAACQCgCdASpIADkAPp1Gm0olo7ghqbgMAwATiUAZVQhFSwt+A1tjdDA6oDeR6579QKm+8mC+x04rQQ33oS5WZ7wZ4L1YIGy6tpxv1rfiLIiD4ycJmGI1XTHQ6wgL6AAA/vucxZ89kbCTpYvkNzKYD8GxFD5vL0pN6u1p8JDqy5Ney3yvzLp9gNuLNeQeIFBfdtmNgYjwEPvJIkkGj4AzeSEVWxePbsfb+ydjNBTRG8WGZgd62XI6XH3a7Q2HNftSsy82mVeNb9EIbIKMj/gtpazQHyDcKRxF7TzWIC1xqQARstveOSAcZiW4buM6YPlO/pk8ppzEx7HSektZJ0hS+Cra7GLtiLVKn0iSwflQ1DImk0v+Oz/nq4Hj++P/mkrQEe1YT1dKjdszA27GIgLOhSxzLCP2AoWTOLNTPMfseU9evTr3IflQ1fWLMZc34Rtl6dH0hZy/yzk++z8XDJ5MzAF5jonkdzVZ0p+R6Ll4euUQGMIiGLfzEcARTgq8jq4S9IHXyrtBOOBgVDtvHhbLyx8iK3IHe3gT1aAWXiy38/1X50aZ56wlEkOxKCUAAAAA"},{"x":0.6669,"y":0.2193,"a":1.544,"iw":29.57,"ih":25.63,"ox":13.29,"oy":12.91,"src":"data:image/webp;base64,UklGRk4CAABXRUJQVlA4WAoAAAAQAAAAMwAALQAAQUxQSL4AAAARf6CmbQMW90xXRITIzZy6iQO4AQApipYOdu5oYOawlNsScDK30CnAyZ3YacDy99wL8K8AKYHwJvzPIvo/AeKPXgKCjQeQiDTgkGj6lPLpDBLNeqWSrdtt1oBSd+vhKmIwoKo+ne4foorBG7o6nH73ecOaRN/j8XIeZzko8X68nLspJ4M3sDmcfmpTjzURC81e3ybppM6Avk3rtpo1NAageibVC5ODQaKp/H5D0wUjIBUcGghWIAAQzD4A8R8JVlA4IGoBAABwCQCdASo0AC4APpU+mUglo6KhMrkrMLASiWgAzhmKgwG2AuxreUL8AMB28APRmUesOSqVMnA8GsO59zAy97Iw7TUITaCpe6NEzYY7nh5mKdyqeAAA/vE058TW/rd+sdLJbuVQ5U72pzWKafHv70uoIWxL3naeLutCkBnDaCIbGWYYxXXbSZT772ttqnXPFVYFoGeYGdvsXv6XqXbUdUE1HHyO80l5+EdjkIP1fbEk6GkDP1rqnSLRrk6VWqlG7FDMQ742Aldtx5o8LeGHL3UR/f65Ik+eQh6lD4TfQejbmbfxSOALynmWhLZ+WECzsIYuv99Vuf19oDITqXp9on+85Us41JEwdFKLq3fkoAvGGxgWiwh/I1qLCSVBVxo3fSbf3eMd02xj7ZtSNeNS2KIItlhiVU3nzquV1rLLfYOT73O0EDp0238rNd89JsRz9HXNkNkGpF5vN3m3fB5VKU1vSzn/oGuCrrgAAA=="},{"x":0.1337,"y":0.6776,"a":1.606,"iw":34.89,"ih":32.25,"ox":15.8,"oy":16.17,"src":"data:image/webp;base64,UklGRiQDAABXRUJQVlA4WAoAAAAQAAAAPAAAOAAAQUxQSP8AAAARf0A2QJmyFiIiwl2t7NoCbrTtbZsfmgAfpAUgngcQw3kAptrZtY6Vyxy7nBZIbQ5t9gCKG5jcQOAGzuHnuVIX0f8JoH4oRDEABJsggvarYCsRtL3lKsFFgB1shhZbDdPB/MLBAJvE8NzT09Wg4oL2b1/SY48LsJNGL1vhktD2adOYVSYJXfVP28bsRzyE+sToWfqaH7OtLY42zFt+EynBU4+T1utbnk2UmbSdtMxbnk0qHgl7tNEzphsp4oVeuE3T7NjjkvBPOk/PUy6YCHbyuLQQWoJLaicZCxzFIktEBG07lgI4iGwiwleyeb6VEPTPJQqqqYKGKmziGwi2PjkAVlA4IP4BAABQDACdASo9ADkAPp08mEiloyIhLhktULATiWQAzHWhrQHqr2zvmA6AG81+gB0qq/BWuywLgqzj8zP9QFH/3IIAkHRiSKdpTadahONecyxYbAfutOGU9gtGYPElB08fQmYnANjxjMw0R+9KAAD+/FzY7+g4e7VrS0HQ0/KaZ0pq/hGQubgexh9KnMgZ7Fvfz+wfcyh1Wafz78zuPp4yCfxoe1ecKNdMw9WB3uACv0IxqZ15v31fJeSueswl7fz9n0to/5ISduZvSBFyO35R/wEzTJ/Wuis7DzBZ9ayhjxdZv8YRkJ8IGtwG07dNlSBT8ze44TeDs1xvRX9wlaa20dwC2VSo1Sj2FK5fyO77KQzDKbCeSDsJRHJ9+UdaANQES+CLtLA+JBsFjFtcRY7rbwHFnhBC/EzTz90M8dKcbjgEUJUyjQc4jF1fh4sVKrO24eKzQ0UZ+zgGtQfG1qA+F+7YvYvgvr53qcjiMSaFZ1S2Zjd9M0TdUlf5NZpUOsfaEX2fCiwECFnS1miQOimykX+mxJ87GMmNlzbxPrn+2Oy1yNwmh9nihrf/chC96mopfC6rCfyT8u52tSKxQtgs0Gg7Jb5sEdihH9IAsGpq3anuFHsy/unJvmW+6PvWymKoTBLNv3DrBMxhZE8Ou/BlLzpinYHoAe10Z05hN0AAAAA="},{"x":0.4623,"y":0.8561,"a":1.581,"iw":109.34,"ih":73.37,"ox":49.33,"oy":36.71,"src":"img/ff12ffe23f30.webp"},{"x":0.033,"y":0.8807,"a":1.469,"iw":102.79,"ih":72.89,"ox":39.36,"oy":36.47,"src":"img/6b093fb1c973.webp"},{"x":0.8997,"y":0.9607,"a":1.414,"iw":121.31,"ih":69.2,"ox":45.95,"oy":34.61,"src":"img/9d40ca86932d.webp"},{"x":0.2375,"y":0.1256,"a":1.574,"iw":78.82,"ih":51.64,"ox":30.73,"oy":25.86,"src":"img/5fa756ad87dd.webp"},{"x":0.8819,"y":0.8689,"a":1.555,"iw":169.9,"ih":129.71,"ox":72.38,"oy":64.86,"src":"img/928203881c5a.webp"},{"x":0.9153,"y":0.4717,"a":1.671,"iw":63.12,"ih":46.73,"ox":27.14,"oy":23.39,"src":"img/0f24be0124eb.webp"},{"x":0.8687,"y":0.0375,"a":1.769,"iw":34.53,"ih":29.94,"ox":15.26,"oy":15.02,"src":"data:image/webp;base64,UklGRkACAABXRUJQVlA4WAoAAAAQAAAAPAAANAAAQUxQSPEAAAARf6CmbQMW901XRITcpLa5Hwdwq21P3fzaQJ9hAEnXTlpzzzXbdZhaTkqGlgfg9LiBYQHcwNcbhOFX6S6i/xNAI0/ADgBhQ6pCELCA8GRCeyC4pJpcy6UjGoIrfHU3WymnDZiQfHw9uLmfi3oE1+1do9l7yBkmtX17Vx+4/SWHa/L0oPP23j+OgilZ2e2+vQ+PYzwCE+vLbfd9uMVEKMxNPw7e+4uOYJBECEdKu123VTMc9E1HTuqtjYyHSYa8unh2WY16iBlQ4VI5Y8BFgEqlox7BRhLhiPGQRSQrQdiQ+bVxOyrttwNA2CAAygpB0IgbAFZQOCAoAQAA8AgAnQEqPQA1AD6dRppJJaQioSwVXACwE4lAGgkBFWqMxtlrtd3igiPDgAgUreXZ1tLsxGlJr4JecfTrCwmjW94wLzngfeXPYqvNj6/Y3AAA/vv9Yt5jknDyIvQm93CUlKLQzp7BTRf6+qB7OtYK/b5I0fiUBwHv+Jx6ujZtaYsaUFjZfvjGdZfAk3g5vvznn8uwBMNWoMRDHCWUUm0oqxY9DDModUXefTKVnLrJHUz/SWtF6yYkrA0ODP3q60PqJ985fTSHJ65WxtHgRNlYPE4/Aq5lFR2XXl2iOKmFpRGylqvq7BHl2WB8/eUOo9iSLPVdxBiUyzg/V5V7/MW/KUkmfSv+DLH//rSPAuZu+XToRJUlZkr7Q1X8QBxOlQi1g6TEJZWAAAA="},{"x":0.0424,"y":0.3561,"a":1.505,"iw":258.78,"ih":190.0,"ox":86.76,"oy":95.0,"src":"img/30eec18f62ab.webp"},{"x":0.9181,"y":0.3049,"a":1.751,"iw":172.42,"ih":133.72,"ox":72.15,"oy":66.87,"src":"img/51142c096ed7.webp"},{"x":0.0259,"y":0.793,"a":1.795,"iw":96.24,"ih":62.55,"ox":37.95,"oy":31.3,"src":"img/d27d306a00e3.webp"},{"x":0.1952,"y":0.9318,"a":1.573,"iw":264.63,"ih":195.95,"ox":100.66,"oy":97.97,"src":"img/2e4e3b18211b.webp"},{"x":0.9594,"y":0.3675,"a":1.525,"iw":72.19,"ih":55.99,"ox":30.5,"oy":28.01,"src":"img/7a1abde42651.webp"},{"x":0.8702,"y":0.4071,"a":1.732,"iw":73.9,"ih":57.18,"ox":26.97,"oy":28.6,"src":"img/192dd3185216.webp"},{"x":0.1523,"y":0.8333,"a":1.678,"iw":339.36,"ih":168.03,"ox":118.33,"oy":84.02,"src":"img/cf705fea2f51.webp"},{"x":0.1141,"y":0.3147,"a":1.534,"iw":132.27,"ih":94.31,"ox":47.86,"oy":47.16,"src":"img/ec87cc127801.webp"},{"x":0.9578,"y":0.8298,"a":1.409,"iw":337.74,"ih":200.99,"ox":119.94,"oy":100.5,"src":"img/a352dc7b8d1c.webp"},{"x":0.8542,"y":0.5689,"a":1.749,"iw":288.16,"ih":192.18,"ox":98.46,"oy":96.09,"src":"img/621b55362c3d.webp"}];
+// Still-background painter: when BG_MOTION is false, the blurred colour blobs are
+// painted once into a small canvas (cheap to scroll) instead of live CSS blur layers.
+const bgPaint = (root) => {
+  if (BG_MOTION || !root) return;
+  const layers = new Set();
+  root.querySelectorAll('.blob, .cblob').forEach((b) => b.parentElement && layers.add(b.parentElement));
+  const K = 0.125;
+  layers.forEach((layer) => {
+    const W = layer.clientWidth, H = layer.clientHeight;
+    if (!W || !H) return;
+    const old = layer.querySelector(':scope > canvas.blobcv'); if (old) old.remove();
+    let cv = layer.__bgcv; if (!cv) { cv = layer.__bgcv = document.createElement('canvas'); }
+    const cw = Math.max(8, Math.ceil(W * K)), ch = Math.max(8, Math.ceil(H * K));
+    if (cv.width !== cw) cv.width = cw;
+    if (cv.height !== ch) cv.height = ch;
+    const ctx = cv.getContext('2d'); if (!ctx) return;
+    const lr = layer.getBoundingClientRect();
+    const sig = W + 'x' + H + ':' + [...layer.querySelectorAll(':scope > .blob, :scope > .cblob')].map((b) => { const r = b.getBoundingClientRect(), c2 = getComputedStyle(b); return Math.round(r.left - lr.left) + ',' + Math.round(r.top - lr.top) + ',' + Math.round(r.width) + ',' + c2.backgroundColor + ',' + c2.opacity; }).join(';');
+    if (layer.dataset.bgsig === sig + '|' + cw + 'x' + ch) return; layer.dataset.bgsig = sig + '|' + cw + 'x' + ch;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cw, ch);
+    const hasFilter = typeof ctx.filter === 'string';
+    layer.querySelectorAll(':scope > .blob, :scope > .cblob').forEach((b) => {
+      const cs = getComputedStyle(b);
+      const col = cs.backgroundColor; if (!col || col === 'transparent') return;
+      const r = b.getBoundingClientRect();
+      const cx = (r.left + r.width / 2 - lr.left) * K, cy = (r.top + r.height / 2 - lr.top) * K, R = (r.width / 2) * K;
+      const m = /blur\(([\d.]+)px\)/.exec(b.dataset.blur || cs.filter); const s = (m ? parseFloat(m[1]) : 80) * K;
+      if (m) b.dataset.blur = m[0];
+      const op = parseFloat(cs.opacity); if (!(op > 0.004)) return; ctx.globalAlpha = op;
+      if (hasFilter) {
+        ctx.filter = 'blur(' + s.toFixed(2) + 'px)';
+        ctx.fillStyle = col; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+        ctx.filter = 'none';
+      } else {
+        const peak = 1 - Math.exp(-(R * R) / (2 * s * s)), out = R + 3 * s;
+        const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, out);
+        const erfc = (x) => { const t = 1 / (1 + 0.3275911 * Math.abs(x)); const y = t * (0.254829592 + t * (-0.284496736 + t * (1.421413741 + t * (-1.453152027 + t * 1.061405429)))) * Math.exp(-x * x); return x >= 0 ? y : 2 - y; };
+        for (let i = 0; i <= 12; i++) { const rr = (i / 12) * out; const v = Math.min(peak, 0.5 * erfc((rr - R) / (s * Math.SQRT2))); g.addColorStop(i / 12, col.replace(/rgba?\(([^,]+),([^,]+),([^,)]+)(?:,[^)]*)?\)/, 'rgba($1,$2,$3,' + v.toFixed(3) + ')')); }
+        ctx.fillStyle = g; ctx.fillRect(0, 0, cw, ch);
+      }
+    });
+    ctx.globalAlpha = 1;
+    try { layer.classList.add('bglay'); layer.style.backgroundImage = 'url(' + cv.toDataURL('image/png') + ')'; layer.style.backgroundSize = '100% 100%'; layer.style.backgroundRepeat = 'no-repeat'; } catch (e) {}
+  });
+};
+const bgPaintSoon = (host, root) => {
+  if (BG_MOTION) return;
+  clearTimeout(host._bgT1); clearTimeout(host._bgT2); cancelAnimationFrame(host._bgR);
+  host._bgR = requestAnimationFrame(() => bgPaint(root));
+  host._bgT1 = setTimeout(() => bgPaint(root), 450);
+  host._bgT2 = setTimeout(() => bgPaint(root), 1750);
+};
+
+function cakeEngine(host, cv) {
+    if (host.cakeOn) return;
+    host.cakeOn = true;
+    let rnd = null; const mkR = ((a) => () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; });
+    const PAL = ['#D42A34', '#E8731A', '#E9B10C', '#1E9E5E', '#0A84C6', '#B8236F'];
+    const HAZE = [214, 238, 250];
+    const hex = (h) => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+    const pieces = [];
+    const KINDS = [['sweep', 0.18], ['stroke', 0.36], ['dab', 0.26], ['flick', 0.2]];
+    const pickKind = () => { let r = rnd(), acc = 0; for (const [k, w] of KINDS) { acc += w; if (r < acc) return k; } return 'dash'; };
+    const FAR = ['#2C6FD1', '#3B86DC', '#1F59B5', '#4A95E2'];
+    let genH = 0;
+    const gen = (W, H) => {
+      pieces.length = 0; genH = H; rnd = mkR(20261106);
+      let tries = 0, lastCol = -1, bag = [];
+      const NP = Math.max(10, Math.min(60, Math.round(12 * H / 900)));
+      while (pieces.length < NP && tries < 12000) {
+        tries++;
+        const x = 0.02 + rnd() * 0.96, y = 0.01 + rnd() * 0.98;
+        if (x > 0.15 && x < 0.85 && rnd() < 0.86) continue;
+        if (pieces.some((p) => Math.hypot((p.x - x) * W, (p.y - y) * H) < 115)) continue;
+        const r = rnd();
+        const z = r < 0.3 ? 0.05 + rnd() * 0.3 : (r < 0.78 ? 0.36 + rnd() * 0.3 : 0.68 + rnd() * 0.32);
+        if (!bag.length) { bag = PAL.map((_, i) => i); for (let i = bag.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [bag[i], bag[j]] = [bag[j], bag[i]]; } if (bag[bag.length - 1] === lastCol) bag.unshift(bag.pop()); } const ci = bag.pop(); lastCol = ci;
+        const kind = pickKind();
+        const sr = rnd();
+        const sm = Math.max(0.22, Math.min(z > 0.5 ? 4.2 : 2.2, Math.exp((sr + rnd() + rnd() - 1.4) * 1.6)));
+        if (sm * (0.42 + 0.9 * z) > 1 && x > 0.2 && x < 0.8) continue;
+        pieces.push({ x, y, z, kind, sm, big: z > 0.85 && rnd() < 0.5, col: z < 0.36 && rnd() < 0.5 ? FAR[Math.floor(rnd() * FAR.length)] : PAL[ci], ang: Math.PI / 2 + (rnd() - 0.5) * 0.5, ph: rnd() * 6.283, sp: 0.5 + rnd() * 0.6, seed: Math.floor(rnd() * 1e9) });
+      }
+      pieces.sort((a, b) => a.z - b.z);
+        pieces.sort((a, b) => a.z - b.z);
+    };
+    host.cakePieces = pieces;
+    const sprite = (p, dpr, unit) => {
+      const r2 = ((a) => () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; })(p.seed);
+      const k = p.z < 0.36 ? 0.08 + (0.36 - p.z) * 0.55 : Math.pow(1 - p.z, 1.6) * 0.1;
+      const BL = [44, 111, 209], kb = p.z < 0.36 ? 0.35 : 0;
+      const c = hex(p.col).map((v, i) => v + (BL[i] - v) * kb).map((v, i) => Math.round(v + (HAZE[i] - v) * k));
+      const col = 'rgb(' + c.join(',') + ')';
+      const sc = (0.42 + 0.9 * p.z) * unit * (p.sm || 1) * 0.25088;
+      const kind = p.kind;
+      const L = sc * (kind === 'sweep' ? 35 + r2() * 21 : kind === 'stroke' ? 18 + r2() * 13 : kind === 'flick' ? 19 + r2() * 10 : 7 + r2() * 10) * (p.big ? 1.3 : 1);
+      const Wm = sc * (kind === 'dab' ? 37 + r2() * 23 : kind === 'sweep' ? 31 + r2() * 15 : 29 + r2() * 17);
+      // centreline: cubic bezier with organic bend
+      const bend = (kind === 'dab' ? 0.22 : 0.05 + r2() * 0.14) * L * (r2() < 0.5 ? -1 : 1);
+      const sbend = r2() < 0.35 ? -bend * (0.6 + r2() * 0.6) : bend * (0.3 + r2() * 0.7);
+      const P0 = [0, 0], P1 = [L * (0.25 + r2() * 0.1), bend], P2 = [L * (0.65 + r2() * 0.1), sbend], P3 = [L, (r2() - 0.5) * L * 0.12];
+      const N = 96, C = [];
+      for (let i = 0; i <= N; i++) { const t = i / N, u = 1 - t; C.push([u * u * u * P0[0] + 3 * u * u * t * P1[0] + 3 * u * t * t * P2[0] + t * t * t * P3[0], u * u * u * P0[1] + 3 * u * u * t * P1[1] + 3 * u * t * t * P2[1] + t * t * t * P3[1]]); }
+      if (kind === 'flick' || (kind === 'dab' && r2() < 0.5)) {
+        const e = C[N], d = C[N - 1]; let ang = Math.atan2(e[1] - d[1], e[0] - d[0]); const turn = (r2() < 0.5 ? -1 : 1) * (1.6 + r2() * 1.2); const hl = (kind === 'dab' ? 0.55 : 0.28 + r2() * 0.12) * L; const steps = 26;
+        let x = e[0], y = e[1];
+        for (let i = 1; i <= steps; i++) { ang += turn / steps; x += Math.cos(ang) * hl / steps; y += Math.sin(ang) * hl / steps; C.push([x, y]); }
+      }
+      const M = C.length - 1, peak = 0.3 + r2() * 0.4, sharp = 0.16 + r2() * 0.18, nph = [r2() * 6.3, r2() * 6.3, r2() * 6.3], nfr = [2 + r2() * 3, 5 + r2() * 4, 11 + r2() * 6];
+      const wid = C.map((_, i) => { const t = i / M; const env = t < peak ? Math.pow(t / peak, sharp) : Math.pow((1 - t) / (1 - peak), sharp); const lump = Math.max(0.16, 1 + 0.58 * Math.sin(t * nfr[0] + nph[0]) + 0.36 * Math.sin(t * nfr[1] + nph[1]) + 0.2 * Math.sin(t * nfr[2] + nph[2])); return Wm * 0.31 * (0.42 + 0.58 * Math.sin(Math.min(1, env) * Math.PI / 2)) * lump; });
+      const nor = C.map((pt, i) => { const a = C[Math.max(0, i - 1)], b2 = C[Math.min(M, i + 1)]; let nx = -(b2[1] - a[1]), ny = b2[0] - a[0]; const l = Math.hypot(nx, ny) || 1; return [nx / l, ny / l]; });
+      const Lft = C.map((pt, i) => [pt[0] + nor[i][0] * wid[i], pt[1] + nor[i][1] * wid[i]]);
+      const Rgt = C.map((pt, i) => [pt[0] - nor[i][0] * wid[i], pt[1] - nor[i][1] * wid[i]]);
+      const specks = [];
+      const nsp = 26 + Math.floor(r2() * 30);
+      const cM = C[Math.floor(M / 2)], sdir = Math.PI + (r2() - 0.5) * 0.8;
+      for (let i = 0; i < nsp; i++) {
+        const fwd = r2() < 0.45, a = fwd ? sdir + (r2() - 0.5) * 1.6 : r2() * 6.283;
+        const dd = Wm * (0.25 + Math.pow(r2(), 1.25) * (fwd ? 2.9 : 2.1)), fall = Math.max(0.25, 1.25 - dd / (Wm * 2.6));
+        const sz = (0.55 + Math.pow(r2(), 2.4) * Wm * 0.36) * fall;
+        specks.push([cM[0] + Math.cos(a) * dd, cM[1] + Math.sin(a) * dd, sz]);
+      }
+      let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+      Lft.concat(Rgt).concat(specks).forEach(([px, py]) => { x0 = Math.min(x0, px); y0 = Math.min(y0, py); x1 = Math.max(x1, px); y1 = Math.max(y1, py); });
+      const pad = Wm * 0.5 + 4;
+      const w = x1 - x0 + pad * 2, h = y1 - y0 + pad * 2;
+      const o = document.createElement('canvas'); o.width = Math.ceil(w * dpr); o.height = Math.ceil(h * dpr);
+      const g = o.getContext('2d');
+      g.scale(dpr, dpr); g.translate(pad - x0, pad - y0);
+      g.strokeStyle = col; g.fillStyle = col; g.lineCap = 'round'; g.lineJoin = 'round';
+      g.save();
+      g.beginPath(); Lft.forEach(([px, py], i) => i ? g.lineTo(px, py) : g.moveTo(px, py)); for (let i = M; i >= 0; i--) g.lineTo(Rgt[i][0], Rgt[i][1]); g.closePath();
+      g.globalAlpha = 0.82; g.fill();
+      [[C[0], wid[0]], [C[M], wid[M]]].forEach(([pt, r]) => { g.beginPath(); g.ellipse(pt[0], pt[1], r * (1 + r2() * 0.15), r * (0.9 + r2() * 0.2), r2() * 3, 0, 6.283); g.fill(); });
+      g.beginPath(); Lft.forEach(([px, py], i) => i ? g.lineTo(px, py) : g.moveTo(px, py)); for (let i = M; i >= 0; i--) g.lineTo(Rgt[i][0], Rgt[i][1]); g.closePath();
+      g.arc(C[0][0], C[0][1], wid[0] * 1.2, 0, 6.283); g.moveTo(C[M][0] + wid[M] * 1.2, C[M][1]); g.arc(C[M][0], C[M][1], wid[M] * 1.2, 0, 6.283); g.clip('nonzero');
+      const lw = Math.max(0.7, 1.3 * sc);
+      for (let pass = 0; pass < 3; pass++) {
+        g.globalAlpha = 0.35 + r2() * 0.3; g.lineWidth = lw * (0.8 + r2() * 0.6);
+        g.beginPath();
+        let side = 1;
+        for (let i = 0; i <= M; i += 1) { const e = side > 0 ? Lft[i] : Rgt[i]; const jx = (r2() - 0.5) * lw * 2, jy = (r2() - 0.5) * lw * 2; if (i === 0) g.moveTo(e[0] + jx, e[1] + jy); else g.lineTo(e[0] + jx, e[1] + jy); side = -side; }
+        g.stroke();
+      }
+      g.globalAlpha = 0.85; g.lineWidth = lw * 1.2;
+      for (let s2 = 0; s2 < 3; s2++) { const off = (r2() - 0.5) * 1.4; g.beginPath(); C.forEach((pt, i) => { const q = [pt[0] + nor[i][0] * wid[i] * off, pt[1] + nor[i][1] * wid[i] * off]; i ? g.lineTo(q[0], q[1]) : g.moveTo(q[0], q[1]); }); g.stroke(); }
+      g.globalCompositeOperation = 'destination-out';
+      for (let m2 = 0; m2 < 3 + Math.floor(r2() * 4); m2++) { const j = Math.floor(r2() * (M + 1)); const rr = wid[j] * (0.5 + r2() * 0.9); const gx = C[j][0] + nor[j][0] * wid[j] * (r2() - 0.5), gy = C[j][1] + nor[j][1] * wid[j] * (r2() - 0.5); const gr = g.createRadialGradient(gx, gy, 0, gx, gy, rr); gr.addColorStop(0, 'rgba(0,0,0,' + (0.1 + r2() * 0.18) + ')'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.globalAlpha = 1; g.beginPath(); g.arc(gx, gy, rr, 0, 6.283); g.fill(); }
+      g.fillStyle = col;
+      g.globalAlpha = 0.35; g.lineWidth = Math.max(0.6, Wm * 0.09);
+      const ho = (r2() - 0.5) * 0.6, hs = 0.18 + r2() * 0.2, he = hs + 0.3 + r2() * 0.3;
+      g.beginPath(); for (let i = Math.floor(hs * M); i <= Math.min(M, Math.floor(he * M)); i++) { const q = [C[i][0] + nor[i][0] * wid[i] * ho, C[i][1] + nor[i][1] * wid[i] * ho]; i === Math.floor(hs * M) ? g.moveTo(q[0], q[1]) : g.lineTo(q[0], q[1]); } g.stroke();
+      g.restore();
+      g.globalAlpha = 0.85;
+      specks.forEach(([sx, sy, sr]) => { g.beginPath(); g.ellipse(sx, sy, sr, sr * (0.6 + r2() * 0.5), r2() * 3, 0, 6.283); g.fill(); });
+      g.setTransform(1, 0, 0, 1, 0, 0);
+      g.globalCompositeOperation = 'destination-out';
+      const n = Math.floor(o.width * o.height * 0.05);
+      for (let i = 0; i < n; i++) { g.globalAlpha = 0.2 + r2() * 0.65; const s1 = (0.5 + r2() * 1.1) * dpr; g.fillRect(r2() * o.width, r2() * o.height, s1, s1); }
+      g.globalCompositeOperation = 'source-over';
+      const mid0 = C[Math.floor(M / 2)];
+      const mX = (mid0[0] + pad - x0) * dpr, mY = (mid0[1] + pad - y0) * dpr;
+      const rgba = (al) => 'rgba(' + c.join(',') + ',' + al + ')';
+      {
+        const core = g.createRadialGradient(mX, mY, 0, mX, mY, Wm * 0.75 * dpr);
+        core.addColorStop(0, rgba(0.6)); core.addColorStop(1, rgba(0));
+        g.fillStyle = core; g.globalAlpha = 1; g.beginPath(); g.arc(mX, mY, Wm * 0.75 * dpr, 0, 6.283); g.fill();
+        const Rr = Math.max(o.width, o.height) * 0.62;
+        const fall = g.createRadialGradient(mX, mY, 0, mX, mY, Rr);
+        fall.addColorStop(0, 'rgba(0,0,0,1)'); fall.addColorStop(0.4, 'rgba(0,0,0,.8)'); fall.addColorStop(1, 'rgba(0,0,0,.16)');
+        g.globalCompositeOperation = 'destination-in'; g.fillStyle = fall; g.fillRect(0, 0, o.width, o.height);
+        g.globalCompositeOperation = 'source-over'; g.fillStyle = col;
+      }
+      const oo = document.createElement('canvas'); oo.width = o.width; oo.height = o.height;
+      { const g3 = oo.getContext('2d'); g3.filter = 'blur(' + (1.3 * dpr).toFixed(2) + 'px)'; g3.drawImage(o, 0, 0); g3.filter = 'none'; g3.globalAlpha = 0.55; g3.drawImage(o, 0, 0); }
+      let spr = null;
+      {
+        const shade = (f) => 'rgb(' + c.map((v) => Math.max(0, Math.min(255, Math.round(f > 0 ? v + (255 - v) * f : v * (1 + f))))).join(',') + ')';
+        const mid = C[Math.floor(M / 2)];
+        const sl = Math.max(5.5, Wm * (0.55 + r2() * 0.25) * 1.35), st = Math.max(2.2, sl * (0.26 + r2() * 0.08));
+        const sa = r2() * Math.PI, ca = Math.cos(sa), sn = Math.sin(sa), bendS = (r2() - 0.5) * sl * 0.3;
+        const sw = sl + st * 3 + 6;
+        const so = document.createElement('canvas'); so.width = Math.ceil(sw * dpr); so.height = Math.ceil(sw * dpr);
+        const q = so.getContext('2d'); q.scale(dpr, dpr);
+        const cx2 = sw / 2, cy2 = sw / 2;
+        const ax = cx2 - ca * sl / 2, ay = cy2 - sn * sl / 2, bx = cx2 + ca * sl / 2, by = cy2 + sn * sl / 2;
+        const qx = cx2 - sn * bendS, qy = cy2 + ca * bendS;
+        q.lineCap = 'round';
+        const rod = (dx, dy, w2, cc, al) => { q.globalAlpha = al; q.strokeStyle = cc; q.lineWidth = w2; q.beginPath(); q.moveTo(ax + dx, ay + dy); q.quadraticCurveTo(qx + dx, qy + dy, bx + dx, by + dy); q.stroke(); };
+        rod(0.5, st * 0.35, st * 1.05, 'rgb(30,20,40)', 0.18);
+        rod(0, 0, st, shade(-0.1), 1);
+        rod(sn * st * 0.06, -ca * st * 0.06, st * 0.78, shade(0.14), 1);
+        rod(sn * st * 0.16, -ca * st * 0.16, st * 0.42, shade(0.42), 0.9);
+        rod(sn * st * 0.22, -ca * st * 0.22, st * 0.18, shade(0.85), 0.95);
+        q.globalAlpha = 1;
+        spr = { img: so, w: sw, ox: mid[0] + pad - x0 - w / 2, oy: mid[1] + pad - y0 - h / 2, ph: r2() * 6.283, sp: 0.9 + r2() * 0.9 };
+      }
+      const TL = (0.7 + 1.3 * p.z) * (L * 0.9 + 22 * sc) * (0.8 + r2() * 0.5);
+      const fw = w + TL;
+      const f2 = document.createElement('canvas'); f2.width = Math.ceil(fw * dpr); f2.height = o.height;
+      const q = f2.getContext('2d');
+      {
+        const mL = mid0[0] + pad - x0, mT = mid0[1] + pad - y0;
+        const gr = q.createLinearGradient(mL * dpr, 0, (mL + TL) * dpr, 0);
+        gr.addColorStop(0, rgba(0.34)); gr.addColorStop(0.5, rgba(0.14)); gr.addColorStop(1, rgba(0));
+        q.filter = 'blur(' + (2.6 * dpr).toFixed(1) + 'px)'; q.fillStyle = gr;
+        q.beginPath();
+        q.moveTo(mL * dpr, (mT - Wm * 0.4) * dpr);
+        q.quadraticCurveTo((mL + TL * 0.5) * dpr, (mT - Wm * 0.26) * dpr, (mL + TL) * dpr, (mT - Wm * 0.04) * dpr);
+        q.lineTo((mL + TL) * dpr, (mT + Wm * 0.04) * dpr);
+        q.quadraticCurveTo((mL + TL * 0.5) * dpr, (mT + Wm * 0.26) * dpr, mL * dpr, (mT + Wm * 0.4) * dpr);
+        { let hw = Wm * 0.4, sty = r2(), cl = Wm * (sty < 0.3 ? 0.38 + r2() * 0.12 : sty < 0.55 ? 0.6 + r2() * 0.3 : 0.3 + r2() * 0.35), lop = (r2() - 0.5) * (sty >= 0.55 ? 0.9 : 0.35); cl = Math.max(4, Math.min(cl, mL - 7)); const tipY = mT + hw * lop, k1 = 0.5 + r2() * 0.35, k2 = 0.5 + r2() * 0.35; if (sty >= 0.8) { const bY = mT + hw * (r2() - 0.5) * 0.6; q.bezierCurveTo((mL - cl * 0.55) * dpr, (mT + hw * 1.15) * dpr, (mL - cl * 0.7) * dpr, (bY + hw * 0.5) * dpr, (mL - cl * 0.62) * dpr, bY * dpr); q.bezierCurveTo((mL - cl * 1.1) * dpr, (bY - hw * 0.2) * dpr, (mL - cl * 0.8) * dpr, (mT - hw * 1.1) * dpr, mL * dpr, (mT - hw) * dpr); } else { q.bezierCurveTo((mL - cl * k1) * dpr, (mT + hw) * dpr, (mL - cl) * dpr, (tipY + hw * 0.55) * dpr, (mL - cl) * dpr, tipY * dpr); q.bezierCurveTo((mL - cl) * dpr, (tipY - hw * 0.55) * dpr, (mL - cl * k2) * dpr, (mT - hw) * dpr, mL * dpr, (mT - hw) * dpr); } } q.closePath(); q.fill(); q.filter = 'none';
+      }
+      const nT = 18;
+      for (let i = nT; i >= 1; i--) {
+        const t = i / (nT + 1);
+        q.globalAlpha = 0.06 * Math.pow(1 - t, 1.3);
+        q.filter = 'blur(' + ((1 + t * 4) * dpr).toFixed(1) + 'px)';
+        q.drawImage(oo, t * TL * dpr, (r2() - 0.5) * 1.5 * dpr);
+      }
+      q.filter = 'none'; q.globalAlpha = 1;
+      if (!HIDE_SPLOTCH_BODY) q.drawImage(oo, 0, 0);
+      return { img: f2, w: fw, pw: w, h, alpha: 0.86 + 0.14 * p.z, blur: p.z < 0.2, spr };
+    };
+    const build = () => {
+      const W = cv.clientWidth, H = cv.clientHeight;
+      if (!W || !H) return false;
+      const dpr = Math.min(2, window.devicePixelRatio || 1, Math.sqrt(8e6 / (W * H)));
+      if (!pieces.length || Math.abs(H - genH) > genH * 0.25) gen(W, H);
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      const unit = Math.max(0.6, Math.min(1.25, W / 1440));
+      host.cakeDim = { W, H, dpr, unit };
+      host.cakeSprites = pieces.map((p) => sprite(p, dpr, unit));
+      host.cakeDirty = true;
+      return true;
+    };
+    host.cakeMouse = { tx: 0, ty: 0, x: 0, y: 0 };
+    host.onCakeMove = (e) => {
+      const r = cv.getBoundingClientRect();
+      if (!r.width) return;
+      host.cakeMouse.tx = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width - 0.5) * 2));
+      host.cakeMouse.ty = Math.max(-1, Math.min(1, ((e.clientY / (window.innerHeight || 900)) - 0.5) * 2));
+    };
+    window.addEventListener('pointermove', host.onCakeMove, { passive: true });
+    if (window.ResizeObserver) { host.cakeRO = new ResizeObserver(() => build()); host.cakeRO.observe(cv); }
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let tAcc = 0, last = performance.now();
+    const frame = (now) => {
+      host.cakeRaf = requestAnimationFrame(frame);
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      if (host.themeNow !== 'cake') { host.cakeLast = host.themeNow; return; }
+      if (host.cakeLast !== 'cake') { host.cakeLast = 'cake'; host.cakeDirty = true; }
+      if (!host.cakeSprites && !build()) return;
+      const st = host.state || {};
+      const moving = BG_MOTION && !reduce && (host.props.motion ?? true) && !st.paused;
+      const m = host.cakeMouse;
+      if (moving) { tAcc += dt; m.x += (m.tx - m.x) * Math.min(1, dt * 3); m.y += (m.ty - m.y) * Math.min(1, dt * 3); }
+      else if (!host.cakeDirty) return;
+      if (moving && !host.cakeDirty && Math.abs(m.tx - m.x) < 0.0005 && Math.abs(m.ty - m.y) < 0.0005) return;
+      host.cakeDirty = false;
+      const { W, H, dpr } = host.cakeDim;
+      const ctx = cv.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      const VH = H;
+      const okPos = (x, y, z, sm, self) => {
+        const { W, H } = host.cakeDim;
+        if (x > 0.15 && x < 0.85 && Math.random() < 0.86) return false;
+        if (sm * (0.42 + 0.9 * z) > 1 && x > 0.2 && x < 0.8) return false;
+        return !pieces.some((q) => q !== self && Math.hypot((q.x - x) * W, (q.y - y) * H) < 115);
+      };
+      const rx = () => 0.02 + Math.random() * 0.96, ry = () => 0.01 + Math.random() * 0.98;
+      const respawn = (p, i) => {
+        const { dpr, unit } = host.cakeDim;
+        for (let a = 0; a < 60; a++) {
+          const x = rx(), y = ry(), sr = Math.random();
+          const sm = Math.max(0.22, Math.min(p.z > 0.5 ? 4.2 : 2.2, Math.exp((sr + Math.random() + Math.random() - 1.4) * 1.6)));
+          if (!okPos(x, y, p.z, sm, p)) continue;
+          p.x = x; p.y = y; p.sm = sm; break;
+        }
+        let r = Math.random(), acc = 0; for (const [kk, ww] of KINDS) { acc += ww; if (r < acc) { p.kind = kk; break; } }
+        p.col = p.z < 0.36 && Math.random() < 0.5 ? FAR[Math.floor(Math.random() * FAR.length)] : PAL[Math.floor(Math.random() * PAL.length)];
+        p.big = p.z > 0.85 && Math.random() < 0.5;
+        p.ang = Math.PI / 2 + (Math.random() - 0.5) * 0.5;
+        p.seed = Math.floor(Math.random() * 1e9);
+        host.cakeSprites[i] = sprite(p, dpr, unit);
+      };
+      const ss = (v) => v * v * (3 - 2 * v);
+      pieces.forEach((p, i) => {
+        const fa = 1;
+        if (fa <= 0.002) return;
+        const sp = host.cakeSprites[i];
+        const par = 3 + 22 * p.z;
+        const bob = 0;
+        const x = p.x * W - m.x * par;
+        const y = p.y * VH - m.y * par * 0.7 + bob;
+        const rot = p.ang + m.x * 0.06 * p.z;
+        ctx.save();
+        ctx.translate(x, y); ctx.rotate(rot); ctx.scale(0.9 + 0.1 * fa, 0.9 + 0.1 * fa);
+        ctx.globalAlpha = sp.alpha * fa;
+        if (sp.blur) ctx.filter = 'blur(0.7px)';
+        if (SHOW_SPLOTCHES) { ctx.globalAlpha = sp.alpha * fa * SPLOTCH_ALPHA; ctx.drawImage(sp.img, -(sp.pw || sp.w) / 2, -sp.h / 2, sp.w, sp.h); ctx.globalAlpha = sp.alpha * fa; }
+        if (SHOW_SPRINKLES && sp.spr) {
+          const q2 = sp.spr;
+          ctx.filter = 'none';
+          ctx.translate(q2.ox + Math.sin(tAcc * q2.sp + q2.ph) * 0.8 - m.x * 1.5, q2.oy + Math.cos(tAcc * q2.sp * 0.9 + q2.ph) * 0.8 - m.y * 1.2);
+          ctx.rotate(Math.sin(tAcc * q2.sp * 1.3 + q2.ph) * 0.16 + m.x * 0.05);
+          ctx.drawImage(q2.img, -q2.w / 2, -q2.w / 2, q2.w, q2.w);
+        }
+        ctx.restore();
+      });
+    };
+    host.cakeRaf = requestAnimationFrame(frame);
+  }
+
+const SHOW_SPRINKLES = false;
+const SHOW_SPLOTCHES = true;
+const SPLOTCH_ALPHA = 0.75;
+const HIDE_SPLOTCH_BODY = false;
+class Component extends DCLogic {
+  themeKey() {
+    const s = this.state || {};
+    if (s.theme) return s.theme;
+    let ls = null; try { ls = window.sessionStorage.getItem('harjot-theme'); } catch (e) {}
+    return ls || this.props.theme || 'lava';
+  }
+  setTheme(t) {
+    this.setState({ theme: t });
+    try { window.sessionStorage.setItem('harjot-theme', t); } catch (e) {}
+    try { window.dispatchEvent(new CustomEvent('harjot-theme', { detail: { t: t, src: this } })); } catch (e) {}
+  }
+  themeListen() {
+    if (this.onThemeEv) return;
+    this.onThemeEv = (e) => { const d = e.detail || {}; if (d.src !== this && d.t && d.t !== this.themeKey()) this.setState({ theme: d.t }); };
+    this.onThemeStore = (e) => { if (e.key === 'harjot-theme' && e.newValue) this.setState({ theme: e.newValue }); };
+    window.addEventListener('harjot-theme', this.onThemeEv);
+    window.addEventListener('storage', this.onThemeStore);
+  }
+  themeUnlisten() {
+    if (this.onThemeEv) window.removeEventListener('harjot-theme', this.onThemeEv);
+    if (this.onThemeStore) window.removeEventListener('storage', this.onThemeStore);
+    cancelAnimationFrame(this.cakeRaf);
+    if (this.onCakeMove) window.removeEventListener('pointermove', this.onCakeMove);
+    if (this.cakeRO) this.cakeRO.disconnect();
+  }
+
+  syncChrome() {
+    cancelAnimationFrame(this._scR); clearTimeout(this._scT);
+    const run = () => {
+      let c = null;
+      for (const e of document.querySelectorAll('main, .pagebg')) { if (e.getBoundingClientRect().height > 0) { const bg = getComputedStyle(e).backgroundColor; if (bg && bg !== 'transparent' && !/rgba\([^)]*,\s*0\)$/.test(bg)) c = bg; } }
+      if (!c) return;
+      document.documentElement.style.backgroundColor = c; document.body.style.backgroundColor = c;
+      let m = document.querySelector('meta[name="theme-color"]'); if (!m) { m = document.createElement('meta'); m.setAttribute('name', 'theme-color'); document.head.appendChild(m); }
+      m.setAttribute('content', c);
+    };
+    if (arguments[0] === true) run(); this._scR = requestAnimationFrame(run); this._scT = setTimeout(run, 1800);
+  }
+  componentDidUpdate() { const k = String(this.themeNow) + '|' + String(this.props.mood) + '|' + String((this.state || {}).tick || 0) + '|' + String((this.state || {}).phase || ''); if (k === this._duKey) return; this._duKey = k;
+    // THEME_SWAP_INSTANT: a Lava <-> Cake switch happens in one frame — page, glass, text and the browser's top/bottom bars all change together
+    if (this._thPrev !== undefined && this._thPrev !== this.themeNow) {
+      const H = document.documentElement; H.classList.add('tswap'); void H.offsetWidth;
+      cancelAnimationFrame(this._tsR); this._tsR = requestAnimationFrame(() => { this._tsR = requestAnimationFrame(() => H.classList.remove('tswap')); });
+      // iOS Safari can keep the old theme's background overlays painted: re-render those layers once
+      document.querySelectorAll('.pagebg > .bglay, .cakebg, .gatebg').forEach((el) => { const d = el.style.display; el.style.display = 'none'; void el.offsetHeight; el.style.display = d; });
+      if (this.hdrBalance) { try { this.hdrBalance(); } catch (e) {} }
+      if (this._rv) { this._rv(); setTimeout(this._rv, 300); }
+    }
+    this._thPrev = this.themeNow;
+    this.syncChrome(true); bgPaintSoon(this, document.body); if (!CAKE_GENERATED && this.cakeCv) cakeStatic(this, this.cakeCv); }
+  componentDidMount() {
+    if (!BG_MOTION) { bgPaintSoon(this, document.body); this._bgRs = () => { const w = window.innerWidth, hh = document.body.scrollHeight; if (w === this._bgW && Math.abs(hh - (this._bgH || 0)) < 2) return; this._bgW = w; this._bgH = hh; bgPaintSoon(this, document.body); }; window.addEventListener('resize', this._bgRs); if (window.ResizeObserver) { this._bgRO = new ResizeObserver(this._bgRs); this._bgRO.observe(document.body); } if (document.fonts && document.fonts.ready) document.fonts.ready.then(this._bgRs); }
+    try { document.documentElement.classList.toggle('bg-still', !BG_MOTION); document.documentElement.classList.toggle('lava-move', LAVA_MOTION); document.documentElement.classList.toggle('no-grain', !SHOW_GRAIN); document.documentElement.classList.toggle('no-gblur', !GLASS_BLUR_ALL); document.documentElement.classList.toggle('no-frost', NO_FROST); document.documentElement.classList.toggle('flatlogo', FLAT_HEADER_LOGO); } catch (e) {}
+    try {
+      const rv = () => {
+        const els = [...document.querySelectorAll('.reveal:not(.revealed)')];
+        if (!els.length) return;
+        const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!window.IntersectionObserver || reduce) { els.forEach((e) => e.classList.add('revealed')); return; }
+        if (!window.__hjIO) window.__hjIO = new IntersectionObserver((ents) => { ents.forEach((en) => { if (en.isIntersecting || en.boundingClientRect.top < 0) { en.target.classList.add('revealed'); window.__hjIO.unobserve(en.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+        document.documentElement.classList.add('hj-rv');
+        els.forEach((e) => window.__hjIO.observe(e));
+      };
+      this._rv = rv; rv(); setTimeout(rv, 600);
+    } catch (e) {}
+    this.syncChrome(); this.themeListen(); }
+  hdrInit() {
+    this.hdrOff && this.hdrOff();
+    const el = this.hdrEl; if (!el) return;
+    const sg = el.querySelector('.sugar svg'); if (sg && sg.pauseAnimations) { try { sg.pauseAnimations(); sg.setCurrentTime(3.9); } catch (e) {} }
+    const tgts = [window];
+    for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) { const o = getComputedStyle(a).overflowY; if (o === 'auto' || o === 'scroll') tgts.push(a); }
+    const read = () => Math.max(window.scrollY || document.documentElement.scrollTop || 0, ...tgts.slice(1).map((t) => t.scrollTop));
+    const apply = () => { this._hdrRaf = 0; const v = read() > 12 && el.getBoundingClientRect().top <= (parseFloat(getComputedStyle(el).top) || 0) + 1; if (v === !!this._hdrOn) return; this._hdrOn = v; el.classList.toggle('hdr-on', v); const g = el.parentElement && el.parentElement.querySelector(':scope > .hdrglass'); if (g) g.classList.toggle('on', v); };
+    const on = () => { if (!this._hdrRaf) this._hdrRaf = requestAnimationFrame(apply); };
+    tgts.forEach((t) => t.addEventListener('scroll', on, { passive: true }));
+    const bal = () => this.hdrBalance();
+    const balW = () => { if (window.innerWidth === this._balW) return; this._balW = window.innerWidth; bal(); };
+    window.addEventListener('resize', balW);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(bal);
+    bal();
+    this.hdrOff = () => { tgts.forEach((t) => t.removeEventListener('scroll', on)); window.removeEventListener('resize', balW); };
+    on();
+  }
+  hdrMobile() {
+    const h = this.hdrEl; if (!h) return;
+    const wasOn = h.classList.contains('hdr-on'); h.classList.add('hdr-measure'); if (wasOn) h.classList.remove('hdr-on');
+    try { this.hdrMobileMeasure(h); } finally { if (wasOn) h.classList.add('hdr-on'); void h.offsetWidth; h.classList.remove('hdr-measure'); }
+  }
+  hdrMobileMeasure(h) {
+    const VARS = ['--mnx', '--mny', '--mns', '--mtx', '--hmb', '--lgx', '--lgy', '--lgk', '--lgfx', '--lgfy', '--lgfk', '--tgx', '--tgy', '--tgk', '--tgfx', '--tgfy', '--tgfk', '--nvx', '--nvy', '--nvk', '--nvfx', '--nvfy', '--nvfk'];
+    if (window.innerWidth > 640) { VARS.forEach((k) => h.style.removeProperty(k)); h.classList.remove('hdr-fit'); this._hdrFit = false; return; }
+    const tog = h.querySelector('.modetog.mini'); const links = h.querySelectorAll('.navrow .navlink'); if (!tog || !links.length) return;
+    const logo = h.querySelector('.logowrap'), nav = h.querySelector('.navrow'); if (!logo || !nav) return;
+    h.classList.add('hdr-oldpos');
+    const small = window.innerWidth <= 480;
+    const tiny = window.innerWidth <= 360;
+    const togRight = tog.offsetLeft + tog.offsetWidth + (tiny ? -94 : (small ? -80 : -71.25));
+    const togCY = tog.offsetTop + tog.offsetHeight / 2 + (small ? 4 : -5);
+    const first = links[0], last = links[links.length - 1];
+    const nx0 = first.offsetLeft, nw = last.offsetLeft + last.offsetWidth - nx0, ny = first.offsetTop + first.offsetHeight / 2;
+    const cs = getComputedStyle(h);
+    const padL = parseFloat(cs.paddingLeft) || 0, padR = parseFloat(cs.paddingRight) || 0;
+    const R = h.clientWidth - padR - (small ? 13 : 16);
+    const sc = Math.max(0.45, Math.min(0.86, (R - togRight - 12) / nw));
+    h.style.setProperty('--mnx', (R - sc * nw - nx0).toFixed(1) + 'px');
+    h.style.setProperty('--mny', (togCY - ny).toFixed(1) + 'px');
+    h.style.setProperty('--mns', sc.toFixed(3));
+    // measure the stacked layout (L) and the floating bar (F), then fit everything onto one row for landing
+    const rel = (el) => { const r = el.getBoundingClientRect(), H0 = h.getBoundingClientRect(); return { x: r.left - H0.left, y: r.top - H0.top, w: r.width, h: r.height }; };
+    const grp = () => { const a = rel(first), b = rel(last); return { x: a.x, y: Math.min(a.y, b.y), w: b.x + b.w - a.x, h: Math.max(a.h, b.h) }; };
+    const L = { lg: rel(logo), tg: rel(tog), nvb: rel(nav), nv: grp() }, HH = h.offsetHeight;
+    h.classList.add('hdr-on'); void h.offsetWidth;
+    const F = { lg: rel(logo), tg: rel(tog), nv: grp() };
+    h.classList.remove('hdr-on');
+    h.classList.remove('hdr-oldpos');
+    // logo sizing: sit the "H" baseline on the toggle's bottom edge and grow the logo toward the toggle's full height, as far as the row allows
+    {
+      const CAP_T = 25.65, CAP_B = 73.1, INK_L = 7.2, INK_R = 205.45, kT = F.tg.h / (CAP_B - CAP_T);
+      const ow = 240, oh = 86;
+      const k0 = F.lg.w / ow, inkL0 = F.lg.x + INK_L * k0;
+      const barL = Math.max(8, padL - 19.5), barR = h.clientWidth - Math.max(8, padR - 19.5);
+      const navR = F.nv.x + F.nv.w, gapTN = F.nv.x - (F.tg.x + F.tg.w);
+      const P = 22, room0 = (F.tg.x - 14 - inkL0) / (INK_R - INK_L);
+      let best = null;
+      for (let d = 0; d <= 10; d += 0.5) {
+        // if the logo already fits at full size, leave everything where it is; otherwise even out side padding to P and nudge the toggle (max 10px)
+        const tight = room0 < kT;
+        const ns = tight ? Math.max(0, d - Math.max(0, gapTN - 12), barR - navR - P) : 0, rp = barR - (navR + ns);
+        if (rp < 18) break;
+        const inkL = tight ? Math.min(inkL0, barL + Math.min(rp, P)) : inkL0, avail = F.tg.x + d - 14 - inkL;
+        const k = Math.max(0.3, Math.min(kT, avail / (INK_R - INK_L)));
+        if (!best || k > best.k + 0.001) best = { k, d, ns, inkL };
+        if (k >= kT) break;
+      }
+      if (best) {
+        // even side padding in the floating bar: logo ink and nav ink sit PE from the bar's edges; the toggle keeps a fixed gap after the logo
+        const phone = window.innerWidth <= 480, PE = phone ? 26 : 38, G = phone ? 12 : 21;
+        const lst = links[links.length - 1], lcs = getComputedStyle(lst), tcx = (this.hdrCtx = this.hdrCtx || document.createElement('canvas').getContext('2d'));
+        tcx.font = lcs.fontWeight + ' ' + lcs.fontSize + ' ' + lcs.fontFamily; const km = tcx.measureText('K');
+        const trailF = ((parseFloat(lcs.letterSpacing) || 0) + km.width - (km.actualBoundingBoxRight || km.width)) * (F.nv.h / Math.max(1, lst.offsetHeight));
+        const navInkR = barR - PE - (phone ? 3 : 4), ns = navInkR - (F.nv.x + F.nv.w - trailF), navL = F.nv.x + ns;
+        const inkL = barL + PE;
+        let k = best.k * (phone ? 0.94 : 1);
+        k = Math.max(0.3, Math.min(k, (navL - 12 - F.tg.w - G - inkL) / (INK_R - INK_L)));
+        const y = F.tg.y + F.tg.h / 2 - (CAP_T + CAP_B) / 2 * k; // H centred on the toggle (= bar centre)
+        F.lg = { x: inkL - INK_L * k, y, w: ow * k, h: oh * k };
+        F.tg = { x: inkL + (INK_R - INK_L) * k + G, y: F.tg.y, w: F.tg.w, h: F.tg.h };
+        F.nv = { x: navL, y: F.nv.y, w: F.nv.w, h: F.nv.h };
+        F.inkL = inkL; F.inkR = navInkR; F.trail = trailF;
+        this._lgFit = { k, kT };
+      }
+    }
+    const left = padL, right = h.clientWidth - padR;
+    const Fl = F.inkL != null ? F.inkL : F.lg.x, Fr = F.inkR != null ? F.inkR : F.nv.x + F.nv.w, Fcy = F.tg.y + F.tg.h / 2;
+    const f = Math.min(1.6, (right - left) / Math.max(1, Fr - Fl));
+    const Lcy = L.lg.y + L.lg.h / 2;
+    const map = (r) => ({ x: left + (r.x - Fl) * f, y: Lcy + (r.y - Fcy) * f, w: r.w * f, h: r.h * f });
+    const setT = (p, box, ref, T) => { const k = T.w / Math.max(1, ref.w); h.style.setProperty('--' + p + 'x', (T.x - box.x - k * (ref.x - box.x)).toFixed(2) + 'px'); h.style.setProperty('--' + p + 'y', (T.y - box.y - k * (ref.y - box.y)).toFixed(2) + 'px'); h.style.setProperty('--' + p + 'k', k.toFixed(4)); };
+    const LR = { x: L.lg.x, y: L.lg.y, w: 240, h: 86 }; setT('lg', LR, LR, map(F.lg)); setT('lgf', LR, LR, F.lg);
+    setT('tg', L.tg, L.tg, map(F.tg)); setT('tgf', L.tg, L.tg, F.tg);
+    setT('nv', L.nvb, L.nv, map(F.nv)); setT('nvf', L.nvb, L.nv, F.nv);
+    const rowBottom = Math.max(map(F.lg).y + map(F.lg).h, map(F.tg).y + map(F.tg).h, map(F.nv).y + map(F.nv).h);
+    h.style.setProperty('--hmb', Math.min(0, rowBottom + 8 - HH).toFixed(1) + 'px');
+    h.classList.add('hdr-fit'); this._hdrFit = true;
+    // correct any layout drift so the logo lands exactly on its targets (landing + floating)
+    // measured on the visible logo image itself: [H top, H baseline, H left] as fractions of each theme's image
+    const capOf = () => { const im = [...logo.querySelectorAll('.hdrlogo')].find((e) => getComputedStyle(e).display !== 'none'); if (!im) return null; const r = rel(im), fr = im.classList.contains('hl-cake') ? [16 / 244, 158 / 244, 43 / 669] : [6 / 198, 149 / 198, 6 / 611]; return { b: r.y + fr[1] * r.h, l: r.x + fr[2] * r.w }; };
+    const fixLg = (p, B, Lx) => { void h.offsetWidth; const c = capOf(); if (!c) return; const ax = parseFloat(h.style.getPropertyValue('--' + p + 'x')) || 0, ay = parseFloat(h.style.getPropertyValue('--' + p + 'y')) || 0; const z = parseFloat(getComputedStyle(logo).zoom) || 1; h.style.setProperty('--' + p + 'x', (ax + (Lx - c.l) / z).toFixed(2) + 'px'); h.style.setProperty('--' + p + 'y', (ay + (B - c.b) / z).toFixed(2) + 'px'); };
+    { const fB = F.lg.y + 73.1 * F.lg.h / 86, fL = F.lg.x + 7.2 * F.lg.w / 240;
+      const tgB = () => { void h.offsetWidth; const r = rel(tog); return r.y + r.h; };
+      fixLg('lg', tgB() + (fB - (F.tg.y + F.tg.h)) * f, left + (fL - Fl) * f);
+      h.classList.add('hdr-on'); fixLg('lgf', tgB() + (fB - (F.tg.y + F.tg.h)), fL);
+      // centre the nav text (cap height) on the toggle's centre
+      { void h.offsetWidth; const a = first, s = document.createElement('span'); s.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline'; a.appendChild(s); const base = s.getBoundingClientRect().bottom - h.getBoundingClientRect().top; s.remove();
+        const st = getComputedStyle(a), cx = (this.hdrCtx = this.hdrCtx || document.createElement('canvas').getContext('2d')); cx.font = st.fontWeight + ' ' + st.fontSize + ' ' + st.fontFamily;
+        const sc = a.getBoundingClientRect().height / Math.max(1, a.offsetHeight), cap = cx.measureText('ABOUT').actualBoundingBoxAscent * sc, tr = rel(tog);
+        const dy = (tr.y + tr.h / 2) - (base - cap / 2); const ay = parseFloat(h.style.getPropertyValue('--nvfy')) || 0; if (isFinite(dy)) h.style.setProperty('--nvfy', (ay + dy).toFixed(2) + 'px'); }
+      h.classList.remove('hdr-on'); }
+  }
+  hdrBalance() {
+    // the header logo image is only visible once 'flatlogo' is on the page; make sure it is before measuring,
+    // otherwise the first fit runs without the image and the Cake logo hops a few px when fonts finish loading
+    if (typeof FLAT_HEADER_LOGO !== 'undefined') document.documentElement.classList.toggle('flatlogo', FLAT_HEADER_LOGO);
+    if (this.hdrEl && !this._lgImgHook) { this._lgImgHook = true; this.hdrEl.querySelectorAll('img.hdrlogo').forEach((im) => { if (!im.complete) im.addEventListener('load', () => this.hdrBalance(), { once: true }); }); }
+    document.documentElement.classList.toggle('hcenter', HDR_CENTER_LANDING);
+    if (this.hdrEl) { ['--cLx', '--cTx', '--cTy', '--cNx', '--cNy', '--cPad'].forEach((k) => this.hdrEl.style.removeProperty(k)); this.hdrEl.classList.remove('hc-on'); this._hcOn = false; }
+    this.hdrMobile();
+    const h = this.hdrEl; if (!h) return;
+    const VARS = ['--lgml', '--navmr', '--dlx', '--navtx'];
+    VARS.forEach((k) => h.style.removeProperty(k));
+    if (window.innerWidth <= 640) { this.hdrCenter(); return; }
+    const logo = h.querySelector('.logowrap'), links = h.querySelectorAll('.navrow .navlink'); if (!logo || !links.length) return;
+    const last = links[links.length - 1];
+    const cx = (this.hdrCtx = this.hdrCtx || document.createElement('canvas').getContext('2d'));
+    const inkLeft = () => { const im = [...logo.querySelectorAll('.hdrlogo')].find((e) => getComputedStyle(e).display !== 'none'); if (!im) return NaN; const r = im.getBoundingClientRect(); return r.left + (im.classList.contains('hl-cake') ? 43 / 669 : 6 / 611) * r.width; };
+    const inkRight = () => { const tn = [...last.childNodes].find((n) => n.nodeType === 3 && n.textContent.trim()); if (!tn) return NaN; const rg = document.createRange(); rg.setStart(tn, 0); rg.setEnd(tn, tn.textContent.trimEnd().length); const rr = rg.getBoundingClientRect();
+      const st = getComputedStyle(last); cx.font = st.fontWeight + ' ' + st.fontSize + ' ' + st.fontFamily; const km = cx.measureText('K'); const sc = last.getBoundingClientRect().width / Math.max(1, last.offsetWidth);
+      return rr.right - ((parseFloat(st.letterSpacing) || 0) + km.width - (km.actualBoundingBoxRight || km.width)) * sc; };
+    const wasOn = h.classList.contains('hdr-on'); h.classList.add('hdr-measure');
+    try {
+      const cs = getComputedStyle(h), padL = parseFloat(cs.paddingLeft) || 0, padR = parseFloat(cs.paddingRight) || 0;
+      // landing: logo ink on the content's left edge, nav ink on the content's right edge
+      h.classList.remove('hdr-on'); void h.offsetWidth;
+      let hr = h.getBoundingClientRect();
+      const dl = hr.left + padL - inkLeft(), dr = hr.right - padR - inkRight();
+      if (isFinite(dl)) h.style.setProperty('--lgml', dl.toFixed(2) + 'px');
+      if (isFinite(dr)) h.style.setProperty('--navmr', (-dr).toFixed(2) + 'px');
+      // floating: equal padding (PE) between the bar's edges and the logo / nav ink; toggle travels with the logo
+      h.classList.add('hdr-on'); void h.offsetWidth;
+      hr = h.getBoundingClientRect();
+      const PE = 47, bL = hr.left + Math.max(8, padL - 19.5), bR = hr.right - Math.max(8, padR - 19.5);
+      const fx = bL + PE - inkLeft(), nx = bR - PE - 6 - inkRight();
+      if (isFinite(fx)) h.style.setProperty('--dlx', fx.toFixed(2) + 'px');
+      if (isFinite(nx)) h.style.setProperty('--navtx', (-16.5 + nx).toFixed(2) + 'px');
+    } finally { if (!wasOn) h.classList.remove('hdr-on'); void h.offsetWidth; h.classList.remove('hdr-measure'); }
+    this.hdrCenter();
+  }
+  // centred landing header: logo, toggle and About/Work each centred on their own row (landing state only)
+  hdrCenter() {
+    const h = this.hdrEl; if (!h || !HDR_CENTER_LANDING || window.innerWidth > HDR_CENTER_MAX_W) return;
+    const logo = h.querySelector('.logowrap'), tog = h.querySelector('.modetog.mini'), links = h.querySelectorAll('.navrow .navlink'); if (!logo || !tog || !links.length) return;
+    const wasOn = h.classList.contains('hdr-on'); h.classList.add('hdr-measure'); h.classList.remove('hdr-on'); void h.offsetWidth;
+    try {
+      const hr = h.getBoundingClientRect(), cX = (hr.left + hr.right) / 2, GAP = window.innerWidth <= 640 ? HDR_CENTER_GAP_S : HDR_CENTER_GAP;
+      const im = [...logo.querySelectorAll('.hdrlogo')].find((e) => getComputedStyle(e).display !== 'none'); const ir = (im || logo).getBoundingClientRect();
+      const cake = !!(im && im.classList.contains('hl-cake')), fx = cake ? 43 / 669 : 6 / 611, fy = cake ? [16 / 244, 158 / 244] : [6 / 198, 149 / 198];
+      const lL = ir.left + fx * ir.width, lR = ir.right - fx * ir.width, lT = ir.top + fy[0] * ir.height, lBase = ir.top + fy[1] * ir.height, lB = lBase + 0.3 * (lBase - lT);
+      const tr = tog.getBoundingClientRect();
+      const first = links[0], last = links[links.length - 1], fl = first.getBoundingClientRect(), ll = last.getBoundingClientRect();
+      const sc = ll.width / Math.max(1, last.offsetWidth), nR = ll.right - (parseFloat(getComputedStyle(last).letterSpacing) || 0) * sc, fs = (parseFloat(getComputedStyle(first).fontSize) || 13) * sc;
+      const set = (k, v) => { if (isFinite(v)) h.style.setProperty(k, v.toFixed(2) + 'px'); };
+      set('--cLx', cX - (lL + lR) / 2);
+      let nCY;
+      if (HDR_CENTER_TOG_ROW) {
+        // one centred row: [toggle]  ABOUT  WORK
+        const TG = window.innerWidth <= 640 ? HDR_CENTER_TOG_GAP * 2 / 3 : HDR_CENTER_TOG_GAP;
+        const rowW = tr.width + TG + (nR - fl.left), rowL = cX - rowW / 2, rowCY = lB + GAP + tr.height / 2;
+        set('--cTx', rowL - tr.left); set('--cTy', rowCY - (tr.top + tr.height / 2));
+        set('--cNx', rowL + tr.width + TG - fl.left); set('--cNy', rowCY - (fl.top + fl.bottom) / 2);
+        nCY = rowCY + Math.max(0, tr.height / 2 - fs * 0.4);
+      } else {
+        const tTop = lB + GAP; nCY = tTop + tr.height + GAP + fs * 0.4;
+        set('--cTx', cX - (tr.left + tr.right) / 2); set('--cTy', tTop - tr.top);
+        set('--cNx', cX - (fl.left + nR) / 2); set('--cNy', nCY - (fl.top + fl.bottom) / 2);
+      }
+      set('--cPad', Math.max(0, nCY + fs * 0.6 + 14 - hr.bottom - Math.min(0, parseFloat(getComputedStyle(h).marginBottom) || 0)));
+      h.classList.add('hc-on'); this._hcOn = true;
+    } finally { if (wasOn) h.classList.add('hdr-on'); void h.offsetWidth; h.classList.remove('hdr-measure'); }
+  }
+  componentWillUnmount() { this.hdrOff && this.hdrOff(); this.themeUnlisten(); }
+  renderVals() {
+    const P = {
+      clay:  { base: '#6E2C1A', hi: '#A3482A', deep: '#3E170E', mid: '#8C3A20', glow: '#C46A42' },
+      plum:  { base: '#4A2260', hi: '#5E2BB0', deep: '#3A1520', mid: '#55267A', glow: '#7A4FD0' },
+      teal:  { base: '#173F43', hi: '#1F6266', deep: '#0B2226', mid: '#1C4E55', glow: '#3E8A86' },
+      ochre: { base: '#5A3F12', hi: '#7A5A16', deep: '#2E1F0A', mid: '#6B4A14', glow: '#A07A2A' }
+    };
+    const mood = 'clay'; // Lava uses the clay palette only
+    return {
+      clipId: (this._uid || (this._uid = 'pr' + Math.random().toString(36).slice(2, 9))) + 'c',
+      rimId: this._uid + 'r',
+      maskId: this._uid + 'k',
+      fondId: this._uid + 'f',
+      riseId: this._uid + 'q',
+      sgnId: this._uid + 'n',
+      sgbId: this._uid + 'b',
+      sgmId: this._uid + 'm2',
+      grainId: this._uid + 'g',
+      rootRef: (el) => { this.rootEl = el; },
+      rootStyle: '--pbase: ' + ((P[mood] || P.teal)).base + 'f0; --gtint: ' + glassTint((P[mood] || P.teal).hi) + '; --blur: ' + (this.props.blur ?? 26) + 'px',
+      rootClass: [(this.props.motion ?? true) && !(this.state && this.state.paused) ? '' : 'still', this.props.skipIntro ? 'nointro' : '', this.themeKey() === 'cake' ? 'cake' : 'lava', 'site'].join(' ').trim(),
+      themeNow: (this.themeNow = this.themeKey()),
+      lavaPressed: this.themeKey() !== 'cake' ? 'true' : 'false',
+      cakePressed: this.themeKey() === 'cake' ? 'true' : 'false',
+      onLava: () => this.setTheme('lava'),
+      onCake: () => this.setTheme('cake'),
+      hdrCls: 'pad hdr' + (this._hdrOn ? ' hdr-on' : '') + (this._hdrFit ? ' hdr-fit' : '') + (this._hcOn ? ' hc-on' : ''),
+      hdrGlassCls: 'hdrglass' + (this._hdrOn ? ' on' : ''),
+      hdrRef: (el) => { if (el && el !== this.hdrEl) { this.hdrEl = el; this.hdrInit(); } },
+      cakeRef: (el) => { if (el && el !== this.cakeCv) { this.cakeCv = el; if (CAKE_GENERATED) cakeEngine(this, el); else cakeStatic(this, el); } },
+      isPaused: !!(this.state && this.state.paused),
+      isPlaying: !(this.state && this.state.paused),
+      motionLabel: (this.state && this.state.paused) ? 'Start motion' : 'Stop motion',
+      motionPressed: (this.state && this.state.paused) ? 'true' : 'false',
+      onToggleMotion: () => this.setState({ paused: !(this.state && this.state.paused) }),
+      onLogo: (e) => { if (typeof this.props.onLogo === 'function') { if (e && e.preventDefault) e.preventDefault(); this.props.onLogo(); } },
+      p: P[mood] || P.teal
+    };
+  }
+}
+</script>
+</body>
+</html>

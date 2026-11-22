@@ -249,8 +249,8 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 </svg>
 </div>
 <nav aria-label="Primary" class="tx-late" style="{{navStyle}}; position: absolute; right: var(--gut); top: calc(clamp(40px, 6vw, 88px) + 21px); display: flex; flex-wrap: wrap; gap: 8px 48px; z-index: 3">
-<a class="navlink" href="About.dc.html" aria-current="page">About</a>
-<a class="navlink" href="Home.dc.html">Work</a>
+<a class="navlink" href="about/" aria-current="page">About</a>
+<a class="navlink" href="work/">Work</a>
 </nav>
 <div aria-hidden="true" class="glass tx-peek" style="{{peekStyle}}; position: absolute; top: calc(0px + clamp(40px, 6vw, 88px) + 206px); width: min(1000px, 68vw); height: clamp(320px, 50vh, 480px); border-radius: 28px; transform: scale(.92); z-index: 2">
 <div style="position: absolute; inset: 14px; border-radius: 18px; border: 1px dashed rgba(255,238,226,.35)"></div>
@@ -1212,14 +1212,26 @@ class Component extends DCLogic {
         this.t2 = setTimeout(() => {
           ov.style.clipPath = '';
           line.style.opacity = '0'; ov.classList.remove('kh');
-          this.t6 = setTimeout(() => this.setState({ phase: 'home', khDone: true, kh: false }), 380);
+          this.t6 = setTimeout(() => { this.setState({ phase: 'home', khDone: true, kh: false }); this.urlSync(true); }, 380);
         }, 120);
       };
       this.khRaf = requestAnimationFrame(tick);
     };
     this.khRaf = requestAnimationFrame(go);
   }
+  // CLEAN_URLS: once the gate opens onto About, the address bar shows /about (and back to the root when the logo returns to the gate).
+  // Only on the published clean-URL site; the .dc.html files (canvas / direct links) are left alone
+  urlSync(on) {
+    try {
+      if (/\.dc\.html?$/i.test(location.pathname) || !window.history || !history.replaceState) return;
+      if (this._urlOn === on) return; this._urlOn = on;
+      history.replaceState(history.state, '', new URL(on ? 'about/' : './', document.baseURI).href);
+      if (on && !this._title0) this._title0 = document.title;
+      document.title = on ? 'Harjot — About' : (this._title0 || document.title);
+    } catch (e) {}
+  }
   reset() {
+    this.urlSync(false);
     cancelAnimationFrame(this.khRaf); clearTimeout(this.t6);
     [this.t0, this.t1, this.t2, this.t3, this.t4, this.t5, this.th, this.tu].forEach(clearTimeout);
     (this.ti || []).forEach(clearTimeout); this.ti = [];
@@ -1308,7 +1320,7 @@ class Component extends DCLogic {
           clearTimeout(this.t0); clearTimeout(this.t1);
           const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           if (reduce || (this.props.motion ?? true) === false || st.paused) {
-            this.t1 = setTimeout(() => this.setState({ phase: 'home' }), 700);
+            this.t1 = setTimeout(() => { this.setState({ phase: 'home' }); this.urlSync(true); }, 700);
           } else {
             this.t0 = setTimeout(() => this.keyhole(), 600);
           }
