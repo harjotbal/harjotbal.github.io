@@ -669,6 +669,8 @@ class Component extends DCLogic {
     if (this._thPrev !== undefined && this._thPrev !== this.themeNow) {
       const H = document.documentElement; H.classList.add('tswap'); void H.offsetWidth;
       cancelAnimationFrame(this._tsR); this._tsR = requestAnimationFrame(() => { this._tsR = requestAnimationFrame(() => H.classList.remove('tswap')); });
+      // iOS Safari can keep the old theme's background overlays painted: re-render those layers once
+      document.querySelectorAll('.pagebg > .bglay, .cakebg, .gatebg').forEach((el) => { const d = el.style.display; el.style.display = 'none'; void el.offsetHeight; el.style.display = d; });
       if (this.hdrBalance) { try { this.hdrBalance(); } catch (e) {} }
       if (this._rv) { this._rv(); setTimeout(this._rv, 300); }
     }

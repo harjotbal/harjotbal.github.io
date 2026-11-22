@@ -225,7 +225,9 @@ html{scroll-behavior:smooth}
 
 .still .sugar{animation:none!important;opacity:0}
 @media (prefers-reduced-motion:reduce){.sugar{animation:none!important;opacity:0}}
-@media (hover:none) and (pointer:coarse){.lava .bglay:has(> .blob)::after{content:'';position:absolute;left:0;right:0;top:0;height:260px;pointer-events:none;background:linear-gradient(to bottom,#6E2C1A 0,#6E2C1A 64px,rgba(110,44,26,.86) 100px,rgba(110,44,26,.55) 150px,rgba(110,44,26,.22) 205px,rgba(110,44,26,0) 260px)}}
+@media (hover:none) and (pointer:coarse){.lava .pagebg > .bglay::after{content:'';position:absolute;left:0;right:0;top:0;height:260px;pointer-events:none;background:linear-gradient(to bottom,#6E2C1A 0,#6E2C1A 64px,rgba(110,44,26,.86) 100px,rgba(110,44,26,.55) 150px,rgba(110,44,26,.22) 205px,rgba(110,44,26,0) 260px)}}
+/* (Lava top fade no longer uses :has() — iOS Safari kept it painted after switching to Cake) */
+.cake .pagebg > .bglay::after{content:none!important;display:none!important}
 /* CAKE_TOP_FADE: same touch-screen top fade as Lava, in the Cake page colour (matches the browser bar), so the blobs/sprinkles melt into the top bar */
 @media (hover:none) and (pointer:coarse){.cake .cakebg::after{content:'';position:absolute;left:0;right:0;top:0;height:260px;pointer-events:none;background:linear-gradient(to bottom,#EEFBFC 0,#EEFBFC 64px,rgba(238,251,252,.86) 100px,rgba(238,251,252,.55) 150px,rgba(238,251,252,.22) 205px,rgba(238,251,252,0) 260px)}}
 .lava-move .lava .blob{visibility:visible!important;animation-play-state:running!important;will-change:transform!important}.lava-move .lava .bglay{background-image:none!important}@media (max-width:760px){.herosec{align-items:center;text-align:center;margin-left:auto;margin-right:auto}.herosec>*{text-wrap:balance}.brtext{align-items:center;text-align:center;margin:0 auto}.brtext p{text-wrap:balance}}
@@ -1082,6 +1084,8 @@ class Component extends DCLogic {
     if (this._thPrev !== undefined && this._thPrev !== this.themeNow) {
       const H = document.documentElement; H.classList.add('tswap'); void H.offsetWidth;
       cancelAnimationFrame(this._tsR); this._tsR = requestAnimationFrame(() => { this._tsR = requestAnimationFrame(() => H.classList.remove('tswap')); });
+      // iOS Safari can keep the old theme's background overlays painted: re-render those layers once
+      document.querySelectorAll('.pagebg > .bglay, .cakebg, .gatebg').forEach((el) => { const d = el.style.display; el.style.display = 'none'; void el.offsetHeight; el.style.display = d; });
       if (this.hdrBalance) { try { this.hdrBalance(); } catch (e) {} }
       if (this._rv) { this._rv(); setTimeout(this._rv, 300); }
     }
