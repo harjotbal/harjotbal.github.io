@@ -236,12 +236,10 @@ html{scroll-behavior:smooth}
 /* THEME_SWAP_INSTANT: no transitions during the one-frame Lava/Cake swap */
 .tswap *,.tswap *::before,.tswap *::after{transition:none!important}
 
-/* HERO_FLOAT: case-cover devices drift gently, each on its own rhythm */
-.hbox{position:absolute;left:50%;top:0;bottom:0;aspect-ratio:var(--ar);max-width:100%;transform:translateX(-50%)}
-.hlay{position:absolute;inset:0;background:0 0/100% 100% no-repeat;animation:hfloat 6s ease-in-out infinite alternate;will-change:transform}
-@keyframes hfloat{from{transform:translateY(3px)}to{transform:translateY(-3px)}}
-.still .hlay,.bubbles-still .hlay{animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){.hlay{animation:none}}
+/* HERO_WOBBLE: the cover image as a unit gently sways and bobs */
+@keyframes herowob{0%{transform:translateY(2px) rotate(-.9deg)}50%{transform:translateY(-3px) rotate(0deg)}100%{transform:translateY(2px) rotate(.9deg)}}
+.still .visual,.bubbles-still .visual{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){.visual{animation:none!important}}
 </style>
 </helmet>
 <div class="{{rootClass}}" ref="{{rootRef}}" style="{{rootStyle}}; min-height: 100vh; background-color: #17100D; overflow: clip; font-family: 'Proxima Nova', Figtree, system-ui, sans-serif; color: #FBE9DC">
@@ -304,7 +302,7 @@ html{scroll-behavior:smooth}
 <div class="track" ref="{{pr.trackRef}}" onScroll="{{pr.onScroll}}" tabindex="0" aria-label="{{pr.title}} story, scrolls sideways">
 <sc-for list="{{pr.steps}}" as="st" hint-placeholder-count="5">
 <article class="glass panel" style="{{st.panelStyle}}">
-<div class="visual" style="{{st.visStyle}}"><sc-if value="{{st.hasLayers}}" hint-placeholder-val="{{ false }}"><div class="hbox" style="{{st.hboxStyle}}"><sc-for list="{{st.layers}}" as="ly" hint-placeholder-count="2"><span class="hlay" style="{{ly.st}}"></span></sc-for></div></sc-if><sc-if value="{{st.hasStat}}" hint-placeholder-val="{{ false }}"><div style="position: absolute; left: 22px; bottom: 18px; display: flex; flex-direction: column; gap: 10px"><span style="font: 300 128px/.9 Josefin Sans, Futura, sans-serif; letter-spacing: -0.03em; color: #FBE9DC">{{st.stat}}</span><span style="font: 600 12px/1 Josefin Sans, Futura, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(251,233,220,.86)">{{st.statLabel}}</span></div></sc-if></div>
+<div class="visual" style="{{st.visStyle}}"><sc-if value="{{st.hasStat}}" hint-placeholder-val="{{ false }}"><div style="position: absolute; left: 22px; bottom: 18px; display: flex; flex-direction: column; gap: 10px"><span style="font: 300 128px/.9 Josefin Sans, Futura, sans-serif; letter-spacing: -0.03em; color: #FBE9DC">{{st.stat}}</span><span style="font: 600 12px/1 Josefin Sans, Futura, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(251,233,220,.86)">{{st.statLabel}}</span></div></sc-if></div>
 <div class="glass-dark {{st.cardCls}}" style="position: relative; z-index: 2; border-radius: 18px; padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; margin: 0 -12px -12px">
 <h3 style="margin: 0; font: 600 24px/1.2 Josefin Sans, Futura, sans-serif">{{st.title}}</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.55; color: rgba(251,233,220,.86)">{{st.body}}</p>
@@ -366,7 +364,7 @@ const HDR_CENTER_TOG_GAP = 36;   // px between the toggle and About on the share
 // Performance test switch — on phones/tablets the case rows page with swipes/arrows instead of native sideways scrolling.
 // Set to false to restore native sideways scrolling.
 const PAGED_ROWS_ON_PHONES = false;
-const HERO_FLOAT = true;   // case covers: each device floats up and down on its own (false = one still image)
+const HERO_WOBBLE = true;   // case covers: the whole device image gently wobbles (false = still)
 const glassTint = (hex) => { try { let r = parseInt(hex.slice(1, 3), 16) / 255, g = parseInt(hex.slice(3, 5), 16) / 255, b = parseInt(hex.slice(5, 7), 16) / 255; const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2; let h = 0, s = 0; if (mx !== mn) { const d = mx - mn; s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h /= 6; } s = Math.min(1, s * 1.8); const q = l < 0.5 ? l * (1 + s) : l + s - l * s, p2 = 2 * l - q; const f = (t) => { t = (t + 1) % 1; return t < 1 / 6 ? p2 + (q - p2) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? p2 + (q - p2) * (2 / 3 - t) * 6 : p2; }; return 'rgba(' + Math.round(f(h + 1 / 3) * 255) + ',' + Math.round(f(h) * 255) + ',' + Math.round(f(h - 1 / 3) * 255) + ',.12)'; } catch (e) { return 'transparent'; } };
 // ── Cake splotches ──────────────────────────────────────
 // false = use the pre-made splotch images below (light, nothing generated at load).
@@ -1194,27 +1192,21 @@ class Component extends DCLogic {
     const AUDI_HERO = 'img/124720baee2e.webp';
     const STAPLES_HERO = 'img/f88849cdbe5f.webp';
     const story = (title, x) => [
-      { k: '01', label: 'Overview', title: '', body: String(x.meta || '').split(' · ').join('\u2002·\u2002'), visual: '[Hero image]', hasLayers: !!(x.hero && x.heroLayers && HERO_FLOAT), hboxStyle: x.heroLayers ? '--ar: ' + x.heroLayers.ar : '', layers: (x.hero && x.heroLayers && HERO_FLOAT) ? x.heroLayers.layers.map((l) => ({ st: 'background-image: url(' + l.img + '); animation-delay: ' + l.d + 's' })) : [], visStyle: x.hero ? 'border: none; top: -34px; left: ' + (x.heroPad || 6) + 'px; right: ' + (x.heroPad || 6) + 'px; bottom: 128px; ' + ((x.heroLayers && HERO_FLOAT) ? '' : 'background: url(' + x.hero + ') center top / ' + (x.heroSize || 'contain') + ' no-repeat;') + ' filter: drop-shadow(0 14px 18px rgba(14,10,60,.38)) drop-shadow(0 3px 5px rgba(14,10,60,.22)); z-index: 3' : '', cardCls: 'capline' + (x.hero ? ' herocap' : ''), panelStyle: x.hero ? 'overflow: visible; background: ' + x.heroBg : '' },
+      { k: '01', label: 'Overview', title: '', body: String(x.meta || '').split(' · ').join('\u2002·\u2002'), visual: '[Hero image]', visStyle: x.hero ? 'border: none; top: -34px; left: ' + (x.heroPad || 6) + 'px; right: ' + (x.heroPad || 6) + 'px; bottom: 128px; background: url(' + x.hero + ') center top / ' + (x.heroSize || 'contain') + ' no-repeat; ' + (HERO_WOBBLE ? 'animation: herowob 7s ease-in-out ' + (-(+x.n || 0) * 1.7).toFixed(1) + 's infinite alternate; transform-origin: 50% 85%;' : '') + ' filter: drop-shadow(0 14px 18px rgba(14,10,60,.38)) drop-shadow(0 3px 5px rgba(14,10,60,.22)); z-index: 3' : '', cardCls: 'capline' + (x.hero ? ' herocap' : ''), panelStyle: x.hero ? 'overflow: visible; background: ' + x.heroBg : '' },
       { k: '02', label: 'The brief', title: '[What needed solving]', body: '[The problem, who it was for, and the constraints.]', visual: '[Context visual]' },
       { k: '03', label: 'Insight', title: '[What you learned]', body: '[The research or key insight that unlocked the solution.]', visual: '[Research artefact]' },
       { k: '04', label: 'Design', title: '[How you solved it]', body: '[Key flows, decisions and craft details.]', visual: '[Screens / flows]' },
       { k: '05', label: 'Outcome', title: x.outcome || '[What changed]', body: '[Results, metrics and what shipped.]', visual: '[Final product]', hasStat: !!x.stat, stat: x.stat || '', statLabel: x.statLabel || '' }
     ];
-    // HERO_FLOAT: each device in a case cover gently floats on its own. Each layer is one device cut out of the cover (hidden parts filled in), back to front
-    const HERO_LAYERS = {
-      STAPLES: { ar: 1.43124, layers: [{ img: 'img/b00e694fd9bf.webp', d: 0 }, { img: 'img/a1e9bd694527.webp', d: -1.4 }, { img: 'img/00b8f34f0103.webp', d: -2.8 }] },
-      BORROWELL: { ar: 1.60428, layers: [{ img: 'img/065ffbf0dc8a.webp', d: -1.2 }, { img: 'img/29b2292d204e.webp', d: -3.6 }, { img: 'img/2cf475c5f701.webp', d: 0 }, { img: 'img/7d8b9da59887.webp', d: -2.4 }, { img: 'img/2734acbb2a10.webp', d: -4.8 }] },
-      AUDI: { ar: 1.10798, layers: [{ img: 'img/68efab372d50.webp', d: -2.2 }, { img: 'img/ab7e2c083e44.webp', d: 0 }] },
-    };
     const list = [
       { id: 'creator-homebase', n: '01', client: 'NBCUniversal', logo: 'universal', lh: 44, title: 'Creator Homebase', mood: 'clay', meta: '2026 · Entertainment · SaaS', summary: "Led AI-first design on NBCUniversal's Creator Homebase, a custom SaaS platform." },
-      { id: 'vehicle-tracker', n: '02', client: 'Audi (Global)', logo: 'audi', lh: 26, title: 'Vehicle Order Tracker', mood: 'teal', hero: AUDI_HERO, heroLayers: HERO_LAYERS.AUDI, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(226,232,240,.5), rgba(226,232,240,0) 62%), linear-gradient(165deg, #8E99A6 0%, #4A535E 44%, #1E2228 78%, #121418 100%)', meta: '2024 · Automotive · Web and app feature', summary: "Directed the design of Audi's Vehicle Tracker for web and app, launched in 8 countries.", stat: '8', statLabel: 'Countries at launch', outcome: 'Launched in 8 countries' },
-      { id: 'slate-project-builder', n: '03', hero: STAPLES_HERO, heroLayers: HERO_LAYERS.STAPLES, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(255,226,190,.5), rgba(255,226,190,0) 62%), linear-gradient(165deg, #D9893F 0%, #B5481F 42%, #8E1F14 72%, #5A0E0B 100%)', client: 'Staples', logo: 'staples', lh: 24, title: 'SLATE Project Builder', mood: 'ochre', meta: '2018 · Retail · Digital kiosk', summary: "Architected Staples' SLATE project builder, used in 305 Canadian retail stores.", stat: '305', statLabel: 'Canadian retail stores', outcome: 'Used in 305 Canadian retail stores' },
-      { id: 'borrowell-app', n: '04', hero: BORROWELL_HERO, heroLayers: HERO_LAYERS.BORROWELL, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(206,212,250,.55), rgba(206,212,250,0) 62%), linear-gradient(165deg, #5B4BD8 0%, #3A2FA8 46%, #26227A 100%)', client: 'Borrowell', logo: 'borrowell', lh: 26, title: '0-1 Native Mobile App', mood: 'plum', meta: '2018 · Fintech · Native mobile app', summary: "Designed Borrowell's 0–1 app for iOS and Android: fintech for 4 million Canadians.", stat: '4M', statLabel: 'Canadians on Borrowell', outcome: 'Fintech for 4 million Canadians' }
+      { id: 'vehicle-tracker', n: '02', client: 'Audi (Global)', logo: 'audi', lh: 26, title: 'Vehicle Order Tracker', mood: 'teal', hero: AUDI_HERO, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(226,232,240,.5), rgba(226,232,240,0) 62%), linear-gradient(165deg, #8E99A6 0%, #4A535E 44%, #1E2228 78%, #121418 100%)', meta: '2024 · Automotive · Web and app feature', summary: "Directed the design of Audi's Vehicle Tracker for web and app, launched in 8 countries.", stat: '8', statLabel: 'Countries at launch', outcome: 'Launched in 8 countries' },
+      { id: 'slate-project-builder', n: '03', hero: STAPLES_HERO, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(255,226,190,.5), rgba(255,226,190,0) 62%), linear-gradient(165deg, #D9893F 0%, #B5481F 42%, #8E1F14 72%, #5A0E0B 100%)', client: 'Staples', logo: 'staples', lh: 24, title: 'SLATE Project Builder', mood: 'ochre', meta: '2018 · Retail · Digital kiosk', summary: "Architected Staples' SLATE project builder, used in 305 Canadian retail stores.", stat: '305', statLabel: 'Canadian retail stores', outcome: 'Used in 305 Canadian retail stores' },
+      { id: 'borrowell-app', n: '04', hero: BORROWELL_HERO, heroBg: 'radial-gradient(110% 70% at 50% 8%, rgba(206,212,250,.55), rgba(206,212,250,0) 62%), linear-gradient(165deg, #5B4BD8 0%, #3A2FA8 46%, #26227A 100%)', client: 'Borrowell', logo: 'borrowell', lh: 26, title: '0-1 Native Mobile App', mood: 'plum', meta: '2018 · Fintech · Native mobile app', summary: "Designed Borrowell's 0–1 app for iOS and Android: fintech for 4 million Canadians.", stat: '4M', statLabel: 'Canadians on Borrowell', outcome: 'Fintech for 4 million Canadians' }
     ];
     // TEST: borrow another case's overview tile (hero image + backdrop) as a placeholder. Set to false to remove.
     const TEST_BORROW_TILES = true;
-    if (TEST_BORROW_TILES) { const by = (id) => list.find((x) => x.id === id); const use = (to, from) => { const t = by(to), f = by(from); t.hero = f.hero; t.heroLayers = f.heroLayers; t.heroBg = f.heroBg; t.heroPad = f.heroPad; t.heroSize = f.heroSize; };
+    if (TEST_BORROW_TILES) { const by = (id) => list.find((x) => x.id === id); const use = (to, from) => { const t = by(to), f = by(from); t.hero = f.hero; t.heroBg = f.heroBg; t.heroPad = f.heroPad; t.heroSize = f.heroSize; };
       use('creator-homebase', 'slate-project-builder'); // Universal <- Staples
     }
     const prog = s.prog || {};
