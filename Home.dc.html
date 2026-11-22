@@ -1182,7 +1182,7 @@ class Component extends DCLogic {
     };
     const s = this.state || {};
     const BORROWELL_HERO = 'img/bdaad165fa30.webp';
-    const AUDI_HERO = 'img/b86b0fa05726.webp';
+    const AUDI_HERO = 'img/124720baee2e.webp';
     const STAPLES_HERO = 'img/f88849cdbe5f.webp';
     const story = (title, x) => [
       { k: '01', label: 'Overview', title: '', body: String(x.meta || '').split(' · ').join('\u2002·\u2002'), visual: '[Hero image]', visStyle: x.hero ? 'border: none; top: -34px; left: ' + (x.heroPad || 6) + 'px; right: ' + (x.heroPad || 6) + 'px; bottom: 128px; background: url(' + x.hero + ') center top / ' + (x.heroSize || 'contain') + ' no-repeat; filter: drop-shadow(0 14px 18px rgba(14,10,60,.38)) drop-shadow(0 3px 5px rgba(14,10,60,.22)); z-index: 3' : '', cardCls: 'capline' + (x.hero ? ' herocap' : ''), panelStyle: x.hero ? 'overflow: visible; background: ' + x.heroBg : '' },
