@@ -235,8 +235,8 @@ html{scroll-behavior:smooth}
 /* THEME_SWAP_INSTANT: no transitions during the one-frame Lava/Cake swap */
 .tswap *,.tswap *::before,.tswap *::after{transition:none!important}
 
-/* HERO_WOBBLE: the cover image as a unit gently sways and bobs */
-@keyframes herowob{0%{transform:translateY(2px) rotate(-.9deg)}50%{transform:translateY(-3px) rotate(0deg)}100%{transform:translateY(2px) rotate(.9deg)}}
+/* HERO_WOBBLE: the cover image as a unit gently sways, bobs and tilts in depth (rotateY) */
+@keyframes herowob{0%{transform:perspective(1100px) translateY(2px) rotateY(-7deg) rotate(-.9deg)}50%{transform:perspective(1100px) translateY(-3px) rotateY(0deg) rotate(0deg)}100%{transform:perspective(1100px) translateY(2px) rotateY(7deg) rotate(.9deg)}}
 .still .visual,.bubbles-still .visual{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){.visual{animation:none!important}}
 </style>
