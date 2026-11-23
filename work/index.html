@@ -287,7 +287,7 @@ html{scroll-behavior:smooth}
 </header>
 <sc-for list="{{projects}}" as="pr" hint-placeholder-count="4">
 <section id="{{pr.id}}" data-mood="{{pr.mood}}" ref="{{pr.secRef}}" aria-label="{{pr.title}} case study" style="{{pr.secStyle}}; scroll-margin-top: 32px">
-<div class="pad reveal" style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px">
+<div class="{{pr.headCls}}" style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; {{pr.headDelay}}">
 <div class="phead" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 40px">
 <div class="pheadin" style="display: flex; align-items: center; gap: 20px; min-width: 0">
 <span role="img" aria-label="{{pr.client}}" class="logo" style="{{pr.logoStyle}}"></span>
@@ -304,7 +304,7 @@ html{scroll-behavior:smooth}
 </div>
 </div>
 </div>
-<div class="track reveal" style="transition-delay: .12s" ref="{{pr.trackRef}}" onScroll="{{pr.onScroll}}" tabindex="0" aria-label="{{pr.title}} story, scrolls sideways">
+<div class="{{pr.trackCls}}" style="{{pr.trackDelay}}" ref="{{pr.trackRef}}" onScroll="{{pr.onScroll}}" tabindex="0" aria-label="{{pr.title}} story, scrolls sideways">
 <sc-for list="{{pr.steps}}" as="st" hint-placeholder-count="5">
 <article class="glass panel" style="{{st.panelStyle}}">
 <sc-if value="{{st.soon}}" hint-placeholder-val="{{ false }}"><div class="soon"><span class="soon-t">Coming soon</span><span class="soon-s">Available upon request</span></div></sc-if><sc-if value="{{st.full}}" hint-placeholder-val="{{ true }}">
@@ -1267,6 +1267,8 @@ class Component extends DCLogic {
         steps: story(x.title, x),
         logoStyle: 'width: 94px; height: ' + (94 / LOGOS[x.logo].r).toFixed(1) + 'px; -webkit-mask-image: url(' + LOGOS[x.logo].u + '); mask-image: url(' + LOGOS[x.logo].u + ')',
         secStyle: x.n === '01' ? 'margin-top: 72px' : 'margin-top: var(--csgap, 120px)',
+        // first case is on screen at load: it uses the same load-time 'rise' as the other pages' titles (scroll reveal would already be done before first paint)
+        headCls: x.n === '01' ? 'pad rise' : 'pad reveal', headDelay: x.n === '01' ? 'animation-delay: .08s' : '', trackCls: x.n === '01' ? 'track rise' : 'track reveal', trackDelay: x.n === '01' ? 'animation-delay: .2s' : 'transition-delay: .12s',
         barStyle: 'width: ' + Math.round(20 + 80 * (prog[x.id] || 0)) + '%',
         prevDis: (prog[x.id] || 0) < 0.02 ? 'true' : 'false',
         prevCls: 'glass arrowbtn pbtn' + ((prog[x.id] || 0) < 0.02 ? ' isdis' : ''),
