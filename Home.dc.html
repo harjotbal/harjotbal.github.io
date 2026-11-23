@@ -1184,8 +1184,8 @@ class Component extends DCLogic {
     const BORROWELL_HERO = 'img/bdaad165fa30.webp';
     const AUDI_HERO = 'img/124720baee2e.webp';
     const STAPLES_HERO = 'img/f88849cdbe5f.webp';
-    // Creator Homebase cover: full dashboard screenshot (cropped at the sidebar's bottom) set into a display, straight on at 90% size (ch/make3.py SCALE; angled version: ch/make2.py 22 out 9); telescopic tiles float in front of the bezel
-    const CREATOR_HERO = 'img/80f5b8fc2b28.webp';
+    // Creator Homebase cover: Browse campaigns screen (drafts block removed so the movie tiles move up; cropped at the sidebar's bottom) set into a display, straight on at 90% size (ch/make3.py SCALE; angled version: ch/make2.py 22 out 9); telescopic tiles float in front of the bezel
+    const CREATOR_HERO = 'img/256e14b71c69.webp';
     const story = (title, x) => [
       { k: '01', label: 'Overview', title: '', body: String(x.meta || '').split(' · ').join('\u2002·\u2002'), visual: '[Hero image]', visStyle: x.hero ? 'border: none; top: ' + (x.heroTop != null ? x.heroTop : -34) + 'px; left: ' + (x.heroPad || 6) + 'px; right: ' + (x.heroPad || 6) + 'px; bottom: ' + (x.heroBottom != null ? x.heroBottom : 128) + 'px; background: url(' + x.hero + ') center top / ' + (x.heroSize || 'contain') + ' no-repeat; filter: drop-shadow(0 14px 18px rgba(14,10,60,.38)) drop-shadow(0 3px 5px rgba(14,10,60,.22)); z-index: 3' : '', cardCls: 'capline' + (x.hero ? ' herocap' : ''), panelStyle: x.hero ? 'overflow: visible; background: ' + x.heroBg : '' },
       { k: '02', label: 'The brief', title: '[What needed solving]', body: '[The problem, who it was for, and the constraints.]', visual: '[Context visual]' },
