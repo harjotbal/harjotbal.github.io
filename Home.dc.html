@@ -286,7 +286,7 @@ html{scroll-behavior:smooth}
 </header>
 <sc-for list="{{projects}}" as="pr" hint-placeholder-count="4">
 <section id="{{pr.id}}" data-mood="{{pr.mood}}" ref="{{pr.secRef}}" aria-label="{{pr.title}} case study" style="{{pr.secStyle}}; scroll-margin-top: 32px">
-<div class="pad" style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px">
+<div class="pad reveal" style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px">
 <div class="phead" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 40px">
 <div class="pheadin" style="display: flex; align-items: center; gap: 20px; min-width: 0">
 <span role="img" aria-label="{{pr.client}}" class="logo" style="{{pr.logoStyle}}"></span>
@@ -303,7 +303,7 @@ html{scroll-behavior:smooth}
 </div>
 </div>
 </div>
-<div class="track" ref="{{pr.trackRef}}" onScroll="{{pr.onScroll}}" tabindex="0" aria-label="{{pr.title}} story, scrolls sideways">
+<div class="track reveal" style="transition-delay: .12s" ref="{{pr.trackRef}}" onScroll="{{pr.onScroll}}" tabindex="0" aria-label="{{pr.title}} story, scrolls sideways">
 <sc-for list="{{pr.steps}}" as="st" hint-placeholder-count="5">
 <article class="glass panel" style="{{st.panelStyle}}">
 <sc-if value="{{st.soon}}" hint-placeholder-val="{{ false }}"><div class="soon"><span class="soon-t">Coming soon</span><span class="soon-s">Available upon request</span></div></sc-if><sc-if value="{{st.full}}" hint-placeholder-val="{{ true }}">
