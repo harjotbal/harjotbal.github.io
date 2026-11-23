@@ -215,7 +215,7 @@ html{scroll-behavior:smooth}
 <canvas ref="{{cakeRef}}" class="cakecv"></canvas>
 </div>
 </div>
-<div style="position: relative; padding: clamp(40px, 6vw, 64px) 0 112px">
+<div style="position: relative; padding: clamp(40px, 6vw, 64px) 0; min-height: 100svh; box-sizing: border-box; display: flex; flex-direction: column">
 <div class="{{hdrGlassCls}}" aria-hidden="true"></div>
 <header class="{{hdrCls}}" ref="{{hdrRef}}" style="padding-bottom: calc(clamp(40px, 6vw, 88px) - clamp(40px, 6vw, 64px)); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px">
 <div class="hdrleft" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 0">
@@ -243,60 +243,7 @@ html{scroll-behavior:smooth}
 <p class="rise" style="margin: 0; font: 400 clamp(20px, 2vw, 26px)/1.45 Josefin Sans, Futura, sans-serif; text-wrap: pretty; max-width: 860px; animation-delay: .16s">Coming soon: A breakdown of how I created this website from scratch using Claude and my own design inputs. I have now retired my old templated portfolio website and haven’t looked back since.</p>
 <p class="rise" style="margin: 0; font: 400 clamp(20px, 2vw, 26px)/1.45 Josefin Sans, Futura, sans-serif; text-wrap: pretty; max-width: 860px; animation-delay: .22s">Stay tuned for my messy but organized process… and a peek at my raw prompts.</p>
 </section>
-<section aria-label="How it came together" class="pad" style="margin-top: 80px; display: flex; flex-direction: column; gap: 24px">
-<article class="glass step reveal">
-<div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
-<div style="display: flex; align-items: center; gap: 12px"><span class="tag">Creative</span></div>
-<h2 style="margin: 0; font: 600 30px/1.1 Josefin Sans, Futura, sans-serif">Setting the mood</h2>
-<div class="shot"><span class="eyebrow" style="font-size: 11px">Input · [Mood board / Figma frames]</span></div>
-</div>
-<div class="glass-dark prompt"><span class="eyebrow" style="font-size: 11px">Prompt</span><p style="margin: 0">“Frosted glass, subtle animation, and moving gradients under gliding glass panels. Pretty dynamic.”</p></div>
-<div class="shot"><span class="eyebrow" style="font-size: 11px">Result · [First canvas]</span></div>
-</article>
-<article class="glass step reveal">
-<div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
-<div style="display: flex; align-items: center; gap: 12px"><span class="tag">Design</span></div>
-<h2 style="margin: 0; font: 600 30px/1.1 Josefin Sans, Futura, sans-serif">Finding the logo</h2>
-<div class="shot"><span class="eyebrow" style="font-size: 11px">Input · [Logo sketches]</span></div>
-</div>
-<div class="glass-dark prompt"><span class="eyebrow" style="font-size: 11px">Prompt</span><p style="margin: 0">“Can the frosted glass be slightly less transparent and with a gold tint? … Make the glowing sheen move to trace the letters in a subtle continuous animation.”</p></div>
-<div class="shot"><span class="eyebrow" style="font-size: 11px">Result · [Frosted logo]</span></div>
-</article>
-<article class="glass step reveal">
-<div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
-<div style="display: flex; align-items: center; gap: 12px"><span class="tag">Design</span></div>
-<h2 style="margin: 0; font: 600 30px/1.1 Josefin Sans, Futura, sans-serif">Choreographing the unlock</h2>
-<div class="shot"><span class="eyebrow" style="font-size: 11px">Input · [Flow screenshots]</span></div>
-</div>
-<div class="glass-dark prompt"><span class="eyebrow" style="font-size: 11px">Prompt</span><p style="margin: 0">“Once the user unlocks the correct password, the transition from this screen to screen 02 should be fluid: the logo should move to the top-left and the glass panel should transform into place.”</p></div>
-<div class="shot"><span class="eyebrow" style="font-size: 11px">Result · [Gate → Work transition]</span></div>
-</article>
-<article class="glass step reveal">
-<div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
-<div style="display: flex; align-items: center; gap: 12px"><span class="tag">Technical</span></div>
-<h2 style="margin: 0; font: 600 30px/1.1 Josefin Sans, Futura, sans-serif">Sweating the edges</h2>
-<div class="shot"><span class="eyebrow" style="font-size: 11px">Input · [Before screenshot]</span></div>
-</div>
-<div class="glass-dark prompt"><span class="eyebrow" style="font-size: 11px">Prompt</span><p style="margin: 0">“The edge of the panel is aliasing/pixelating as it moves, how can we reduce/remove that? Anti-aliasing?”</p></div>
-<div class="shot"><span class="eyebrow" style="font-size: 11px">Result · [After screenshot]</span></div>
-</article>
-<article class="glass step reveal">
-<div style="display: flex; flex-direction: column; gap: 14px; min-width: 0">
-<div style="display: flex; align-items: center; gap: 12px"><span class="tag">Creative</span></div>
-<h2 style="margin: 0; font: 600 30px/1.1 Josefin Sans, Futura, sans-serif">Adding a little delight</h2>
-<div class="shot"><span class="eyebrow" style="font-size: 11px">Input · [Reference images]</span></div>
-</div>
-<div class="glass-dark prompt"><span class="eyebrow" style="font-size: 11px">Prompt</span><p style="margin: 0">“I want to explore a more creative way to submit a passcode — I'm thinking like dials on a briefcase.”</p></div>
-<div class="shot"><span class="eyebrow" style="font-size: 11px">Result · [Glass keypad]</span></div>
-</article>
-</section>
-<section class="pad" style="margin-top: 88px">
-<div class="glass reveal" style="border-radius: 28px; padding: clamp(28px, 4vw, 48px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px">
-<h2 style="margin: 0; font: 600 clamp(28px, 3vw, 40px)/1.1 Josefin Sans, Futura, sans-serif">See where it landed.</h2>
-<div style="display: flex; flex-wrap: wrap; gap: 14px"><a class="glass cta" href="work/">View the work<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></a><a class="glass cta" href="about/">About me</a></div>
-</div>
-</section>
-<footer class="pad sitefoot" style="margin-top: 104px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font: 500 13px/1 Josefin Sans, Futura, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(251,233,220,.86)">
+<footer class="pad sitefoot" style="margin-top: auto; padding-top: 104px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font: 500 13px/1 Josefin Sans, Futura, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: rgba(251,233,220,.86)">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
 
 <button type="button" class="motionbtn" onClick="{{onToggleMotion}}" aria-pressed="{{motionPressed}}">
