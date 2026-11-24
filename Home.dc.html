@@ -54,10 +54,10 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 @keyframes coverbg{0%{background-position:0% 0%,0% 0%}50%{background-position:55% 0%,60% 70%}100%{background-position:100% 0%,100% 100%}}
 @keyframes coverbgm{0%{background-position:0% 0%,50% 50%,0% 0%}50%{background-position:55% 0%,50% 50%,60% 70%}100%{background-position:100% 0%,50% 50%,100% 100%}}
 .still .panel,.bubbles-still .panel{animation-play-state:paused!important}
-/* COMING_SOON_SLIDES: centred two-line message in an otherwise empty panel */
-.panel .soon{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;min-height:100%}
-.panel .soon-t{font:600 17px/1 Josefin Sans,Futura,sans-serif;letter-spacing:.32em;text-transform:uppercase;padding-left:.32em}
-.panel .soon-s{font:400 16px/1.4 Josefin Sans,Futura,sans-serif;opacity:.72}
+/* COMING_SOON_SLIDES: centred two-line message in an otherwise empty panel; sizes divide by --pk (the phone zoom) so the text stays readable when panels shrink */
+.panel .soon{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:max(16px,calc(10px / var(--pk,1)));text-align:center;min-height:100%}
+.panel .soon-t{font:600 max(24px,calc(17px / var(--pk,1)))/1 Josefin Sans,Futura,sans-serif;letter-spacing:.3em;text-transform:uppercase;padding-left:.3em}
+.panel .soon-s{font:400 max(20px,calc(15px / var(--pk,1)))/1.4 Josefin Sans,Futura,sans-serif;opacity:.78}
 @media (prefers-reduced-motion:reduce){.panel{animation:none!important}}
 @keyframes lsheen{0%{transform:translateX(-140%) skewX(-18deg)}60%,100%{transform:translateX(320%) skewX(-18deg)}}
 @keyframes ltrace{from{stroke-dashoffset:0}to{stroke-dashoffset:-412}}
