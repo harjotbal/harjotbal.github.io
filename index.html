@@ -5,7 +5,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>/* CAKE_SPRINKLES: true = Cake mode shows falling sprinkles over the pastel gradient. false = back to the crumbs. */window.CAKE_SPRINKLES=true;try{if(window.CAKE_SPRINKLES)document.documentElement.classList.add('cake-spr');var t=sessionStorage.getItem('harjot-theme');document.documentElement.style.backgroundColor=t==='cake'?'#EEFBFC':'#6E2C1A'}catch(e){}</script>
-<title>Harjot — Enter</title>
+<title>Harjot. — Hands-on leader making and shipping cool stuff.</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -337,6 +340,7 @@ const LOGO_ROUND_D = 'M80.50 126.82 80.00 127.18 79.50 127.41 78.75 127.64 78.00
 const GATE_SPIN_MS = 900;
 const GATE_ENTER_W = 0.88;     // Enter panel width as a share of the keypad panel (was 0.8; now 10% wider)
 const GATE_ENTER_H = 0.48;     // Enter panel height as a share of the keypad panel (was 0.6; 10% more off its top and bottom)      // Enter panel <-> keypad spin duration
+const SITE_TITLE = 'Harjot. — Hands-on leader making and shipping cool stuff.'; // browser tab title, the same on every page
 const GATE_FOOT_GAP = 12;      // space between the passcode panel and Stop motion (unscaled px; was 40, before that 64)    // passcode keypad as 3 x 4 (123 / 456 / 789 / 0) with wider keys
 const GATE_PANEL_PADV = 22;   // extra space above and below the keypad inside the passcode panel (0 = panel hugs the keypad)
 const GATE_LOGO_SMALL = 0.92;  // gate logo scale on screens ≤600px wide (1 = previous size)      // toggle top = gate line minus this (was 22)
@@ -1228,7 +1232,7 @@ class Component extends DCLogic {
       if (this._urlOn === on) return; this._urlOn = on;
       history.replaceState(history.state, '', new URL(on ? 'about/' : './', document.baseURI).href);
       if (on && !this._title0) this._title0 = document.title;
-      document.title = on ? 'Harjot — About' : (this._title0 || document.title);
+      document.title = SITE_TITLE; // one title on every page
     } catch (e) {}
   }
   reset() {
