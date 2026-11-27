@@ -17,7 +17,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&amp;family=Figtree:wght@300;400;500;600&amp;display=swap">
 <style>
 body{margin:0;background:#6E2C1A}html,body{overscroll-behavior-y:none}:root{--gut:max(clamp(24px,9vw,140px),calc((100vw - 1360px) / 2))}.grainbg{position:absolute;inset:0;opacity:.13;mix-blend-mode:overlay;pointer-events:none;background:url(img/286a77ab77c7.webp) 0 0/160px 160px repeat}.no-grain .grainbg{display:none!important}/* Safari 26 fix: keep pinned header off the top-edge zone Safari samples for toolbar tint (prevented scroll re-rendering) */.hdr{top:8px!important}.hdr-on .logowrap,.hdr-on .modetog.mini,.hdr-on .navrow{translate:0 -8px}@media (min-width:641px){.hdr-on .logowrap{translate:0 -8.5px}.hdr-on .navrow{translate:0 -7.4px}}@media (min-width:641px){.hdr .logowrap{margin-left:var(--lgml,0px)}.hdr{--lgland:.806}.hdr:not(.hdr-on) .logowrap{transform:translate(0,calc(30.1px * (1 - var(--lgland)))) scale(var(--lgland))}.hdr:not(.hdr-on) .modetog.mini{transform:translateX(calc(-216px * (1 - var(--lgland))))}.hdr .navrow{margin-right:var(--navmr,0px)}.hdr.hdr-on .logowrap{transform:translate(calc(14px + var(--dlx,0px)),6.7px) scale(.61)}.hdr.hdr-on .modetog.mini{transform:translate(calc(-71.25px + var(--dlx,0px)),-5px)}}.hdr-fit.hdr-on:not(.hdr-oldpos) .logowrap,.hdr-fit.hdr-on:not(.hdr-oldpos) .modetog.mini,.hdr-fit.hdr-on:not(.hdr-oldpos) .navrow{translate:none}.hdrglass{top:8px!important;left:12%!important;right:12%!important}.hdrglass::before{top:6px!important;left:calc(max(8px,calc(var(--gut) - 19.5px)) - 12vw)!important;right:calc(max(8px,calc(var(--gut) - 19.5px)) - 12vw)!important}.hdrlogo{display:none;position:absolute;max-width:none;pointer-events:none}
-@media (max-width:640px){.hdr-on .logowrap>.hdrlogo{translate:0 var(--fcy,0px)}}
+.hdr-on .logowrap>.hdrlogo{translate:0 var(--fcy,0px)}
+.hdr-on .navrow .navlink{translate:0 var(--nvcy,0px)}
 .lgswap .hdrlogo,.lgswap .logowrap{will-change:transform}.flatlogo .hdr .logowrap>.hdrlogo{display:block}.flatlogo .hdr .logowrap>:not(.hdrlogo){display:none!important}.flatlogo .site.lava .hdr .hl-cake,.flatlogo .site.cake .hdr .hl-lava{display:none!important}.bg-still .blob,.bg-still .cblob{will-change:auto!important}.bglay{transform:none!important}.cakebg{visibility:hidden;transition:opacity .9s ease,visibility 0s linear .9s}.cake .cakebg{visibility:visible;transition:opacity .9s ease,visibility 0s}.fcar .fact.fout,.fcar .fact.fout *{will-change:auto!important}.no-frost *,.no-frost *::before,.no-frost *::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}.no-gblur .glass,.no-gblur .glass-dark,.no-gblur .modetog,.no-gblur .motionbtn{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}.no-gblur .lava .glass,.no-gblur .lava .modetog,.no-gblur .lava .motionbtn,.no-gblur.lava .glass{background-color:var(--gtint,transparent)!important}.no-gblur .lava .glass-dark{background-image:linear-gradient(var(--gtint,transparent),var(--gtint,transparent))}.cakesp{position:absolute;inset:0;overflow:hidden;pointer-events:none}.cakesp img{position:absolute;display:block;max-width:none}.lump-off .gb{animation-play-state:paused!important}.bg-still .blob,.bg-still .cblob{animation-play-state:paused!important}.bg-still .blob,.bg-still .cblob{visibility:hidden!important}.blobcv{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 *{box-sizing:border-box}
 a{color:#FBE9DC}a:hover{color:#FFFFFF}
@@ -269,7 +270,7 @@ html{scroll-behavior:smooth}
 // false = lava blobs and cake splotches hold still (better performance on phones).
 // Set to true to bring the drifting/wobbling backgrounds back exactly as before.
 const BG_MOTION = false;
-const LOGO_PHONE_FIX = true;     // phones (<=640px): header logo 15% smaller in landing + floating, and its capital H centred on the floating bar in both modes (false = previous)
+const LOGO_PHONE_FIX = true;     // phones (<=640px): header logo 15% smaller in landing + floating. All widths: logo, toggle and nav centred on the floating bar (false = previous)
 const LOGO_SWAP_FIX = true;      // Lava/Cake switch: pre-decode both header logos, repaint + re-measure the header logo after a switch (false = previous behaviour)
 const LAVA_MOTION = true;          // Lava only: live drifting colour blobs (overrides BG_MOTION for Lava; Cake stays still). false = back to the still painted background
 const CAKE_CRUMBS = true;          // Cake only: cake-crumb sprites instead of paint splotches. false = back to the splotches
@@ -1048,21 +1049,33 @@ class Component extends DCLogic {
   }
   // centred landing header: logo, toggle and About/Work each centred on their own row (landing state only)
   // LOGO_PHONE_FIX: phones only. The Lava and Cake logo images have different padding, so centre each one's capital H on the floating bar by measuring it
+  // FLOAT_CENTER: every width. While the header is docked, measure the logo's capital H and the nav letters against the bar's centre
+  // line and nudge each onto it. Measured live in the visitor's browser, so it uses their real fonts. Re-runs whenever the bar docks or the mode changes.
   hdrFloatCY() {
     const h = this.hdrEl; if (!h) return;
     h.querySelectorAll('img.hdrlogo').forEach((i) => i.style.removeProperty('--fcy'));
-    if (!LOGO_PHONE_FIX || window.innerWidth > 640 || !h.classList.contains('hdr-on')) return; // measured only while docked (re-run each time it docks)
+    h.style.removeProperty('--nvcy');
+    if (!LOGO_PHONE_FIX || !h.classList.contains('hdr-on')) return; // measured only while docked
     const g = h.parentElement && h.parentElement.querySelector(':scope > .hdrglass'); if (!g) return;
-    const wasOn = true, gOn = g.classList.contains('on');
+    const gOn = g.classList.contains('on');
     h.classList.add('hdr-measure'); g.classList.add('on'); void h.offsetWidth;
     try {
       const gr = g.getBoundingClientRect(), b = getComputedStyle(g, '::before'), bh = parseFloat(b.height) || 0; if (!bh) return;
       const barC = gr.top + (parseFloat(b.top) || 0) + bh / 2;
-      const im = [...h.querySelectorAll('img.hdrlogo')].find((e) => getComputedStyle(e).display !== 'none'); if (!im) return;
-      const r = im.getBoundingClientRect(), fr = im.classList.contains('hl-cake') ? [0.1452, 0.7137] : [0.0303, 0.6717]; // measured H top / baseline in each image
-      const capC = r.top + (fr[0] + fr[1]) / 2 * r.height, k = r.height / Math.max(1, im.offsetHeight);
-      im.style.setProperty('--fcy', ((barC - capC) / k).toFixed(2) + 'px');
-    } finally { if (!wasOn) h.classList.remove('hdr-on'); if (!gOn) g.classList.remove('on'); void h.offsetWidth; h.classList.remove('hdr-measure'); }
+      const kOf = (el) => el.getBoundingClientRect().height / Math.max(1, el.offsetHeight);
+      // logo: centre of the capital H (measured top / baseline fractions in each image)
+      const im = [...h.querySelectorAll('img.hdrlogo')].find((e) => getComputedStyle(e).display !== 'none');
+      if (im) { const r = im.getBoundingClientRect(), fr = im.classList.contains('hl-cake') ? [0.1452, 0.7137] : [0.0303, 0.6717];
+        im.style.setProperty('--fcy', ((barC - (r.top + (fr[0] + fr[1]) / 2 * r.height)) / kOf(im)).toFixed(2) + 'px'); }
+      // (the toggle pill is already centred by the layout at every width)
+      // nav: centre of the capital letters (baseline from a zero-height probe, cap height from the live font)
+      const nl = h.querySelector('.navrow .navlink');
+      if (nl) { const pr = document.createElement('span'); pr.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline'; nl.appendChild(pr);
+        const base = pr.getBoundingClientRect().top; nl.removeChild(pr);
+        const st = getComputedStyle(nl), cx = (this.hdrCtx = this.hdrCtx || document.createElement('canvas').getContext('2d')); cx.font = st.fontWeight + ' ' + st.fontSize + ' ' + st.fontFamily;
+        const k = kOf(nl), capH = (cx.measureText('H').actualBoundingBoxAscent || parseFloat(st.fontSize) * 0.7) * k;
+        h.style.setProperty('--nvcy', ((barC - (base - capH / 2)) / k).toFixed(2) + 'px'); }
+    } finally { if (!gOn) g.classList.remove('on'); void h.offsetWidth; h.classList.remove('hdr-measure'); }
   }
   hdrCenter() {
     this.hdrFloatCY();
