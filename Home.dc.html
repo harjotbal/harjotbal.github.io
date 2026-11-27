@@ -238,7 +238,7 @@ html{scroll-behavior:smooth}
 @media (min-width:761px){
   .pnav{display:block;position:relative;height:0;z-index:6;pointer-events:none}
   .pnavin{position:absolute;left:calc(var(--gut) + 760px * var(--pk, 1) + 28px);right:0;top:calc(-28px - 250px * var(--pk, 1));transform:translateY(-50%);display:flex;justify-content:center;gap:12px}
-  .pbtn{width:44px;height:44px;pointer-events:auto}
+  .pbtn{width:52px;height:52px;pointer-events:auto}
   .pbtn.isdis{opacity:.38;cursor:default}
   .pbtn.isdis:hover{transform:none}
 }
@@ -250,7 +250,7 @@ html{scroll-behavior:smooth}
   .pbar-top{display:none!important}
   .pnav{display:none!important}
   .pnav-top{display:flex;gap:10px;margin-left:auto;flex:none}
-  .pnav-top .pbtn{width:40px;height:40px}
+  .pnav-top .pbtn{width:52px;height:52px} /* full-size arrows (were 40px) */
 }
 
 /* THEME_SWAP_INSTANT: no transitions during the one-frame Lava/Cake swap */
@@ -308,8 +308,8 @@ html{scroll-behavior:smooth}
 <div class="pnav-top">
 <button class="{{pr.prevCls}}" type="button" aria-label="Previous step of {{pr.title}}" aria-disabled="{{pr.prevDis}}" onClick="{{pr.prevAct}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg></button>
 <button class="glass arrowbtn pbtn" type="button" aria-label="{{pr.nextLabel}}" onClick="{{pr.nextAct}}">
-<sc-if value="{{pr.atEnd}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36"></path><path d="M3 4v5h5"></path></svg></sc-if>
-<sc-if value="{{pr.notEnd}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></sc-if>
+<sc-if value="{{pr.atEnd}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36"></path><path d="M3 4v5h5"></path></svg></sc-if>
+<sc-if value="{{pr.notEnd}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></sc-if>
 </button>
 </div>
 </div>
@@ -330,8 +330,8 @@ html{scroll-behavior:smooth}
 <div class="pnav"><div class="pnavin">
 <button class="{{pr.prevCls}}" type="button" aria-label="Previous step of {{pr.title}}" aria-disabled="{{pr.prevDis}}" onClick="{{pr.prevAct}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg></button>
 <button class="glass arrowbtn pbtn" type="button" aria-label="{{pr.nextLabel}}" onClick="{{pr.nextAct}}">
-<sc-if value="{{pr.atEnd}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36"></path><path d="M3 4v5h5"></path></svg></sc-if>
-<sc-if value="{{pr.notEnd}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></sc-if>
+<sc-if value="{{pr.atEnd}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36"></path><path d="M3 4v5h5"></path></svg></sc-if>
+<sc-if value="{{pr.notEnd}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></sc-if>
 </button>
 </div></div>
 <div class="pad pbar-bot" aria-hidden="true"><div class="bar"><span style="{{pr.barStyle}}"></span></div></div>
