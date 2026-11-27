@@ -120,7 +120,7 @@ html{scroll-behavior:smooth}
 .cakecv{position:absolute;inset:0;width:100%;height:100%;display:block}
 :root{--cakebase:#EEFBFC}
 .cake-spr .cake .glass:not(.key){background:linear-gradient(135deg,rgba(255,255,255,.93),rgba(255,255,255,.8))}.cake-spr .cake .glass-dark{background:rgba(255,255,255,.9)}
-.cspb{position:absolute;left:0;right:0}.cspfg{position:absolute;inset:0;pointer-events:none;overflow:hidden}.cspf{position:absolute;left:0;top:0;border-radius:999px;will-change:transform}
+.cspb{position:absolute;left:0;right:0}.cspfg{position:absolute;inset:0;pointer-events:none;overflow:hidden}.cspfix{position:fixed;inset:0}.cspf{position:absolute;left:0;top:0;border-radius:999px;will-change:transform}
 .csp{position:absolute;top:0;border-radius:999px;animation:cspFall var(--t) linear var(--d) infinite;animation-play-state:paused}
 .cspb.on .csp{animation-play-state:running}
 .still .csp{animation-play-state:paused!important}
@@ -404,6 +404,7 @@ const CAKE_SPRINKLE_SETTLE = true;
 // CSP_MID_BOOST: how much denser the sprinkles are over the middle of the page (the content column, 15%–85% of the width) than a uniform spread (1 = uniform)
 const CSP_MID_BOOST = 1.25;
 const cspX = (W) => { const a = 0.15, b = 0.85, share = Math.min(1, (b - a) * CSP_MID_BOOST); if (Math.random() < share) return W * (a + Math.random() * (b - a)); const r = Math.random() * (1 - (b - a)); return W * (r < a ? r : b + (r - a)); };
+const SPRINKLE_FALL_FIXED = true; // falling front sprinkles ignore scrolling (false = previous)
 const CSP_FG_Z = 0.75; // sprinkles at this depth or closer share the content's plane (25% of all sprinkles; was 0.8 = 20%)
 const CSP_HDR_SETTLE = false; // false = sprinkles never rest on the header (landing logo or floating bar); ones resting on content that slides under the floating bar drop off
 const CSP_LOGO_RICOCHET = true; // true = a sprinkle bouncing off one letter can land on / slide off the next letter instead of jumping out to the logo's outer edge
@@ -426,10 +427,12 @@ const cspFG = () => {
     const root = pickRoot();
     if (root !== S.root) {
       S.root = root; S.parts.forEach((p) => p.n.remove()); S.parts = []; S.seeded = false;
-      if (S.lay) S.lay.remove(); S.lay = null;
-      if (root) { S.host = root.querySelector('.cakebg') || root; S.lay = document.createElement('div'); S.lay.className = 'cspfg'; S.lay.setAttribute('aria-hidden', 'true'); S.host.appendChild(S.lay); }
+      if (S.lay) S.lay.remove(); S.lay = null; if (S.fix) S.fix.remove(); S.fix = null;
+      if (root) { S.host = root.querySelector('.cakebg') || root; S.lay = document.createElement('div'); S.lay.className = 'cspfg'; S.lay.setAttribute('aria-hidden', 'true'); S.host.appendChild(S.lay);
+        // SPRINKLE_FALL_FIXED: falling sprinkles live in a screen-pinned layer so scrolling never drags them; resting ones stay on the page with the content
+        if (SPRINKLE_FALL_FIXED) { S.fix = document.createElement('div'); S.fix.className = 'cspfg cspfix'; S.fix.setAttribute('aria-hidden', 'true'); S.host.appendChild(S.fix); } }
     }
-    if (S.lay && !S.lay.isConnected && S.host) S.host.appendChild(S.lay);
+    if (S.lay && !S.lay.isConnected && S.host) S.host.appendChild(S.lay); if (S.fix && !S.fix.isConnected && S.host) S.host.appendChild(S.fix);
     S.surf = !root ? [] : [...root.querySelectorAll(SEL)].filter((el) => !el.closest('.hdr, .hdrglass, .fclone, .cspfg, .lstage') && !(el.classList.contains('fact') && !el.classList.contains('fcur')) && el.offsetWidth >= 36 && el.offsetHeight >= 20 && vis(el))
       .map((el) => ({ el, rad: Math.min(parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0, el.offsetHeight / 2), clip: el.closest('.track') }));
     if (root) {
@@ -476,7 +479,7 @@ const cspFG = () => {
     S.acc += rate * dt; while (S.acc >= 1 && S.parts.filter((q) => q.st === 'fall').length < 60) { S.acc -= 1; add(-30); }
     S.hdrB = -1e9; if (!CSP_HDR_SETTLE && S.root) { const hg = S.root.parentElement && S.root.parentElement.querySelector('.hdrglass.on'), hd = S.root.querySelector('.hdr.hdr-on') || (hg && S.root.querySelector('.hdr')); if (hd) { const hr = hd.getBoundingClientRect(); if (hr.height) S.hdrB = hr.bottom; } } S.rects.clear(); S.surf.forEach((s) => { const r = s.el.getBoundingClientRect(); let l = r.left, rr = r.right; if (s.clip) { const c = s.clip.getBoundingClientRect(); l = Math.max(l, c.left); rr = Math.min(rr, c.right); } S.rects.set(s.el, { top: r.top, bottom: r.bottom, l, r: rr, w: r.width, left: r.left, rad: s.rad, logo: s.logo, s: s.logo ? r.width / s.logo.bw : 1 }); });
     if (!S.seeded) { S.seeded = true; const n0 = Math.round(rate * (vh / 32)); for (let i = 0; i < n0; i++) { add(Math.random() * vh); const q = S.parts[S.parts.length - 1]; for (let k = 0; k < 12 && inside(q); k++) { q.x = cspX(vw); q.y = Math.random() * vh; } if (inside(q)) { q.n.remove(); S.parts.pop(); } } }
-    const perEl = new Map(), LR = S.lay.getBoundingClientRect();
+    const perEl = new Map(), LR = S.lay.getBoundingClientRect(), FR = S.fix ? S.fix.getBoundingClientRect() : LR;
     for (let i = S.parts.length - 1; i >= 0; i--) {
       const p = S.parts[i];
       if (p.st === 'fall') {
@@ -523,7 +526,8 @@ const cspFG = () => {
           if (p.x < r.l + m || p.x > r.r - m) fall(p, p.slide ? Math.sign(p.slide) : (p.x < (r.l + r.r) / 2 ? -1 : 1));
         }
       }
-      p.n.style.transform = 'translate3d(' + (p.x - p.w / 2 - LR.left).toFixed(1) + 'px,' + (p.y - p.h / 2 - LR.top).toFixed(1) + 'px,0) rotate(' + p.ang.toFixed(1) + 'deg)';
+      const L = S.fix && p.st === 'fall' ? S.fix : S.lay, R0 = L === S.fix ? FR : LR; if (p.n.parentNode !== L) L.appendChild(p.n);
+      p.n.style.transform = 'translate3d(' + (p.x - p.w / 2 - R0.left).toFixed(1) + 'px,' + (p.y - p.h / 2 - R0.top).toFixed(1) + 'px,0) rotate(' + p.ang.toFixed(1) + 'deg)';
     }
   };
   S.raf = requestAnimationFrame(frame);
