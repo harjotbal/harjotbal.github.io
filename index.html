@@ -116,6 +116,15 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 .backface:hover svg{transform:translateY(-3px)}
 .backface:hover span{transform:translateY(-3px)} /* ENTER_HOVER_TOGETHER: lock and Enter lift together (was: text only dimmed to .85) */
 .backface:focus-visible{outline-offset:-8px}
+/* ENTER_PILL: same look as the Résumé / LinkedIn buttons, icon first; the hidden panel keeps its size so the keypad still opens into it */
+.asbtn{--tilt:0deg!important}
+.asbtn>.surf{inset:calc(50% - 26px) calc(50% - 92.5px);border-radius:999px}
+.asbtn>.backface{inset:calc(50% - 26px) calc(50% - 92.5px);width:auto;height:auto;border-radius:999px;flex-direction:row;gap:12px}
+.asbtn>.backface svg{width:18px;height:18px;stroke-width:1.6}
+.asbtn>.backface span{font:600 13px/1 Josefin Sans,Futura,sans-serif!important;letter-spacing:.22em!important}
+.asbtn>.backface:hover svg,.asbtn>.backface:hover span{transform:none}
+.asbtn>.backface:hover,.asbtn:has(>.backface:hover)>.surf{transform:translateY(-2px)}
+.asbtn>.backface:focus-visible{outline-offset:3px}
 @keyframes trace{from{stroke-dashoffset:0}to{stroke-dashoffset:-720}}
 .trace{stroke-dasharray:110 610;animation:trace 9s linear infinite}
 .still .blob,.still .bob,.still .sheen,.still .rise,.still .trace,.still .glass::before,.still .glass::after{animation:none!important}
@@ -262,7 +271,7 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 <div class="tx-panel" style="{{panelPos}}; position: absolute; z-index: 4">
 <div class="{{wrapClass}}" style="width: 100%; height: 100%">
 <div class="{{wobClass}}" style="width: 100%; height: 100%">
-<article class="tx-tilt" style="{{panelTilt}}; position: relative; width: 100%; height: 100%; border-radius: 28px; transform-origin: 50% 100%">
+<article class="{{tiltCls}}" style="{{panelTilt}}; position: relative; width: 100%; height: 100%; border-radius: 28px; transform-origin: 50% 100%">
 <div class="glass surf" aria-hidden="true"></div>
 <button class="backface" type="button" aria-label="Enter passcode" onClick="{{onFlip}}" onPointerDown="{{onPressDown}}" onPointerLeave="{{onPressCancel}}" onPointerCancel="{{onPressCancel}}" style="{{backStyle}}">
 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(251,233,220,.9)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
@@ -341,6 +350,7 @@ const GATE_SPIN_MS = 900;
 const GATE_ENTER_W = 0.88;     // Enter panel width as a share of the keypad panel (was 0.8; now 10% wider)
 const GATE_ENTER_H = 0.48;     // Enter panel height as a share of the keypad panel (was 0.6; 10% more off its top and bottom)      // Enter panel <-> keypad spin duration
 const SITE_TITLE = 'Harjot. — Hands-on leader making and shipping cool stuff.'; // browser tab title, the same on every page
+const GATE_ENTER_PILL = true; // Enter: a glass pill button like Résumé / LinkedIn (lock icon on the left) instead of the big tilted panel (false = previous panel)
 const GATE_FOOT_GAP = 12;      // space between the passcode panel and Stop motion (unscaled px; was 40, before that 64)    // passcode keypad as 3 x 4 (123 / 456 / 789 / 0) with wider keys
 const GATE_PANEL_PADV = 22;   // extra space above and below the keypad inside the passcode panel (0 = panel hugs the keypad)
 const GATE_LOGO_SMALL = 0.92;  // gate logo scale on screens ≤600px wide (1 = previous size)      // toggle top = gate line minus this (was 22)
@@ -1128,6 +1138,7 @@ class Component extends DCLogic {
       gateStyle: open ? 'opacity: 0; transform: translateY(-14px); pointer-events: none' : (intro >= 3 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: translateY(12px)'),
       mainIntro: intro >= 1 ? 'opacity: 1; transform: none' : 'opacity: 0; transform: scale(.985)',
       wobClass: s.spin ? 'gspin' : '',
+      tiltCls: 'tx-tilt' + (GATE_ENTER_PILL && !keysOn && intro !== 11 && !open ? ' asbtn' : ''), // ENTER_PILL: resting Enter state is a pill button; it becomes the full panel mid-spin
       wrapClass: s.pdown && intro === 4 ? 'press' : (intro === 7 || intro === 10 || intro === 13 ? 'keysup' : (intro === 11 ? 'keysout' : '')),
       onPressDown: () => { if ((this.state || {}).intro === 4) { this.pdAt = Date.now(); this.setState({ pdown: true }); } },
       onPressCancel: () => { if ((this.state || {}).pdown) this.setState({ pdown: false }); },
