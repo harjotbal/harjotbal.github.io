@@ -42,7 +42,7 @@ a{color:#FBE9DC}a:hover{color:#FFFFFF}
 .panel h3:empty{display:none}.capline,.cake .capline{background:none!important;border:none!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:0 6px 4px!important;margin:0 0 18px!important}.capline p{font:700 13px/1.5 Josefin Sans,Futura,sans-serif!important;letter-spacing:.22em;text-transform:uppercase;color:#FBE9DC!important}.cake .capline p{color:#55301C!important}.herocap{align-items:center;text-align:center}.herocap p,.cake .herocap p{color:#FFFFFF!important;text-shadow:0 1px 8px rgba(14,10,60,.35)}.glass-dark{background:rgba(24,9,5,.40);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border:1px solid rgba(255,238,226,.18)}
 .emboss{background:linear-gradient(180deg,rgba(255,232,214,.92),rgba(236,196,170,.70));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 1px 0 rgba(255,255,255,.22)) drop-shadow(0 3px 4px rgba(20,6,2,.45))}
 .rise{animation:rise .9s cubic-bezier(.22,1,.36,1) both}
-.wrise{opacity:0}.wrise.wgo,.nointro .wrise,.still .wrise{opacity:1}.hj-rv .wrv.reveal{transition:opacity .01s linear!important;transform:none!important} .hj-rv .reveal{transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}.hj-rv .reveal:not(.revealed){opacity:0;transform:translateY(28px)}.hj-rv .still .reveal:not(.revealed){opacity:1;transform:none}.still .reveal{transition:none!important}
+@keyframes whd{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}.whead.rise{animation:whd 1.5s cubic-bezier(.25,.75,.3,1) both}.hj-rv .whead.reveal{transition:opacity 1.3s cubic-bezier(.3,.6,.3,1),transform 1.5s cubic-bezier(.25,.75,.3,1)}.hj-rv .whead.reveal:not(.revealed){opacity:0;transform:translateY(16px)} .wrise{opacity:0}.wrise.wgo,.nointro .wrise,.still .wrise{opacity:1}.hj-rv .wrv.reveal{transition:opacity .01s linear!important;transform:none!important} .hj-rv .reveal{transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}.hj-rv .reveal:not(.revealed){opacity:0;transform:translateY(28px)}.hj-rv .still .reveal:not(.revealed){opacity:1;transform:none}.still .reveal{transition:none!important}
 .navlink{color:#FBE9DC;text-decoration:none;font:600 14px/1 Josefin Sans,Futura,sans-serif;letter-spacing:.28em;text-transform:uppercase;padding:15px 0;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .5s cubic-bezier(.22,1,.36,1)}
 .navlink:hover,.navlink[aria-current="page"]{background-size:100% 1px;color:#FFFFFF}
 .row{transition:transform .5s cubic-bezier(.22,1,.36,1),background-color .5s}
@@ -986,7 +986,7 @@ class Component extends DCLogic {
         if (!els.length) return;
         const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (!window.IntersectionObserver || reduce) { els.forEach((e) => e.classList.add('revealed')); return; }
-        if (!window.__hjIO) window.__hjIO = new IntersectionObserver((ents) => { ents.forEach((en) => { if (en.isIntersecting || en.boundingClientRect.top < 0) { en.target.classList.add('revealed'); window.__hjIO.unobserve(en.target); if (en.target.classList.contains('wrv') && window.__hjStag) window.__hjStag(en.target, .28); } }); }, { rootMargin: '0px 0px -8% 0px' });
+        if (!window.__hjIO) window.__hjIO = new IntersectionObserver((ents) => { ents.forEach((en) => { if (en.isIntersecting || en.boundingClientRect.top < 0) { en.target.classList.add('revealed'); window.__hjIO.unobserve(en.target); if (en.target.classList.contains('wrv') && window.__hjStag) window.__hjStag(en.target, .22); } }); }, { rootMargin: '0px 0px -8% 0px' });
         document.documentElement.classList.add('hj-rv');
         els.forEach((e) => window.__hjIO.observe(e));
       };
@@ -999,11 +999,11 @@ class Component extends DCLogic {
           const E = 'cubic-bezier(.22,1,.36,1)';
           const go = (el, kf, delay, dur) => el.animate(kf, { duration: dur * 1000, delay: delay * 1000, easing: E, fill: 'backwards' });
           [...tr.querySelectorAll(':scope > .panel')].forEach((pn, i) => {
-            const d = base + i * .14;
-            go(pn, [{ opacity: 0, translate: '0 44px', scale: '.97' }, { opacity: 1, translate: '0 0', scale: '1' }], d, 1.0);
+            const d = base + i * .1;
+            go(pn, [{ opacity: 0, translate: '0 44px', scale: '.97' }, { opacity: 1, translate: '0 0', scale: '1' }], d, .75);
             const v = pn.querySelector('.visual');
-            if (v) go(v, [{ opacity: 0, translate: '0 26px', scale: '1.06' }, { opacity: 1, translate: '0 0', scale: '1' }], d + .45, 1.1);
-            [...pn.querySelectorAll('.glass-dark > *, .soon > *')].forEach((t, j) => go(t, [{ opacity: 0, translate: '0 14px' }, { opacity: 1, translate: '0 0' }], d + .9 + j * .12, .8));
+            if (v) go(v, [{ opacity: 0, translate: '0 26px', scale: '1.06' }, { opacity: 1, translate: '0 0', scale: '1' }], d + .22, .85);
+            [...pn.querySelectorAll('.glass-dark > *, .soon > *')].forEach((t, j) => go(t, [{ opacity: 0, translate: '0 14px' }, { opacity: 1, translate: '0 0' }], d + .45 + j * .08, .6));
           });
           tr.classList.add('wgo');
         } catch (e) { tr.classList.add('wgo'); }
@@ -1335,7 +1335,7 @@ class Component extends DCLogic {
         logoStyle: 'width: 94px; height: ' + (94 / LOGOS[x.logo].r).toFixed(1) + 'px; -webkit-mask-image: url(' + LOGOS[x.logo].u + '); mask-image: url(' + LOGOS[x.logo].u + ')',
         secStyle: x.n === '01' ? 'margin-top: 72px' : 'margin-top: var(--csgap, 120px)',
         // first case is on screen at load: it uses the same load-time 'rise' as the other pages' titles (scroll reveal would already be done before first paint)
-        headCls: x.n === '01' ? 'pad rise' : 'pad reveal', headDelay: x.n === '01' ? 'animation-delay: .08s' : '', trackCls: x.n === '01' ? (WORK_STAGGER ? 'track wrise' : 'track rise') : (WORK_STAGGER ? 'track reveal wrv' : 'track reveal'), trackDelay: x.n === '01' ? 'animation-delay: .2s' : 'transition-delay: .12s',
+        headCls: (x.n === '01' ? 'pad rise' : 'pad reveal') + (WORK_STAGGER ? ' whead' : ''), headDelay: x.n === '01' ? 'animation-delay: .08s' : '', trackCls: x.n === '01' ? (WORK_STAGGER ? 'track wrise' : 'track rise') : (WORK_STAGGER ? 'track reveal wrv' : 'track reveal'), trackDelay: x.n === '01' ? 'animation-delay: .2s' : 'transition-delay: .12s',
         barStyle: 'width: ' + Math.round(20 + 80 * (prog[x.id] || 0)) + '%',
         prevDis: (prog[x.id] || 0) < 0.02 ? 'true' : 'false',
         prevCls: 'glass arrowbtn pbtn' + ((prog[x.id] || 0) < 0.02 ? ' isdis' : ''),
