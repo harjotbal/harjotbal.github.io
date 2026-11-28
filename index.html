@@ -352,9 +352,9 @@ const GATE_SPIN_MS = 900;
 const GATE_ENTER_W = 0.88;     // Enter panel width as a share of the keypad panel (was 0.8; now 10% wider)
 const GATE_ENTER_H = 0.48;     // Enter panel height as a share of the keypad panel (was 0.6; 10% more off its top and bottom)      // Enter panel <-> keypad spin duration
 const SITE_TITLE = 'Harjot. — Hands-on leader making and shipping cool stuff.'; // browser tab title, the same on every page
-const GATE_KEYS_ROUND = true;   // keypad keys are circles (false = previous rounded rectangles)
+const GATE_KEYS_ROUND = false;   // keypad keys are circles (false = previous rounded rectangles)
 const GATE_KEY_ROUND_K = 1.12;  // circle size vs the previous key height
-const GATE_PILL_DROP = true; const GATE_SPIN_SYNC = true;    // logo + toggle sit closer to the Enter pill, gliding back up as the keypad opens (false = fixed)
+const GATE_PILL_DROP = true; const GATE_SPIN_SYNC = true; const GATE_PILL_DROP_K = 0.5; // share of the full drop toward Enter (1 = all the way, 0 = none)    // logo + toggle sit closer to the Enter pill, gliding back up as the keypad opens (false = fixed)
 const GATE_ENTER_PILL = true; // Enter: a glass pill button like Résumé / LinkedIn (lock icon on the left) instead of the big tilted panel (false = previous panel)
 const GATE_FOOT_GAP = 12;      // space between the passcode panel and Stop motion (unscaled px; was 40, before that 64)    // passcode keypad as 3 x 4 (123 / 456 / 789 / 0) with wider keys
 const GATE_PANEL_PADV = 22;   // extra space above and below the keypad inside the passcode panel (0 = panel hugs the keypad)
@@ -1134,7 +1134,7 @@ class Component extends DCLogic {
       motionLabel: s.paused ? 'Start motion' : 'Stop motion',
       motionPressed: s.paused ? 'true' : 'false',
       onToggleMotion: () => this.setState({ paused: !(this.state && this.state.paused) }),
-      rootStyle: '--gdrop: ' + (GATE_PILL_DROP && GATE_ENTER_PILL && !open && intro !== 11 && intro <= 4 ? Math.max(0, pH / 2 - 26) : 0).toFixed(1) + 'px; --gtint: ' + glassTint(P[key].hi) + '; --blur: ' + blur + 'px; --gy: ' + (gyPx - UP).toFixed(1) + 'px; --gup: ' + UP + 'px; --togup: ' + GATE_TOG_UP + 'px; --gfoot: ' + footY.toFixed(1) + 'px; --gf: ' + gf.toFixed(4) + '; --tls: ' + gls.toFixed(4) + '; height: ' + Math.round(vhNow) + 'px; --edgec: ' + (theme === 'cake' ? '#EEFBFC' : P[key].base),
+      rootStyle: '--gdrop: ' + (GATE_PILL_DROP && GATE_ENTER_PILL && !open && intro !== 11 && intro <= 4 ? Math.max(0, pH / 2 - 26) * GATE_PILL_DROP_K : 0).toFixed(1) + 'px; --gtint: ' + glassTint(P[key].hi) + '; --blur: ' + blur + 'px; --gy: ' + (gyPx - UP).toFixed(1) + 'px; --gup: ' + UP + 'px; --togup: ' + GATE_TOG_UP + 'px; --gfoot: ' + footY.toFixed(1) + 'px; --gf: ' + gf.toFixed(4) + '; --tls: ' + gls.toFixed(4) + '; height: ' + Math.round(vhNow) + 'px; --edgec: ' + (theme === 'cake' ? '#EEFBFC' : P[key].base),
       logoW: Math.ceil(tw + 8), sugarW: Math.ceil(tw + 8) + 40,
       logoRef: (el) => { this.logoText = el; },
       logoD: LOGO_ROUND_D,
